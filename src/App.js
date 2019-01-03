@@ -9,6 +9,7 @@ import {Home} from './page';
 import {Login} from './page/login';
 import {SearchS1} from './page/search/s1';
 import {SearchS2} from './page/search/s2';
+import {CareerCard} from './general-component/career-card';
 
 export class App extends Component {
   render() {
@@ -31,6 +32,10 @@ export class App extends Component {
             <Route
               path="/search/s2"
               component={routeProps => <SearchS2 {...routeProps} />}
+            />
+            <Route
+              path="/careercard"
+              component={routeProps => <CareerCard {...routeProps} />}
             />
           </Switch>
         </div>
