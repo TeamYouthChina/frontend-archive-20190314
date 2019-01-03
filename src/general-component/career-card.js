@@ -21,7 +21,8 @@ export class CareerCard extends React.Component {
     /*
     * */
     this.state = {
-      backend: null
+      backend: null,
+      cardColor: '#747373'
     };
     this.text = CareerCard.i18n[languageHelper()];
   }
@@ -49,14 +50,24 @@ export class CareerCard extends React.Component {
         }
       };
     mockData.ifMatched = mockData.user.type === mockData.type
+    let color = '#747373';
+    if(mockData.ifMatched) {
+      color = '#00bcd4';
+    }
     // 需要检查时间是否符合
     // mockData.ifMatched = (mockData.user.type === mockData.type) && (new Date() <= mockData.deadLine)
     this.setState(() => {
-      return {backend: mockData};
+      return {backend: mockData, cardColor: color};
     });
   }
 
   render() {
+    let matchIcon = null
+    if(this.state.backend.ifMatched) {
+      matchIcon = <MDBIcon icon="check-circle" className="cyan-text" style={{paddingRight: '6px'}}/>;
+    } else {
+      matchIcon = <MDBIcon icon="ban" style={{paddingRight: '6px'}} />;
+    }
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBCard
@@ -145,9 +156,10 @@ export class CareerCard extends React.Component {
                         marginTop: '5px',
                       }}
                     >
-                      <MDBIcon icon="check-circle" className="cyan-text" style={{paddingRight: '6px'}}/>
-                      <span style={{color: '#00bcd4'}}>
-                        {this.state.backend.ifMatched ? this.text.matched : this.text.unmatched}
+                      
+                      <span style={{color: this.state.cardColor}}>
+                        {matchIcon}
+                        {(this.state.backend.ifMatched) ? this.text.matched : this.text.unmatched}
                       </span>
                     </MDBCardText>
                   </MDBCol>

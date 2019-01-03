@@ -71,7 +71,7 @@ export class CompanyCard extends React.Component {
                       fontSize: '1rem'
                     }}
                   >
-                    <a href={this.state.url}>{this.state.backend.name}</a>
+                    <a href={this.state.backend.url}>{this.state.backend.name}</a>
                   </MDBCardTitle>
                   <MDBCardTitle
                     style={{
