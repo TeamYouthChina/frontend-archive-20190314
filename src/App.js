@@ -13,6 +13,7 @@ import {CareerCard} from './general-component/career-card';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
 import {JobDetail} from './page/job';
+import {Recommondation} from './page/recommondation';
 
 export class App extends Component {
   render() {
@@ -51,6 +52,10 @@ export class App extends Component {
             <Route
               path="/job/:id"
               component={routeProps => <JobDetail {...routeProps} />}
+            />
+            <Route
+              path="/recommondation"
+              component={routeProps => <Recommondation {...routeProps} />}
             />
           </Switch>
         </div>
