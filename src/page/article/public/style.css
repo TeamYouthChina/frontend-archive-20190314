@@ -1,0 +1,17 @@
+.bf-content {
+  height: 200px;
+}
+.bf-container{
+  border: 1px solid #EBEBEB;
+  border-radius: 3px;
+  height: 400px;
+}
+.inputWrapper {
+  display: table;
+}
+
+.inputCell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
