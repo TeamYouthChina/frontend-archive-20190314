@@ -40,7 +40,7 @@ export class App extends Component {
               component={routeProps => <CareerCard {...routeProps} />}
             />
             <Route
-              path="/article"
+              path="/article" exact
               component={routeProps => <Article {...routeProps} />}
             />
             <Route
