@@ -15,6 +15,7 @@ import {HomeHeader} from '../home-header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import CoDetail from './company-detail';
+import RelatedPosition from './related';
 
 import './public/style.css';
 
@@ -121,8 +122,15 @@ export class JobDetail extends React.Component {
         </MDBRow>
         <MDBRow style={{marginTop: '3rem'}}>
           <MDBCol size="1"></MDBCol>
-          <MDBCol size="10" style={{paddingTop:'2rem',paddingBottom:'2rem',boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'}}>
+          <MDBCol size="10" style={{paddingTop:'2rem',boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'}}>
             <CoDetail></CoDetail>
+          </MDBCol>
+          <MDBCol size="1"></MDBCol>
+        </MDBRow>
+        <MDBRow style={{marginTop: '3rem'}}>
+          <MDBCol size="1"></MDBCol>
+          <MDBCol size="10" style={{paddingTop:'2rem',paddingBottom:'2rem',boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'}}>
+            <RelatedPosition></RelatedPosition>
           </MDBCol>
           <MDBCol size="1"></MDBCol>
         </MDBRow>
