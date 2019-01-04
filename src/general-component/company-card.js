@@ -11,7 +11,6 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-
 export class CompanyCard extends React.Component {
   constructor(props) {
     super(props);
@@ -46,8 +45,8 @@ export class CompanyCard extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBCard
         style={{
-          height: '16rem',
-          margin: '10px'
+          margin: '10px',
+          
         }}>
         <MDBRow>
           <MDBCol size="3">

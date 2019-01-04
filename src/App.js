@@ -12,6 +12,7 @@ import {SearchS2} from './page/search/s2';
 import {CareerCard} from './general-component/career-card';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
+import {JobDetail} from './page/job';
 
 export class App extends Component {
   render() {
@@ -46,6 +47,10 @@ export class App extends Component {
             <Route
               path="/article/:id/editor"
               component={routeProps => <ArticleEditor {...routeProps} />}
+            />
+            <Route
+              path="/job/:id"
+              component={routeProps => <JobDetail {...routeProps} />}
             />
           </Switch>
         </div>
