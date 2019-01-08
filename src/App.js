@@ -12,7 +12,8 @@ import {SearchS2} from './page/search/s2';
 import {CareerCard} from './general-component/career-card';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
-import {JobDetail} from './page/job';
+import {JobDetail} from './page/job/index';
+import {Discover} from './page/discover';
 
 export class App extends Component {
   render() {
@@ -51,6 +52,10 @@ export class App extends Component {
             <Route
               path="/job/:id"
               component={routeProps => <JobDetail {...routeProps} />}
+            />
+            <Route
+              path="/discover"
+              component={routeProps => <Discover {...routeProps} />}
             />
           </Switch>
         </div>
