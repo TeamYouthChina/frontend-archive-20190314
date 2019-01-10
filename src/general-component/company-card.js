@@ -46,7 +46,7 @@ export class CompanyCard extends React.Component {
       <MDBCard
         style={{
           margin: '10px',
-          
+          boxShadow: 'none'
         }}>
         <MDBRow>
           <MDBCol size="3">

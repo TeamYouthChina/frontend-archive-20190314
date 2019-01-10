@@ -14,6 +14,8 @@ import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
 import {JobDetail} from './page/job';
 import {Recommondation} from './page/recommondation';
+import {Company} from './page/company';
+import {MyFavorite} from './page/myFavorite';
 
 export class App extends Component {
   render() {
@@ -56,6 +58,14 @@ export class App extends Component {
             <Route
               path="/recommondation"
               component={routeProps => <Recommondation {...routeProps} />}
+            />
+            <Route
+              path="/company"
+              component={routeProps => <Company {...routeProps} />}
+            />
+            <Route
+              path="/myfavorite"
+              component={routeProps => <MyFavorite {...routeProps} />}
             />
           </Switch>
         </div>
