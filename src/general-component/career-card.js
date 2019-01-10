@@ -9,8 +9,8 @@ import {
   MDBIcon,
   MDBRow,
   MDBCol,
+  MDBBtn,
 } from 'mdbreact';
-import {CompanyCard} from './company-card';
 import {UserCard} from './user-card';
 import {ArticleCard} from './article-card';
 
@@ -63,6 +63,7 @@ export class CareerCard extends React.Component {
 
   render() {
     let matchIcon = null
+    const idNum = '/job/' + this.props.idNum
     if(this.state.backend.ifMatched) {
       matchIcon = <MDBIcon icon="check-circle" className="cyan-text" style={{paddingRight: '6px'}}/>;
     } else {
@@ -73,7 +74,8 @@ export class CareerCard extends React.Component {
         <MDBCard
           style={{
             height: '16rem',
-            margin: '10px'
+            margin: '10px',
+            boxShadow:'none'
           }}>
           <MDBRow>
             <MDBCol size="3">
@@ -90,20 +92,29 @@ export class CareerCard extends React.Component {
                   justifyContent: 'space-between'
                 }}
               >
-                <MDBCardTitle
-                  style={{
-                    fontSize: '1rem'
-                  }}
-                >
-                  {this.state.backend.name}
-                </MDBCardTitle>
-                <MDBCardTitle
-                  style={{
-                    fontSize: '1rem'
-                  }}
-                >
-                  {this.state.backend.organization.name}
-                </MDBCardTitle>
+                <MDBRow>
+                  <MDBCol size="8">
+                    <MDBCardTitle
+                      style={{
+                        fontSize: '1rem'
+                      }}
+                    >
+                      {this.state.backend.name}
+                    </MDBCardTitle>
+                    <MDBCardTitle
+                      style={{
+                        fontSize: '1rem'
+                      }}
+                    >
+                      {this.state.backend.organization.name}
+                    </MDBCardTitle>
+                  </MDBCol>
+                  <MDBCol size="4">
+                    {/*todo,不符合要求的不能点击*/}
+                    <MDBBtn size="sm" outline style={{borderRadius: '5px'}}><a href={idNum} style={{color:'#747373'}}>{this.text.apply}</a></MDBBtn>
+                  </MDBCol>
+                </MDBRow>
+                
                 <MDBRow>
                   <MDBCol>
                     <MDBCardText
@@ -169,9 +180,9 @@ export class CareerCard extends React.Component {
             </MDBCol>
           </MDBRow>
         </MDBCard>
-        <CompanyCard></CompanyCard>
-        <UserCard></UserCard>
-        <ArticleCard></ArticleCard>
+        {/*<CompanyCard></CompanyCard>*/}
+        {/*<UserCard></UserCard>*/}
+        {/*<ArticleCard></ArticleCard>*/}
       </div>
     ) : null;
   }
@@ -182,10 +193,12 @@ CareerCard.i18n = [
     applyBefore: '申请截止',
     matched: '全部符合',
     unmatched: '不符合条件',
+    apply:'立即申请',
   },
   {
     applyBefore: 'Apply Before',
     matched: 'All Employers Preference Matched',
-    unmatched: 'Some Employers Preference not Matched'
+    unmatched: 'Some Employers Preference not Matched',
+    apply:'apply now'
   },
 ];

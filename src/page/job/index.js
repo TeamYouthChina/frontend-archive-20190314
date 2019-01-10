@@ -14,7 +14,7 @@ import {
 import {HomeHeader} from '../home-header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
-import CoDetail from './company-detail';
+import CoDetail from '../../general-component/company-detail';
 import RelatedPosition from './related';
 
 import './public/style.css';
@@ -63,7 +63,7 @@ export class JobDetail extends React.Component {
               <MDBCard
                 style={{
                   margin: '10px',
-
+                  boxShadow: 'none'
                 }}>
                 <MDBRow>
                   <MDBCardBody
