@@ -12,15 +12,10 @@ import {SearchS2} from './page/search/s2';
 import {CareerCard} from './general-component/career-card';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
-<<<<<<< HEAD
-import {JobDetail} from './page/job/index';
 import {Discover} from './page/discover';
-=======
 import {JobDetail} from './page/job';
-import {Recommondation} from './page/recommondation';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
->>>>>>> ftd
 
 export class App extends Component {
   render() {
