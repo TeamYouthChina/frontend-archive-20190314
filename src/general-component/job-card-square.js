@@ -5,7 +5,8 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBCardText
+  MDBCardText,
+  MDBBtn
 } from 'mdbreact';
 
 
@@ -48,7 +49,9 @@ export class JobCardSquare extends React.Component {
         style={{
           width: '16rem',
           height: '16rem'
-        }}>
+        }}
+        
+      >
         <MDBCardImage
           className="img-fluid"
           src="https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/original/hs-emp-branding-image-data.?1522348756"
@@ -93,6 +96,7 @@ export class JobCardSquare extends React.Component {
             }
           </MDBCardText>
         </MDBCardBody>
+        <MDBBtn size="sm" href="/job/1"  style={{borderRadius: '5px'}}>立即申请</MDBBtn>
       </MDBCard>
     ) : null;
   }

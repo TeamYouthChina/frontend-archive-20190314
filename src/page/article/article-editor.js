@@ -12,7 +12,7 @@ import {
 } from 'mdbreact';
 import {AnswerText} from './answerText';
 import './public/style.css';
-import {HomeHeader} from '../home-header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 
 export class ArticleEditor extends React.Component {
@@ -48,12 +48,12 @@ export class ArticleEditor extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <HomeHeader/>
+        <Header/>
         <div style={{padding: '100px'}}>
           <div className="form-group">
             <MDBRow>
               <MDBCol middle size="9">
-                <input className="form-control" placeholder={this.text.title} />
+                <input className="form-control" placeholder={this.text.title}/>
               </MDBCol>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="2">

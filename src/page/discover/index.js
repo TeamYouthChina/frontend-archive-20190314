@@ -34,7 +34,7 @@ export class Discover extends React.Component {
     this.state = {
       activeItemClassicTabs1: '1',
     };
-
+console.log(this.props)
   }
 
   toggleClassicTabs1 = (tab) => {
@@ -130,7 +130,7 @@ export class Discover extends React.Component {
                         <p>
                           by <a href="#!" className="font-weight-bold">Jessica Clark</a>, 19/04/2018
                         </p>
-                        <MDBBtn color="primary" size="md">
+                        <MDBBtn color="primary" size="md" href="/article/1">
                           Read More
                         </MDBBtn>
                       </MDBCol>
@@ -163,7 +163,7 @@ export class Discover extends React.Component {
                         <p>
                           by <a href="#!" className="font-weight-bold">Jessica Clark</a>, 16/04/2018
                         </p>
-                        <MDBBtn color="primary" size="md">
+                        <MDBBtn color="primary" size="md" href="/article/2">
                           Read More
                         </MDBBtn>
                       </MDBCol>

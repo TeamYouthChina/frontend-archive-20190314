@@ -9,11 +9,11 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-import {HomeHeader} from '../home-header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import CoDetail from '../../general-component/company-detail';
 import {CareerCard} from '../../general-component/career-card';
+import {Header} from '../../general-component/header';
 
 
 
@@ -54,7 +54,7 @@ export class MyFavorite extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <HomeHeader></HomeHeader>
+        <Header/>
         <br/>
         <MDBRow>
           <MDBCol size="1"></MDBCol>

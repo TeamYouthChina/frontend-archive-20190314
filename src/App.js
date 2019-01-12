@@ -9,13 +9,20 @@ import {Home} from './page';
 import {Login} from './page/login';
 import {SearchS1} from './page/search/s1';
 import {SearchS2} from './page/search/s2';
-import {CareerCard} from './general-component/career-card';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
 import {Discover} from './page/discover';
 import {JobDetail} from './page/job';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
+import {People} from './page/people';
+import {store} from './global-data/store';
+import * as actionJs from './global-data/action';
+
+store.dispatch(actionJs.creator(
+  actionJs.type.id,
+  undefined
+));
 
 export class App extends Component {
   render() {
@@ -40,11 +47,7 @@ export class App extends Component {
               component={routeProps => <SearchS2 {...routeProps} />}
             />
             <Route
-              path="/careercard"
-              component={routeProps => <CareerCard {...routeProps} />}
-            />
-            <Route
-              path="/article" exact
+              path="/article/:id" exact
               component={routeProps => <Article {...routeProps} />}
             />
             <Route
@@ -56,16 +59,20 @@ export class App extends Component {
               component={routeProps => <JobDetail {...routeProps} />}
             />
             <Route
-              path="/discover"
+              path="/discovery"
               component={routeProps => <Discover {...routeProps} />}
             />
             <Route
-              path="/company"
+              path="/company/:id"
               component={routeProps => <Company {...routeProps} />}
             />
             <Route
               path="/myfavorite"
               component={routeProps => <MyFavorite {...routeProps} />}
+            />
+            <Route
+              path="/people/:id"
+              component={routeProps => <People {...routeProps} />}
             />
           </Switch>
         </div>

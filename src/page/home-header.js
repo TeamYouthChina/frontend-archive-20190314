@@ -58,10 +58,9 @@ export class HomeHeader extends React.Component {
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBCol md="4">
                 <MDBNavbarNav center>
-                  <MDBNavItem to="/">
-                    <MDBNavLink to="#">主 页</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
+                  {
+                    /*
+                    <MDBNavItem>
                     <MDBDropdown>
                       <MDBDropdownToggle nav>
                         <div className="d-none d-md-inline">职 务</div>
@@ -74,7 +73,9 @@ export class HomeHeader extends React.Component {
                         <MDBDropdownItem href="#!">社会招聘</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
-                  </MDBNavItem>
+                  </MDBNavItem> 
+                    */
+                  }
                   <MDBNavItem>
                     <MDBDropdown>
                       <MDBDropdownToggle nav>
@@ -83,11 +84,11 @@ export class HomeHeader extends React.Component {
                       <MDBDropdownMenu>
                         <MDBDropdownItem href="/discovery/">文 章</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="#!">视 频</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/">视 频</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="#!">人 脉</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/">人 脉</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="#!">直 播（空中宣讲会）</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/">直 播（空中宣讲会）</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
@@ -137,13 +138,13 @@ export class HomeHeader extends React.Component {
                       <MDBIcon icon="user"/>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu color="blue" basic right>
-                      <MDBDropdownItem href="#!">个人主页</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">我的消息</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">我的申请</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">我的好友</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">我的关注</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">帮助</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">设置</MDBDropdownItem>
+                      <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
+                      {/*<MDBDropdownItem href="#!">我的消息</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem href="#!">我的申请</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem href="#!">我的好友</MDBDropdownItem>(*/}
+                      <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
+                      {/*<MDBDropdownItem href="#!">帮助</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem href="#!">设置</MDBDropdownItem>*/}
                       <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>

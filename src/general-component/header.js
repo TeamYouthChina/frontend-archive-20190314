@@ -64,6 +64,7 @@ export class Header extends React.Component {
                     主 页
                   </MDBNavLink>
                 </MDBNavItem>
+                {/*
                 <MDBNavItem>
                   <MDBNavLink
                     to="#"
@@ -72,6 +73,7 @@ export class Header extends React.Component {
                     职 务
                   </MDBNavLink>
                 </MDBNavItem>
+                */}
                 <MDBNavItem>
                   <MDBNavLink
                     to="#"
@@ -109,44 +111,36 @@ export class Header extends React.Component {
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarNav>
-            {(() => {
-              let id = store.getState().id;
-              id = 1;
-              console.log(id);
-              if (id) {
-                return (
-                  <MDBNavbarNav right style={{marginRight: '5em'}}>
-                    <MDBNavItem>
-                      <MDBDropdown>
-                        <MDBDropdownToggle nav>
-                          <MDBRow>
-                            <MDBCol md="4">
-                              <MDBIcon icon="user"/>
-                            </MDBCol>
-                            <MDBCol md="8">
-                              <p className="h6">Username</p>
-                            </MDBCol>
-                          </MDBRow>
-                        </MDBDropdownToggle>
-                        <MDBDropdownMenu color="indigo darken-1" basic left>
-                          <MDBDropdownItem href="#!">个人主页</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">我的消息</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">我的申请</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">我的好友</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">我的关注</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">帮助</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">设置</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">退出</MDBDropdownItem>
-                        </MDBDropdownMenu>
-                      </MDBDropdown>
-                    </MDBNavItem>
-                  </MDBNavbarNav>
-                );
-              }
-            })()}
+            <MDBNavbarNav right style={{marginRight: '5em'}}>
+              <MDBNavItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle nav>
+                    <MDBRow>
+                      <MDBCol md="4">
+                        <MDBIcon icon="user"/>
+                      </MDBCol>
+                      <MDBCol md="8">
+                        <p className="h6">Username</p>
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu color="indigo darken-1" basic left>
+                    <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
+                    {/*<MDBDropdownItem href="#!">我的消息</MDBDropdownItem>*/}
+                    {/*<MDBDropdownItem href="#!">我的申请</MDBDropdownItem>*/}
+                    {/*<MDBDropdownItem href="#!">我的好友</MDBDropdownItem>(*/}
+                    <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
+                    {/*<MDBDropdownItem href="#!">帮助</MDBDropdownItem>*/}
+                    {/*<MDBDropdownItem href="#!">设置</MDBDropdownItem>*/}
+                    <MDBDropdownItem href="#!">退出</MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavItem>
+            </MDBNavbarNav>
           </MDBNavbar>
         </div>
         <main>
+          {/*
           <MDBCollapse id="job" isOpen={this.state.collapseID}>
             <MDBNavbar className="indigo-text" color="grey lighten-5" expand="md">
               <MDBCol md="6" className="offset-md-4">
@@ -175,32 +169,33 @@ export class Header extends React.Component {
               </MDBCol>
             </MDBNavbar>
           </MDBCollapse>
+          */}
           <MDBCollapse id="discover" isOpen={this.state.collapseID}>
             <MDBNavbar className="indigo-text" color="grey lighten-5" expand="md">
               <MDBCol md="6" className="offset-md-5">
                 <MDBNavbarNav left>
                   <MDBNavItem active>
-                    <MDBNavLink to="#!">
+                    <MDBNavLink to="#">
                       <p className="h6 indigo-text">探 索</p>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">
+                    <MDBNavLink to="/discovery/">
                       <p className="h6 indigo-text">| 文 章</p>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">
+                    <MDBNavLink to="/discovery/">
                       <p className="h6 indigo-text">| 视 频</p>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">
+                    <MDBNavLink to="/discovery/">
                       <p className="h6 indigo-text">| 人 脉</p>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#!">
+                    <MDBNavLink to="/discovery/">
                       <p className="h6 indigo-text">| 直 播（空中宣讲会）</p>
                     </MDBNavLink>
                   </MDBNavItem>

@@ -1,6 +1,11 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 
+import {
+  MDBCol,
+  MDBRow,
+} from 'mdbreact';
+
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 import {languageHelper} from '../../../tool/language-helper';
@@ -21,7 +26,11 @@ export class SearchS1 extends React.Component {
     return (
       <div>
         <Header/>
-        <SJobCompamy/>
+        <MDBRow center>
+          <MDBCol size="10">
+            <SJobCompamy/>
+          </MDBCol>
+        </MDBRow>
         <Footer/>
       </div>
     );

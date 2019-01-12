@@ -12,7 +12,7 @@ import {
   MDBBtn
 } from 'mdbreact';
 import './public/style.css';
-import {HomeHeader} from '../home-header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 
 export class Article extends React.Component {
@@ -77,7 +77,7 @@ export class Article extends React.Component {
     const ifShown = this.state.ifShown
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <HomeHeader/>
+        <Header/>
         <MDBCard className="my-5 px-5 pb-5">
           <MDBCardBody>
             <MDBRow>

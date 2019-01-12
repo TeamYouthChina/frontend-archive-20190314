@@ -13,8 +13,9 @@ import {
   MDBCol
 } from 'mdbreact';
 import {JobCardSquare} from '../../general-component/job-card-square';
-import {HomeHeader} from '../home-header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+
 
 export class Recommondation extends React.Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export class Recommondation extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <HomeHeader></HomeHeader>
+        <Header/>
         <br/>
         <MDBRow>
           <MDBCol size="1"></MDBCol>
