@@ -17,6 +17,7 @@ import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
 import {store} from './global-data/store';
+import {ScrollBar} from './page/company/scrollBar';
 import * as actionJs from './global-data/action';
 
 store.dispatch(actionJs.creator(
@@ -65,6 +66,10 @@ export class App extends Component {
             <Route
               path="/company/:id"
               component={routeProps => <Company {...routeProps} />}
+            />
+            <Route
+              path="/scrollBar"
+              component={routeProps => <ScrollBar {...routeProps} />}
             />
             <Route
               path="/myfavorite"
