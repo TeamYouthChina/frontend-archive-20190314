@@ -17,7 +17,6 @@ import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
 import {store} from './global-data/store';
-import {Scroll} from './page/company/scroll';
 import * as actionJs from './global-data/action';
 
 store.dispatch(actionJs.creator(
@@ -67,10 +66,6 @@ export class App extends Component {
               path="/company/:id"
               component={routeProps => <Company {...routeProps} />}
             />
-            {/*<Route*/}
-              {/*path="/scroll"*/}
-              {/*component={routeProps => <Scroll {...routeProps} />}*/}
-            {/*/>*/}
             <Route
               path="/myfavorite"
               component={routeProps => <MyFavorite {...routeProps} />}
