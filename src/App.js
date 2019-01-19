@@ -19,6 +19,8 @@ import {People} from './page/people';
 import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
 import {JobDetailx} from './page/job/index-1';
+import {Test} from './page/test';
+import {Error404} from './page/page-no-found';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -78,6 +80,13 @@ export class App extends Component {
             <Route
               path="/job-old"
               component={routeProps => <JobDetailx {...routeProps} />}
+            />
+            <Route
+              path="/test"
+              component={routeProps => <Test {...routeProps} />}
+            />
+            <Route
+              component={routeProps => <Error404 {...routeProps} />}
             />
           </Switch>
         </div>
