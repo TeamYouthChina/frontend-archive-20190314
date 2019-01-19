@@ -1,6 +1,5 @@
 import React from 'react';
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+
 import {
   Col,
   MDBAvatar,
@@ -19,26 +18,58 @@ import {
   View,
   Mask
 } from 'mdbreact';
-
+import {languageHelper} from "../../tool/language-helper";
+import {Header} from '../../general-component/header';
+import {Footer} from "../../general-component/footer";
+import {MDBCardText} from "./index-1";
+import CoDetail from '../../general-component/company-detail';
 
 export class JobDetail extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      backend: null
+    };
+    this.text = JobDetail.i18n[languageHelper()];
   }
-
+  componentWillMount() {
+    let mockData =
+      {
+        id: 0,
+        name: 'New Frontier Data',
+        url: 'https://www.google.com',
+        jobname:'数据分析实习(2019 Summer), GE 通用电气',
+        jobtype:'实习（3月-6月）',
+        scale: '02/01/2019',
+        location:'上海',
+        requirements: ['Good knowledge of mysql', 'Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies', 'skill4'],
+        better: ['Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies.','Vestibulum laoreet porttitor sem','Ac tristique libero volutpat at'],
+        employNumber: '100',
+        description: 'Through our family of apps and services, we are building a different kind of company that\n' +
+          '                        connects billions of people around the world, gives them ways to share what matters most to\n' +
+          '                        them, and helps bring people closer together. Whether we\'re creating new products or helping a\n' +
+          '                        small business expand its reach, people at Facebook are builders at heart. Our global teams are\n' +
+          '                        constantly iterating, solving problems, and working together to empower people around the world\n' +
+          '                        to build community and connect in meaningful ways.', 
+        status: {
+          code: 2000
+        }
+      };
+    this.setState(() => {
+      return {backend: mockData};
+    });
+  }
   render() {
-    return (
+    
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
 
         <div style={{marginBottom: '-250px'}}>
           <View>
 
-            <img className="d-block w-100 card-background"
-                 src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhf1flx7mj20lp04kmyy.jpg"/>
-            <Mask overlay="indigo-light" pattern={7} style={{flexDirection: 'column', height: '100vh'}}
-                  className="flex-center  text-white text-center">
-
+            <img className="d-block w-100 card-background" src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhf1flx7mj20lp04kmyy.jpg"/>
+            <Mask overlay="indigo-light" pattern={7} style={{flexDirection: 'column', height: '100vh'}} className="flex-center  text-white text-center">
             </Mask>
           </View>
 
@@ -63,18 +94,18 @@ export class JobDetail extends React.Component {
                     </MDBCol>
                     <MDBCol md="8">
                       <h5 className="font-weight-bold mb-3 p-0">
-                        <strong>数据分析实习(2019 Summer), GE 通用电气</strong>
+                        <strong>
+                          {this.state.backend.jobname}
+                        </strong>
                         <MDBIcon icon="bookmark-o" size="1x" className="amber-text px-3"/>
                       </h5>
-
                       <br/>
                       <Row>
-
-                        <Col>工作类型：实习（3-6个月）</Col>
-                        <Col>申请截止：02/01/2019</Col>
+                        <Col>工作类型：{this.state.backend.jobtype}</Col>
+                        <Col>申请截止：{this.state.backend.scale}</Col>
                       </Row>
                       <Row>
-                        <Col>地点：上海</Col>
+                        <Col>地点：{this.state.backend.location}</Col>
                         <Col>
                           <Row bottom>
                             <Col md="5">
@@ -109,10 +140,13 @@ export class JobDetail extends React.Component {
                       </h5>
                       <p>
                         <ul>
-                          <li>Good knowledge of programming lanuguage(C++, Java).</li>
-                          <li>Purus sodales ultricies</li>
-                          <li>Vestibulum laoreet porttitor sem</li>
-                          <li>Ac tristique libero volutpat at</li>
+                          {this.state.backend.requirements.map((item) => {
+                            return (
+                              <li key={item}>
+                                {item}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </p>
                       <h5>
@@ -120,10 +154,13 @@ export class JobDetail extends React.Component {
                       </h5>
                       <p>
                         <ul>
-                          <li>Good knowledge of programming lanuguage(C++, Java).</li>
-                          <li>Purus sodales ultricies</li>
-                          <li>Vestibulum laoreet porttitor sem</li>
-                          <li>Ac tristique libero volutpat at</li>
+                          {this.state.backend.better.map((item) => {
+                            return (
+                              <li key={item}>
+                                {item}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </p>
                     </MDBCol>
@@ -136,17 +173,9 @@ export class JobDetail extends React.Component {
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-                      <h4>
-                        <strong>公司详情</strong>
-                      </h4>
-                      <p>
-                        Through our family of apps and services, we are building a different kind of company that
-                        connects billions of people around the world, gives them ways to share what matters most to
-                        them, and helps bring people closer together. Whether we're creating new products or helping a
-                        small business expand its reach, people at Facebook are builders at heart. Our global teams are
-                        constantly iterating, solving problems, and working together to empower people around the world
-                        to build community and connect in meaningful ways.
-                      </p>
+                      
+                      <CoDetail></CoDetail>
+                     
 
                     </MDBCol>
                   </MDBRow>
@@ -310,6 +339,20 @@ export class JobDetail extends React.Component {
         </Row>
         <Footer/>
       </div>
-    );
+    ): null;
+    
+    
   }
 }
+JobDetail.i18n = [
+  {
+    description: '职位描述',
+    requirements: '职位要求',
+    better: '加分项'
+  },
+  {
+    description: 'Job Description',
+    requirements: 'Candidate Requirements',
+    better: 'Good to have'
+  },
+];

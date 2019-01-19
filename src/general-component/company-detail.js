@@ -48,6 +48,7 @@ class CoDetail extends React.Component {
           <h4><strong>公司详情</strong></h4>
         </div>
         <div style={this.state.contentStyle}>
+          <p>省略我吧！
           省略我吧！
           省略我吧！
           省略我吧！
@@ -57,9 +58,9 @@ class CoDetail extends React.Component {
           省略我吧！
           省略我吧！
           省略我吧！
-          省略我吧！
-          省略我吧！
-          省略我吧
+          省略我吧！ 
+            省略我吧
+          </p>
         </div>
         <span>
           {Object.keys(this.state.contentStyle).length === 0 ? '' : '...'}

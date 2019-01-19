@@ -95,31 +95,14 @@ export class HomeHeader extends React.Component {
                 </MDBNavbarNav>
               </MDBCol>
               <MDBNavbarNav>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav>
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="搜索"
-                      aria-label="Search"
-                    />
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu
-                    className="dropdown-indigo darken-1"
-                    style={{
-                      marginLeft: '1em',
-                      verticalAlign: 'middle'
-                    }}
-                  >
-                    <MDBDropdownItem href="/search/s1">职 位</MDBDropdownItem>
-                    <MDBDropdownItem divider/>
-                    <MDBDropdownItem href="/search/s1">组 织</MDBDropdownItem>
-                    <MDBDropdownItem divider/>
-                    <MDBDropdownItem href="/search/s2">文 章</MDBDropdownItem>
-                    <MDBDropdownItem divider/>
-                    <MDBDropdownItem href="/search/s2">人 脉</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
+                <MDBNavLink to="/search/s1">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="搜索"
+                    aria-label="Search"
+                  />
+                </MDBNavLink>
               </MDBNavbarNav>
               <MDBNavbarNav right>
                 <MDBNavItem>
