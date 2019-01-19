@@ -18,6 +18,7 @@ import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
 import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
+import {JobDetailx} from './page/job/index-1';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -73,6 +74,10 @@ export class App extends Component {
             <Route
               path="/people/:id"
               component={routeProps => <People {...routeProps} />}
+            />
+            <Route
+              path="/job-old"
+              component={routeProps => <JobDetailx {...routeProps} />}
             />
           </Switch>
         </div>
