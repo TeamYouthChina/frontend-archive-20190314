@@ -11,7 +11,7 @@ import {
 } from 'mdbreact';
 
 
-export class UserCard extends React.Component {
+export class ApplicantCard extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -19,7 +19,7 @@ export class UserCard extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = UserCard.i18n[languageHelper()];
+    this.text = ApplicantCard.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -104,7 +104,7 @@ export class UserCard extends React.Component {
   }
 }
 
-UserCard.i18n = [
+ApplicantCard.i18n = [
   {
     friends: '位共同好友',
     influence: '影响力'
