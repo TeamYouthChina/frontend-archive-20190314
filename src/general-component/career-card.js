@@ -11,7 +11,7 @@ import {
   MDBCol,
   MDBBtn,
 } from 'mdbreact';
-import {UserCard} from './user-card';
+import {ApplicantCard} from './applicant-card';
 import {ArticleCard} from './article-card';
 
 
