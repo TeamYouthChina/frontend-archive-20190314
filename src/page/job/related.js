@@ -92,15 +92,13 @@ class RelatedPosition extends React.Component {
           <h4><strong>{this.text.related}</strong></h4>
         </div>
         <div style={this.state.contentStyle}>
-          <MDBRow>
-            {this.state.backend.relatedWork.map((item) => {
-              return (
-                <MDBCol size="4" key={item}>
-                  <JobCardSquare></JobCardSquare>
-                </MDBCol>
-              );
-            })}
-          </MDBRow>
+          {this.state.backend.relatedWork.map((item) => {
+            return (
+              <MDBCol size="4" key={item}>
+                <JobCardSquare></JobCardSquare>
+              </MDBCol>
+            );
+          })}
         </div>
         <br/>
         <MDBBtn flat style={{width: '100%'}} onClick={this.handleInputClick}>See More</MDBBtn>
