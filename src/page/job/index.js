@@ -32,25 +32,26 @@ export class JobDetail extends React.Component {
     };
     this.text = JobDetail.i18n[languageHelper()];
   }
+
   componentWillMount() {
     let mockData =
       {
         id: 0,
         name: 'New Frontier Data',
         url: 'https://www.google.com',
-        jobname:'数据分析实习(2019 Summer), GE 通用电气',
-        jobtype:'实习（3月-6月）',
+        jobname: '数据分析实习(2019 Summer), GE 通用电气',
+        jobtype: '实习（3月-6月）',
         scale: '02/01/2019',
-        location:'上海',
+        location: '上海',
         requirements: ['Good knowledge of mysql', 'Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies', 'skill4'],
-        better: ['Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies.','Vestibulum laoreet porttitor sem','Ac tristique libero volutpat at'],
+        better: ['Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies.', 'Vestibulum laoreet porttitor sem', 'Ac tristique libero volutpat at'],
         employNumber: '100',
         description: 'Through our family of apps and services, we are building a different kind of company that\n' +
           '                        connects billions of people around the world, gives them ways to share what matters most to\n' +
           '                        them, and helps bring people closer together. Whether we\'re creating new products or helping a\n' +
           '                        small business expand its reach, people at Facebook are builders at heart. Our global teams are\n' +
           '                        constantly iterating, solving problems, and working together to empower people around the world\n' +
-          '                        to build community and connect in meaningful ways.', 
+          '                        to build community and connect in meaningful ways.',
         status: {
           code: 2000
         }
@@ -59,8 +60,9 @@ export class JobDetail extends React.Component {
       return {backend: mockData};
     });
   }
+
   render() {
-    
+
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
@@ -68,8 +70,10 @@ export class JobDetail extends React.Component {
         <div style={{marginBottom: '-250px'}}>
           <View>
 
-            <img className="d-block w-100 card-background" src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhf1flx7mj20lp04kmyy.jpg"/>
-            <Mask overlay="indigo-light" pattern={7} style={{flexDirection: 'column', height: '100vh'}} className="flex-center  text-white text-center">
+            <img className="d-block w-100 card-background"
+                 src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhf1flx7mj20lp04kmyy.jpg"/>
+            <Mask overlay="indigo-light" pattern={7} style={{flexDirection: 'column', height: '100vh'}}
+                  className="flex-center  text-white text-center">
             </Mask>
           </View>
 
@@ -173,9 +177,9 @@ export class JobDetail extends React.Component {
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-                      
+
                       <CoDetail></CoDetail>
-                     
+
 
                     </MDBCol>
                   </MDBRow>
@@ -339,11 +343,12 @@ export class JobDetail extends React.Component {
         </Row>
         <Footer/>
       </div>
-    ): null;
-    
-    
+    ) : null;
+
+
   }
 }
+
 JobDetail.i18n = [
   {
     description: '职位描述',
