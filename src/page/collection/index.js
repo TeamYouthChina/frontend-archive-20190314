@@ -9,6 +9,8 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+import {CollectionCo} from './collection-company';
+import {CollectionJob} from './collection-job';
 
 
 export class Collection extends React.Component {
@@ -55,17 +57,15 @@ export class Collection extends React.Component {
         <Header></Header>
         <MDBRow>
           <MDBCol size="1"></MDBCol>
-          <MDBCol size="9">
+          <MDBCol size="11">
             <MDBRow>
-              <MDBCol size="2">
-                <MDBBtn onClick={()=>{this.handleCompany();}}>关注公司</MDBBtn>
+              <MDBCol size="12" >
+                <MDBBtn style={{padding:'10px'}} onClick={()=>{this.handleCompany();}}>关注职位</MDBBtn>
+                <MDBBtn style={{padding:'10px'}} onClick={()=>{this.handlePosition();}}>关注公司</MDBBtn>
+                {this.state.selectType === 1 ? <CollectionJob></CollectionJob> : <CollectionCo></CollectionCo>}
+
               </MDBCol>
-              <MDBCol size="2">
-                <MDBBtn onClick={()=>{this.handlePosition();}}>关注职位</MDBBtn>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              {}
+                
             </MDBRow>
           </MDBCol>
           

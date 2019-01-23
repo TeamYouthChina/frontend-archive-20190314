@@ -11,9 +11,9 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {JobCardSquare} from '../../general-component/job-card-square'
+import {CompanyCard} from '../../general-component/company-card'
 
-export class CollectionJob extends React.Component {
+export class CollectionCo extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -21,7 +21,7 @@ export class CollectionJob extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = CollectionJob.i18n[languageHelper()];
+    this.text = CollectionCo.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -29,7 +29,7 @@ export class CollectionJob extends React.Component {
       {
         id: 0,
         name: 'Summer 2019 Tech Internship',
-        jobCollection: [
+        companyCollection: [
           {id:1},
           {id:2},
           {id:3},
@@ -46,28 +46,25 @@ export class CollectionJob extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div>
-        <MDBRow>
-          <MDBCol size="3" style={{paddingLeft:'21px'}}>
-            {this.state.backend.jobCollection.map((item)=>{
-              return (
-                <div key={item}>
-                  <JobCardSquare ></JobCardSquare>
-                  <br/>
-                </div>
-                
-              );
-            })}
-          </MDBCol>
-
-        </MDBRow>
+      <div style={{width:'100%'}}>
+        {this.state.backend.companyCollection.map((item)=>{
+          return(
+            <MDBRow>
+              <MDBCol size="12">
+                <CompanyCard></CompanyCard>
+              </MDBCol>
+              
+            </MDBRow>
+            
+          )
+        })}
         <MDBRow></MDBRow>
       </div>
     ) : null;
   }
 }
 
-CollectionJob.i18n = [
+CollectionCo.i18n = [
   {
     applyBefore: '申请截止'
   },
