@@ -22,6 +22,7 @@ import {JobDetailx} from './page/job/index-1';
 import {Test} from './page/test';
 import {Error404} from './page/page-no-found';
 import {Register} from './page/register';
+import { Mypage } from './page/mypage';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -89,6 +90,10 @@ export class App extends Component {
             <Route
               path="/register"
               component={routeProps => <Register {...routeProps} />}
+            />
+            <Route
+              path="/mypage"
+              component={routeProps => <Mypage {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
