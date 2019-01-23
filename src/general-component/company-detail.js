@@ -11,7 +11,8 @@ class CoDetail extends React.Component {
     super(props);
     this.state = {
       contentStyle: {
-        width: '100px',
+        width: '500px',
+        height:'200px',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         OTextOverflow: 'ellipsis',
@@ -27,7 +28,8 @@ class CoDetail extends React.Component {
 
       this.setState({
         contentStyle: {
-          width: '100px',
+          width: '500px',
+          height:'200px',
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           OTextOverflow: 'ellipsis',

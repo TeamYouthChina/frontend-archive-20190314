@@ -4,7 +4,11 @@ import {MDBCol, MDBContainer, MDBRow, MDBFooter} from 'mdbreact';
 export class Footer extends React.Component {
   render() {
     return (
-      <MDBFooter color="indigo darken-1" className="font-small pt-4 mt-4">
+      <MDBFooter 
+        
+        className="font-small pt-4 mt-4"
+        style={{background:'#7C97B8'}}
+      >
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
             <MDBCol md="6">
