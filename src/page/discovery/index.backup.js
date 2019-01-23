@@ -22,7 +22,6 @@ import {
 import classnames from 'classnames';
 import {Header} from "../../general-component/header";
 import {Footer} from "../../general-component/footer";
-import {ArticleCard} from "../../general-component/article-card"
 
 /* route: '/login' */
 
