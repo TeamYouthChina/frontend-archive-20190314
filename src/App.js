@@ -24,7 +24,7 @@ import {JobDetailx} from './page/job/index-1';
 import {Test} from './page/test';
 import {Error404} from './page/page-no-found';
 import {Register} from './page/register';
-import { Mypage } from './page/mypage';
+import {Mypage} from './page/mypage';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -82,7 +82,6 @@ export class App extends Component {
               component={routeProps => <People {...routeProps} />}
             />
             <Route
-<<<<<<< HEAD
               path="/job-old"
               component={routeProps => <JobDetailx {...routeProps} />}
             />
@@ -99,15 +98,15 @@ export class App extends Component {
               component={routeProps => <Mypage {...routeProps} />}
             />
             <Route
-              component={routeProps => <Error404 {...routeProps} />}
-=======
               path="/collection" exact
               component={routeProps => <Collection {...routeProps} />}
             />
             <Route
               path="/question/:id/answer/:id"
               component={routeProps => <Question {...routeProps} />}
->>>>>>> ftd
+            />
+            <Route
+              component={routeProps => <Error404 {...routeProps} />}
             />
           </Switch>
         </div>

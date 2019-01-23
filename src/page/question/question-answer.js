@@ -6,7 +6,7 @@ import {
   MDBCol,
   MDBRow,
 } from 'mdbreact';
-import {UserCard} from '../../general-component/user-card'
+
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ export class QuestionAnswer extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBRow>
-        <UserCard></UserCard>
+        {/*<UserCard></UserCard>*/}
         {this.props.data.user}
         {this.props.data.content}
         {this.props.data.agree}
