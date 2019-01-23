@@ -11,7 +11,7 @@ import {SearchS1} from './page/search/s1';
 import {SearchS2} from './page/search/s2';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
-import {Discovery} from './page/discovery';
+import {Discovery} from './page/discovery/index.backup';
 import {JobDetail} from './page/job';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
