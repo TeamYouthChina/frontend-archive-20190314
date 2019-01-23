@@ -16,6 +16,8 @@ import {JobDetail} from './page/job';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
+import {Collection} from './page/collection';
+import {Question} from './page/question';
 import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
 import {JobDetailx} from './page/job/index-1';
@@ -80,6 +82,7 @@ export class App extends Component {
               component={routeProps => <People {...routeProps} />}
             />
             <Route
+<<<<<<< HEAD
               path="/job-old"
               component={routeProps => <JobDetailx {...routeProps} />}
             />
@@ -97,6 +100,14 @@ export class App extends Component {
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
+=======
+              path="/collection" exact
+              component={routeProps => <Collection {...routeProps} />}
+            />
+            <Route
+              path="/question/:id/answer/:id"
+              component={routeProps => <Question {...routeProps} />}
+>>>>>>> ftd
             />
           </Switch>
         </div>
