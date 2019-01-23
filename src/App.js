@@ -17,6 +17,7 @@ import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
 import {Collection} from './page/collection';
+import {Question} from './page/question';
 import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
 
@@ -78,6 +79,10 @@ export class App extends Component {
             <Route
               path="/collection" exact
               component={routeProps => <Collection {...routeProps} />}
+            />
+            <Route
+              path="/question/:id/answer/:id"
+              component={routeProps => <Question {...routeProps} />}
             />
           </Switch>
         </div>
