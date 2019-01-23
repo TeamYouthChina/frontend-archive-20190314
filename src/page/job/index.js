@@ -65,11 +65,12 @@ export class JobDetail extends React.Component {
       <div>
         <Header/>
 
-        <div style={{marginBottom: '-250px'}}>
+        <div style={{marginBottom: '-300px' ,marginTop:'-7px'}}>
           <View>
-
-            <img className="d-block w-100 card-background" src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhf1flx7mj20lp04kmyy.jpg"/>
-            <Mask overlay="indigo-light" pattern={7} style={{flexDirection: 'column', height: '100vh'}} className="flex-center  text-white text-center">
+            <img 
+              className="d-block w-100 card-background" src="https://i.postimg.cc/gjFqt1dN/photo-1531497865144-0464ef8fb9a9.png"
+            />
+            <Mask className="flex-center  text-white text-center">
             </Mask>
           </View>
 
@@ -79,8 +80,10 @@ export class JobDetail extends React.Component {
           <Col md="8" className="offset-md-1">
             <p>
               <MDBCard className="my-5 px-3 pb-3">
+                <br/>
                 <MDBCardBody>
                   <MDBRow>
+                    
                     <MDBCol md="2">
 
                       <img
