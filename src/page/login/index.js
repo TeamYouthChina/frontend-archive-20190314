@@ -33,27 +33,34 @@ export class Login extends React.Component {
         <MDBContainer>
           <MDBRow center>
             <MDBCol md="6">
-              <form>
-                <p className="h4 text-center mb-4">Sign in</p>
-                <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  id="defaultFormLoginEmailEx"
-                  className="form-control"
-                />
-                <br/>
-                <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
-                  Your password
-                </label>
-                <input
-                  type="password"
-                  id="defaultFormLoginPasswordEx"
-                  className="form-control"
-                />
+              <form className="mx-5">
+                <p className="h4 text-center mb-4">Log in</p>
+                  <div className="input-group mb-3 d-flex">
+                    <label htmlFor="defaultFormLoginEmailEx" className="grey-text my-2 mr-2">
+                      {this.text.email}
+                    </label>
+                    <input
+                      type="email"
+                      id="defaultFormLoginEmailEx"
+                      className="form-control"
+                    />
+                  </div>
+                
+                  <br/>
+                  
+                  <div className="input-group d-flex">
+                    <label htmlFor="defaultFormLoginPasswordEx" className="grey-text my-2 mr-2">
+                      {this.text.password}
+                    </label>
+                    <input
+                      type="password"
+                      id="defaultFormLoginPasswordEx"
+                      className="form-control"
+                    />
+                  </div>
+                
                 <div className="text-center mt-4">
-                  <MDBBtn color="indigo" type="submit">Login</MDBBtn>
+                  <MDBBtn color="indigo" type="submit">{this.text.submitBtn}</MDBBtn>
                 </div>
               </form>
             </MDBCol>
@@ -66,6 +73,14 @@ export class Login extends React.Component {
 }
 
 Login.i18n = [
-  {},
-  {}
+  {
+    email: '邮箱',
+    password: '密码',
+    submitBtn: '登陆'
+  },
+  {
+    email: 'email',
+    password: 'password',
+    submitBtn: 'Login'
+  }
 ];
