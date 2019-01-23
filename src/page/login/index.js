@@ -25,7 +25,10 @@ export class Login extends React.Component {
       return (<Redirect to={pathname}/>);
     }
     return (
-      <div>
+      <MDBContainer
+        fluid
+        style={{padding: 0}}
+      >
         <Header/>
         <MDBContainer>
           <MDBRow center>
@@ -57,7 +60,7 @@ export class Login extends React.Component {
           </MDBRow>
         </MDBContainer>
         <Footer/>
-      </div>
+      </MDBContainer>
     );
   }
 }

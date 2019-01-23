@@ -1,18 +1,19 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+
 import {
   MDBContainer
 } from 'mdbreact';
 
-import {languageHelper} from '../../tool/language-helper';
-import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+import {languageHelper} from '../../tool/language-helper';
+import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
-export class Test extends React.Component {
+export class Setting extends React.Component {
   constructor(props) {
     super(props);
-    this.text = Test.i18n[languageHelper()];
+    this.text = Setting.i18n[languageHelper()];
   }
 
   render() {
@@ -26,14 +27,14 @@ export class Test extends React.Component {
         style={{padding: 0}}
       >
         <Header/>
-        
+
         <Footer/>
       </MDBContainer>
     );
   }
 }
 
-Test.i18n = [
+Setting.i18n = [
   {},
   {}
 ];

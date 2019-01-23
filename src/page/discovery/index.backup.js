@@ -512,6 +512,6 @@ Discovery.i18n = [
     fst_tab: 'DiscoverArticle',
     sec_tab: 'Videos',
     thd_tab: 'Connection',
-    button: 'Login'
+    button: 'Help'
   }
 ];

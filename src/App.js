@@ -21,6 +21,7 @@ import * as actionJs from './global-data/action';
 import {JobDetailx} from './page/job/index-1';
 import {Test} from './page/test';
 import {Error404} from './page/page-no-found';
+import {Register} from './page/register';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -84,6 +85,10 @@ export class App extends Component {
             <Route
               path="/test"
               component={routeProps => <Test {...routeProps} />}
+            />
+            <Route
+              path="/register"
+              component={routeProps => <Register {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}

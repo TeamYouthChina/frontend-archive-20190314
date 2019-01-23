@@ -1,18 +1,22 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+
 import {
-  MDBContainer
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
 } from 'mdbreact';
 
-import {languageHelper} from '../../tool/language-helper';
-import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+import {languageHelper} from '../../tool/language-helper';
+import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
-export class Test extends React.Component {
+export class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.text = Test.i18n[languageHelper()];
+    this.text = Register.i18n[languageHelper()];
   }
 
   render() {
@@ -26,14 +30,14 @@ export class Test extends React.Component {
         style={{padding: 0}}
       >
         <Header/>
-        
+
         <Footer/>
       </MDBContainer>
     );
   }
 }
 
-Test.i18n = [
+Register.i18n = [
   {},
   {}
 ];
