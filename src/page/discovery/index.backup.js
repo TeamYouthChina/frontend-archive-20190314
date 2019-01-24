@@ -25,11 +25,11 @@ import {Footer} from "../../general-component/footer";
 
 /* route: '/login' */
 
-export class Discovery extends React.Component {
+export class DiscoveryBackup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.text = Discovery.i18n[languageHelper(this.props.language)];
+    this.text = DiscoveryBackup.i18n[languageHelper(this.props.language)];
     this.state = {
       activeItemClassicTabs1: '1',
     };
@@ -500,7 +500,7 @@ console.log(this.props)
   }
 }
 
-Discovery.i18n = [
+DiscoveryBackup.i18n = [
   {
     fst_tab: '文章',
     sec_tab: '视频',
