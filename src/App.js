@@ -11,7 +11,7 @@ import {SearchS1} from './page/search/s1';
 import {SearchS2} from './page/search/s2';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
-import {Discovery} from './page/discovery/index.backup';
+import {Discovery} from './page/discovery';
 import {JobDetail} from './page/job';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
@@ -22,6 +22,9 @@ import {JobDetailx} from './page/job/index-1';
 import {Test} from './page/test';
 import {Error404} from './page/page-no-found';
 import {Register} from './page/register';
+import {Help} from './page/help';
+import {Privacy} from './page/privacy';
+import {DiscoveryBackup} from './page/discovery/index.backup';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -67,6 +70,10 @@ export class App extends Component {
               component={routeProps => <Discovery {...routeProps} />}
             />
             <Route
+              path="/discoverybackup"
+              component={routeProps => <DiscoveryBackup {...routeProps} />}
+            />
+            <Route
               path="/company/:id"
               component={routeProps => <Company {...routeProps} />}
             />
@@ -91,8 +98,17 @@ export class App extends Component {
               component={routeProps => <Register {...routeProps} />}
             />
             <Route
+              path="/help"
+              component={routeProps => <Help {...routeProps} />}
+            />
+            <Route
+              path="/privacy"
+              component={routeProps => <Privacy {...routeProps} />}
+            />
+            <Route
               component={routeProps => <Error404 {...routeProps} />}
             />
+            
           </Switch>
         </div>
       </BrowserRouter>
