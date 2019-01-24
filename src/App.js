@@ -22,6 +22,7 @@ import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
 import {JobDetailx} from './page/job/index-1';
 import {Test} from './page/test';
+import {VideoView} from './page/video';
 import {Error404} from './page/page-no-found';
 import {Register} from './page/register';
 import {Mypage} from './page/mypage';
@@ -104,6 +105,10 @@ export class App extends Component {
             <Route
               path="/question/:id/answer/:id"
               component={routeProps => <Question {...routeProps} />}
+            />
+            <Route
+              path="/video/:id"
+              component={routeProps => <VideoView {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
