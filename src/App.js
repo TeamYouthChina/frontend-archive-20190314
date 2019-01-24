@@ -104,6 +104,14 @@ export class App extends Component {
               component={routeProps => <Collection {...routeProps} />}
             />
             <Route
+              path="/question/create"
+              component={routeProps => <Question {...routeProps} />}
+            />
+            <Route
+              path="/question/:id/edit"
+              component={routeProps => <Question {...routeProps} />}
+            />
+            <Route
               path="/question/:id/answer/:id"
               component={routeProps => <Question {...routeProps} />}
             />
