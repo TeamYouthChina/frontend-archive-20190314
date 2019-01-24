@@ -106,6 +106,14 @@ export class App extends Component {
               component={routeProps => <Privacy {...routeProps} />}
             />
             <Route
+              path="/help"
+              component={routeProps => <Help {...routeProps} />}
+            />
+            <Route
+              path="/privacy"
+              component={routeProps => <Privacy {...routeProps} />}
+            />
+            <Route
               component={routeProps => <Error404 {...routeProps} />}
             />
             
