@@ -30,23 +30,13 @@ export class Question extends React.Component {
       {
         id: 0,
         name: 'Summer 2019 Tech Internship',
-        answers: [
-          {
-            user: 1,
-            content: 'this is a content',
-            agree: '123'
-          },
-          {
-            user: 2,
-            content: 'this is a content',
-            agree: '123'
-          },
-          {
-            user: 3,
-            content: 'this is a content',
-            agree: '123'
-          },
-        ],
+        tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+        content: {
+          title: 'this is a title',
+          descrption: 'wen ti de miao shu'
+        },
+        focus: 123,
+        reading: 123,
         status: {
           code: 2000
         }
@@ -65,24 +55,18 @@ export class Question extends React.Component {
           <MDBCol size="1"></MDBCol>
           <MDBCol size="9">
             <MDBRow>
-              <QuestionDes></QuestionDes>
+              <QuestionDes 
+                tags={this.state.backend.tags} 
+                content={this.state.backend.content} 
+                focus={this.state.backend.focus} 
+                reading={this.state.backend.reading}></QuestionDes>
             </MDBRow>
             <br/>
             <br/>
             <br/>
             <MDBRow>
               <MDBCol size="9">
-                <MDBRow>
-                  <strong>
-                    {this.state.backend.answers.length}个回答
-                  </strong>
-                </MDBRow>
-                {this.state.backend.answers.map((item) => {
-                  return (
-                    <QuestionAnswer key={item.user} data={item}></QuestionAnswer>
-                  );
-                })}
-
+                <QuestionAnswer></QuestionAnswer>
               </MDBCol>
               <MDBCol size="3">
                 <QuestionBar></QuestionBar>
