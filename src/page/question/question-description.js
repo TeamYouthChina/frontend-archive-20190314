@@ -26,6 +26,7 @@ export class QuestionDes extends React.Component {
       {
         id: 0,
         name: 'Summer 2019 Tech Internship',
+        // 下面四个从父组件传进来
         tag: ['tag1', 'tag2', 'tag3', 'tag4'],
         content: {
           title: 'this is a title',
@@ -51,9 +52,9 @@ export class QuestionDes extends React.Component {
             <MDBRow>
               {/*展现标签*/}
               {/*todo,超过一定数量就不显示*/}
-              {this.state.backend.tag.map((item) => {
+              {this.props.tags.map((item) => {
                 return (
-                  <MDBCol size="1">
+                  <MDBCol key={item} size="1">
                     <MDBBadge key={item} color="light-blue lighten-2"
                               text="white"
                               style={{borderRadius: '100px', padding: '5px 10px'}}>
@@ -65,9 +66,9 @@ export class QuestionDes extends React.Component {
               })}
             </MDBRow>
             <br/>
-            <h3><strong>{this.state.backend.content.title}</strong></h3>
+            <h3><strong>{this.props.content.title}</strong></h3>
 
-            <h5>{this.state.backend.content.descrption}</h5>
+            <h5>{this.props.content.descrption}</h5>
           </MDBCol>
           <MDBCol size="3">
             <MDBRow>
@@ -75,13 +76,13 @@ export class QuestionDes extends React.Component {
               <MDBCol size="4">
                 <dl>
                   <dd style={{color: '#8590A6'}}>{this.text.focusNum}</dd>
-                  <dd style={{color: '#1A1A1A'}}>{this.state.backend.focus}</dd>
+                  <dd style={{color: '#1A1A1A'}}>{this.props.focus}</dd>
                 </dl>
               </MDBCol>
               <MDBCol size="4" style={{paddingRight: '0px'}}>
                 <dl>
                   <dd style={{color: '#8590A6'}}>{this.text.readingNum}</dd>
-                  <dd style={{color: '#1A1A1A'}}>{this.state.backend.reading}</dd>
+                  <dd style={{color: '#1A1A1A'}}>{this.props.reading}</dd>
                 </dl>
               </MDBCol>
             </MDBRow>
