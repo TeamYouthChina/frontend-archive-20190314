@@ -103,7 +103,6 @@ export class Header extends React.Component {
                         this.toggleCollapse('discover');
                        
                       }
-                      
                     }
                     onMouseEnter={
                       () => {

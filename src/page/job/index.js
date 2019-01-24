@@ -16,19 +16,23 @@ import {
   Progress,
   Row,
   View,
-  Mask
+  Mask,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
-import {MDBCardText} from "./index-1";
 import CoDetail from '../../general-component/company-detail';
+import {JobName} from './job-name'
+import {JobDescri} from "./job-descri";
+import {JobQuestion} from "./job-question";
+import {JobApp} from "./job-app-progress";
 
 export class JobDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      backend: null
+      backend: null,
+      
     };
     this.text = JobDetail.i18n[languageHelper()];
   }
@@ -84,92 +88,10 @@ export class JobDetail extends React.Component {
               <MDBCard className="my-5 px-3 pb-3">
                 <br/>
                 <MDBCardBody>
-                  <MDBRow>
-                    
-                    <MDBCol md="2">
-
-                      <img
-                        className="img-fluid rounded z-depth-1-half mb-3"
-                        src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhhfjkhk7j2069069glh.jpg"
-                        alt=""
-                        style={{width: '100px', height: '100px'}}
-                      />
-
-
-                    </MDBCol>
-                    <MDBCol md="8">
-                      <h5 className="font-weight-bold mb-3 p-0">
-                        <strong>
-                          {this.state.backend.jobname}
-                        </strong>
-                        <MDBIcon icon="bookmark-o" size="1x" className="amber-text px-3"/>
-                      </h5>
-                      <br/>
-                      <Row>
-                        <Col>工作类型：{this.state.backend.jobtype}</Col>
-                        <Col>申请截止：{this.state.backend.scale}</Col>
-                      </Row>
-                      <Row>
-                        <Col>地点：{this.state.backend.location}</Col>
-                        <Col>
-                          <Row bottom>
-                            <Col md="5">
-                              匹配度：
-                            </Col>
-                            <Col md="7">
-                              <Progress material value={90} height="10px" style={{paddingTop: '20px'}}>
-                                90%
-                              </Progress>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-
-                    </MDBCol>
-                    <MDBCol md="2">
-                      <ul className="list-inline">
-                        <li className="list-inline-item"><MDBBtn color="primary" size="sm" outline rounded>在线申请</MDBBtn>
-                        </li>
-                      </ul>
-                    </MDBCol>
-                  </MDBRow>
+                  <JobName/>
                   <br/>
-                  <MDBRow>
-                    <MDBCol>
-
-                      <h4>
-                        <strong>职位描述</strong>
-                      </h4>
-                      <h5>
-                        <strong>Candidate requirements</strong>
-                      </h5>
-                      <p>
-                        <ul>
-                          {this.state.backend.requirements.map((item) => {
-                            return (
-                              <li key={item}>
-                                {item}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </p>
-                      <h5>
-                        <strong>Good to have</strong>
-                      </h5>
-                      <p>
-                        <ul>
-                          {this.state.backend.better.map((item) => {
-                            return (
-                              <li key={item}>
-                                {item}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </p>
-                    </MDBCol>
-                  </MDBRow>
+                  <JobApp/>
+                  <JobDescri/>
                 </MDBCardBody>
               </MDBCard>
             </p>
@@ -178,133 +100,37 @@ export class JobDetail extends React.Component {
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-
                       <CoDetail></CoDetail>
-
-
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>
             </p>
-            <MDBCard
-              className="my-5 px-3 pt-4"
-            >
-
-              <MDBCardBody className="py-0">
-                <h4>
-                  <strong>问答</strong>
-                </h4>
-                <div>
-
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text" id="basic-addon">
-                        <i className="fa fa-pencil prefix"></i>
-                      </span>
-                    </div>
-                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                  </div>
-                  <br/>
-                  <Row end>
-                    <Col md="2">
-                      <MDBBtn color="indigo">提问</MDBBtn>
-                    </Col>
-                  </Row>
-
-                </div>
-                <hr/>
-                <h5>
-                  <strong>问题1： Our global teams are constantly iterating, solving problems, and working together to
-                    empower people around the world to build community and connect in meaningful ways.</strong>
-                </h5>
-
-
-                <MDBRow className="px-3 pt-4">
-                  <div className="mdb-feed">
-                    <div className="news">
-                      <div className="label">
-                        <img
-                          src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
-                          alt=""
-                          className="rounded-circle z-depth-1-half"
-                        />
-                      </div>
-                      <div className="excerpt">
-                        <div className="brief">
-
-                          John Doe
-                          <div className="date">1 hour ago</div>
-                          <p>问题的答案，J回答了这个问题</p>
-                        </div>
-                        <div className="feed-footer">
-                          <a href="#!" className="like">
-                            <MDBIcon icon="heart"/>
-                            <span>5 likes</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="news">
-                      <div className="label">
-                        <img
-                          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9)-mini.jpg"
-                          alt=""
-                          className="rounded-circle z-depth-1-half"
-                        />
-                      </div>
-                      <div className="excerpt">
-                        <div className="brief">
-                          Danny Moore
-                          <div href="#!" className="date">
-                            7 hours ago
-                          </div>
-                          <p>内容</p>
-                        </div>
-                        <div className="feed-footer">
-                          <a href="#!" className="like">
-                            <MDBIcon icon="heart"/>
-                            <span>11 likes</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </MDBRow>
-
-              </MDBCardBody>
-            </MDBCard>
             <p>
-
+              <JobQuestion/>
             </p>
+            
           </Col>
           <Col md="2">
             <p>
               <MDBCard className="my-5">
                 <MDBView hover>
-                  <MDBCardImage
-                    top
-                    src="https://ws1.sinaimg.cn/large/94365dd2ly1fyhp3r29jvj206c03vaak.jpg"
-                    alt="MDBCard image cap"
-                    style={{height: '200px'}}
-                  />
-                  <a href="#!">
-                    <MDBMask overlay="white-slight"/>
-                  </a>
+                  <div
+                    style={{width:'200px',height:'200px' }}
+                  >此处有图</div>
+                 
                 </MDBView>
                 <MDBCardBody>
                   <a href="#!">
-                    <h4>企业名称</h4>
+                    <h4 style={{color:'#7C97B8'}}>企业名称</h4>
                   </a>
-                  <p>行业：XXX</p>
-                  <p>公司规模：XXX</p>
-                  <p>地址：XXX</p>
+                  <p>行业：IT</p>
+                  <p>公司规模：股份有限公司</p>
+                  <p>地址：文化路13号</p>
                   <hr/>
 
                   <span>
-                    <MDBIcon icon="user"/>
+                    <MDBIcon icon="user" style={{marginRight:'5px'}}/>
                     83位同学实习过
                   </span>
 
@@ -332,10 +158,10 @@ export class JobDetail extends React.Component {
                   </ul>
                   <hr/>
                   <p>
-                    简历产看率：
+                    简历产看率：45%
                   </p>
                   <p>
-                    简历查看用时：
+                    简历查看用时：20min
                   </p>
                 </MDBCardBody>
               </MDBCard>

@@ -31,6 +31,7 @@ import {Mypage} from './page/mypage';
 import {Help} from './page/help';
 import {Privacy} from './page/privacy';
 import {DiscoveryBackup} from './page/discovery/index.backup';
+import {JobAppManage} from './page/application/job-manage';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -131,7 +132,6 @@ export class App extends Component {
               path="/ans"
               component={routeProps => <AnswerText {...routeProps} />}
             />
-            
             <Route
               path="/video/:id"
               component={routeProps => <VideoView {...routeProps} />}
@@ -151,6 +151,10 @@ export class App extends Component {
             <Route
               path="/privacy"
               component={routeProps => <Privacy {...routeProps} />}
+            />
+            <Route
+              path="/application/job"
+              component={routeProps => <JobAppManage {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
