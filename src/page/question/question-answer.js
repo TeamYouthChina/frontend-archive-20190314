@@ -21,7 +21,7 @@ export class QuestionAnswer extends React.Component {
       selectType: 1,
       ifShownAdd: [],
       ifShownComments: [],
-      ifShownReplys:[],
+      ifShownReplys: [],
       addComment: ''
     };
     this.text = QuestionAnswer.i18n[languageHelper()];
@@ -162,16 +162,16 @@ export class QuestionAnswer extends React.Component {
     let ifShownComments = []
     let ifShownAdd = []
     let ifShownReplys = []
-    for(let i = 0; i < mockData.answers.length;i++){
+    for (let i = 0; i < mockData.answers.length; i++) {
       ifShownComments.push(false)
-      for(let p = 0; p<mockData.answers[i].comments.length;p++){
+      for (let p = 0; p < mockData.answers[i].comments.length; p++) {
         ifShownReplys.push(false)
-        for(let q = 0; q<mockData.answers[i].comments[p].reply.length;q++){
+        for (let q = 0; q < mockData.answers[i].comments[p].reply.length; q++) {
           ifShownAdd.push(false)
         }
       }
     }
-    
+
     this.setState(() => {
       return {
         backend: mockData,
@@ -188,19 +188,22 @@ export class QuestionAnswer extends React.Component {
     this.setState({
       ifShownComments
     })
-    console.log(this.state.ifShownComments)
   }
 
-  showReplys(){
-    // if (this.state.ifShowReplys === 1) {
-    //   this.setState({
-    //     ifShowReplys: 0
-    //   });
-    // } else {
-    //   this.setState({
-    //     ifShowReplys: 1
-    //   });
-    // }
+  showReplys(comIndex,replyIndex,prefix) {
+    let {ifShownReplys = []} = this.state
+    ifShownReplys[prefix+replyIndex] = !this.state.ifShownReplys[prefix+replyIndex]
+    this.setState({
+      ifShownReplys
+    })
+  }
+  
+  showAddComments(prefix2, addCommentsIndex){
+    let {ifShownAdd = []} = this.state
+    ifShownAdd[prefix2+addCommentsIndex] = !this.state.ifShownAdd[prefix2+addCommentsIndex]
+    this.setState({
+      ifShownAdd
+    })
   }
 
   handleChangeComment(e) {
@@ -242,7 +245,7 @@ export class QuestionAnswer extends React.Component {
           return (
             <MDBCard
               className="my-5 px-3 pt-4"
-              key={item.user.name}
+              key={comIndex}
             >
 
               <MDBCardBody className="py-0">
@@ -280,148 +283,157 @@ export class QuestionAnswer extends React.Component {
                             <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
                             举报
                           </MDBBtn>
-                          {/*对于问题的评论*/}
-                          <MDBRow style={{margin: '1rem 0rem'}}>
-                            <div className="card-header border-0 font-weight-bold">{item.comments.length} 个评论</div>
-                            {item.comments.map((comment) => {
-                              return (
-                                <div key={comment.user.name} className="media d-block d-md-flex mt-4">
-                                  <img className="card-img-64 d-flex mx-auto mb-3"
-                                       src={comment.user.img} alt="Generic placeholder image"/>
-                                  <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                                    <h5 className="font-weight-bold mt-0">
-                                      <a href="#!">{comment.user.name}</a>
-                                    </h5>
-                                    {comment.content}
-                                    <br/>
-                                    <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
-                                      <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
-                                    </MDBBtn>
-                                    <MDBBtn onClick={() => {
-                                      this.showReplys()
-                                    }} color="primary" style={{padding: '5px 10px',}}>
-                                      <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
-                                    </MDBBtn>
-                                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                                      <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
-                                    </MDBBtn>
-                                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                                      <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-                                      举报
-                                    </MDBBtn>
-                                    {this.state.ifShowReplys && comment.reply ? comment.reply.map((reply, replyIndex) => {
-                                      return (
-                                        <div key={replyIndex} className="media d-block d-md-flex mt-4">
-                                          <img className="card-img-64 d-flex mx-auto mb-3"
-                                               src={reply.from.img}
-                                               alt="Generic placeholder image"/>
-                                          <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                                            <h5 className="font-weight-bold mt-0">
-                                              <a href="">{reply.from.name}</a>
-                                              {reply.to ? `回复${reply.to}` : null}
-                                              <a href="#!" className="pull-right">
-                                                <i  className="fa fa-reply"></i>
-                                              </a>
-                                            </h5>
-                                            {reply.content}
+                          {this.state.ifShownComments[comIndex] ? (
+                            <MDBRow style={{margin: '1rem 0rem'}}>
+                              <div className="card-header border-0 font-weight-bold">{item.comments.length} 个评论</div>
+                              {item.comments.map((comment,replyIndex) => {
+                                let prefix = 0
+                                for(let p = 0; p < comIndex; p++){
+                                  prefix += this.state.backend.answers[p].comments.length
+                                }
+                                return (
+                                  <div key={replyIndex} className="media d-block d-md-flex mt-4">
+                                    <img className="card-img-64 d-flex mx-auto mb-3"
+                                         src={comment.user.img} alt="Generic placeholder image"/>
+                                    <div className="media-body text-center text-md-left ml-md-3 ml-0">
+                                      <h5 className="font-weight-bold mt-0">
+                                        <a href="#!">{comment.user.name}</a>
+                                      </h5>
+                                      {comment.content}
+                                      <br/>
+                                      <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
+                                        <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
+                                      </MDBBtn>
+                                      <MDBBtn onClick={() => {
+                                        this.showReplys(comIndex,replyIndex,prefix)
+                                      }} color="primary" style={{padding: '5px 10px',}}>
+                                        <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
+                                      </MDBBtn>
+                                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                                        <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+                                      </MDBBtn>
+                                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                                        <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
+                                        举报
+                                      </MDBBtn>
+                                      {this.state.ifShownReplys[prefix+replyIndex] && comment.reply ? comment.reply.map((reply, addCommentsIndex) => {
+                                        let prefix2 = 0
+                                        for(let i = 0;i<comIndex;i++){
+                                          for(let p = 0;p<replyIndex;p++){
+                                            prefix2 += this.state.backend.answers[i].comments[p].length
+                                          }
+                                        }
+                                        return (
+                                          <div key={addCommentsIndex} className="media d-block d-md-flex mt-4">
+                                            <img className="card-img-64 d-flex mx-auto mb-3"
+                                                 src={reply.from.img}
+                                                 alt="Generic placeholder image"/>
+                                            <div className="media-body text-center text-md-left ml-md-3 ml-0">
+                                              <h5 className="font-weight-bold mt-0">
+                                                <a href="">{reply.from.name}</a>
+                                                {reply.to ? `回复${reply.to}` : null}
+                                                <a href="#!" className="pull-right">
+                                                  <i onClick={()=>{this.showAddComments(prefix2,addCommentsIndex)}} className="fa fa-reply"></i>
+                                                </a>
+                                              </h5>
+                                              {reply.content}
+                                              {this.state.ifShownAdd[prefix2+addCommentsIndex] ? (
+                                                <div className="form-group mt-4" style={{width: '100%'}}>
+                                                  <label htmlFor="quickReplyFormComment">Your comment</label>
+                                                  <textarea onChange={(e) => {
+                                                    this.handleChangeComment(e)
+                                                  }} className="form-control" id="quickReplyFormComment" rows="3"></textarea>
+
+                                                  <div className="text-center my-4">
+                                                    <button onClick={() => {
+                                                      this.addComments(comIndex)
+                                                    }} className="btn btn-primary btn-sm waves-effect waves-light">Post
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              ) : null}
+                                            </div>
+                                            
                                           </div>
-                                        </div>
-                                      );
-                                    }) : null}
+                                        );
+                                      }) : null}
+                                    </div>
                                   </div>
+                                )
+                              })}
+                              <div className="form-group mt-4" style={{width: '100%'}}>
+                                <label htmlFor="quickReplyFormComment">Your comment</label>
+                                <textarea onChange={(e) => {
+                                  this.handleChangeComment(e)
+                                }} className="form-control" id="quickReplyFormComment" rows="3"></textarea>
+
+                                <div className="text-center my-4">
+                                  <button onClick={() => {
+                                    this.addComments(comIndex)
+                                  }} className="btn btn-primary btn-sm waves-effect waves-light">Post
+                                  </button>
                                 </div>
-                              )
-                            })}
-                            <div className="form-group mt-4" style={{width:'100%'}}>
-                              <label htmlFor="quickReplyFormComment">Your comment</label>
-                              <textarea onChange={(e) => {
-                                this.handleChangeComment(e)
-                              }} className="form-control" id="quickReplyFormComment" rows="3"></textarea>
-
-                              <div className="text-center my-4">
-                                <button onClick={() => {
-                                  this.addComments(comIndex)
-                                }} className="btn btn-primary btn-sm waves-effect waves-light">Post
-                                </button>
                               </div>
-                            </div>
-                            <div className="media d-block d-md-flex mt-3">
-                              <img className="card-img-64 d-flex mx-auto mb-3"
-                                   src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
-                                   alt="Generic placeholder image"/>
-                              <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                                <h5 className="font-weight-bold mt-0">
-                                  <a href="">Caroline Horwitz</a>
-                                  <a href="" className="pull-right">
-                                    <i className="fa fa-reply"></i>
-                                  </a>
-                                </h5>
-                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum
-                                deleniti atque corrupti
-                                quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                similique sunt
-                                in
-                                culpa officia deserunt mollitia animi, id est laborum et dolorum fuga.
-                              </div>
-                            </div>
-                            <MDBRow>
-                              <MDBCol size="4"></MDBCol>
-                              <MDBCol size="4">
-                                <nav className="d-flex justify-content-center mt-5">
-                                  <ul className="pagination pg-blue mb-0">
+                              <MDBRow>
+                                <MDBCol size="4"></MDBCol>
+                                <MDBCol size="4">
+                                  <nav className="d-flex justify-content-center mt-5">
+                                    <ul className="pagination pg-blue mb-0">
 
 
-                                    <li className="page-item disabled">
-                                      <a className="page-link waves-effect waves-effect">First</a>
-                                    </li>
+                                      <li className="page-item disabled">
+                                        <a className="page-link waves-effect waves-effect">First</a>
+                                      </li>
 
 
-                                    <li className="page-item disabled">
-                                      <a className="page-link waves-effect waves-effect" aria-label="Previous">
-                                        <span aria-hidden="true">«</span>
-                                        <span className="sr-only">Previous</span>
-                                      </a>
-                                    </li>
+                                      <li className="page-item disabled">
+                                        <a className="page-link waves-effect waves-effect" aria-label="Previous">
+                                          <span aria-hidden="true">«</span>
+                                          <span className="sr-only">Previous</span>
+                                        </a>
+                                      </li>
 
 
-                                    <li className="page-item active">
-                                      <a className="page-link waves-effect waves-effect">1</a>
-                                    </li>
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect">2</a>
-                                    </li>
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect">3</a>
-                                    </li>
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect">4</a>
-                                    </li>
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect">5</a>
-                                    </li>
+                                      <li className="page-item active">
+                                        <a className="page-link waves-effect waves-effect">1</a>
+                                      </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect">2</a>
+                                      </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect">3</a>
+                                      </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect">4</a>
+                                      </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect">5</a>
+                                      </li>
 
 
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect" aria-label="Next">
-                                        <span aria-hidden="true">»</span>
-                                        <span className="sr-only">Next</span>
-                                      </a>
-                                    </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect" aria-label="Next">
+                                          <span aria-hidden="true">»</span>
+                                          <span className="sr-only">Next</span>
+                                        </a>
+                                      </li>
 
 
-                                    <li className="page-item">
-                                      <a className="page-link waves-effect waves-effect">Last</a>
-                                    </li>
+                                      <li className="page-item">
+                                        <a className="page-link waves-effect waves-effect">Last</a>
+                                      </li>
 
-                                  </ul>
-                                </nav>
-                              </MDBCol>
-                              <MDBCol size="4"></MDBCol>
+                                    </ul>
+                                  </nav>
+                                </MDBCol>
+                                <MDBCol size="4"></MDBCol>
+                              </MDBRow>
+
+
                             </MDBRow>
+                            
+                          ) : null}
 
-
-                          </MDBRow>
                         </div>
                       </div>
                     </div>
