@@ -1,8 +1,10 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {
-  MDBNavLink,
+  MDBNavLink,MDBCardBody,
+  MDBCard,
   MDBBtn,
+  MDBIcon,
   MDBCol,
   MDBRow,
   MDBContainer, Iframe
@@ -44,12 +46,13 @@ export class VideoView extends React.Component {
       return {backend: mockData};
     });
   }
-
+  showReplys(){}
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header></Header>
+        <br/>
         <MDBRow>
           <MDBCol size="1">
 
@@ -61,11 +64,75 @@ export class VideoView extends React.Component {
                   <Iframe src="https://www.youtube.com/embed/v64KOxKVLVg"/>
                 </MDBContainer>
                 <br/>
-                <br/>
-                <br/>
+                <h3 style={{
+                  fontSize: '1.2rem',
+                  lineHeight: '2.4rem',
+                  }}><strong>
+                  The Future of the Web // Mikeal Rogers // CascadiaJS 2018
+                </strong></h3>
+                <MDBRow>
+                  <MDBCol size="4" style={{margin:'auto'}}>
+                    <strong>32000次观看</strong>
+                  </MDBCol>
+                  <MDBCol size="8" style={{paddingRight:'25px'}}>
+                    <div style={{float:'right'}}>
+                      <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
+                        <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
+                      </MDBBtn>
+                      <MDBBtn onClick={() => {
+                        this.showReplys()
+                      }} color="primary" style={{padding: '5px 10px',}}>
+                        <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
+                      </MDBBtn>
+                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                        <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+                      </MDBBtn>
+                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                        <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
+                        举报
+                      </MDBBtn>
+                    </div>
+                    
+                  </MDBCol>
+                </MDBRow>
+                <MDBCard
+                  className="my-5"
+                  style={{
+                    boxShadow:'none',
+                    borderTop: '1px solid #e8e8e8',
+                    borderBottom: '1px solid #e8e8e8',
+                    padding:'20px 0px'
+                  }}
+                >
+
+                  <MDBCardBody className="py-0" >
+                    <MDBRow >
+                      <div className="mdb-feed">
+                        <div className="news">
+                          <div className="label">
+                            <img
+                              src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
+                              alt=""
+                              className="rounded-circle z-depth-1-half"
+                            />
+                          </div>
+                          <div className="excerpt">
+                            <div className="brief">
+
+                              John Doe
+                              <div className="date">1 hour ago</div>
+                              <p>this is a description of this film and after reading this you will find that some you can not understand, because akjlsdakhdlkajshljhlhdiahjsdi </p>
+                            </div>
+                            <div className="feed-footer">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </MDBRow>
+
+                  </MDBCardBody>
+                </MDBCard>
                 <QuestionAnswer></QuestionAnswer>
-
-
               </MDBCol>
               <MDBCol size="4">
                 <h3>this is a sideBar</h3>

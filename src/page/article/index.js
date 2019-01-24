@@ -14,7 +14,7 @@ import {
 import './public/style.css';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-
+import {QuestionAnswer} from '../question/question-answer'
 export class Article extends React.Component {
   constructor(props) {
     super(props);
@@ -72,7 +72,13 @@ export class Article extends React.Component {
       });
     }
   }
-
+  showReplys(){
+    let ifShown = !this.state.ifShown
+    this.setState({
+      ifShown
+    })
+  }
+  
   render() {
     const ifShown = this.state.ifShown
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
@@ -126,152 +132,36 @@ export class Article extends React.Component {
                 </MDBCard>
                 <MDBContainer className="mt-5" style={{marginLeft: '2rem'}}>
                   {this.state.backend.contents}
+                  <MDBRow style={{paddingLeft:'17px'}}>
+                    <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
+                      <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
+                    </MDBBtn>
+                    <MDBBtn onClick={() => {
+                      this.showReplys()
+                    }} color="primary" style={{padding: '5px 10px',}}>
+                      <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
+                    </MDBBtn>
+                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                      <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+                    </MDBBtn>
+                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                      <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
+                      举报
+                    </MDBBtn>
+                  </MDBRow>
+                  {ifShown && (
+                    <div>
+                      <br/>
+                      <QuestionAnswer></QuestionAnswer>
+                    </div>
+                    
+                  )}
+                  
                 </MDBContainer>
+                
               </MDBCol>
             </MDBRow>
-            <MDBRow>
-              <MDBCol style={{marginLeft: '2rem'}}>
-                <MDBBtn size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
-              </MDBCol>
-            </MDBRow>
-            <div>
-              <MDBRow style={{margin: '1rem 2.5rem',display: ifShown}}>
-                <div className="card-header border-0 font-weight-bold">4 comments</div>
-
-                <div className="media d-block d-md-flex mt-4">
-                  <img className="card-img-64 d-flex mx-auto mb-3"
-                       src="https://mdbootstrap.com/img/Photos/Avatars/img (20).jpg" alt="Generic placeholder image"/>
-                  <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                    <h5 className="font-weight-bold mt-0">
-                      <a href="">Miley Steward</a>
-                      <a href="" className="pull-right">
-                        <i className="fa fa-reply"></i>
-                      </a>
-                    </h5>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    <div className="media d-block d-md-flex mt-4">
-                      <img className="card-img-64 d-flex mx-auto mb-3"
-                           src="https://mdbootstrap.com/img/Photos/Avatars/img (27).jpg"
-                           alt="Generic placeholder image"/>
-                      <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                        <h5 className="font-weight-bold mt-0">
-                          <a href="">Tommy Smith</a>
-                          <a href="" className="pull-right">
-                            <i className="fa fa-reply"></i>
-                          </a>
-                        </h5>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque
-                        ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                        explicabo.
-                      </div>
-                    </div>
-
-                    <div className="form-group mt-4">
-                      <label htmlFor="quickReplyFormComment">Your comment</label>
-                      <textarea className="form-control" id="quickReplyFormComment" rows="5"></textarea>
-
-                      <div className="text-center my-4">
-                        <button className="btn btn-primary btn-sm waves-effect waves-light" type="submit">Post
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="media d-block d-md-flex mt-3">
-                      <img className="card-img-64 d-flex mx-auto mb-3"
-                           src="https://mdbootstrap.com/img/Photos/Avatars/img (21).jpg"
-                           alt="Generic placeholder image"/>
-                      <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                        <h5 className="font-weight-bold mt-0">
-                          <a href="">Sylvester the Cat</a>
-                          <a href="" className="pull-right">
-                            <i className="fa fa-reply"></i>
-                          </a>
-                        </h5>
-                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-                        velit, sed quia non numquam eius modi
-                        tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="media d-block d-md-flex mt-3">
-                  <img className="card-img-64 d-flex mx-auto mb-3"
-                       src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image"/>
-                  <div className="media-body text-center text-md-left ml-md-3 ml-0">
-                    <h5 className="font-weight-bold mt-0">
-                      <a href="">Caroline Horwitz</a>
-                      <a href="" className="pull-right">
-                        <i className="fa fa-reply"></i>
-                      </a>
-                    </h5>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                    deleniti atque corrupti
-                    quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt
-                    in
-                    culpa officia deserunt mollitia animi, id est laborum et dolorum fuga.
-                  </div>
-                </div>
-                <MDBRow>
-                  <MDBCol size="4"></MDBCol>
-                  <MDBCol size="4">
-                    <nav className="d-flex justify-content-center mt-5">
-                      <ul className="pagination pg-blue mb-0">
-
-
-                        <li className="page-item disabled">
-                          <a className="page-link waves-effect waves-effect">First</a>
-                        </li>
-
-
-                        <li className="page-item disabled">
-                          <a className="page-link waves-effect waves-effect" aria-label="Previous">
-                            <span aria-hidden="true">«</span>
-                            <span className="sr-only">Previous</span>
-                          </a>
-                        </li>
-
-
-                        <li className="page-item active">
-                          <a className="page-link waves-effect waves-effect">1</a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect">2</a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect">3</a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect">4</a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect">5</a>
-                        </li>
-
-
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                            <span className="sr-only">Next</span>
-                          </a>
-                        </li>
-
-
-                        <li className="page-item">
-                          <a className="page-link waves-effect waves-effect">Last</a>
-                        </li>
-
-                      </ul>
-                    </nav>
-                  </MDBCol>
-                  <MDBCol size="4"></MDBCol>
-                </MDBRow>
-
-
-              </MDBRow>
-            </div>
+            
           </MDBCardBody>
         </MDBCard>
         <Footer/>

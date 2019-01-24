@@ -59,10 +59,9 @@ export class Question extends React.Component {
                 tags={this.state.backend.tags} 
                 content={this.state.backend.content} 
                 focus={this.state.backend.focus} 
-                reading={this.state.backend.reading}></QuestionDes>
+                reading={this.state.backend.reading}>
+              </QuestionDes>
             </MDBRow>
-            <br/>
-            <br/>
             <br/>
             <MDBRow>
               <MDBCol size="9">
