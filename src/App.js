@@ -18,6 +18,7 @@ import {MyFavorite} from './page/myFavorite';
 import {People} from './page/people';
 import {Collection} from './page/collection';
 import {Question} from './page/question';
+import {CreateAnswer} from './page/question/createAnswer';
 import {store} from './global-data/store';
 import * as actionJs from './global-data/action';
 import {JobDetailx} from './page/job/index-1';
@@ -105,11 +106,15 @@ export class App extends Component {
             />
             <Route
               path="/question/create"
-              component={routeProps => <Question {...routeProps} />}
+              component={routeProps => <ArticleEditor {...routeProps} />}
             />
             <Route
               path="/question/:id/edit"
-              component={routeProps => <Question {...routeProps} />}
+              component={routeProps => <ArticleEditor {...routeProps} />}
+            />
+            <Route
+              path="/question/:id/answer/create"
+              component={routeProps => <CreateAnswer {...routeProps} />}
             />
             <Route
               path="/question/:id/answer/:id"
