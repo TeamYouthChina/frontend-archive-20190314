@@ -32,6 +32,8 @@ import {Help} from './page/help';
 import {Privacy} from './page/privacy';
 import {DiscoveryBackup} from './page/discovery/index.backup';
 import {JobAppManage} from './page/application/job-manage';
+import {BestForYou} from "./page/bestForYou";
+import {JobForYou} from "./page/jobForYou";
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -155,6 +157,14 @@ export class App extends Component {
             <Route
               path="/application/job"
               component={routeProps => <JobAppManage {...routeProps} />}
+            />
+            <Route
+              path="/best-for-you"
+              component={routeProps => <BestForYou {...routeProps} />}
+            />
+            <Route
+              path="/job-for-you"
+              component={routeProps => <JobForYou {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
