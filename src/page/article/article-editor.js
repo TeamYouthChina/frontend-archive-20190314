@@ -52,7 +52,7 @@ export class ArticleEditor extends React.Component {
         <div style={{padding: '100px'}}>
           <div className="form-group">
             <MDBRow>
-              <MDBCol middle size="9">
+              <MDBCol size="9">
                 <input className="form-control" placeholder={this.text.title}/>
               </MDBCol>
               <MDBCol size="1"></MDBCol>
