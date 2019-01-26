@@ -11,7 +11,7 @@ import {
 } from 'mdbreact';
 
 
-export class QuestionAnswer extends React.Component {
+export class QuestionAnswerPart extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -24,7 +24,7 @@ export class QuestionAnswer extends React.Component {
       ifShownReplys: [],
       addComment: ''
     };
-    this.text = QuestionAnswer.i18n[languageHelper()];
+    this.text = QuestionAnswerPart.i18n[languageHelper()];
     this.showComments = this.showComments.bind(this)
   }
 
@@ -451,7 +451,7 @@ export class QuestionAnswer extends React.Component {
   }
 }
 
-QuestionAnswer.i18n = [
+QuestionAnswerPart.i18n = [
   {
     applyBefore: '申请截止'
   },

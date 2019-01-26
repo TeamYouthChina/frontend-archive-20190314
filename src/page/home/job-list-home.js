@@ -5,7 +5,7 @@ import {
   MDBRow
 } from 'mdbreact';
 
-import {JobCardSquare} from '../general-component/job-card-square';
+import {JobCardSquare} from '../../general-component/job-card-square';
 
 export class JobListHome extends React.Component {
 
