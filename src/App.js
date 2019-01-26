@@ -131,10 +131,6 @@ export class App extends Component {
               component={routeProps => <Question {...routeProps} />}
             />
             <Route
-              path="/ans"
-              component={routeProps => <AnswerText {...routeProps} />}
-            />
-            <Route
               path="/video/:id"
               component={routeProps => <VideoView {...routeProps} />}
             />
