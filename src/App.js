@@ -63,6 +63,10 @@ export class App extends Component {
               component={routeProps => <SearchS2 {...routeProps} />}
             />
             <Route
+              path="/article/create" exact
+              component={routeProps => <ArticleEditor {...routeProps} />}
+            />
+            <Route
               path="/article/:id" exact
               component={routeProps => <Article {...routeProps} />}
             />
@@ -129,6 +133,14 @@ export class App extends Component {
             <Route
               path="/question/:id/answer/:id"
               component={routeProps => <Question {...routeProps} />}
+            />
+            <Route
+              path="/video/create"
+              component={routeProps => <ArticleEditor {...routeProps} />}
+            />
+            <Route
+              path="/video/:id/edit"
+              component={routeProps => <ArticleEditor {...routeProps} />}
             />
             <Route
               path="/video/:id"
