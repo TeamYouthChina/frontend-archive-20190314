@@ -28,7 +28,7 @@ import {Mypage} from './page/mypage';
 import {Help} from './page/help';
 import {Privacy} from './page/privacy';
 import {DiscoveryBackup} from './page/test/index.backup';
-import {JobAppManage} from './page/application/job-manage';
+import {Application} from './page/application';
 import {BestForYou} from './page/bestForYou';
 import {JobForYou} from './page/jobForYou';
 
@@ -49,8 +49,8 @@ export class App extends Component {
               component={() => <Redirect to="/home"/>}
             />
             <Route
-              path="/application/job/:id"
-              component={routeProps => <JobAppManage {...routeProps} />}
+              path="/application/"
+              component={routeProps => <Application {...routeProps} />}
             />
             <Route
               path="/article/create"
