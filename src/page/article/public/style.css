@@ -17,3 +17,6 @@
 .bf-container.myAnswerText .bf-dropdown.active .dropdown-content {
   display: inline;
 }
+.bf-container.myAnswerText .bf-dropdown.active .dropdown-content li{
+  clear: none;
+}
