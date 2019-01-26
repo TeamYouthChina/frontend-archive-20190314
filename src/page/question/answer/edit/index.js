@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../../tool/language-helper';
 import {
   MDBNavLink,
   MDBBtn,
@@ -7,12 +7,12 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
-import {ArticleEditor} from '../article/article-editor';
-import {QuestionDes} from './question-description'
+import {Header} from '../../../../general-component/header';
+import {Footer} from '../../../../general-component/footer';
+import {ArticleEdit} from '../../../article/edit';
+import {QuestionDes} from '../../question-description'
 
-export class CreateAnswer extends React.Component {
+export class AnswerEdit extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -21,7 +21,7 @@ export class CreateAnswer extends React.Component {
       backend: null,
       selectType: 1
     };
-    this.text = CreateAnswer.i18n[languageHelper()];
+    this.text = AnswerEdit.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -50,21 +50,21 @@ export class CreateAnswer extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
-            <ArticleEditor>
+            <ArticleEdit>
               <QuestionDes
                 tags={this.state.backend.tags}
                 content={this.state.backend.content}
                 focus={this.state.backend.focus}
                 reading={this.state.backend.reading}>
               </QuestionDes>
-            </ArticleEditor>
+            </ArticleEdit>
         </MDBRow>
       </div>
     ) : null;
   }
 }
 
-CreateAnswer.i18n = [
+AnswerEdit.i18n = [
   {
     applyBefore: '申请截止'
   },

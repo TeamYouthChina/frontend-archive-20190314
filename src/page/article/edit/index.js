@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
@@ -10,12 +10,12 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from './answerText';
+import {AnswerText} from '../answerText';
 // import './public/style.css';
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
 
-export class ArticleEditor extends React.Component {
+export class ArticleEdit extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -23,7 +23,7 @@ export class ArticleEditor extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = ArticleEditor.i18n[languageHelper()];
+    this.text = ArticleEdit.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -75,7 +75,7 @@ export class ArticleEditor extends React.Component {
   }
 }
 
-ArticleEditor.i18n = [
+ArticleEdit.i18n = [
   {
     title: '标题',
     submitBtn: '提交文章',

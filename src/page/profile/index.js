@@ -5,7 +5,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 
-export class People extends React.Component {
+export class Profile extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -55,7 +55,7 @@ export class People extends React.Component {
   }
 }
 
-People.propTypes = {
+Profile.propTypes = {
   // route
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,

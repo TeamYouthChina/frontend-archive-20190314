@@ -12,9 +12,9 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswer} from '../question/question-answer'
+import {QuestionAnswerPart} from '../question/question-answer-part'
 
-export class VideoView extends React.Component {
+export class Video extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -23,7 +23,7 @@ export class VideoView extends React.Component {
       backend: null,
       selectType: 1
     };
-    this.text = VideoView.i18n[languageHelper()];
+    this.text = Video.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -132,7 +132,7 @@ export class VideoView extends React.Component {
 
                   </MDBCardBody>
                 </MDBCard>
-                <QuestionAnswer></QuestionAnswer>
+                <QuestionAnswerPart></QuestionAnswerPart>
               </MDBCol>
               <MDBCol size="4">
                 <h3>this is a sideBar</h3>
@@ -148,7 +148,7 @@ export class VideoView extends React.Component {
   }
 }
 
-VideoView.i18n = [
+Video.i18n = [
   {
     applyBefore: '申请截止'
   },

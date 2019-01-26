@@ -7,9 +7,9 @@ import {
   MDBNavLink,
 } from 'mdbreact';
 
-import {languageHelper} from '../tool/language-helper';
+import {languageHelper} from '../../tool/language-helper';
 import {HomeHeader} from './home-header';
-import {Footer} from '../general-component/footer';
+import {Footer} from '../../general-component/footer';
 import {JobListHome} from './job-list-home';
 
 export class Home extends React.Component {
