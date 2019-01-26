@@ -70,7 +70,6 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="3">
                 <QuestionBar></QuestionBar>
               </MDBCol>
-
             </MDBRow>
           </MDBCol>
           <MDBCol size="1"></MDBCol>

@@ -29,8 +29,10 @@ import {Help} from './page/help';
 import {Privacy} from './page/privacy';
 import {DiscoveryBackup} from './page/test/index.backup';
 import {JobAppManage} from './page/application/job-manage';
-import {BestForYou} from './page/bestForYou';
-import {JobForYou} from './page/jobForYou';
+import {BestForYou} from "./page/bestForYou";
+import {JobForYou} from "./page/jobForYou";
+import {Message} from './page/message';
+import {Backfild} from './page/message/back-fild';
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -173,6 +175,14 @@ export class App extends Component {
             <Route
               path="/test"
               component={routeProps => <Test {...routeProps} />}
+            />
+           <Route
+              path="/message"exact
+              component={routeProps => <Message {...routeProps} />}
+            />
+            <Route
+              path="/message/back-fild"
+              component={routeProps => <Backfild {...routeProps} />}
             />
             <Route
               path="/mypage"
