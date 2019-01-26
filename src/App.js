@@ -26,7 +26,7 @@ import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Mypage} from './page/mypage';
 import {Help} from './page/help';
-import {Privacy} from './page/privacy';
+import {Setting} from './page/setting';
 import {DiscoveryBackup} from './page/test/index.backup';
 import {JobAppManage} from './page/application/job-manage';
 import {BestForYou} from './page/bestForYou';
@@ -142,7 +142,7 @@ export class App extends Component {
             />
             <Route
               path="/setting"
-              component={routeProps => <Privacy {...routeProps} />}
+              component={routeProps => <Setting {...routeProps} />}
             />
             <Route
               path="/video/create"
