@@ -31,6 +31,7 @@ import {Mypage} from './page/trash/mypage';
 import {JobDetailx} from './page/trash/job-detailx';
 import {Test} from './page/trash/test';
 import {MyFavorite} from './page/trash/my-favorite';
+import {Recommondation} from './page/trash/recommondation';
 
 export class App extends Component {
   render() {
@@ -167,6 +168,10 @@ export class App extends Component {
             <Route
               path="/mypage"
               component={routeProps => <Mypage {...routeProps} />}
+            />
+            <Route
+              path="/recommondation"
+              component={routeProps => <Recommondation {...routeProps} />}
             />
             <Route
               path="/test"

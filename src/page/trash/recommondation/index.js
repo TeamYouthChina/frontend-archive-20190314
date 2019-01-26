@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
@@ -12,9 +12,9 @@ import {
   MDBRow,
   MDBCol
 } from 'mdbreact';
-import {JobCardSquare} from '../../general-component/job-card-square';
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+import {JobCardSquare} from '../../../general-component/job-card-square';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
 
 
 export class Recommondation extends React.Component {
