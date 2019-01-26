@@ -43,6 +43,7 @@ export class ArticleEditor extends React.Component {
   handleInputClick() {
     //todo,通过refs调用的方法
     this.answerText.submitContent();
+    // this.refs.answerText.submitContent();
   }
 
   render() {

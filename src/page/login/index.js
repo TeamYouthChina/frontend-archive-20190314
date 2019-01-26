@@ -33,8 +33,8 @@ export class Login extends React.Component {
         <MDBContainer>
           <MDBRow center>
             <MDBCol md="6">
-              <form className="mx-5">
-                <p className="h4 text-center mb-4">Log in</p>
+              <form className="mx-5 my-5">
+                <p className="display-4 font-weight-lighter text-center my-5">Log In</p>
                   <div className="input-group mb-3 d-flex">
                     <label htmlFor="defaultFormLoginEmailEx" className="grey-text my-2 mr-2">
                       {this.text.email}
@@ -59,8 +59,15 @@ export class Login extends React.Component {
                     />
                   </div>
                 
-                <div className="text-center mt-4">
-                  <MDBBtn color="indigo" type="submit">{this.text.submitBtn}</MDBBtn>
+                <div className="mt-4 text-center">
+                  <MDBRow>
+                    <MDBCol md="6">
+                      <MDBBtn color="indigo" href="/" type="submit">{this.text.submitBtn}</MDBBtn>
+                    </MDBCol>
+                    <MDBCol className="py-3" md="6">
+                      <a href="#">Forgot password?</a>
+                    </MDBCol>
+                  </MDBRow>
                 </div>
               </form>
             </MDBCol>

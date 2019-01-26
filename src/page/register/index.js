@@ -33,8 +33,8 @@ export class Register extends React.Component {
         <MDBContainer>
           <MDBRow center>
             <MDBCol md="6">
-              <form className="mx-5">
-                <p className="h4 text-center mb-4">Sign up</p>
+              <form className="mx-5 my-5">
+                <p className="display-4 font-weight-lighter text-center my-5">Sign Up</p>
                 <div className="input-group mb-3 d-flex">
                   <label htmlFor="defaultFormLoginEmailEx" className="grey-text my-2 mr-2">
                     {this.text.email}
@@ -60,7 +60,7 @@ export class Register extends React.Component {
                 </div>
 
                 <div className="text-center mt-4">
-                  <MDBBtn color="indigo" type="submit">{this.text.submitBtn}</MDBBtn>
+                  <MDBBtn color="indigo" href="/" type="submit">{this.text.submitBtn}</MDBBtn>
                 </div>
               </form>
             </MDBCol>

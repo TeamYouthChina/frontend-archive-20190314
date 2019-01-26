@@ -58,7 +58,6 @@ export class AnswerText extends React.Component {
                dangerouslySetInnerHTML={{ __html: editorState.toHTML()}}>
           </div>
         )}
-        
       </div>
     )
 
