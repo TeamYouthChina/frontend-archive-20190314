@@ -22,7 +22,7 @@ import {Test} from './page/trash/test';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
-import {Mypage} from './page/mypage';
+import {Mypage} from './page/trash/mypage';
 import {Help} from './page/help';
 import {Setting} from './page/setting';
 import {DiscoveryBackup} from './page/trash/discovery-backup';

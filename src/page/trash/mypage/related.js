@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBBtn,
   MDBRow,
