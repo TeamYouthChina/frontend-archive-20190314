@@ -34,12 +34,15 @@ export class AnswerText extends React.Component {
     const { editorState } = this.state
 
     return (
-      <div className="my-component">
-        <BraftEditor
-          value={editorState}
-          onChange={this.handleEditorChange}
-          onSave={this.submitContent}
-        />
+      <div>
+        <div className="editor-wrapper">
+          <BraftEditor className="myAnswerText"
+            value={editorState}
+            onChange={this.handleChange}
+          />
+        </div>
+        <h5>输出内容</h5>
+        <div className="output-content">{}</div>
       </div>
     )
 

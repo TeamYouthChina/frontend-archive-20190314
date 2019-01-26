@@ -11,7 +11,7 @@ import {
   MDBCol,
 } from 'mdbreact';
 import {AnswerText} from './answerText';
-import './public/style.css';
+// import './public/style.css';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 
@@ -42,7 +42,7 @@ export class ArticleEditor extends React.Component {
 
   handleInputClick() {
     //todo,通过refs调用的方法
-    this.refs.answerText.submitContent();
+    // this.refs.answerText.submitContent();
   }
 
   render() {
@@ -63,7 +63,7 @@ export class ArticleEditor extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ref="answerText"></AnswerText>
+          <AnswerText ></AnswerText>
         </div>
         <Footer/>
       </div>

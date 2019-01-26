@@ -1,7 +1,7 @@
 .bf-content {
   height: 200px;
 }
-.bf-container{
+.bf-container.myAnswerText{
   border: 1px solid #EBEBEB;
   border-radius: 3px;
   height: 400px;
@@ -14,4 +14,6 @@
   display: table-cell;
   vertical-align: middle;
 }
-
+.bf-container.myAnswerText .bf-dropdown.active .dropdown-content {
+  display: inline;
+}
