@@ -108,8 +108,12 @@ export class CareerCard extends React.Component {
                   </MDBCol>
                   <MDBCol size="4">
                     {/*todo,不符合要求的不能点击*/}
-                    <MDBBtn size="sm" outline style={{borderRadius: '5px'}}><a href={idNum}
-                                                                               style={{color: '#747373'}}>{this.text.apply}</a></MDBBtn>
+                    <MDBBtn 
+                      size="sm" 
+                      outline 
+                      style={{borderRadius: '5px'}}><a href={idNum} style={{color: '#747373'}}>{this.text.apply}
+                      </a>
+                    </MDBBtn>
                   </MDBCol>
                 </MDBRow>
 
