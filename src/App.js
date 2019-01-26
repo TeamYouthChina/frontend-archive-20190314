@@ -12,23 +12,25 @@ import {ArticleEdit} from './page/article/edit';
 import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
-import {MyFavorite} from './page/trash/my-favorite';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {AnswerEdit} from './page/question/answer/edit';
-import {JobDetailx} from './page/trash/job-detailx';
-import {Test} from './page/trash/test';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
-import {Mypage} from './page/trash/mypage';
 import {Help} from './page/help';
 import {Setting} from './page/setting';
-import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {JobAppManage} from './page/application/job-manage';
-import {BestForYou} from './page/bestForYou';
-import {JobForYou} from './page/jobForYou';
+import {BestForYou} from './page/best-for-you';
+import {JobForYou} from './page/job-for-you';
+
+// Trash
+import {DiscoveryBackup} from './page/trash/discovery-backup';
+import {Mypage} from './page/trash/mypage';
+import {JobDetailx} from './page/trash/job-detailx';
+import {Test} from './page/trash/test';
+import {MyFavorite} from './page/trash/my-favorite';
 
 export class App extends Component {
   render() {
