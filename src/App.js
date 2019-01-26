@@ -25,7 +25,7 @@ import {Setting} from './page/setting';
 import {JobAppManage} from './page/application/job-manage';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
-
+import {UserInfo} from "./page/register/user-Info";
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {Mypage} from './page/trash/mypage';
@@ -153,6 +153,10 @@ export class App extends Component {
             <Route
               path="/video/:id"
               component={routeProps => <Video {...routeProps} />}
+            />
+            <Route
+              path="/user-info"
+              component={routeProps => <UserInfo {...routeProps} />}
             />
             {/* ====== Trash Begin ====== */}
             <Route
