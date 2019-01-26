@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -12,30 +12,23 @@ import {ArticleEdit} from './page/article/edit';
 import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
-import {MyFavorite} from './page/test/index-2';
+import {MyFavorite} from './page/trash/my-favorite';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {AnswerEdit} from './page/question/answer/edit';
-import {store} from './global-data/store';
-import * as actionJs from './global-data/action';
-import {JobDetailx} from './page/test/index-1';
-import {Test} from './page/test';
+import {JobDetailx} from './page/trash/job-detailx';
+import {Test} from './page/trash/test';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Mypage} from './page/mypage';
 import {Help} from './page/help';
 import {Setting} from './page/setting';
-import {DiscoveryBackup} from './page/test/index.backup';
+import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {JobAppManage} from './page/application/job-manage';
 import {BestForYou} from './page/bestForYou';
 import {JobForYou} from './page/jobForYou';
-
-store.dispatch(actionJs.creator(
-  actionJs.type.id,
-  undefined
-));
 
 export class App extends Component {
   render() {
@@ -156,28 +149,28 @@ export class App extends Component {
               path="/video/:id"
               component={routeProps => <Video {...routeProps} />}
             />
-
-
+            {/* ====== Trash Begin ====== */}
             <Route
               path="/discoverybackup"
               component={routeProps => <DiscoveryBackup {...routeProps} />}
-            />
-            <Route
-              path="/myfavorite"
-              component={routeProps => <MyFavorite {...routeProps} />}
             />
             <Route
               path="/job-old"
               component={routeProps => <JobDetailx {...routeProps} />}
             />
             <Route
-              path="/test"
-              component={routeProps => <Test {...routeProps} />}
+              path="/myfavorite"
+              component={routeProps => <MyFavorite {...routeProps} />}
             />
             <Route
               path="/mypage"
               component={routeProps => <Mypage {...routeProps} />}
             />
+            <Route
+              path="/test"
+              component={routeProps => <Test {...routeProps} />}
+            />
+            {/* ====== Trash End ====== */}
             <Redirect to="/page-no-found"/>
           </Switch>
         </div>
