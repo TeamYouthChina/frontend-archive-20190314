@@ -11,7 +11,7 @@ import {SearchS1} from './page/search/s1';
 import {SearchS2} from './page/search/s2';
 import {Article} from './page/article';
 import {ArticleEditor} from './page/article/article-editor';
-import {Discovery} from './page/discovery/index.backup';
+import {Discovery} from './page/discovery';
 import {JobDetail} from './page/job';
 import {Company} from './page/company';
 import {MyFavorite} from './page/myFavorite';
@@ -28,6 +28,12 @@ import {VideoView} from './page/video';
 import {Error404} from './page/page-no-found';
 import {Register} from './page/register';
 import {Mypage} from './page/mypage';
+import {Help} from './page/help';
+import {Privacy} from './page/privacy';
+import {DiscoveryBackup} from './page/discovery/index.backup';
+import {JobAppManage} from './page/application/job-manage';
+import {BestForYou} from "./page/bestForYou";
+import {JobForYou} from "./page/jobForYou";
 
 store.dispatch(actionJs.creator(
   actionJs.type.id,
@@ -71,6 +77,10 @@ export class App extends Component {
             <Route
               path="/discovery"
               component={routeProps => <Discovery {...routeProps} />}
+            />
+            <Route
+              path="/discoverybackup"
+              component={routeProps => <DiscoveryBackup {...routeProps} />}
             />
             <Route
               path="/company/:id"
@@ -124,10 +134,37 @@ export class App extends Component {
               path="/ans"
               component={routeProps => <AnswerText {...routeProps} />}
             />
-            
             <Route
               path="/video/:id"
               component={routeProps => <VideoView {...routeProps} />}
+            />
+            <Route
+              path="/help"
+              component={routeProps => <Help {...routeProps} />}
+            />
+            <Route
+              path="/privacy"
+              component={routeProps => <Privacy {...routeProps} />}
+            />
+            <Route
+              path="/help"
+              component={routeProps => <Help {...routeProps} />}
+            />
+            <Route
+              path="/privacy"
+              component={routeProps => <Privacy {...routeProps} />}
+            />
+            <Route
+              path="/application/job"
+              component={routeProps => <JobAppManage {...routeProps} />}
+            />
+            <Route
+              path="/best-for-you"
+              component={routeProps => <BestForYou {...routeProps} />}
+            />
+            <Route
+              path="/job-for-you"
+              component={routeProps => <JobForYou {...routeProps} />}
             />
             <Route
               component={routeProps => <Error404 {...routeProps} />}
