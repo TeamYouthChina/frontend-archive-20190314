@@ -42,7 +42,7 @@ export class ArticleEditor extends React.Component {
 
   handleInputClick() {
     //todo,通过refs调用的方法
-    // this.refs.answerText.submitContent();
+    this.answerText.submitContent();
   }
 
   render() {
@@ -51,6 +51,9 @@ export class ArticleEditor extends React.Component {
         <Header/>
         <div style={{padding: '100px'}}>
           <div className="form-group">
+            <MDBRow style={{padding:'20px'}}>
+              {this.props.children}
+            </MDBRow>
             <MDBRow>
               <MDBCol size="9">
                 <input className="form-control" placeholder={this.text.title}/>
@@ -63,7 +66,7 @@ export class ArticleEditor extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ></AnswerText>
+          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
         </div>
         <Footer/>
       </div>

@@ -9,7 +9,9 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {ArticleEditor} from '../article/article-editor'
+import {ArticleEditor} from '../article/article-editor';
+import {QuestionDes} from './question-description'
+
 export class CreateAnswer extends React.Component {
   constructor(props) {
     super(props);
@@ -48,11 +50,14 @@ export class CreateAnswer extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
-          <MDBCol size="1"></MDBCol>
-          <MDBCol size="9">
-            <ArticleEditor></ArticleEditor>
-          </MDBCol>
-          <MDBCol size="1"></MDBCol>
+            <ArticleEditor>
+              <QuestionDes
+                tags={this.state.backend.tags}
+                content={this.state.backend.content}
+                focus={this.state.backend.focus}
+                reading={this.state.backend.reading}>
+              </QuestionDes>
+            </ArticleEditor>
         </MDBRow>
       </div>
     ) : null;
