@@ -15,6 +15,7 @@ import {Company} from './page/company';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
+import {VideoEdit} from './page/video/edit';
 import {AnswerEdit} from './page/question/answer/edit';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
@@ -104,13 +105,14 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
+            
             <Route
               path="/question/create"
-              component={routeProps => null}
+              component={routeProps => <AnswerEdit {...routeProps} />}
             />
             <Route
               path="/question/:questionId/edit"
-              component={routeProps => null}
+              component={routeProps => <AnswerEdit {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
@@ -142,11 +144,11 @@ export class App extends Component {
             />
             <Route
               path="/video/create"
-              component={routeProps => null}
+              component={routeProps => <VideoEdit {...routeProps} />}
             />
             <Route
               path="/video/:id/edit"
-              component={routeProps => null}
+              component={routeProps => <VideoEdit {...routeProps} />}
             />
             <Route
               path="/video/:id"
