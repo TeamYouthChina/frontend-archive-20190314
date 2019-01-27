@@ -22,10 +22,10 @@ import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
 import {Setting} from './page/setting';
-import {JobAppManage} from './page/application/job-manage';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
-import {UserInfo} from "./page/register/user-Info";
+import {Application} from './page/application';
+
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {Mypage} from './page/trash/mypage';
@@ -46,8 +46,8 @@ export class App extends Component {
               component={() => <Redirect to="/home"/>}
             />
             <Route
-              path="/application/job/:id"
-              component={routeProps => <JobAppManage {...routeProps} />}
+              path="/application/"
+              component={routeProps => <Application {...routeProps} />}
             />
             <Route
               path="/article/create"
@@ -153,10 +153,6 @@ export class App extends Component {
             <Route
               path="/video/:id"
               component={routeProps => <Video {...routeProps} />}
-            />
-            <Route
-              path="/user-info"
-              component={routeProps => <UserInfo {...routeProps} />}
             />
             {/* ====== Trash Begin ====== */}
             <Route
