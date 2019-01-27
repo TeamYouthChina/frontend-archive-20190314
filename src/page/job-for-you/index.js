@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Header} from "../../general-component/header";
 import {Footer} from "../../general-component/footer";
-import {JobListHome} from "../home/job-list-home";
+import {JobCardBar} from "../../general-component/job-card-bar";
 import {languageHelper} from "../../tool/language-helper";
 
 import {
@@ -85,28 +85,28 @@ export class JobForYou extends React.Component{
                   if (this.state.selectedTab === 1 ) {
                     return (
                       <div>
-                        <h5>实习</h5>
-                        <JobListHome/>
-                        <JobListHome/>
-                        <JobListHome/>
+                        <div className="h3 mb-4">实习</div>
+                        <JobCardBar/>
+                        <JobCardBar/>
+                        <JobCardBar/>
                       </div>
                     );
                   } else if (this.state.selectedTab ===2 ) {
                     return (
                       <div>
-                        <h5>校园招聘</h5>
-                        <JobListHome/>
-                        <JobListHome/>
-                        <JobListHome/>
+                        <div className="h3 mb-4">校园招聘</div>
+                        <JobCardBar/>
+                        <JobCardBar/>
+                        <JobCardBar/>
                       </div>
                     );
                   } else {
                     return (
                       <div>
-                        <h5>社会招聘</h5>
-                        <JobListHome/>
-                        <JobListHome/>
-                        <JobListHome/>
+                        <div className="h3 mb-4">社会招聘</div>
+                        <JobCardBar/>
+                        <JobCardBar/>
+                        <JobCardBar/>
                       </div>
                     );
                   }
