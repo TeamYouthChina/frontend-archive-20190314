@@ -15,9 +15,9 @@ import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import CoDetail from '../../general-component/company-detail';
-import RelatedPosition from './related';
+import RelatedPosition from '../job/related';
 
-import './public/style.css';
+import '../job/public/style.css';
 
 export class JobDetailx extends React.Component {
   constructor(props) {

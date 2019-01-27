@@ -27,14 +27,14 @@ import {JobDescri} from "./job-descri";
 import {JobQuestion} from "./job-question";
 import {JobApp} from "./job-app-progress";
 
-export class JobDetail extends React.Component {
+export class Job extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       backend: null,
       
     };
-    this.text = JobDetail.i18n[languageHelper()];
+    this.text = Job.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -176,7 +176,7 @@ export class JobDetail extends React.Component {
   }
 }
 
-JobDetail.i18n = [
+Job.i18n = [
   {
     description: '职位描述',
     requirements: '职位要求',

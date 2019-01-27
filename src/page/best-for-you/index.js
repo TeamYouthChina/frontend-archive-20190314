@@ -4,7 +4,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {ApplicantHeader} from "../../general-component/applicant-header";
-import {JobListHome} from "../job-list-home";
+import {JobListHome} from "../home/job-list-home";
 import {ApplicantCard} from "../../general-component/applicant-card";
 
 import {

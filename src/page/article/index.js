@@ -14,7 +14,7 @@ import {
 import './public/style.css';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswer} from '../question/question-answer'
+import {QuestionAnswerPart} from '../question/question-answer-part'
 export class Article extends React.Component {
   constructor(props) {
     super(props);
@@ -152,7 +152,7 @@ export class Article extends React.Component {
                   {ifShown && (
                     <div>
                       <br/>
-                      <QuestionAnswer></QuestionAnswer>
+                      <QuestionAnswerPart></QuestionAnswerPart>
                     </div>
                     
                   )}

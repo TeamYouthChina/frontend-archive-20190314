@@ -10,10 +10,10 @@ import {
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
-import {QuestionAnswer} from './question-answer'
+import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
 
-export class Question extends React.Component {
+export class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -22,7 +22,7 @@ export class Question extends React.Component {
       backend: null,
       selectType: 1
     };
-    this.text = Question.i18n[languageHelper()];
+    this.text = QuestionAnswer.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -65,7 +65,7 @@ export class Question extends React.Component {
             <br/>
             <MDBRow>
               <MDBCol size="9">
-                <QuestionAnswer></QuestionAnswer>
+                <QuestionAnswerPart></QuestionAnswerPart>
               </MDBCol>
               <MDBCol size="3">
                 <QuestionBar></QuestionBar>
@@ -82,7 +82,7 @@ export class Question extends React.Component {
   }
 }
 
-Question.i18n = [
+QuestionAnswer.i18n = [
   {
     applyBefore: '申请截止'
   },

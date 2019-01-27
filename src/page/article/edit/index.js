@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
@@ -10,12 +10,12 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from './answerText';
+import {AnswerText} from '../answerText';
 // import './public/style.css';
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
 
-export class ArticleEditor extends React.Component {
+export class ArticleEdit extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -23,7 +23,7 @@ export class ArticleEditor extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = ArticleEditor.i18n[languageHelper()];
+    this.text = ArticleEdit.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -42,6 +42,7 @@ export class ArticleEditor extends React.Component {
 
   handleInputClick() {
     //todo,通过refs调用的方法
+    this.answerText.submitContent();
     // this.refs.answerText.submitContent();
   }
 
@@ -51,6 +52,9 @@ export class ArticleEditor extends React.Component {
         <Header/>
         <div style={{padding: '100px'}}>
           <div className="form-group">
+            <MDBRow style={{padding:'20px'}}>
+              {this.props.children}
+            </MDBRow>
             <MDBRow>
               <MDBCol size="9">
                 <input className="form-control" placeholder={this.text.title}/>
@@ -63,7 +67,7 @@ export class ArticleEditor extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ></AnswerText>
+          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
         </div>
         <Footer/>
       </div>
@@ -72,7 +76,7 @@ export class ArticleEditor extends React.Component {
   }
 }
 
-ArticleEditor.i18n = [
+ArticleEdit.i18n = [
   {
     title: '标题',
     submitBtn: '提交文章',

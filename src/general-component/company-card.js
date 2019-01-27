@@ -9,7 +9,10 @@ import {
   MDBBtn,
   MDBRow,
   MDBCol,
+  MDBIcon,
+  MDBAvatar
 } from 'mdbreact';
+
 
 export class CompanyCard extends React.Component {
   constructor(props) {
@@ -43,28 +46,30 @@ export class CompanyCard extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard
-        style={{
-          margin: '10px',
-          boxShadow: 'none'
-        }}>
-        <MDBRow>
-          <MDBCol size="3">
-            <MDBCardImage
-              className="img-fluid"
-              src="https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/original/hs-emp-branding-image-data.?1522348756"
-            />
-          </MDBCol>
-          <MDBCol size="9">
-            <MDBCardBody
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-            >
+      <MDBCard className="px-3 py-4">
+        <MDBCardBody
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+          }}
+        >
+          <MDBRow>
+            <MDBCol size="2">
               <MDBRow>
-                <MDBCol>
+                <MDBCol size='9'>
+                  <MDBAvatar
+                    tag="img"
+                    src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                    className="rounded z-depth-1-half img-fluid"
+                    alt="Sample avatar"
+                  />
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+            <MDBCol size="9">
+              <MDBRow>
+                <MDBCol size="10">
                   <MDBCardTitle
                     style={{
                       fontSize: '1rem'
@@ -99,12 +104,23 @@ export class CompanyCard extends React.Component {
                   </MDBCardText>
                 </MDBCol>
                 <MDBCol>
-                  <MDBBtn outline style={{borderRadius: '5px'}}>Follow</MDBBtn>
+                  <MDBIcon
+                    icon="bookmark-o"
+                    size="3x"
+                    className="pt-1 p-0"
+                    style={{color:'#45526e'}}
+                  />
                 </MDBCol>
               </MDBRow>
-            </MDBCardBody>
-          </MDBCol>
-        </MDBRow>
+            </MDBCol>
+          </MDBRow>
+          <br/>
+          <MDBRow>
+            <MDBCol>
+              <p>滴滴出行（www.didiglobal.com）是全球领先的一站式移动出行平台</p>
+            </MDBCol>
+          </MDBRow>
+        </MDBCardBody>
       </MDBCard>
     ) : null;
   }
