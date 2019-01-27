@@ -22,9 +22,9 @@ import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
 import {Setting} from './page/setting';
-import {JobAppManage} from './page/application/job-manage';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
+import {Application} from './page/application';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -46,8 +46,8 @@ export class App extends Component {
               component={() => <Redirect to="/home"/>}
             />
             <Route
-              path="/application/job/:id"
-              component={routeProps => <JobAppManage {...routeProps} />}
+              path="/application/"
+              component={routeProps => <Application {...routeProps} />}
             />
             <Route
               path="/article/create"
