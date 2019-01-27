@@ -59,9 +59,16 @@ export class JobName extends React.Component {
         <MDBRow>
 
           <MDBCol md="2">
-            <div
-              style={{width: '155px', height: '155px', background: '#C1C0C0'}}
-            ></div>
+            <MDBRow>
+              <MDBCol size='10'>
+                <MDBAvatar
+                  tag="img"
+                  src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                  className="rounded z-depth-1-half img-fluid"
+                  alt="Sample avatar"
+                />
+              </MDBCol>
+            </MDBRow>
 
           </MDBCol>
           <MDBCol md="8">
