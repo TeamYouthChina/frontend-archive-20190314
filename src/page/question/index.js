@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {languageHelper} from '../../tool/language-helper';
 import {
   MDBNavLink,
@@ -12,73 +13,103 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
 import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
+import {getAsync} from '../../tool/api-helper'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
-    /*
-    * */
     this.state = {
       backend: null,
+      firstTime: 1,
       selectType: 1
     };
     this.text = QuestionAnswer.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        tags: ['tag1', 'tag2', 'tag3', 'tag4'],
-        content: {
-          title: 'this is a title',
-          descrption: 'wen ti de miao shu'
-        },
-        focus: 123,
-        reading: 123,
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    const result = await getAsync(`/question/${this.props.match.params.questionId}`)
+
+    if (result && result.status && result.status.code === 2000) {
+      let mockData =
+        {
+          id: result.id,
+          name: 'Summer 2019 Tech Internship',
+          tags: result.content.tags ? result.content.tags : ['tag1', 'tag2', 'tag3', 'tag4'],
+          content: {
+            title: result.content.title,
+            descrption: result.content.body
+          },
+          author: result.content.author,
+          editTime: result.content.editTime,
+          answerList: result.content.answerList,
+          focus: result.content.focus ? result.content.focus : 123,
+          reading: result.content.reading ? result.content.reading : 123,
+          status: {
+            code: result.status.code
+          }
+        };
+      this.setState(() => {
+        return {backend: mockData};
+      });
+    } else {
+      let mockData = {
+        status: result.status
+      }
+      console.log(mockData.status, 'result')
+      this.setState(() => {
+        return {backend: mockData};
+      });
+      console.log(this.state.backend.status, 'backend')
+    }
   }
 
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status) ? (
       <div>
-        <Header></Header>
-        <MDBRow>
-          <MDBCol size="1"></MDBCol>
-          <MDBCol size="9">
+        {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
+          <div>
+            <Redirect to="/404"></Redirect>
+          </div>
+        ) : (
+          <div>
+            {console.log(this.state.backend.status, '2000')}
+            <Header></Header>
             <MDBRow>
-              <QuestionDes 
-                tags={this.state.backend.tags} 
-                content={this.state.backend.content} 
-                focus={this.state.backend.focus} 
-                reading={this.state.backend.reading}>
-              </QuestionDes>
-            </MDBRow>
-            <br/>
-            <MDBRow>
+              <MDBCol size="1"></MDBCol>
               <MDBCol size="9">
-                <QuestionAnswerPart></QuestionAnswerPart>
-              </MDBCol>
-              <MDBCol size="3">
-                <QuestionBar></QuestionBar>
-              </MDBCol>
+                <MDBRow>
+                  <QuestionDes
+                    tags={this.state.backend.tags}
+                    content={this.state.backend.content}
+                    focus={this.state.backend.focus}
+                    reading={this.state.backend.reading}>
+                  </QuestionDes>
+                </MDBRow>
+                <br/>
+                <MDBRow>
+                  <MDBCol size="9">
+                    <QuestionAnswerPart answerLists={this.state.backend.answerList}></QuestionAnswerPart>
+                  </MDBCol>
+                  <MDBCol size="3">
+                    <QuestionBar></QuestionBar>
+                  </MDBCol>
 
+                </MDBRow>
+              </MDBCol>
+              <MDBCol size="1"></MDBCol>
             </MDBRow>
-          </MDBCol>
-          <MDBCol size="1"></MDBCol>
-        </MDBRow>
 
-        <Footer></Footer>
+            <Footer></Footer>
+          </div>
+        )}
+
       </div>
-    ) : null;
+    ) : (
+      <div>
+        {console.log('dirst null')}
+      </div>
+    );
   }
 }
 
