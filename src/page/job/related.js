@@ -10,16 +10,16 @@ import {JobCardSquare} from '../../general-component/job-card-square';
 class RelatedPosition extends React.Component {
   constructor(props) {
     super(props);
-    /*this.state = {
-      contentStyle: {
-        height: '260px',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        OTextOverflow: 'ellipsis',
-        TextOverflow: 'ellipsis'
-      },
-      backend: null
-    };*/
+    // this.state = {
+    //   contentStyle: {
+    //     height: '50px',
+    //     overflow: 'hidden',
+    //     whiteSpace: 'nowrap',
+    //     OTextOverflow: 'ellipsis',
+    //     TextOverflow: 'ellipsis'
+    //   },
+    //   backend: null
+    // }
     this.handleInputClick = this.handleInputClick.bind(this);
     this.text = RelatedPosition.i18n[languageHelper()];
   }
@@ -30,7 +30,7 @@ class RelatedPosition extends React.Component {
 
       this.setState({
         contentStyle: {
-          height: '260px',
+          height: '50px',
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           OTextOverflow: 'ellipsis',

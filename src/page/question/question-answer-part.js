@@ -28,7 +28,7 @@ export class QuestionAnswerPart extends React.Component {
     this.showComments = this.showComments.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let mockData =
       {
         id: 0,
