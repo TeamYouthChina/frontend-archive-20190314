@@ -37,8 +37,10 @@ const get = (urlSuffix) => {
     return response.json();
   }).catch((error) => {
     return {
-      status: '5000',
-      reason: error.toString()
+      status: {
+        code: 5000,
+        reason: error.toString()
+      }
     };
   });
 };
@@ -59,8 +61,10 @@ const post = (urlSuffix, requestBody) => {
     return response.json();
   }).catch((error) => {
     return {
-      status: '5000',
-      reason: error.toString()
+      status: {
+        code: 5000,
+        reason: error.toString()
+      }
     };
   });
 };
@@ -81,8 +85,10 @@ const put = (urlSuffix, requestBody) => {
     return response.json();
   }).catch((error) => {
     return {
-      status: '5000',
-      reason: error.toString()
+      status: {
+        code: 5000,
+        reason: error.toString()
+      }
     };
   });
 };
@@ -102,8 +108,10 @@ const deleteHttp = (urlSuffix) => {
     return response.json();
   }).catch((error) => {
     return {
-      status: '5000',
-      reason: error.toString()
+      status: {
+        code: 5000,
+        reason: error.toString()
+      }
     };
   });
 };
