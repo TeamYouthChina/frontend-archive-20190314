@@ -50,10 +50,11 @@ export class BestForYou extends React.Component{
           width: '1224'
         }}>
           <div>
-            <JobListHome name={this.state.backend.name[0]}/>
-            <JobListHome name={this.state.backend.name[1]}/>
-            {/*applicant card list needs to be defined*/}
-            <JobListHome name={this.state.backend.name[2]}/>
+            {this.state.backend.name.map((name) => {
+              return (
+                <JobListHome name={name}/>
+              );
+            })}
             <MDBRow>
               <MDBCol>
                 <div style={{
