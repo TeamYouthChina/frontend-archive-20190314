@@ -65,6 +65,7 @@ export class QuestionAnswer extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status) ? (
       <div>
+        {/*有状态码且为2000时候才渲染*/}
         {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
           <div>
             <Redirect to="/404"></Redirect>
@@ -102,7 +103,7 @@ export class QuestionAnswer extends React.Component {
         )}
 
       </div>
-    ) : nullq;
+    ) : null;
   }
 }
 
