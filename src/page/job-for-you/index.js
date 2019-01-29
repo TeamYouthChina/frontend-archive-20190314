@@ -3,6 +3,7 @@ import React from 'react';
 import {Header} from "../../general-component/header";
 import {Footer} from "../../general-component/footer";
 import {JobCardBar} from "../../general-component/job-card-bar";
+import {JobPushed} from "./job-pushed";
 import {languageHelper} from "../../tool/language-helper";
 
 import {
@@ -23,49 +24,46 @@ export class JobForYou extends React.Component{
 
     this.text = JobForYou.i18n[languageHelper()];
   }
+
+  componentWillMount() {
+    let mockData = {
+      jobType:[
+        {id: 1, name: '实习'},
+        {id: 2, name: '校园招聘'},
+        {id: 3, name: '社会招聘'}
+      ],
+      status: {
+        code: 2000
+      }
+    };
+
+    this.setState( () =>{
+      return {backend: mockData};
+    });
+  }
   
   render() {
-    return (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
         <MDBNavbar expand="md">
           <MDBNavbarNav center>
-            <MDBNavItem>
-              <MDBNavLink 
-                onClick = {
-                  () => {
-                  this.setState({selectedTab: 1});
-                  }
-                }
-                to= "#"
-              >
-                {this.text.intern}
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink
-                onClick = {
-                  () => {
-                    this.setState({selectedTab: 2});
-                  }
-                }
-                to= "#"
-              >
-                {this.text.campus}
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink
-                onClick = {
-                  () => {
-                    this.setState({selectedTab: 3});
-                  }
-                }
-                to= "#"
-              >
-                {this.text.general}
-              </MDBNavLink>
-            </MDBNavItem>
+            {this.state.backend.jobType.map((item) =>{
+              return (
+                <MDBNavItem>
+                  <MDBNavLink
+                    onClick = {
+                      () => {
+                        this.setState({selectedTab: item.id})
+                      }
+                    }
+                    to= "#"
+                  >
+                    {item.name}
+                  </MDBNavLink>
+                </MDBNavItem>
+              );
+            })}
           </MDBNavbarNav>
         </MDBNavbar>
         <div style={{
@@ -85,28 +83,22 @@ export class JobForYou extends React.Component{
                   if (this.state.selectedTab === 1 ) {
                     return (
                       <div>
-                        <div className="h3 mb-4">实习</div>
-                        <JobCardBar/>
-                        <JobCardBar/>
-                        <JobCardBar/>
+                        <div className="h3 font-weight-light mb-4">实习</div>
+                        <JobPushed/>
                       </div>
                     );
                   } else if (this.state.selectedTab ===2 ) {
                     return (
                       <div>
-                        <div className="h3 mb-4">校园招聘</div>
-                        <JobCardBar/>
-                        <JobCardBar/>
-                        <JobCardBar/>
+                        <div className="h3 font-weight-light mb-4">校园招聘</div>
+                        <JobPushed/>
                       </div>
                     );
                   } else {
                     return (
                       <div>
-                        <div className="h3 mb-4">社会招聘</div>
-                        <JobCardBar/>
-                        <JobCardBar/>
-                        <JobCardBar/>
+                        <div className="h3 font-weight-light mb-4">社会招聘</div>
+                        <JobPushed/>
                       </div>
                     );
                   }
@@ -117,7 +109,7 @@ export class JobForYou extends React.Component{
         </div>
         <Footer/>
       </div>
-    )
+    ): null
   }
 }
 
