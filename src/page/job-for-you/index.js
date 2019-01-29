@@ -4,6 +4,7 @@ import {Header} from "../../general-component/header";
 import {Footer} from "../../general-component/footer";
 import {JobCardBar} from "../../general-component/job-card-bar";
 import {JobPushed} from "./job-pushed";
+
 import {languageHelper} from "../../tool/language-helper";
 
 import {
