@@ -55,11 +55,9 @@ export class QuestionAnswer extends React.Component {
       let mockData = {
         status: result.status
       }
-      console.log(mockData.status, 'result')
       this.setState(() => {
         return {backend: mockData};
       });
-      console.log(this.state.backend.status, 'backend')
     }
   }
 
@@ -73,7 +71,6 @@ export class QuestionAnswer extends React.Component {
           </div>
         ) : (
           <div>
-            {console.log(this.state.backend.status, '2000')}
             <Header></Header>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
@@ -105,11 +102,7 @@ export class QuestionAnswer extends React.Component {
         )}
 
       </div>
-    ) : (
-      <div>
-        {console.log('dirst null')}
-      </div>
-    );
+    ) : nullq;
   }
 }
 
