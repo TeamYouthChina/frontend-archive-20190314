@@ -82,8 +82,8 @@ export class Register extends React.Component {
             </MDBRow>
           </MDBContainer>)
         }
-          <Footer />
-          </MDBContainer>
+        <Footer />
+      </MDBContainer>
     );
   }
 }
