@@ -25,6 +25,8 @@ import {Setting} from './page/setting';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
+import {Message} from './page/message';
+import {Backfild} from './page/message/back-fild';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -98,6 +100,14 @@ export class App extends Component {
               component={routeProps => <Login {...routeProps} />}
             />
             <Route
+              path="/message"exact
+              component={routeProps => <Message {...routeProps} />}
+            />
+            <Route
+              path="/message/back-fild"
+              component={routeProps => <Backfild {...routeProps} />}
+            />
+            <Route
               path="/page-no-found"
               component={routeProps => <PageNoFound {...routeProps} />}
             />
@@ -105,7 +115,6 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
-            
             <Route
               path="/question/create"
               component={routeProps => <AnswerEdit {...routeProps} />}
