@@ -17,15 +17,22 @@ import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
+import {getAsync} from '../../tool/api-helper';
+
 export class Help extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      activeItemVerticalPills: "1",
+      collapseID: "collapse3"
+    };
     this.text = Help.i18n[languageHelper()];
   }
 
-  state = {
-    activeItemVerticalPills: "1",
-    collapseID: "collapse3"
+  async componentDidMount() {
+    this.setState({
+      backend: await getAsync('/help')
+    });
   }
 
   toggleVerticalPills = tab => () => {
@@ -42,6 +49,7 @@ export class Help extends React.Component {
     }));
 
   render() {
+    console.log(this.state);
     const {collapseID} = this.state;
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     if (pathname) {
@@ -116,8 +124,9 @@ export class Help extends React.Component {
                     </MDBNavItem>
                   </MDBNav>
                 </MDBCol>
-                <MDBCol md="9" className="align-top" >
-                  <MDBTabContent style={{paddingTop: '0px' ,marginTop:'0px'}} activeItem={this.state.activeItemVerticalPills}>
+                <MDBCol md="9" className="align-top">
+                  <MDBTabContent style={{paddingTop: '0px', marginTop: '0px'}}
+                                 activeItem={this.state.activeItemVerticalPills}>
                     <MDBTabPane tabId="1">
                       <div className="md-accordion mt-5">
                         <MDBCard className="mt-3">
