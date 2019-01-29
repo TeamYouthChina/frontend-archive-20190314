@@ -10,7 +10,7 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {UserInfo} from "./user-info";
+import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
@@ -82,8 +82,8 @@ export class Register extends React.Component {
             </MDBRow>
           </MDBContainer>)
         }
-          <Footer />
-          </MDBContainer>
+        <Footer />
+      </MDBContainer>
     );
   }
 }
