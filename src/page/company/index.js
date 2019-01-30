@@ -16,6 +16,8 @@ import {JobCardSquare} from "../../general-component/job-card-square";
 import {Comment} from "./comment";
 import {Photo} from "./photo";
 import {ApplicantCard} from "../../general-component/applicant-card";
+import {QuestionAnswer} from "./question-answer";
+
 
 export class Company extends React.Component {
   constructor(props) {
@@ -72,10 +74,10 @@ export class Company extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
-            <p>
+            <p id="job">
               <h4 className="font-weight-bold mb-1 px-3">
                 <strong>
-                  发表职位
+                  发表的职位
                 </strong>
               </h4>
             </p>
@@ -99,11 +101,13 @@ export class Company extends React.Component {
               </MDBRow>
             </p>
             <p id="comment">
-              <MDBCard className="px-3 pb-3">
+              <h4 className="font-weight-bold mb-3 px-3">
+                <strong>
+                  评论
+                </strong>
+              </h4>
+              <MDBCard className="px-3 pb-3 mb-4">
                 <MDBCardBody>
-                  <h4>
-                    <strong>评论</strong>
-                  </h4>
                   <Comment/>
                   <hr/>
                   <Comment/>
@@ -113,21 +117,39 @@ export class Company extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
-            
-            <p id="photo">
-              <MDBCard className="my-5 px-3 pb-3">
+            <p id="questionanswer">
+              <h4 className="font-weight-bold mb-3 px-3">
+                <strong>
+                  问答
+                </strong>
+              </h4>
+              <MDBCard className="px-3 pb-3 mb-4">
                 <MDBCardBody>
-                  <h4>
-                    <strong>公司照片</strong>
-                  </h4>
-                  <br/>
+                  <QuestionAnswer/>
+                  <hr/>
+                  <QuestionAnswer/>
+                  <MDBRow center>
+                    <MDBBtn flat block> See More</MDBBtn>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </p>
+            <p id="photo">
+              <h4 className="font-weight-bold mb-3 px-3">
+                <strong>
+                  公司照片
+                </strong>
+              </h4>
+              <MDBCard className="px-3 pb-3 mb-4">
+               
+                <MDBCardBody>
                   <Photo/>
                 </MDBCardBody>
               </MDBCard>
             </p>
 
             <p id="applicant">
-              <h4 className="font-weight-bold mb-1 px-3 mb-3">
+              <h4 className="font-weight-bold mb-3 px-3 ">
                 <strong>
                   在此实习学生
                 </strong>
