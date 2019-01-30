@@ -24,8 +24,10 @@ import {Footer} from "../../general-component/footer";
 import CoDetail from '../../general-component/company-detail';
 import {JobName} from './job-name'
 import {JobDescri} from "./job-descri";
-import {JobQuestion} from "./job-question";
+import {QuestionAnswer} from "../company/question-answer"; 
 import {JobApp} from "./job-app-progress";
+import {Comment} from "../company/comment";
+import {JobCardSquare} from "../../general-component/job-card-square";
 
 
 export class Job extends React.Component {
@@ -107,38 +109,51 @@ export class Job extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
-            <p>
-              <JobQuestion/>
+            <p id="job">
+              <h4 className="font-weight-bold mb-1 px-3">
+                <strong>
+                  相似职位
+                </strong>
+              </h4>
             </p>
-            
-          </Col>
-          <Col md="2">
             <p>
-              <MDBCard className="my-5">
-                <MDBView hover>
-                  <div
-                    style={{width:'200px',height:'200px' }}
-                  >此处有图</div>
-                 
-                </MDBView>
+              <MDBRow between>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow center className="mt-2">
+                <MDBBtn flat block>查看全部相似职位</MDBBtn>
+              </MDBRow>
+            </p>
+            <p id="questionanswer">
+              <h4 className="font-weight-bold mb-3 px-3">
+                <strong>
+                  问答
+                </strong>
+              </h4>
+              <MDBCard className="px-3 pb-3 mb-4">
                 <MDBCardBody>
-                  <a href="#!">
-                    <h4 style={{color:'#7C97B8'}}>企业名称</h4>
-                  </a>
-                  <p>行业：IT</p>
-                  <p>公司规模：股份有限公司</p>
-                  <p>地址：文化路13号</p>
+                  <QuestionAnswer/>
                   <hr/>
-
-                  <span>
-                    <MDBIcon icon="user" style={{marginRight:'5px'}}/>
-                    83位同学实习过
-                  </span>
-
-
+                  <QuestionAnswer/>
+                  <MDBRow center>
+                    <MDBBtn flat block> See More</MDBBtn>
+                  </MDBRow>
                 </MDBCardBody>
               </MDBCard>
             </p>
+          </Col>
+          <Col md="2">
             <p>
               <MDBCard testimonial className="my-5">
                 <MDBCardUp gradient="blue"/>
@@ -167,6 +182,21 @@ export class Job extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
+            <MDBCard
+              style={{boxShadow:'none'}}
+            >
+              <MDBCardBody>
+                <h5
+                  style={{borderLeft: '4px solid #7C97B8'}}
+                  className="px-2 pt-2"
+                >职位详情</h5>
+                <h5 className="px-2 pt-2">公司详情</h5>
+                <h5 className="px-2 pt-2">相似职位</h5>
+                <h5 className="px-2 pt-2">评价</h5>
+                <h5 className="px-2 pt-2">问答</h5>
+
+              </MDBCardBody>
+            </MDBCard>
           </Col>
         </Row>
         
