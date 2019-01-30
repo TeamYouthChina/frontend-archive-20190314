@@ -12,6 +12,7 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+import {VideoCard} from '../../general-component/video-card';
 
 /* route: '/login' */
 
@@ -64,6 +65,8 @@ export class Discovery extends React.Component {
 
           </MDBCol>
         </MDBRow>
+        
+        <VideoCard/>
         <Footer/>
       </MDBContainer>
     );

@@ -210,7 +210,7 @@ export class Setting extends React.Component {
                     <hr/>
                     
                     <h4 id="section5">动态隐私设置</h4>
-                    <MDBRow between>
+                    <MDBRow between >
                       <MDBCol md="5">
                         <p>
                           希望谁能看到你的动态
@@ -219,28 +219,15 @@ export class Setting extends React.Component {
                             仅限好友/所有人/无人
                           </small></p>
                       </MDBCol>
-                      <MDBCol md="5" className="no-gutters">
-                        <MDBContainer>
-                          <MDBNav pills color="primary">
-                            <MDBNavItem>
-                              <MDBNavLink to="#" className={this.state.activeItemPills==="1" ? "active" : "" } onClick={this.togglePills("1")}>
-                                好友
-                              </MDBNavLink>
-                            </MDBNavItem>
-                            <MDBNavItem>
-                              <MDBNavLink to="#" className={this.state.activeItemPills==="2" ? "active" : "" } onClick={this.togglePills("2")}>
-                                所有人
-                              </MDBNavLink>
-                            </MDBNavItem>
-                            <MDBNavItem>
-                              <MDBNavLink to="#" className={this.state.activeItemPills==="3" ? "active" : "" } onClick={this.togglePills("3")}>
-                                没有人
-                              </MDBNavLink>
-                            </MDBNavItem>
-                          </MDBNav>
-                          <MDBTabContent activeItem={this.state.activeItemPills}>
-                          </MDBTabContent>
-                        </MDBContainer>
+                      <MDBCol md="2">
+                        <MDBSelect>
+                          <MDBSelectInput selected="没有人" />
+                          <MDBSelectOptions>
+                            <MDBSelectOption value="1">没有人</MDBSelectOption>
+                            <MDBSelectOption value="2">好友</MDBSelectOption>
+                            <MDBSelectOption value="3">所有人</MDBSelectOption>
+                          </MDBSelectOptions>
+                        </MDBSelect>
                       </MDBCol>
                     </MDBRow>
                     

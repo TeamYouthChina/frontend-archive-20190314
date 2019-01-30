@@ -68,12 +68,14 @@ export class Help extends React.Component {
               <MDBRow>
                 <MDBCol md="3">
                   <MDBNav pills color="primary" className="flex-column" style={{paddingTop: '2rem'}}>
+                    
                     <MDBNavItem>
                       <MDBNavLink to="#" className={this.state.activeItemVerticalPills === "1" ? "active" : ""}
                                   onClick={this.toggleVerticalPills("1")}>
                         新手
                       </MDBNavLink>
                     </MDBNavItem>
+                    
                     <MDBNavItem>
                       <MDBNavLink to="#" className={this.state.activeItemVerticalPills === "2" ? "active" : ""}
                                   onClick={this.toggleVerticalPills("2")}>
