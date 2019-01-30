@@ -13,7 +13,7 @@ import {
 
 import {CompanyCard} from '../../general-component/company-card'
 
-export class CollectionCo extends React.Component {
+export class CollectionCompany extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -21,7 +21,7 @@ export class CollectionCo extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = CollectionCo.i18n[languageHelper()];
+    this.text = CollectionCompany.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -64,7 +64,7 @@ export class CollectionCo extends React.Component {
   }
 }
 
-CollectionCo.i18n = [
+CollectionCompany.i18n = [
   {
     applyBefore: '申请截止'
   },
