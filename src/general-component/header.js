@@ -151,12 +151,7 @@ export class Header extends React.Component {
                   </MDBDropdownToggle>
                   <MDBDropdownMenu color="indigo darken-1" basic left>
                     <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
-                    {/*<MDBDropdownItem href="#!">我的消息</MDBDropdownItem>*/}
-                    {/*<MDBDropdownItem href="#!">我的申请</MDBDropdownItem>*/}
-                    {/*<MDBDropdownItem href="#!">我的好友</MDBDropdownItem>(*/}
                     <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
-                    {/*<MDBDropdownItem href="#!">帮助</MDBDropdownItem>*/}
-                    {/*<MDBDropdownItem href="#!">设置</MDBDropdownItem>*/}
                     <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
@@ -310,38 +305,6 @@ export class Header extends React.Component {
                   >
                     <MDBNavLink to="/discovery/">
                       <p className="h6 " style={{color:'#7C97B8'}}>| 人 脉</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem
-                    onClick={
-                      () => {
-                        this.setState({
-                          chosen: 6
-                        });
-                        this.toggleCollapse('discover');
-
-                      }
-
-                    }
-                    onMouseEnter={
-                      () => {
-                        this.setState({
-                          hover: 6
-                        });
-                      }
-                    }
-                    onMouseLeave={
-                      () => {
-                        this.setState({
-                          hover:0
-                        });
-                      }
-                    }
-
-                    style={this.state.chosen === 6 ||this.state.hover === 6 ? {borderBottom: '4px solid #7C97B8'} : null}
-                  >
-                    <MDBNavLink to="/discovery/">
-                      <p className="h6 " style={{color:'#7C97B8'}}>| 直 播（空中宣讲会）</p>
                     </MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>

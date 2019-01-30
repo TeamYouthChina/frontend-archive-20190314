@@ -45,7 +45,10 @@ export class JobCardBar extends React.Component {
   }
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard className="px-4 pb-4 pt-4">
+      <MDBCard 
+        className="px-4 pb-4 pt-4"
+        style={{borderRadius: '0px'}}
+      >
         <MDBCardBody>
           <MDBRow>
 
