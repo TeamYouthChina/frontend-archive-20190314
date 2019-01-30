@@ -34,7 +34,7 @@ export class QuestionAnswer extends React.Component {
         {
           id: result.id,
           name: 'Summer 2019 Tech Internship',
-          tags: result.content.tags ? result.content.tags : ['tag1', 'tag2', 'tag3', 'tag4'],
+          tags: result.content.tags || ['tag1', 'tag2', 'tag3', 'tag4'],
           content: {
             title: result.content.title,
             descrption: result.content.body
@@ -42,8 +42,8 @@ export class QuestionAnswer extends React.Component {
           author: result.content.author,
           editTime: result.content.editTime,
           answerList: result.content.answerList,
-          focus: result.content.focus ? result.content.focus : 123,
-          reading: result.content.reading ? result.content.reading : 123,
+          focus: result.content.focus || 123,
+          reading: result.content.reading || 123,
           status: {
             code: result.status.code
           }
@@ -55,11 +55,9 @@ export class QuestionAnswer extends React.Component {
       let mockData = {
         status: result.status
       }
-      console.log(mockData.status, 'result')
       this.setState(() => {
         return {backend: mockData};
       });
-      console.log(this.state.backend.status, 'backend')
     }
   }
 
@@ -67,6 +65,7 @@ export class QuestionAnswer extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status) ? (
       <div>
+        {/*有状态码且为2000时候才渲染*/}
         {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
           <div>
             <Redirect to="/404"></Redirect>
