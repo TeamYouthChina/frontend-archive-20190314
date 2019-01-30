@@ -11,7 +11,8 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {JobCardSquare} from '../../general-component/job-card-square'
+
+import {JobCardBar} from "../../general-component/job-card-bar";
 
 export class CollectionJob extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export class CollectionJob extends React.Component {
           {id:3},
           {id:4},
         ],
+        searchResult: ['1', '2', '3', '4'],
         status: {
           code: 2000
         }
@@ -48,12 +50,12 @@ export class CollectionJob extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
-          <MDBCol size="3" style={{paddingLeft:'21px'}}>
+          <MDBCol>
             {this.state.backend.jobCollection.map((item)=>{
               return (
+                
                 <div key={item}>
-                  <JobCardSquare ></JobCardSquare>
-                  <br/>
+                  <JobCardBar ></JobCardBar>
                 </div>
                 
               );

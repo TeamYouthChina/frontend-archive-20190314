@@ -50,13 +50,13 @@ export class CollectionCompany extends React.Component {
         {this.state.backend.companyCollection.map((item)=>{
           return(
             <MDBRow>
-              <MDBCol size="12">
+              <MDBCol key={item}>
                 <CompanyCard></CompanyCard>
               </MDBCol>
               
             </MDBRow>
             
-          )
+          );
         })}
         <MDBRow></MDBRow>
       </div>
