@@ -1,18 +1,17 @@
 import React from 'react';
 
-import {Header} from "../../general-component/header";
-import {Footer} from "../../general-component/footer";
-import {JobCardBar} from "../../general-component/job-card-bar";
-import {JobPushed} from "./job-pushed";
+import {Header} from '../../general-component/header';
+import {Footer} from '../../general-component/footer';
+import {JobPushed} from './job-pushed';
 
-import {languageHelper} from "../../tool/language-helper";
+import {languageHelper} from '../../tool/language-helper';
 
 import {
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink
-} from "mdbreact";
+} from 'mdbreact';
 
 export class JobForYou extends React.Component{
   constructor(props) {
@@ -51,7 +50,8 @@ export class JobForYou extends React.Component{
           <MDBNavbarNav center>
             {this.state.backend.jobType.map((item) =>{
               return (
-                <MDBNavItem>
+                <MDBNavItem
+                  key={item.id}>
                   <MDBNavLink
                     onClick = {
                       () => {
