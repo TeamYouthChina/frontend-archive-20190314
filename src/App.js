@@ -35,6 +35,9 @@ import {JobDetailx} from './page/trash/job-detailx';
 import {Test} from './page/trash/test';
 import {MyFavorite} from './page/trash/my-favorite';
 import {Recommondation} from './page/trash/recommondation';
+import {SearchS1} from './page/trash/s1';
+import {SearchS2} from './page/trash/s2';
+import {Search} from './page/search';
 
 export class App extends Component {
   render() {
@@ -100,7 +103,7 @@ export class App extends Component {
               component={routeProps => <Login {...routeProps} />}
             />
             <Route
-              path="/message"exact
+              path="/message"
               component={routeProps => <Message {...routeProps} />}
             />
             <Route
@@ -145,7 +148,7 @@ export class App extends Component {
             />
             <Route
               path="/search"
-              component={routeProps => null}
+              component={routeProps => <Search {...routeProps} />}
             />
             <Route
               path="/setting"
@@ -187,6 +190,14 @@ export class App extends Component {
             <Route
               path="/test"
               component={routeProps => <Test {...routeProps} />}
+            />
+            <Route
+              path="/searchs1"
+              component={routeProps => <SearchS1 {...routeProps} />}
+            />
+            <Route
+              path="/searchs2"
+              component={routeProps => <SearchS2 {...routeProps} />}
             />
             {/* ====== Trash End ====== */}
             <Redirect to="/page-no-found"/>
