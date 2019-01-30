@@ -8,6 +8,7 @@ import {
   MDBCardText,
   MDBRow,
   MDBCol,
+  MDBBtn
 } from 'mdbreact';
 
 
@@ -41,12 +42,7 @@ export class ApplicantCard extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard
-        style={{
-          width: '16rem',
-          height: '16rem',
-          margin: '10px'
-        }}>
+      <MDBCard>
         <MDBCardImage
           className="img-fluid"
           src="https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/original/hs-emp-branding-image-data.?1522348756"
@@ -97,6 +93,11 @@ export class ApplicantCard extends React.Component {
               {this.state.backend.friends}
               {this.text.friends}
             </MDBCardText>
+          </MDBRow>
+          <MDBRow>
+            <MDBBtn flat block>
+              TA的主页
+            </MDBBtn>
           </MDBRow>
         </MDBCardBody>
       </MDBCard>

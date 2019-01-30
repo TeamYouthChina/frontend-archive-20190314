@@ -27,6 +27,7 @@ import {JobDescri} from "./job-descri";
 import {JobQuestion} from "./job-question";
 import {JobApp} from "./job-app-progress";
 
+
 export class Job extends React.Component {
   constructor(props) {
     super(props)
@@ -168,6 +169,7 @@ export class Job extends React.Component {
             </p>
           </Col>
         </Row>
+        
         <Footer/>
       </div>
     ) : null;
