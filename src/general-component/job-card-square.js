@@ -96,7 +96,7 @@ export class JobCardSquare extends React.Component {
             }
           </MDBCardText>
         </MDBCardBody>
-        <MDBBtn size="sm" href="/job/1"  style={{borderRadius: '5px'}}>立即申请</MDBBtn>
+        <MDBBtn  flat href="job/1" className="indigo-text">立即申请</MDBBtn>
       </MDBCard>
     ) : null;
   }

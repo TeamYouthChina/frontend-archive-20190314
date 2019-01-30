@@ -4,16 +4,18 @@ import {
   MDBRow,
   MDBCol,
   View,
-  MDBCard, MDBCardBody
+  MDBCard, 
+  MDBCardBody,
+  MDBBtn
 } from 'mdbreact';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import CoDetail from '../../general-component/company-detail';
-
-
-
-
+import {JobCardSquare} from "../../general-component/job-card-square";
+import {Comment} from "./comment";
+import {Photo} from "./photo";
+import {ApplicantCard} from "../../general-component/applicant-card";
 
 export class Company extends React.Component {
   constructor(props) {
@@ -70,24 +72,99 @@ export class Company extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
+            <p>
+              <h4 className="font-weight-bold mb-1 px-3">
+                <strong>
+                  发表职位
+                </strong>
+              </h4>
+            </p>
+            <p>
+              <MDBRow between>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+                <MDBCol>
+                  <JobCardSquare/>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow center className="mt-2">
+                <MDBBtn flat block>查看全部相似职位</MDBBtn>
+              </MDBRow>
+            </p>
+            <p id="comment">
+              <MDBCard className="px-3 pb-3">
+                <MDBCardBody>
+                  <h4>
+                    <strong>评论</strong>
+                  </h4>
+                  <Comment/>
+                  <hr/>
+                  <Comment/>
+                  <MDBRow center>
+                    <MDBBtn flat block> See More</MDBBtn>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </p>
+            
+            <p id="photo">
+              <MDBCard className="my-5 px-3 pb-3">
+                <MDBCardBody>
+                  <h4>
+                    <strong>公司照片</strong>
+                  </h4>
+                  <br/>
+                  <Photo/>
+                </MDBCardBody>
+              </MDBCard>
+            </p>
+
+            <p id="applicant">
+              <h4 className="font-weight-bold mb-1 px-3 mb-3">
+                <strong>
+                  在此实习学生
+                </strong>
+              </h4>
+              <MDBRow between>
+                <MDBCol>
+                  <ApplicantCard/>
+                </MDBCol>
+                <MDBCol>
+                  <ApplicantCard/>
+                </MDBCol>
+                <MDBCol>
+                  <ApplicantCard/>
+                </MDBCol>
+                <MDBCol>
+                  <ApplicantCard/>
+                </MDBCol>
+              </MDBRow>
+            </p>
           </MDBCol>
           <MDBCol md="2" style={{marginTop:'150px'}}>
             <MDBCard
               style={{boxShadow:'none'}}
             >
               <MDBCardBody>
-                <h5 
+                <h5
                   style={{borderLeft: '4px solid #7C97B8'}}
                   className="px-2 pt-2"
                 >简介</h5>
                 <h5 className="px-2 pt-2">公司详情</h5>
                 <h5 className="px-2 pt-2">职位</h5>
-                <h5 className="px-2 pt-2">评价</h5> 
+                <h5 className="px-2 pt-2">评价</h5>
                 <h5 className="px-2 pt-2">问答</h5>
                 <h5 className="px-2 pt-2">公司LIVE</h5>
                 <h5 className="px-2 pt-2">公司照片</h5>
                 <h5 className="px-2 pt-2">历史实习学生</h5>
-                
+
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

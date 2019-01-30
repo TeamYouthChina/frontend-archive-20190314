@@ -45,7 +45,7 @@ class CoDetail extends React.Component {
 
   render() {
     return (
-      <div style={{padding: '1rem'}}>
+      <div>
         <div>
           <h4><strong>公司详情</strong></h4>
         </div>

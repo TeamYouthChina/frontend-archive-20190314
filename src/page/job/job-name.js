@@ -36,7 +36,7 @@ export class JobName extends React.Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
     let mockData =
       {
         jobname: '数据分析实习(2019 Summer), GE 通用电气',
