@@ -76,25 +76,29 @@ export class ApplicantCard extends React.Component {
             </MDBCol>
           </MDBRow>
           <MDBRow>
-            <MDBCardText
-              style={{
-                fontSize: '0.8rem'
-              }}
-            >
-              {this.state.backend.type}
-            </MDBCardText>
+            <MDBCol>
+              <MDBCardText
+                style={{
+                  fontSize: '0.8rem'
+                }}
+              >
+                {this.state.backend.type}
+              </MDBCardText>
+            </MDBCol>
           </MDBRow>
           <MDBRow>
-            <MDBCardText
-              style={{
-                fontSize: '0.8rem'
-              }}
-            >
-              {this.state.backend.friends}
-              {this.text.friends}
-            </MDBCardText>
+            <MDBCol>
+              <MDBCardText
+                style={{
+                  fontSize: '0.8rem'
+                }}
+              >
+                {this.state.backend.friends}
+                {this.text.friends}
+              </MDBCardText>
+            </MDBCol>
           </MDBRow>
-          <MDBRow>
+          <MDBRow center>
             <MDBBtn flat block>
               TA的主页
             </MDBBtn>
