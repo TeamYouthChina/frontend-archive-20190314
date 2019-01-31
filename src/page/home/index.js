@@ -35,7 +35,7 @@ export class Home extends React.Component {
       >
         <HomeHeader/>
         <MDBNavbar expand="md">
-          <MDBNavbarNav center>
+          <MDBNavbarNav>
             <MDBNavItem>
               <MDBNavLink
                 onClick={

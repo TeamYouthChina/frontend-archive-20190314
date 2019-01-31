@@ -57,7 +57,7 @@ export class HomeHeader extends React.Component {
             {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick}/>}
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBCol md="4">
-                <MDBNavbarNav center>
+                <MDBNavbarNav>
                   {
                     /*
                     <MDBNavItem>
