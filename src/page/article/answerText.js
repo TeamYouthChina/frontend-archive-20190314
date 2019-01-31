@@ -51,7 +51,9 @@ export class AnswerText extends React.Component {
     const myUploadFn = (param) => {
       console.log(param)
       const serverURL = 'http://34.239.119.14:4000'
+      // 数据传输协议，添加注释，类似json
       const xhr = new XMLHttpRequest
+      // 构建键值对，给内容加标记
       const fd = new FormData()
 
       const successFn = (response) => {
