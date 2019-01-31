@@ -15,6 +15,9 @@ import {
   MDBListGroupItem,
   MDBAvatar,
   MDBListGroup,
+  MDBPopover, 
+  MDBPopoverBody, 
+  MDBPopoverHeader,
 } from 'mdbreact';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
@@ -32,24 +35,28 @@ export class Backfild extends React.Component {
       flipped: false,
       collapseID: "",
       modal: false,
+   
       pingluns:[
         {
           name: "John Doe",
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
           when: "今天 03:09",
+          friend: true,
         },
         {
           name: "John Doe",
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
           when: "今天 03:09",
+          friend: false,
         },
         {
           name: "John Doe",
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
           when: "今天 03:09",
+          friend: false,
         },
       ]
     };
@@ -78,6 +85,7 @@ export class Backfild extends React.Component {
   }
   
   render() {
+    
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div >
           <Header/>
@@ -88,7 +96,7 @@ export class Backfild extends React.Component {
             <MDBCard className="grey lighten-3 chat-room">
             <MDBCardBody>
               <MDBRow>
-                <MDBCol size="9"><h4 className="font-weight-bold">推送提醒</h4></MDBCol>
+                <MDBCol size="10"><h4 className="font-weight-bold">推送提醒</h4></MDBCol>
                 <MDBCol>
                 <MDBBtn onClick={this.toggle} color="primary" style={{padding: '5px 10px',}}>
               写私信
@@ -131,11 +139,14 @@ export class Backfild extends React.Component {
                 <MDBCard>
                 <MDBListGroup >
                     {this.state.pingluns.map(pinglun => (
-                      <Pinglun key={pinglun.name} pinglun={pinglun} />
+                      <div key={pinglun.name}>
+                <Pinglun key={pinglun.name} pinglun={pinglun} />
+                      </div> 
                     ))}
                   </MDBListGroup>
                 </MDBCard>
               </MDBRow>
+              <p/>
               <MDBRow>
                <a href="http://localhost:3000/message" >
                 <MDBIcon icon="undo" /> 返回消息页
@@ -154,19 +165,62 @@ export class Backfild extends React.Component {
   }
 }
 const Pinglun = ({
-  pinglun: { name, avatar, message, when }
-}) => (
+  pinglun: { name, avatar, message, when,friend,}
+}) => {
+  const a = <MDBIcon  icon="check" aria-hidden="true" />
+  const b =  <MDBIcon icon="plus" aria-hidden="true"/>
+  return (
     <MDBListGroupItem>
+      <MDBRow>
+        <MDBCol size='10'>
      <MDBAvatar    
         tag="img"
         src={avatar}
-        alt="avatar"/>
-        <div style={{ fontSize: "0.95rem" }}>
+        alt="avatar"
+        className="mr-2 z-depth-1"
+        />
         <strong>{name}</strong>
+        </MDBCol>
+        <MDBCol>
+      <div>
+      {friend ? (
+          <span className="text-muted float-right">
+          <MDBPopover component="button" placement="bottom" popoverBody={a} className="btn btn-default btn-sm Ripple-parent">
+          <MDBPopoverHeader>你们已经是好友</MDBPopoverHeader>
+          <MDBPopoverBody>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">发起会话</li>
+            <li class="list-group-item">删除好友</li>
+          </ul>
+          </MDBPopoverBody>
+        </MDBPopover>
+          </span>
+        ) : (
+          <span className="text-muted float-right">
+          <MDBPopover component="button" placement="bottom" popoverBody={b} className="btn btn-red btn-sm Ripple-parent">
+          <MDBPopoverHeader>准备成为朋友吗？</MDBPopoverHeader>
+          <MDBPopoverBody>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">添加好友</li>
+            <li class="list-group-item">忽略</li>
+          </ul>
+          </MDBPopoverBody>
+        </MDBPopover>
+          </span>
+        )}
+        </div>
+        </MDBCol>
+        </MDBRow>
+        <div style={{ fontSize: "0.95rem" }}>
+         <p/>
         <p className="text-muted">{message}</p>
+        <MDBRow>
+          <MDBCol size="9">
         <p className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>
           {when}
         </p>
+        </MDBCol>
+        <MDBCol>
         <a className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>查看对话</a>
         <span>|</span>
         <a className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>回复</a>
@@ -174,10 +228,13 @@ const Pinglun = ({
         <a className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>举报</a>
         <span>|</span>
         <a className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>删除</a>
+        </MDBCol>
+        </MDBRow>
       </div>
+
     </MDBListGroupItem>
     
-);
+)};
 Backfild.i18n = [
   {
 
