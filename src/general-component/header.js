@@ -59,7 +59,7 @@ export class Header extends React.Component {
               </MDBNavbarBrand>
             </MDBCol>
             <MDBCol md="4">
-              <MDBNavbarNav center>
+              <MDBNavbarNav>
                 <MDBNavItem 
                   to="#"
                   onClick={
