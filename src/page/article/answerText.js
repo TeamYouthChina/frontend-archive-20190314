@@ -49,7 +49,7 @@ export class AnswerText extends React.Component {
   render () {
     // 这里是上传函数
     const myUploadFn = (param) => {
-      console.log(param)
+      // console.log(param)
       const serverURL = 'http://34.239.119.14:4000'
       // 数据传输协议，添加注释，类似json
       const xhr = new XMLHttpRequest
