@@ -511,6 +511,6 @@ DiscoveryBackup.i18n = [
     fst_tab: 'DiscoverArticle',
     sec_tab: 'Videos',
     thd_tab: 'Connection',
-    button: 'Help'
+    button: 'Category'
   }
 ];
