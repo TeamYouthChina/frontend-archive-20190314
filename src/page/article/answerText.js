@@ -44,7 +44,7 @@ export class AnswerText extends React.Component {
     
     this.setState({ editorState});
     let a = JSON.stringify(this.state.editorState.toRAW(true))
-    console.log(Object.assign(this.state.editorState.toRAW(true),{id:1}));
+    console.log(Object.assign({blocks:this.state.editorState.toRAW(true)},{id:1}));
   }
   
   
