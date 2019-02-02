@@ -38,6 +38,7 @@ import {Recommondation} from './page/trash/recommondation';
 import {SearchS1} from './page/trash/s1';
 import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
+import {HR} from './page/hr';
 
 export class App extends Component {
   render() {
@@ -89,6 +90,10 @@ export class App extends Component {
             <Route
               path="/home"
               component={routeProps => <Home {...routeProps} />}
+            />
+            <Route
+              path="/hr"
+              component={routeProps => <HR {...routeProps} />}
             />
             <Route
               path="/job-for-you"
