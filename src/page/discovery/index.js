@@ -2,8 +2,10 @@ import React from "react";
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {
   MDBCol,
+  MDBCard,
   MDBCollapse,
   MDBContainer,
+  MDBIcon,
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
@@ -44,7 +46,7 @@ export class Discovery extends React.Component {
     return (
       <MDBContainer fluid>
         <Header/>
-        <MDBRow>
+        <MDBRow center>
           <MDBCol md="8" lg="7">
 
             <MDBNavbar color="indigo" dark expand="md" style={{borderRadius: '5px'}}>
@@ -97,7 +99,60 @@ export class Discovery extends React.Component {
             </Switch>
           </MDBCol>
           <MDBCol md="4" lg="3">
-
+            <MDBCard>
+              <MDBRow>
+                <MDBCol>
+                  <div className="px-10">
+                    <MDBRow center style={{marginTop: '20px'}}>
+                      <MDBIcon icon="question" size="3x"/>
+                    </MDBRow>
+                    <MDBRow center>
+                      提问题
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <div className="px-10">
+                    <MDBRow center style={{marginTop: '20px'}}>
+                      <MDBIcon icon="question" size="3x"/>
+                    </MDBRow>
+                    <MDBRow center>
+                      写回答
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <div className="px-10">
+                    <MDBRow center style={{marginTop: '20px'}}>
+                      <MDBIcon icon="file" size="3x"/>
+                    </MDBRow>
+                    <MDBRow center>
+                      写文章
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <div className="px-10">
+                    <MDBRow center style={{marginTop: '20px'}}>
+                      <MDBIcon icon="question" size="3x"/>
+                    </MDBRow>
+                    <MDBRow center>
+                      写长评
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <div className="px-10">
+                    <MDBRow center style={{marginTop: '20px'}}>
+                      <MDBIcon icon="question" size="3x"/>
+                    </MDBRow>
+                    <MDBRow center>
+                      分享视频
+                    </MDBRow>
+                  </div>
+                </MDBCol>
+              </MDBRow>
+            </MDBCard>
           </MDBCol>
         </MDBRow>
         <Footer/>
@@ -110,7 +165,7 @@ Discovery.i18n = [
   {
     article: '文章',
     connection: '人脉',
-    review: '短评',
+    review: '长评',
     questionAnswer: '问答',
     video: '视频',
   },

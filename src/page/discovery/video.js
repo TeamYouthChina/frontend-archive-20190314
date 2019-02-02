@@ -1,7 +1,7 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer} from 'mdbreact';
+import {MDBContainer, MDBRow} from 'mdbreact';
 import {VideoCard} from "../../general-component/video-card";
 
 export class Video extends React.Component {
@@ -12,11 +12,19 @@ export class Video extends React.Component {
 
   render() {
     return (
-      <MDBContainer fluid>
-        <VideoCard/>
-        <VideoCard/>
-        <VideoCard/>
-        
+      <MDBContainer
+        fluid
+        style={{padding: 0}}
+      >
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <VideoCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <VideoCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <VideoCard/>
+        </MDBRow>
       </MDBContainer>
     );
   }

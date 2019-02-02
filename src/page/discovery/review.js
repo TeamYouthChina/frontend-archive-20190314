@@ -1,7 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer} from 'mdbreact';
+import {MDBContainer, MDBRow} from 'mdbreact';
+import {ReviewCard} from '../../general-component/review-card';
 
 export class Review extends React.Component {
   constructor(props) {
@@ -11,8 +12,19 @@ export class Review extends React.Component {
 
   render() {
     return (
-      <MDBContainer fluid>
-
+      <MDBContainer
+        fluid
+        style={{padding: 0}}
+      >
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
       </MDBContainer>
     );
   }

@@ -26,7 +26,7 @@ import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
 import {Message} from './page/message';
-import {Backfild} from './page/message/back-fild';
+import {Notification} from './page/notification';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -112,8 +112,8 @@ export class App extends Component {
               component={routeProps => <Message {...routeProps} />}
             />
             <Route
-              path="/message/back-fild"
-              component={routeProps => <Backfild {...routeProps} />}
+              path="/notification"
+              component={routeProps => <Notification {...routeProps} />}
             />
             <Route
               path="/page-no-found"

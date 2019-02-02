@@ -1,8 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer} from 'mdbreact';
-import {ArticleCard} from "../../general-component/article-card";
+import {MDBContainer, MDBRow} from 'mdbreact';
+import {ArticleCard} from '../../general-component/article-card';
 
 export class Article extends React.Component {
   constructor(props) {
@@ -12,11 +12,19 @@ export class Article extends React.Component {
 
   render() {
     return (
-      <MDBContainer fluid>
-        <ArticleCard/>
-        <ArticleCard/>
-        <ArticleCard/>
-
+      <MDBContainer
+        fluid
+        style={{padding: 0}}
+      >
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ArticleCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ArticleCard/>
+        </MDBRow>
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ArticleCard/>
+        </MDBRow>
       </MDBContainer>
     );
   }
