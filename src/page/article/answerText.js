@@ -38,11 +38,12 @@ export class AnswerText extends React.Component {
     // const htmlContent = this.state.editorState.toHTML()
     // const result = await saveEditorContent(htmlContent)
   }
-
+  
   handleEditorChange(editorState) {
     
-    this.setState({ editorState})
-    // console.log(this.state.editorState.toRAW(true))
+    this.setState({ editorState});
+    let a = JSON.stringify(this.state.editorState.toRAW(true))
+    console.log(a);
   }
   
   
