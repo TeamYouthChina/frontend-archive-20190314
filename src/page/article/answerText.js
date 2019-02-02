@@ -1,6 +1,7 @@
 import React from 'react'
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
+import {getAsync} from "../../tool/api-helper";
 
 export class AnswerText extends React.Component {
 
@@ -43,25 +44,27 @@ export class AnswerText extends React.Component {
     
     this.setState({ editorState});
     let a = JSON.stringify(this.state.editorState.toRAW(true))
-    console.log(a);
+    console.log(Object.assign(this.state.editorState.toRAW(true),{id:1}));
   }
   
   
   render () {
     // 这里是上传函数
-    const myUploadFn = (param) => {
+    const myUploadFn = async (param) => {
       // console.log(param)
       const serverURL = 'http://34.239.119.14:4000'
       // 数据传输协议，添加注释，类似json
       const xhr = new XMLHttpRequest
       // 构建键值对，给内容加标记
       const fd = new FormData()
-
+      const  result = await getAsync('/question/0100')
+      // console.log(result,'result')
       const successFn = (response) => {
         // 假设服务端直接返回文件上传后的地址
         // 上传成功后调用param.success并传入上传后的文件地址
         param.success({
-          url: xhr.responseText,
+          url: result.content.id,
+          // url:'https://www.youtube.com/watch?v=FF8Hsu5MQTg',
           meta: {
             id: '123',
             title: '123',
