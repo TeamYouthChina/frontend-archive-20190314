@@ -114,7 +114,10 @@ export class Help extends React.Component {
                                       isOpen={this.state.rightSelector}
                                     >
                                       <MDBCardBody>
-                                        {BraftEditor.createEditorState(item.answer.richText).toHTML()}
+                                        <div className="output-content"
+                                             dangerouslySetInnerHTML={{ __html: BraftEditor.createEditorState(item.answer.richText).toHTML()}}>
+                                        </div>
+                                        
                                       </MDBCardBody>
                                     </MDBCollapse>
                                   </MDBCard>
