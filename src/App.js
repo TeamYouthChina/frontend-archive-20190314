@@ -137,14 +137,6 @@ export class App extends Component {
               component={routeProps => <QuestionEdit {...routeProps} />}
             />
             <Route
-              path="/question/:questionId"
-              component={routeProps => <QuestionAnswer {...routeProps} />}
-            />
-            <Route
-              path="/question/:questionId"
-              component={routeProps => null}
-            />
-            <Route
               path="/question/:questionId/answer/create"
               component={routeProps => <QuestionAnswerCreate {...routeProps} />}
             />
@@ -152,6 +144,16 @@ export class App extends Component {
               path="/question/:questionId/answer/:answerId/edit"
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
             />
+            <Route
+              path="/question/:questionId"
+              component={routeProps => <QuestionAnswer {...routeProps} />}
+            />
+            
+            <Route
+              path="/question/:questionId"
+              component={routeProps => null}
+            />
+            
             <Route
               path="/register"
               component={routeProps => <Register {...routeProps} />}

@@ -81,7 +81,8 @@ export class QuestionAnswer extends React.Component {
                   tags={this.state.backend.tags}
                   content={this.state.backend.content}
                   focus={this.state.backend.focus}
-                  reading={this.state.backend.reading}>
+                  reading={this.state.backend.reading} 
+                  questionId={this.props.match.params.questionId}>
                 </QuestionDes>
               </MDBCol>
             </MDBRow>
