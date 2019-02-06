@@ -11,6 +11,7 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
+import {SearchJobCards} from './search-job-cards';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
@@ -95,6 +96,12 @@ export class Search extends React.Component {
                       soluta doloribus reiciendis molestiae placeat unde eos
                       molestias.
                     </p>
+                    <SearchJobCards/>
+                    <SearchJobCards/>
+                    <SearchJobCards/>
+                    <SearchJobCards/>
+                    <SearchJobCards/>
+                    <SearchJobCards/>
                   </MDBTabPane>
                   <MDBTabPane tabId="2">
                     <p>

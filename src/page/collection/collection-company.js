@@ -51,11 +51,9 @@ export class CollectionCompany extends React.Component {
           return(
             <MDBRow>
               <MDBCol key={item}>
-                <CompanyCard></CompanyCard>
+                <CompanyCard/>
               </MDBCol>
-              
             </MDBRow>
-            
           );
         })}
         <MDBRow></MDBRow>
