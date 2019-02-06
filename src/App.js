@@ -17,7 +17,7 @@ import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {VideoEdit} from './page/video/edit';
 import {AnswerEdit} from './page/question/answer/edit';
-import {ArticleCreate} from './page/question/answer/create';
+import {ArticleCreate} from './page/article/create';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';

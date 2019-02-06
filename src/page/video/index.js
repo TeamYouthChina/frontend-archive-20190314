@@ -61,7 +61,9 @@ export class Video extends React.Component {
             <MDBRow>
               <MDBCol size="8">
                 <MDBContainer className="text-center" style={{paddingLeft: '0px'}}>
-                  <Iframe src="https://www.youtube.com/embed/v64KOxKVLVg"/>
+                  {/*<Iframe src="https://www.youtube.com/embed/v64KOxKVLVg"/>*/}
+                  <video width="320" height="240" controls src="http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D">
+                  </video>
                 </MDBContainer>
                 <br/>
                 <h3 style={{

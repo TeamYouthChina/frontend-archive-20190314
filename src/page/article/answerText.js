@@ -52,19 +52,19 @@ export class AnswerText extends React.Component {
     // 这里是上传函数
     const myUploadFn = async (param) => {
       // console.log(param)
-      const serverURL = 'http://34.239.119.14:4000'
+      const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
       // 数据传输协议，添加注释，类似json
       const xhr = new XMLHttpRequest
       // 构建键值对，给内容加标记
       const fd = new FormData()
-      const  result = await getAsync('/question/0100')
-      // console.log(result,'result')
+      const  result = await getAsync(serverURL)
+      console.log(result,'result')
       const successFn = (response) => {
         // 假设服务端直接返回文件上传后的地址
         // 上传成功后调用param.success并传入上传后的文件地址
         param.success({
           // url: result.content.id,
-          url:'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D',
+          url:result,
           meta: {
             id: '123',
             title: '123',
