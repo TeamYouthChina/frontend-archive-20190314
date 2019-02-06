@@ -17,6 +17,7 @@ import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {VideoEdit} from './page/video/edit';
 import {AnswerEdit} from './page/question/answer/edit';
+import {ArticleCreate} from './page/question/answer/create';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
@@ -57,7 +58,7 @@ export class App extends Component {
             />
             <Route
               path="/article/create"
-              component={routeProps => <ArticleEdit {...routeProps} />}
+              component={routeProps => <ArticleCreate {...routeProps} />}
             />
             <Route
               path="/article/:id/edit"
