@@ -28,7 +28,6 @@ export class QuestionAnswer extends React.Component {
 
   async componentDidMount() {
     const result = await getAsync(`/question/${this.props.match.params.questionId}`)
-
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
