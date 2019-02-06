@@ -52,6 +52,7 @@ export class ArticleEdit extends React.Component {
         <Header/>
         <div style={{padding: '100px'}}>
           <div className="form-group">
+            <h4>{this.text.write}</h4>
             <MDBRow style={{padding:'20px'}}>
               {this.props.children}
             </MDBRow>
@@ -61,7 +62,7 @@ export class ArticleEdit extends React.Component {
               </MDBCol>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="2">
-                <MDBBtn size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
+                <MDBBtn style={{margin:'0px',float:'right'}} size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
               </MDBCol>
             </MDBRow>
 
@@ -80,9 +81,11 @@ ArticleEdit.i18n = [
   {
     title: '标题',
     submitBtn: '提交文章',
+    write:'写文章'
   },
   {
     title: 'Title',
     submitBtn: 'submit article',
+    write:'write article'
   },
 ];
