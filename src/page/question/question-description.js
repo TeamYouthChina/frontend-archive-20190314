@@ -21,27 +21,27 @@ export class QuestionDes extends React.Component {
     this.text = QuestionDes.i18n[languageHelper()];
   }
 
-  // componentWillMount() {
-  //   let mockData =
-  //     {
-  //       id: 0,
-  //       name: 'Summer 2019 Tech Internship',
-  //       // 下面四个从父组件传进来
-  //       tag: ['tag1', 'tag2', 'tag3', 'tag4'],
-  //       content: {
-  //         title: 'this is a title',
-  //         descrption: 'wen ti de miao shu'
-  //       },
-  //       focus: 123,
-  //       reading: 123,
-  //       status: {
-  //         code: 2000
-  //       }
-  //     };
-  //   this.setState(() => {
-  //     return {backend: mockData};
-  //   });
-  // }
+  componentWillMount() {
+    let mockData =
+      {
+        id: 0,
+        name: 'Summer 2019 Tech Internship',
+        // 下面四个从父组件传进来
+        tag: ['tag1', 'tag2', 'tag3', 'tag4'],
+        content: {
+          title: 'this is a title',
+          descrption: 'wen ti de miao shu'
+        },
+        focus: 123,
+        reading: 123,
+        status: {
+          code: 2000
+        }
+      };
+    this.setState(() => {
+      return {backend: mockData};
+    });
+  }
 
 
   render() {
