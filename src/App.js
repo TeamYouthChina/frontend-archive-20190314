@@ -16,6 +16,7 @@ import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {QuestionCreate} from './page/question/create';
 import {QuestionEdit} from './page/question/edit';
+import {QuestionModify} from './page/question/modify';
 import {QuestionAnswerCreate} from './page/question/answer/create';
 import {QuestionAnswerEdit} from './page/question/answer/edit';
 import {ArticleCreate} from './page/article/create';
@@ -145,14 +146,15 @@ export class App extends Component {
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
             />
             <Route
+              path="/question/modify" exact
+              component={routeProps => <QuestionModify {...routeProps} />}
+            />
+            <Route
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
             
-            <Route
-              path="/question/:questionId"
-              component={routeProps => null}
-            />
+            
             
             <Route
               path="/register"
