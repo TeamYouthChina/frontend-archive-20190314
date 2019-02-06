@@ -1,16 +1,16 @@
 import React from 'react';
-import {languageHelper} from '../../../tool/language-helper';
+import {languageHelper} from '../../../../tool/language-helper';
 import {
   MDBBtn,
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from '../answerText';
+import {AnswerText} from '../../answerText';
 // import './public/style.css';
-import {Header} from '../../../general-component/header';
-import {Footer} from '../../../general-component/footer';
+import {Header} from '../../../../general-component/header';
+import {Footer} from '../../../../general-component/footer';
 
-export class ArticleEdit extends React.Component {
+export class QuestionAnswerCreate extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -18,7 +18,7 @@ export class ArticleEdit extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = ArticleEdit.i18n[languageHelper()];
+    this.text = QuestionAnswerCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -72,15 +72,15 @@ export class ArticleEdit extends React.Component {
   }
 }
 
-ArticleEdit.i18n = [
+QuestionAnswerCreate.i18n = [
   {
     title: '标题',
-    submitBtn: '提交文章',
-    write:'编辑文章'
+    submitBtn: '提交回答',
+    write:'创建回答'
   },
   {
     title: 'Title',
-    submitBtn: 'submit article',
-    write:'edit article'
+    submitBtn: 'submit answer',
+    write:'create answer'
   },
 ];

@@ -10,7 +10,7 @@ import {AnswerText} from '../answerText';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 
-export class ArticleEdit extends React.Component {
+export class ArticleCreate extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -18,7 +18,7 @@ export class ArticleEdit extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = ArticleEdit.i18n[languageHelper()];
+    this.text = ArticleCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -72,15 +72,15 @@ export class ArticleEdit extends React.Component {
   }
 }
 
-ArticleEdit.i18n = [
+ArticleCreate.i18n = [
   {
     title: '标题',
     submitBtn: '提交文章',
-    write:'编辑文章'
+    write:'写文章'
   },
   {
     title: 'Title',
     submitBtn: 'submit article',
-    write:'edit article'
+    write:'write article'
   },
 ];
