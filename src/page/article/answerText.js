@@ -63,8 +63,7 @@ export class AnswerText extends React.Component {
         // 假设服务端直接返回文件上传后的地址
         // 上传成功后调用param.success并传入上传后的文件地址
         param.success({
-          // url: result.content.id,
-          url:result,
+          url:'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D',
           meta: {
             id: '123',
             title: '123',
