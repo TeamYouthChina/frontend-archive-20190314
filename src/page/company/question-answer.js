@@ -24,7 +24,7 @@ import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
 
-import CoDetail from '../../general-component/company-detail';
+import CoDetail from './company-detail';
 import {JobName} from '../job/job-name'
 import {JobDescri} from "../job/job-descri";
 
@@ -33,10 +33,11 @@ export class QuestionAnswer extends React.Component {
     super(props)
     this.state = {
       backend: null,
-      modal15:false
+      modal15: false
     };
     this.text = QuestionAnswer.i18n[languageHelper()];
   }
+
   toggle = nr => () => {
     let modalNumber = 'modal' + nr
     this.setState({
@@ -60,14 +61,15 @@ export class QuestionAnswer extends React.Component {
       return {backend: mockData};
     });
   }
+
   render() {
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-                <h5>
-                  <strong>问题1： Our global teams are constantly iterating, solving problems, and working together to
-                    empower people around the world to build community and connect in meaningful ways.</strong>
-                </h5>
+        <h5>
+          <strong>问题1： Our global teams are constantly iterating, solving problems, and working together to
+            empower people around the world to build community and connect in meaningful ways.</strong>
+        </h5>
         <MDBRow className="px-3 pt-4">
           <div className="mdb-feed">
             <div className="news">
@@ -102,7 +104,7 @@ export class QuestionAnswer extends React.Component {
                 </div>
                 <div className="feed-footer">
                   <a href="#!" className="like mx-3">
-                    <MDBIcon icon="comment" />
+                    <MDBIcon icon="comment"/>
                     <span>5 comments</span>
                   </a>
                   <a href="#!" className="like mx-3">
@@ -114,13 +116,14 @@ export class QuestionAnswer extends React.Component {
             </div>
           </div>
         </MDBRow>
-        
+
       </div>
-    ): null;
+    ) : null;
 
 
   }
 }
+
 QuestionAnswer.i18n = [
   {
     description: '职位描述',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../tool/language-helper';
+import {languageHelper} from '../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
@@ -45,16 +45,11 @@ export class VerticalPillItem extends React.Component {
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      
-
-    ) : null;
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (): null;
   }
 }
 
 VerticalPillItem.i18n = [
-  {
-  },
-  {
-  }
+  {},
+  {}
 ];

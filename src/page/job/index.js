@@ -21,10 +21,10 @@ import {
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
-import CoDetail from '../../general-component/company-detail';
+import CoDetail from './company-detail';
 import {JobName} from './job-name'
 import {JobDescri} from "./job-descri";
-import {QuestionAnswer} from "../company/question-answer"; 
+import {QuestionAnswer} from "../company/question-answer";
 import {JobApp} from "./job-app-progress";
 import {Comment} from "../company/comment";
 import {JobCardSquare} from "../../general-component/job-card-square";
@@ -35,7 +35,7 @@ export class Job extends React.Component {
     super(props)
     this.state = {
       backend: null,
-      
+
     };
     this.text = Job.i18n[languageHelper()];
   }
@@ -74,10 +74,11 @@ export class Job extends React.Component {
       <div>
         <Header/>
 
-        <div style={{marginBottom: '-300px' ,marginTop:'-7px'}}>
+        <div style={{marginBottom: '-300px', marginTop: '-7px'}}>
           <View>
-            <img 
-              className="d-block w-100 card-background" src="https://i.postimg.cc/gjFqt1dN/photo-1531497865144-0464ef8fb9a9.png"
+            <img
+              className="d-block w-100 card-background"
+              src="https://i.postimg.cc/gjFqt1dN/photo-1531497865144-0464ef8fb9a9.png"
             />
             <Mask className="flex-center  text-white text-center">
             </Mask>
@@ -183,7 +184,7 @@ export class Job extends React.Component {
               </MDBCard>
             </p>
             <MDBCard
-              style={{boxShadow:'none'}}
+              style={{boxShadow: 'none'}}
             >
               <MDBCardBody>
                 <h5
@@ -199,7 +200,7 @@ export class Job extends React.Component {
             </MDBCard>
           </Col>
         </Row>
-        
+
         <Footer/>
       </div>
     ) : null;

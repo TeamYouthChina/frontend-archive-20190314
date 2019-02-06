@@ -1,7 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer} from 'mdbreact';
+import {MDBContainer, MDBRow} from 'mdbreact';
+import {ApplicantCard} from '../../general-component/applicant-card';
 
 export class Connection extends React.Component {
   constructor(props) {
@@ -12,7 +13,9 @@ export class Connection extends React.Component {
   render() {
     return (
       <MDBContainer fluid>
-
+        <MDBRow style={{margin: '1rem 0rem'}}>
+          <ApplicantCard/>
+        </MDBRow>
       </MDBContainer>
     );
   }
