@@ -1,25 +1,22 @@
 import React from 'react';
 
 import {
-  Col, MDBCol, Row,
+  Col, MDBCol, Row, MDBRow,
   MDBAvatar,
   MDBBtn,
   MDBCard, MDBCardBody, MDBCardImage, MDBCardUp,
-  MDBIcon,
-  MDBMask,
-  MDBRow,
-  MDBView,
+  MDBIcon, MDBMask, MDBView, View, Mask, 
+  Input, MDBInput,
   Progress,
-  View,
-  Mask,
   MDBContainer,
   MDBTabPane, MDBTabContent,
   MDBNav, MDBNavItem, MDBNavLink,
-  MDBSelect, MDBSelectInput, MDBSelectOptions, MDBSelectOption
+  MDBSelect, MDBSelectInput, MDBSelectOptions, MDBSelectOption,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
+import {MultipleSelect} from "../../general-component/multiple-select";
 
 export class HR extends React.Component {
   constructor(props) {
@@ -33,12 +30,21 @@ export class HR extends React.Component {
 
   state = {
     activeItemClassicTabs1: "1",
+    activeItemPills: "1",
   }
 
   toggleClassicTabs1 = tab => () => {
     if (this.state.activeItemClassicTabs1 !== tab) {
       this.setState({
-        activeItemClassicTabs1: tab
+        activeItemClassicTabs1: tab,
+      });
+    }
+  }
+  
+  togglePills = tab => () => {
+    if (this.state.activePills !== tab) {
+      this.setState({
+        activeItemPills: tab
       });
     }
   }
@@ -46,6 +52,9 @@ export class HR extends React.Component {
   componentWillMount() {
     let mockData =
       {
+        position: 'Position',
+        age: 'Age',
+        
         id: 0,
         name: 'New Frontier Data',
         url: 'https://www.google.com',
@@ -120,7 +129,7 @@ export class HR extends React.Component {
                       <MDBSelectOption value="3">Option nr 3</MDBSelectOption>
                     </MDBSelectOptions>
                   </MDBSelect>
-
+                  
                   <span style={{marginTop: "7px", marginLeft: "0.5rem", marginRight: "0.5rem"}}>
                     Job
                   </span>
@@ -133,7 +142,103 @@ export class HR extends React.Component {
                       <MDBSelectOption value="3">Option nr 3</MDBSelectOption>
                     </MDBSelectOptions>
                   </MDBSelect>
+
+                  <span style={{marginTop: "7px", marginLeft: "0.5rem", marginRight: "0.5rem"}}>
+                    Job
+                  </span>
+                  <MDBSelect color="primary" style={{marginTop: "0rem", marginBottom: "0rem", marginLeft: "0.5rem", marginRight: "0.5rem"}}>
+                    <MDBSelectInput selected="Choose your option" />
+                    <MDBSelectOptions>
+                      <MDBSelectOption disabled>Choose your option</MDBSelectOption>
+                      <MDBSelectOption value="1">Option nr 1</MDBSelectOption>
+                      <MDBSelectOption value="2">Option nr 2</MDBSelectOption>
+                      <MDBSelectOption value="3">Option nr 3</MDBSelectOption>
+                      <MDBSelectOption value="4">Option nr 4</MDBSelectOption>
+                      <MDBSelectOption value="5">Option nr 5</MDBSelectOption>
+                    </MDBSelectOptions>
+                  </MDBSelect>
+
+                  <span style={{marginTop: "7px", marginLeft: "0.5rem", marginRight: "0.5rem"}}>
+                    Name
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="formGroupExampleInput"
+                    style={{width: "100px", height: "30px", marginTop: "0.5rem", marginBottom: "0rem", marginLeft: "0.5rem", marginRight: "0.5rem"}}
+                  />
                   
+                </MDBRow>
+                <MDBRow>
+                  <MDBContainer>
+                    <MDBNav pills>
+                      <MDBNavItem>
+                        <MDBNavLink style={{color: "green"}} to="#" className={this.state.activeItemPills==="1" ? "active" : "" } onClick={this.togglePills("1")}>
+                          Active
+                        </MDBNavLink>
+                      </MDBNavItem>
+                      <MDBNavItem>
+                        <MDBNavLink style={{color: "green"}} to="#" className={this.state.activeItemPills==="2" ? "active" : "" } onClick={this.togglePills("2")}>
+                          Link
+                        </MDBNavLink>
+                      </MDBNavItem>
+                      <MDBNavItem>
+                        <MDBNavLink style={{color: "green"}} to="#" className={this.state.activeItemPills==="3" ? "active" : "" } onClick={this.togglePills("3")}>
+                          Link
+                        </MDBNavLink>
+                      </MDBNavItem>
+                      <MDBNavItem>
+                        <MDBNavLink style={{color: "green"}} to="#" className={this.state.activeItemPills==="4" ? "active" : "" } onClick={this.togglePills("4")}>
+                          Help
+                        </MDBNavLink>
+                      </MDBNavItem>
+                    </MDBNav>
+                    <MDBTabContent activeItem={this.state.activeItemPills}>
+                      <MDBTabPane tabId="1">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Nihil odit magnam minima, soluta doloribus reiciendis
+                          molestiae placeat unde eos molestias. Quisquam aperiam,
+                          pariatur. Tempora, placeat ratione porro voluptate odit
+                          minima.
+                        </p>
+                      </MDBTabPane>
+                      <MDBTabPane tabId="2">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Nihil odit magnam minima, soluta doloribus reiciendis
+                          molestiae placeat unde eos molestias. Quisquam aperiam,
+                          pariatur. Tempora, placeat ratione porro voluptate odit
+                          minima.
+                        </p>
+                      </MDBTabPane>
+                      <MDBTabPane tabId="3">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Nihil odit magnam minima, soluta doloribus reiciendis
+                          molestiae placeat unde eos molestias. Quisquam aperiam,
+                          pariatur. Tempora, placeat ratione porro voluptate odit
+                          minima.
+                        </p>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Nihil odit magnam minima, soluta doloribus reiciendis
+                          molestiae placeat unde eos molestias. Quisquam aperiam,
+                          pariatur. Tempora, placeat ratione porro voluptate odit
+                          minima.
+                        </p>
+                      </MDBTabPane>
+                      <MDBTabPane tabId="4">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Nihil odit magnam minima, soluta doloribus reiciendis
+                          molestiae placeat unde eos molestias. Quisquam aperiam,
+                          pariatur. Tempora, placeat ratione porro voluptate odit
+                          minima.
+                        </p>
+                      </MDBTabPane>
+                    </MDBTabContent>
+                  </MDBContainer>
                 </MDBRow>
               </MDBTabPane>
               <MDBTabPane tabId="2">
