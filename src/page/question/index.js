@@ -75,19 +75,23 @@ export class QuestionAnswer extends React.Component {
             <Header></Header>
 
             <MDBRow>
-              <QuestionDes
-                tags={this.state.backend.tags}
-                content={this.state.backend.content}
-                focus={this.state.backend.focus}
-                reading={this.state.backend.reading}>
-              </QuestionDes>
+              <MDBCol size="1"></MDBCol>
+              <MDBCol size="10">
+                <QuestionDes
+                  tags={this.state.backend.tags}
+                  content={this.state.backend.content}
+                  focus={this.state.backend.focus}
+                  reading={this.state.backend.reading}>
+                </QuestionDes>
+              </MDBCol>
             </MDBRow>
             <br/>
             <MDBRow>
+              <MDBCol size="1"></MDBCol>
               <MDBCol size="9">
                 <QuestionAnswerPart answerLists={this.state.backend.answerList}></QuestionAnswerPart>
               </MDBCol>
-              <MDBCol size="3">
+              <MDBCol size="2">
                 <QuestionBar></QuestionBar>
               </MDBCol>
 
