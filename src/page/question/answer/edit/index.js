@@ -76,11 +76,11 @@ QuestionAnswerEdit.i18n = [
   {
     title: '标题',
     submitBtn: '提交更改',
-    write:'编辑问题'
+    write:'编辑回答'
   },
   {
     title: 'Title',
     submitBtn: 'submit modification',
-    write:'edit question'
+    write:'edit answer'
   },
 ];

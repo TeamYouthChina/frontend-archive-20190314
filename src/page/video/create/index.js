@@ -10,7 +10,7 @@ import {AnswerText} from '../answerText';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 
-export class QuestionCreate extends React.Component {
+export class VideoCreate extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -18,7 +18,7 @@ export class QuestionCreate extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = QuestionCreate.i18n[languageHelper()];
+    this.text = VideoCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -72,15 +72,15 @@ export class QuestionCreate extends React.Component {
   }
 }
 
-QuestionCreate.i18n = [
+VideoCreate.i18n = [
   {
     title: '标题',
-    submitBtn: '提交问题',
-    write:'创建问题'
+    submitBtn: '提交更改',
+    write:'编辑视频'
   },
   {
     title: 'Title',
-    submitBtn: 'submit question',
-    write:'create question'
+    submitBtn: 'submit modification',
+    write:'edit video'
   },
 ];

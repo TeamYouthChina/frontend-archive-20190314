@@ -1,11 +1,6 @@
 import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
 import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
   MDBBtn,
   MDBRow,
   MDBCol,
@@ -52,6 +47,7 @@ export class VideoEdit extends React.Component {
         <Header/>
         <div style={{padding: '100px'}}>
           <div className="form-group">
+            <h4>{this.text.write}</h4>
             <MDBRow style={{padding:'20px'}}>
               {this.props.children}
             </MDBRow>
@@ -61,7 +57,7 @@ export class VideoEdit extends React.Component {
               </MDBCol>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="2">
-                <MDBBtn size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
+                <MDBBtn style={{margin:'0px',float:'right'}} size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
               </MDBCol>
             </MDBRow>
 
@@ -79,10 +75,12 @@ export class VideoEdit extends React.Component {
 VideoEdit.i18n = [
   {
     title: '标题',
-    submitBtn: '提交文章',
+    submitBtn: '提交更改',
+    write:'编辑视频'
   },
   {
     title: 'Title',
-    submitBtn: 'submit article',
+    submitBtn: 'submit modification',
+    write:'edit video'
   },
 ];

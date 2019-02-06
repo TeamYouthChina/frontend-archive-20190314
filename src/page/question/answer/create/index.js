@@ -75,12 +75,12 @@ export class QuestionAnswerCreate extends React.Component {
 QuestionAnswerCreate.i18n = [
   {
     title: '标题',
-    submitBtn: '提交更改',
-    write:'编辑问题'
+    submitBtn: '提交回答',
+    write:'创建回答'
   },
   {
     title: 'Title',
-    submitBtn: 'submit modification',
-    write:'edit question'
+    submitBtn: 'submit answer',
+    write:'create answer'
   },
 ];

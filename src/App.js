@@ -8,20 +8,21 @@ import 'mdbreact/dist/css/mdb.css';
 import {Home} from './page/home';
 import {Login} from './page/login';
 import {Article} from './page/article';
-import {ArticleEdit} from './page/article/edit';
 import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
-import {VideoEdit} from './page/video/edit';
 import {QuestionCreate} from './page/question/create';
 import {QuestionEdit} from './page/question/edit';
 import {QuestionAnswerCreate} from './page/question/answer/create';
 import {QuestionAnswerEdit} from './page/question/answer/edit';
 import {ArticleCreate} from './page/article/create';
+import {ArticleEdit} from './page/article/edit';
 import {Video} from './page/video';
+import {VideoCreate} from './page/video/create';
+import {VideoEdit} from './page/video/edit';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
@@ -165,7 +166,7 @@ export class App extends Component {
             />
             <Route
               path="/video/create"
-              component={routeProps => <VideoEdit {...routeProps} />}
+              component={routeProps => <VideoCreate {...routeProps} />}
             />
             <Route
               path="/video/:id/edit"

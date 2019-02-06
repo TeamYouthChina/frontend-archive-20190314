@@ -61,8 +61,8 @@ export class Video extends React.Component {
             <MDBRow>
               <MDBCol size="8">
                 <MDBContainer className="text-center" style={{paddingLeft: '0px'}}>
-                  {/*<Iframe src="https://www.youtube.com/embed/v64KOxKVLVg"/>*/}
-                  <video width="320" height="240" controls src="http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D">
+                  {/*<Iframe src="http://www.youtube.com/embed/M7lc1UVf-VE?origion=https://www.youtube.com/embed/v64KOxKVLVg"/>*/}
+                  <video width="640" height="480" controls src="http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D">
                   </video>
                 </MDBContainer>
                 <br/>
@@ -136,7 +136,8 @@ export class Video extends React.Component {
                 </MDBCard>
                 <QuestionAnswerPart></QuestionAnswerPart>
               </MDBCol>
-              <MDBCol size="4">
+              <MDBCol size="1"></MDBCol>
+              <MDBCol size="3">
                 <h3>this is a sideBar</h3>
               </MDBCol>
             </MDBRow>
