@@ -1,16 +1,16 @@
 import React from 'react';
-import {languageHelper} from '../../../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBBtn,
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from '../../answerText';
+import {AnswerText} from '../answerText';
 // import './public/style.css';
-import {Header} from '../../../../general-component/header';
-import {Footer} from '../../../../general-component/footer';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
 
-export class QuestionAnswerEdit extends React.Component {
+export class QuestionCreate extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -18,7 +18,7 @@ export class QuestionAnswerEdit extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = QuestionAnswerEdit.i18n[languageHelper()];
+    this.text = QuestionCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -72,15 +72,15 @@ export class QuestionAnswerEdit extends React.Component {
   }
 }
 
-QuestionAnswerEdit.i18n = [
+QuestionCreate.i18n = [
   {
     title: '标题',
-    submitBtn: '提交更改',
-    write:'编辑问题'
+    submitBtn: '提交问题',
+    write:'写问题'
   },
   {
     title: 'Title',
-    submitBtn: 'submit modification',
-    write:'edit question'
+    submitBtn: 'submit question',
+    write:'write question'
   },
 ];

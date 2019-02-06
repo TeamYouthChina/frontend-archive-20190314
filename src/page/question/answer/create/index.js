@@ -10,7 +10,7 @@ import {AnswerText} from '../../answerText';
 import {Header} from '../../../../general-component/header';
 import {Footer} from '../../../../general-component/footer';
 
-export class QuestionAnswerEdit extends React.Component {
+export class QuestionAnswerCreate extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -18,7 +18,7 @@ export class QuestionAnswerEdit extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = QuestionAnswerEdit.i18n[languageHelper()];
+    this.text = QuestionAnswerCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
   }
 
@@ -72,7 +72,7 @@ export class QuestionAnswerEdit extends React.Component {
   }
 }
 
-QuestionAnswerEdit.i18n = [
+QuestionAnswerCreate.i18n = [
   {
     title: '标题',
     submitBtn: '提交更改',

@@ -16,7 +16,10 @@ import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {VideoEdit} from './page/video/edit';
-import {AnswerEdit} from './page/question/answer/edit';
+import {QuestionCreate} from './page/question/create';
+import {QuestionEdit} from './page/question/edit';
+import {QuestionAnswerCreate} from './page/question/answer/create';
+import {QuestionAnswerEdit} from './page/question/answer/edit';
 import {ArticleCreate} from './page/article/create';
 import {Video} from './page/video';
 import {PageNoFound} from './page/page-no-found';
@@ -126,11 +129,11 @@ export class App extends Component {
             />
             <Route
               path="/question/create"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionCreate {...routeProps} />}
             />
             <Route
               path="/question/:questionId/edit"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionEdit {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
@@ -142,11 +145,11 @@ export class App extends Component {
             />
             <Route
               path="/question/:questionId/answer/create"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionAnswerCreate {...routeProps} />}
             />
             <Route
               path="/question/:questionId/answer/:answerId/edit"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionAnswerEdit {...routeProps} />}
             />
             <Route
               path="/register"
