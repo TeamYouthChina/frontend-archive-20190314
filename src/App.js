@@ -26,7 +26,7 @@ import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
 import {Message} from './page/message';
-import {Backfild} from './page/message/back-fild';
+import {Notification} from './page/notification';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -38,6 +38,7 @@ import {Recommondation} from './page/trash/recommondation';
 import {SearchS1} from './page/trash/s1';
 import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
+import {HR} from './page/hr';
 
 export class App extends Component {
   render() {
@@ -91,6 +92,10 @@ export class App extends Component {
               component={routeProps => <Home {...routeProps} />}
             />
             <Route
+              path="/hr"
+              component={routeProps => <HR {...routeProps} />}
+            />
+            <Route
               path="/job-for-you"
               component={routeProps => <JobForYou {...routeProps} />}
             />
@@ -107,8 +112,8 @@ export class App extends Component {
               component={routeProps => <Message {...routeProps} />}
             />
             <Route
-              path="/message/back-fild"
-              component={routeProps => <Backfild {...routeProps} />}
+              path="/notification"
+              component={routeProps => <Notification {...routeProps} />}
             />
             <Route
               path="/page-no-found"

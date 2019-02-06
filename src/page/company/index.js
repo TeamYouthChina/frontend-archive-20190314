@@ -11,7 +11,7 @@ import {
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
-import CoDetail from '../../general-component/company-detail';
+import CoDetail from './company-detail';
 import {JobCardSquare} from "../../general-component/job-card-square";
 import {Comment} from "./comment";
 import {Photo} from "./photo";

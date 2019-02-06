@@ -15,7 +15,7 @@ MDBScrollbar,
 MDBScrollspyBox,
 MDBScrollspyText,
 } from 'mdbreact';
-import './chat-room.css';
+import '../notification/chat-room.css';
 export class Listview extends React.Component {
   constructor(props) {
     super(props);
