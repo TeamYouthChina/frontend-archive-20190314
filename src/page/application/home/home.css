@@ -1,0 +1,6 @@
+.resumeProgress .md-progress .progress-bar {
+  border-radius: 20px;
+}
+.resumeProgress .md-progress {
+  margin-top: 10px;
+}

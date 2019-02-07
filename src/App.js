@@ -31,6 +31,8 @@ import {Setting} from './page/setting';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
+import {ApplicationHome} from './page/application/home';
+import {ApplicationSuccess} from './page/application/home/success';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
 
@@ -58,9 +60,18 @@ export class App extends Component {
               component={() => <Redirect to="/home"/>}
             />
             <Route
+              path="/application/home"
+              component={routeProps => <ApplicationHome {...routeProps} />}
+            />
+            <Route
+              path="/application/success"
+              component={routeProps => <ApplicationSuccess {...routeProps} />}
+            />
+            <Route
               path="/application/"
               component={routeProps => <Application {...routeProps} />}
             />
+            
             <Route
               path="/article/create"
               component={routeProps => <ArticleCreate {...routeProps} />}
