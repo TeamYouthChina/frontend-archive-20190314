@@ -1,0 +1,18 @@
+.form-control::-webkit-input-placeholder {
+  color: #BDBDBD;
+  /*opacity: 1 !important;*/
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+  color: #BDBDBD;
+  /*opacity: 1 !important;*/
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+  color: #BDBDBD;
+  /*opacity: 1 !important;*/
+}
+
+.form-control:-ms-input-placeholder {
+  color: #BDBDBD;
+}
