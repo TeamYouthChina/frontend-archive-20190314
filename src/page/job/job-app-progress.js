@@ -99,13 +99,9 @@ export class JobApp extends React.Component {
 }
 JobApp.i18n = [
   {
-    description: '职位描述',
-    requirements: '职位要求',
-    better: '加分项'
+    
   },
   {
-    description: 'Job Description',
-    requirements: 'Candidate Requirements',
-    better: 'Good to have'
+    
   },
 ];
