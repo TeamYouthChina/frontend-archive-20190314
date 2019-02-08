@@ -47,6 +47,8 @@ import {SearchS1} from './page/trash/s1';
 import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
 import {HR} from './page/hr';
+import {Employerhome} from './page/hr/employerhome';
+import {Recruit} from './page/hr/recruit';
 
 export class App extends Component {
   render() {
@@ -99,6 +101,10 @@ export class App extends Component {
             <Route
               path="/discovery"
               component={routeProps => <Discovery {...routeProps} />}
+            />
+            <Route
+              path="/employerhome"
+              component={routeProps => <Employerhome {...routeProps} />}
             />
             <Route
               path="/help"
@@ -164,9 +170,10 @@ export class App extends Component {
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
-            
-            
-            
+            <Route
+              path="/recruit"
+              component={routeProps => <Recruit {...routeProps} />}
+            />
             <Route
               path="/register"
               component={routeProps => <Register {...routeProps} />}
