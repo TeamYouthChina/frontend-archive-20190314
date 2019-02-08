@@ -16,6 +16,7 @@ import {
   MDBModalBody,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
+import {JobCardBar} from "../../general-component/job-card-bar";
 
 export class JobName extends React.Component {
   constructor(props) {
@@ -39,10 +40,16 @@ export class JobName extends React.Component {
   componentDidMount() {
     let mockData =
       {
-        jobname: '数据分析实习(2019 Summer), GE 通用电气',
-        jobtype: '实习（3月-6月）',
-        scale: '02/01/2019',
+        id: 0,
+        name: '数据分析实习(2019 Summer), GE 通用电气',
+        organization: {
+          id: 0,
+          name: "string",
+          avatarUrl: "string"
+        },
         location: '上海',
+        type: '实习（3月-6月）',
+        deadLine: '02/01/2019',
         status: {
           code: 2000
         }
@@ -74,7 +81,7 @@ export class JobName extends React.Component {
           <MDBCol md="8">
             <h5 className="font-weight-bold mb-3 p-0">
               <strong>
-                {this.state.backend.jobname}
+                {this.state.backend.name}
               </strong>
               <MDBIcon
                 icon="bookmark-o"
@@ -92,15 +99,15 @@ export class JobName extends React.Component {
             </h5>
             <br/>
             <Row>
-              <Col>工作类型：{this.state.backend.jobtype}</Col>
-              <Col>申请截止：{this.state.backend.scale}</Col>
+              <Col>{this.text.type}: {this.state.backend.type}</Col>
+              <Col>{this.text.deadline}: {this.state.backend.deadLine}</Col>
             </Row>
             <Row>
-              <Col>地点：{this.state.backend.location}</Col>
+              <Col>{this.text.location}: {this.state.backend.location}</Col>
               <Col>
                 <Row bottom>
                   <Col>
-                    匹配度：90%
+                    {this.text.match}: 90%
                   </Col>
                 </Row>
               </Col>
@@ -116,7 +123,7 @@ export class JobName extends React.Component {
                       color="mdb-color"
                       style={{borderRadius: '10px'}}
                     >
-                      已投递
+                      {this.text.applied}
                     </MDBBtn>
                   ) : (
                     <MDBBtn
@@ -126,7 +133,7 @@ export class JobName extends React.Component {
                       style={{borderRadius: '10px'}}
                       onClick={this.toggle(15)}
                     >
-                      在线申请
+                      {this.text.applicate}
                     </MDBBtn>
                   )
                 }
@@ -137,20 +144,18 @@ export class JobName extends React.Component {
                 >
                   <MDBModalBody>
                     <h3 style={{textAlign: 'center'}}>
-                      导入简历
+                      {this.text.import}
                     </h3>
                     <hr/>
                     <MDBRow center>
                       <MDBBtn outline color="mdb-color" size="lg"
-                              style={{borderRadius: '10px', width: '250px'}}>上传简历文件</MDBBtn>
+                              style={{borderRadius: '10px', width: '250px'}}>{this.text.upload}</MDBBtn>
                     </MDBRow>
                     <MDBRow center>
-                      <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '10px', width: '250px'}}>从 YouthChina
-                        导入</MDBBtn>
+                      <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '10px', width: '250px'}}>{this.text.youthchina}</MDBBtn>
                     </MDBRow>
                     <MDBRow center>
-                      <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '10px', width: '250px'}}>从 LinkedIn
-                        导入</MDBBtn>
+                      <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '10px', width: '250px'}}>{this.text.linkedin}</MDBBtn>
                     </MDBRow>
                   </MDBModalBody>
                 </MDBModal>
@@ -158,8 +163,6 @@ export class JobName extends React.Component {
             </ul>
           </MDBCol>
         </MDBRow>
-
-
       </div>
     ) : null;
 
@@ -167,15 +170,30 @@ export class JobName extends React.Component {
   }
 }
 
+
 JobName.i18n = [
   {
-    description: '职位描述',
-    requirements: '职位要求',
-    better: '加分项'
+    type:'工作类型',
+    deadline:'申请截止',
+    location:'地点',
+    match:'匹配度',
+    applicate:'申请',
+    applied:'已申请',
+    import:'导入简历',
+    upload:'上传简历文件',
+    youthchina:"从YouthChina导入",
+    linkedin:'从LinkedIn导入',
   },
   {
-    description: 'Job Description',
-    requirements: 'Candidate Requirements',
-    better: 'Good to have'
+    type:'Type',
+    deadline:'Deadline',
+    location:'Location',
+    match:'Match',
+    applicate:'Applicate',
+    applied:'Applied',
+    import:'Import Resume',
+    upload:'Upload Resume File',
+    youthchina:"Import from YouthChina",
+    linkedin:'Import from LinkedIn',
   },
 ];

@@ -32,9 +32,9 @@ export class CompanyCard extends React.Component {
         name: 'New Frontier Data',
         avatarUrl: 'https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/small/hs-emp-logo-data.?1478033500',
         url: 'https://www.google.com',
-        scale: '500',
-        employNumber: '100',
-        type: 'Computer Software', // It would be defined in future.
+        type: 'Intership',
+        location: 'Shanghai, China',
+        area: 'Computer Software', // It would be defined in future.
         status: {
           code: 2000
         }
@@ -85,7 +85,7 @@ export class CompanyCard extends React.Component {
                       fontSize: '1rem'
                     }}
                   >
-                    {this.state.backend.type}
+                    {this.state.backend.area}
                   </MDBCardTitle>
                   <MDBCardText
                     style={{
@@ -93,8 +93,8 @@ export class CompanyCard extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    {this.text.scale} :
-                    {this.state.backend.scale}
+                    <span className="mr-1">{this.text.type} </span>
+                    <span>{this.state.backend.type}</span>
                   </MDBCardText>
                   <MDBCardText
                     style={{
@@ -102,8 +102,8 @@ export class CompanyCard extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    {this.text.employ} :
-                    {this.state.backend.employNumber}
+                    <span className="mr-1">{this.text.location} </span>
+                    <span>{this.state.backend.location}</span>
                   </MDBCardText>
                 </MDBCol>
                 <MDBCol>
@@ -131,11 +131,11 @@ export class CompanyCard extends React.Component {
 
 CompanyCard.i18n = [
   {
-    scale: '公司规模',
-    employ: '招聘职位数量',
+    type: '类型',
+    location: '工作地点',
   },
   {
-    scale: 'Company Scale',
-    employ: 'Employ Number',
+    type: 'Type',
+    location: 'Location',
   },
 ];
