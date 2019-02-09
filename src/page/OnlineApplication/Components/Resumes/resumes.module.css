@@ -1,0 +1,90 @@
+.resumes {
+    position: relative;
+    box-sizing: border-box;
+    margin-left: 77px;
+    margin-top: 31px;
+    width: 1000px;
+    height: auto;
+}
+
+.addResume {
+    width: 462px;
+    height: 140px;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 24px;
+    text-align: center;
+
+    color: #3E4850;
+
+    border: 1px dotted #000000;
+    box-sizing: border-box;
+    padding: 0%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.addingResume {
+    width: 462px;
+    height: 140px;
+    border: 1px dotted #000000;
+    box-sizing: border-box;
+    padding: 0%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    float: left;
+}
+
+.test {
+    background-color: black;
+    width: 462px;
+    height: 140px;
+    border: 1px dotted #000000;
+    box-sizing: border-box;
+    padding: 0%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.addResume2 {
+    width: 231px;
+    height: 140px;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 24px;
+    text-align: center;
+
+    color: #3E4850;
+
+    border: 1px dotted #000000;
+    box-sizing: border-box;
+    padding: 0%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.buttontest{
+    width: 231px;
+    height: 140px;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 24px;
+    text-align: center;
+
+    color: #3E4850;
+
+    border: 1px dotted #000000;
+    box-sizing: border-box;
+    padding: 0%;
+}
+
+.divtest{
+    margin-bottom: 10px
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-// import './public/style.css'
+import './public/style.css'
+
 import {
   MDBBtn,
   MDBCol,
@@ -32,6 +33,7 @@ import {SearchCompanyResult} from './search-company';
 import {SearchCommunityResult} from "./search-community";
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+import {SearchVideoResult} from "./search-video";
 
 export class Search extends React.Component {
   constructor(props) {
@@ -103,7 +105,10 @@ export class Search extends React.Component {
                   />
                 </MDBTabPane>
                 <MDBTabPane tabId="4">
-                  <MDBBtn color="primary" href="/search">建设中，点我返回</MDBBtn>
+                  <SearchVideoResult
+                    toggleClassicTabs1={this.toggleClassicTabs1}
+                    activeTab={this.state.activeItemClassicTabs1}
+                  />
                 </MDBTabPane>
                 <MDBTabPane tabId="5">
                   <MDBBtn color="primary" href="/search">建设中，点我返回</MDBBtn>
