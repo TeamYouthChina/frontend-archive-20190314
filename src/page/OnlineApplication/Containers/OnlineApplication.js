@@ -6,7 +6,7 @@ import Prompts from '../Components/Prompts/prompts';
 import Resumes from '../Components/Resumes/resumes';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
-import Submit from '../Components/Controls/submit';
+import Submit from '../Components/Submit/submit';
 
 import classes from './OnlineApplication.module.css';
 
@@ -79,7 +79,8 @@ class OnlineApplication extends Component{
 
     state = {
         resumes: dummyResumes,
-        selected: -1 // record which resume is selected
+        selected: -1, // record which resume is selected
+        addingResume: false // if adding a resume?
 
     };
 
@@ -107,6 +108,7 @@ class OnlineApplication extends Component{
     addResumeHandler = () =>{
         // TODO
         console.log('adding resume');
+        this.setState({addingResume: true, selected: -1});
     }
 
     submitHandler = () => {
@@ -134,7 +136,8 @@ class OnlineApplication extends Component{
                     addResumeClicked={this.addResumeHandler}
                     resumes={this.state.resumes}
                     selectHandler={this.selectHandler}
-                    selected={this.state.selected}/>
+                    selected={this.state.selected}
+                    addingResume={this.state.addingResume}/>
                 <Submit clicked={this.submitHandler}/>
                 <Footer/>
             </div>;
