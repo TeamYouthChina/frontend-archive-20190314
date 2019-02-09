@@ -87,7 +87,32 @@ export class Job extends React.Component {
         </div>
 
         <Row top>
-          <Col md="8" className="offset-md-1">
+          <Col 
+            md="1" 
+            className="offset-md-1 p-0"
+          >
+           
+            <MDBCard
+              classNmae="p-0"
+              style={{
+                boxShadow: 'none',
+                marginTop:'300px',
+              }}
+            >
+              <MDBCardBody className="px-0">
+                <h5
+                  style={{borderLeft: '4px solid #7C97B8'}}
+                  className="px-2 pt-2"
+                >职位详情</h5>
+                <h5 className="px-2 pt-2">公司详情</h5>
+                <h5 className="px-2 pt-2">相似职位</h5>
+                <h5 className="px-2 pt-2">评价</h5>
+                <h5 className="px-2 pt-2">问答</h5>
+
+              </MDBCardBody>
+            </MDBCard>
+          </Col>
+          <Col md="9">
             <p>
               <MDBCard className="my-5 px-3 pb-3">
                 <br/>
@@ -154,51 +179,7 @@ export class Job extends React.Component {
               </MDBCard>
             </p>
           </Col>
-          <Col md="2">
-            <p>
-              <MDBCard testimonial className="my-5">
-                <MDBCardUp gradient="blue"/>
-                <MDBAvatar className="mx-auto white">
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
-                    alt=""
-                    className="rounded-circle img-fluid"
-                  />
-                </MDBAvatar>
-                <MDBCardBody>
-                  <h6 className="font-weight-bold mb-4">HR：Anna Aston</h6>
-                  <ul className="list-inline">
-                    <li className="list-inline-item"><MDBBtn color="primary" size="sm" rounded>
-                      <MDBIcon icon="heart" className="mr-1"/>关注</MDBBtn></li>
-                    <li className="list-inline-item"><MDBBtn color="primary" size="sm" rounded>
-                      <MDBIcon icon="envelope" className="mr-1"/>沟通</MDBBtn></li>
-                  </ul>
-                  <hr/>
-                  <p>
-                    简历产看率：45%
-                  </p>
-                  <p>
-                    简历查看用时：20min
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-            </p>
-            <MDBCard
-              style={{boxShadow: 'none'}}
-            >
-              <MDBCardBody>
-                <h5
-                  style={{borderLeft: '4px solid #7C97B8'}}
-                  className="px-2 pt-2"
-                >职位详情</h5>
-                <h5 className="px-2 pt-2">公司详情</h5>
-                <h5 className="px-2 pt-2">相似职位</h5>
-                <h5 className="px-2 pt-2">评价</h5>
-                <h5 className="px-2 pt-2">问答</h5>
-
-              </MDBCardBody>
-            </MDBCard>
-          </Col>
+          
         </Row>
 
         <Footer/>

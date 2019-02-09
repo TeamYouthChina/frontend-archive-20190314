@@ -35,6 +35,7 @@ import {ApplicationHome} from './page/application/home';
 import {ApplicationSuccess} from './page/application/home/success';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
+import OnlineApplication from './page/OnlineApplication/OnlineApplication';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -146,6 +147,11 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
+            <Route
+              path="/OnlineApplication"
+              component={routeProps => <OnlineApplication {...routeProps} />}
+            />
+
             <Route
               path="/question/create"
               component={routeProps => <QuestionCreate {...routeProps} />}
