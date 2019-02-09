@@ -9,9 +9,11 @@ import {
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,
-  MDBIcon, MDBNavbar,
+  MDBIcon, 
+  MDBNavbar,
   MDBNavbarNav,
-  MDBNavItem
+  MDBNavItem,
+  MDBNavbarToggler
 } from 'mdbreact';
 
 import {SearchJobCards} from './search-job-cards';
@@ -22,11 +24,16 @@ export class SearchJobResult extends React.Component{
     super(props);
     
     this.state={
-      backend: null
+      backend: null,
+      collapseID: ''
     };
     
   }
 
+  toggleCollapse = collapseID => () => {
+    this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
+  }
+  
   componentWillMount() {
     let mockData =
       {
@@ -55,16 +62,17 @@ export class SearchJobResult extends React.Component{
   render () {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <MDBNavbar className="mb-3" expand="md" style={{
+        <MDBNavbar light className="mb-3" expand="md" style={{
           background:'#F9F9F9',
         }}>
           <MDBContainer>
-            <MDBCollapse navbar>
+            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
+            <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem className="mx-2">
-                  <MDBDropdown id="navDropdown">
+                  <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{color: 'black'
+                      <div className="d-md-inline" style={{color: 'black'
                       }}>职位 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -92,7 +100,7 @@ export class SearchJobResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{color: 'black'}}>发布时间
+                      <div className="d-md-inline" style={{color: 'black'}}>发布时间
                         <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -106,7 +114,7 @@ export class SearchJobResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{
+                      <div className="d-md-inline" style={{
                         color: 'black'
                       }}>实习时间 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
@@ -122,7 +130,7 @@ export class SearchJobResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{
+                      <div className="d-md-inline" style={{
                         color: 'black'
                       }}>日薪范围 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
@@ -138,7 +146,7 @@ export class SearchJobResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{
+                      <div className="d-md-inline" style={{
                         color: 'black'
                       }}>最低学历 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>

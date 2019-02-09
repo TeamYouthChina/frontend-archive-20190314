@@ -13,12 +13,13 @@ import {
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
-  MDBNavbarToggler
+  MDBNavbarToggler,
+  MDBNavLink
 } from 'mdbreact';
 
-import {CompanyCard} from '../../general-component/company-card';
+import {VideoCard} from '../../general-component/video-card';
 
-export class SearchCompanyResult extends React.Component {
+export class SearchVideoResult extends React.Component {
   constructor(props) {
 
     super(props);
@@ -26,7 +27,7 @@ export class SearchCompanyResult extends React.Component {
     this.state = {
       backend: null,
       collapseID: ''
-    };
+  };
 
   }
 
@@ -38,7 +39,7 @@ export class SearchCompanyResult extends React.Component {
     let mockData =
       {
         id: 0,
-        companyList: [
+        videoList: [
           {id: 1},
           {id: 2},
           {id: 3},
@@ -70,22 +71,26 @@ export class SearchCompanyResult extends React.Component {
                     <MDBDropdownToggle nav>
                       <div className="d-md-inline" style={{
                         color: 'black'
-                      }}>公司 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
+                      }}>视频 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                       <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("1")}>
                         <MDBIcon icon="user-circle"/> 职位
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="#!"
-                                       className="active"
-                                       onClick={this.props.toggleClassicTabs1("2")}>
+                      <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("2")}>
                         <MDBIcon icon="building"/> 公司
                       </MDBDropdownItem>
                       <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("3")}>
                         <MDBIcon icon="bullhorn"/> 社区
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("4")}>
+                      <MDBDropdownItem href="#!"                                        
+                                       className="active"
+                                       onClick={this.props.toggleClassicTabs1("4")} 
+                                       // style={{
+                                       //   backgroundColor: 'pink'
+                                       // }}
+                      >
                         <MDBIcon icon="headphones"/> 视频
                       </MDBDropdownItem>
                       <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("5")}>
@@ -97,16 +102,14 @@ export class SearchCompanyResult extends React.Component {
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{color: 'black'}}>公司类型
+                      <div className="d-md-inline" style={{color: 'black'}}>发布时间
                         <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
-                      <MDBDropdownItem href="#!">互联网</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">金融</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">通信</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">交通运输</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">教育</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">最近一天</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">最近一周</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">最近一月</MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
@@ -115,46 +118,13 @@ export class SearchCompanyResult extends React.Component {
                     <MDBDropdownToggle nav>
                       <div className="d-md-inline" style={{
                         color: 'black'
-                      }}>公司地址 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
+                      }}>视频类型 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
-                      <MDBDropdownItem href="#!">北京</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">上海</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">广州</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">深圳</MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavItem>
-                <MDBNavItem className="mx-2">
-                  <MDBDropdown>
-                    <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{
-                        color: 'black'
-                      }}>公司类型 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
-                      </div>
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                      <MDBDropdownItem href="#!">行业巨头</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">初创公司</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">国有企业</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">事业单位</MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavItem>
-                <MDBNavItem className="mx-2">
-                  <MDBDropdown>
-                    <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{
-                        color: 'black'
-                      }}>公司规模 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
-                      </div>
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                      <MDBDropdownItem href="#!">100人以下</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">100-1000人</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">1000-10000人</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">10000人以上</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">行业</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">生活</MDBDropdownItem>
+                      <MDBDropdownItem href="#!">娱乐</MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
@@ -162,11 +132,11 @@ export class SearchCompanyResult extends React.Component {
             </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>
-        {this.state.backend.companyList.map((item, index) => {
+        {this.state.backend.videoList.map((item, index) => {
           return (
             <MDBRow key={index}>
               <MDBCol className="my-3">
-                <CompanyCard/>
+                <VideoCard/>
               </MDBCol>
             </MDBRow>
           );
