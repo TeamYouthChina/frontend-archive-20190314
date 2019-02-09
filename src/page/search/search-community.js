@@ -13,7 +13,8 @@ import {
   MDBDropdownToggle, 
   MDBNavbar,
   MDBNavbarNav,
-  MDBNavItem
+  MDBNavItem,
+  MDBNavbarToggler
 } from 'mdbreact';
 
 import {ArticleCard} from '../../general-component/article-card';
@@ -24,11 +25,16 @@ export class SearchCommunityResult extends React.Component{
     super(props);
 
     this.state={
-      backend: null
+      backend: null,
+      collapseID: ''
     };
 
   }
 
+  toggleCollapse = collapseID => () => {
+    this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
+  }
+  
   componentWillMount() {
     let mockData =
       {
@@ -51,16 +57,17 @@ export class SearchCommunityResult extends React.Component{
   render () {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <MDBNavbar className="mb-3" expand="md" style={{
+        <MDBNavbar light className="mb-3" expand="md" style={{
           background:'#F9F9F9',
         }}>
           <MDBContainer>
-            <MDBCollapse navbar>
+            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
+            <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem className="mx-2">
-                  <MDBDropdown id="navDropdown">
+                  <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{color: 'black'
+                      <div className="d-md-inline" style={{color: 'black'
                       }}>社区 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -88,7 +95,7 @@ export class SearchCommunityResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{color: 'black'}}>发贴时间
+                      <div className="d-md-inline" style={{color: 'black'}}>发贴时间
                         <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -102,7 +109,7 @@ export class SearchCommunityResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-none d-md-inline" style={{color: 'black'}}>帖子类型 
+                      <div className="d-md-inline" style={{color: 'black'}}>帖子类型 
                         <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
