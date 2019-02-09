@@ -6,7 +6,7 @@ const submit = (props) => {
     return (
         <div className={classes.control}>
             <button 
-                className={classes.submit}
+                className={classes.submitButton}
                 onClick={props.submitHandler}>
                 Submit
             </button>

@@ -1,11 +1,20 @@
 .control {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    margin-top: 57px;
+    text-align: center;
+}
+
+.controlcopy {
+    display: block;
     height: 40px;
     widows: 100%;
     margin-top: 57px;
     text-align: center;
 }
 
-.submit {
+.submitButton {
     width: 172px;
     height: 40px;
     background: #727272;
