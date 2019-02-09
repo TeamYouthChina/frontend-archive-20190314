@@ -33,6 +33,7 @@ import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
 import {ApplicationHome} from './page/application/home';
 import {ApplicationSuccess} from './page/application/home/success';
+import {NewResume} from './page/application/home/newResume';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/OnlineApplication';
@@ -65,6 +66,10 @@ export class App extends Component {
             <Route
               path="/application/home"
               component={routeProps => <ApplicationHome {...routeProps} />}
+            />
+            <Route
+              path="/application/create"
+              component={routeProps => <NewResume {...routeProps} />}
             />
             <Route
               path="/application/success"

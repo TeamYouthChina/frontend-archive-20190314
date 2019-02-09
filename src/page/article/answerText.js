@@ -5,21 +5,22 @@ import {getAsync} from "../../tool/api-helper";
 
 export class AnswerText extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       backend: null,
       editorState: null,
-      showNow:0,
-      myUploadFn:null
+      showNow: 0,
+      myUploadFn: null
     }
     this.setup()
   }
-  setup(){
-    
+
+  setup() {
+
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     // 假设此处从服务端获取html格式的编辑器内容
     // const htmlContent = await fetchEditorContent()
     const htmlContent = ''
@@ -39,32 +40,32 @@ export class AnswerText extends React.Component {
     // const htmlContent = this.state.editorState.toHTML()
     // const result = await saveEditorContent(htmlContent)
   }
-  
+
   handleEditorChange(editorState) {
-    
-    this.setState({ editorState});
+
+    this.setState({editorState});
     let a = JSON.stringify(this.state.editorState.toRAW(true))
-    console.log(Object.assign({blocks:this.state.editorState.toRAW(true)},{id:1}));
+    console.log(JSON.stringify(Object.assign({blocks: this.state.editorState.toRAW(true)}, {id: 1})));
   }
-  
-  
-  render () {
+
+
+  render() {
     // 这里是上传函数
     const myUploadFn = async (param) => {
       // console.log(param)
-      const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
+      // const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
+      const serverURL = 'http://47.254.46.117:4000'
       // 数据传输协议，添加注释，类似json
       const xhr = new XMLHttpRequest
       // 构建键值对，给内容加标记
       const fd = new FormData()
-      const  result = await getAsync(serverURL)
-      console.log(result,'result')
+      // const  result = await getAsync(serverURL)
+      // console.log(result,'result')
       const successFn = (response) => {
         // 假设服务端直接返回文件上传后的地址
         // 上传成功后调用param.success并传入上传后的文件地址
         param.success({
-          url:'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D',
-          meta: {
+            url: 'fake',
             id: '123',
             title: '123',
             alt: '123',
@@ -73,7 +74,7 @@ export class AnswerText extends React.Component {
             controls: true, // 指定音视频是否显示控制栏
             poster: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg', // 指定视频播放器的封面
           }
-        })
+        )
       }
 
       const progressFn = (event) => {
@@ -98,21 +99,23 @@ export class AnswerText extends React.Component {
       xhr.send(fd)
 
     }
-    const { editorState } = this.state
+    const {editorState} = this.state
 
     return (
       <div>
         <div className="editor-wrapper">
           <BraftEditor className="myAnswerText" media={{uploadFn: myUploadFn}}
-            value={editorState}
-            onChange={(editorState)=>{this.handleEditorChange(editorState)}
-            }
+                       value={editorState}
+                       onChange={(editorState) => {
+                         this.handleEditorChange(editorState)
+                       }
+                       }
           />
         </div>
         <br/>
         {this.state.showNow === 0 ? null : (
-          <div className="output-content" 
-               dangerouslySetInnerHTML={{ __html: editorState.toHTML()}}>
+          <div className="output-content"
+               dangerouslySetInnerHTML={{__html: editorState.toHTML()}}>
           </div>
         )}
       </div>
