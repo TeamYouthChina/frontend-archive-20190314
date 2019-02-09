@@ -27,10 +27,10 @@ export class MobileTest1 extends React.Component {
     return (this.state.backend && this.state.backend.content) ? (
       <div>
         <div
-          dangerouslySetInnerHTML={{__html: BraftEditor.createEditorState(this.state.backend.content.categoryList[0].faqList[0].answer.richText).toHTML()}}
+          dangerouslySetInnerHTML={{__html: BraftEditor.createEditorState(this.state.backend.content.categoryList[0].faqList[1].answer.richText).toHTML()}}
         />
         <div
-          dangerouslySetInnerHTML={{__html: BraftEditor.createEditorState(this.state.backend.content.categoryList[0].faqList[1].answer.richText).toHTML()}}
+          dangerouslySetInnerHTML={{__html: BraftEditor.createEditorState(this.state.backend.content.categoryList[0].faqList[0].answer.richText).toHTML()}}
         />
       </div>
 
