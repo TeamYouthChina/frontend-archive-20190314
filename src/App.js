@@ -53,6 +53,7 @@ import {Employerhome} from './page/hr/employerhome';
 import {Recruit} from './page/hr/recruit';
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
+import {ResumeFromDB} from "./page/application/home/resumeFromDB";
 
 export class App extends Component {
   render() {
@@ -72,6 +73,10 @@ export class App extends Component {
             <Route
               path="/application/create"
               component={routeProps => <NewResume {...routeProps} />}
+            />
+            <Route
+              path="/application/inject"
+              component={routeProps => <ResumeFromDB {...routeProps} />}
             />
             <Route
               path="/application/success"
