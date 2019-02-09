@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 
-import {languageHelper} from '../../tool/language-helper';
-import TopBar from './TopBar/topBar';
-import Prompts from './Prompts/prompts';
-import Resumes from './Resumes/resumes';
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+import {languageHelper} from '../../../tool/language-helper';
+import TopBar from '../Components/TopBar/topBar';
+import Prompts from '../Components/Prompts/prompts';
+import Resumes from '../Components/Resumes/resumes';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
+import Submit from '../Components/Controls/submit';
 
 import classes from './OnlineApplication.module.css';
 
 
 // dummy resume icon
 // problem: cannot access resourses outside of src folder
-import resumeIcon from '../assets/icons8-overview-50.png';
+import resumeIcon from '../../assets/icons8-overview-50.png';
 
 
 const translation = [
@@ -134,11 +135,7 @@ class OnlineApplication extends Component{
                     resumes={this.state.resumes}
                     selectHandler={this.selectHandler}
                     selected={this.state.selected}/>
-                <div className={classes.control}>
-                    <button 
-                        className={classes.submit}
-                        onClick={this.submitHandler}>Submit</button>
-                </div>
+                <Submit clicked={this.submitHandler}/>
                 <Footer/>
             </div>;
 
