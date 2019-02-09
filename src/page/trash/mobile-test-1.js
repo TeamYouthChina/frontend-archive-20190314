@@ -6,6 +6,8 @@ import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {getAsync} from '../../tool/api-helper';
 import BraftEditor from 'braft-editor';
 
+import './mobile.css';
+
 export class MobileTest1 extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ export class MobileTest1 extends React.Component {
       return (<Redirect to={pathname}/>);
     }
     return (this.state.backend && this.state.backend.content) ? (
-      <div>
+      <div className="mobile">
         <div
           dangerouslySetInnerHTML={{__html: BraftEditor.createEditorState(this.state.backend.content.categoryList[0].faqList[1].answer.richText).toHTML()}}
         />
