@@ -47,6 +47,8 @@ import {Search} from './page/search';
 import {HR} from './page/hr';
 import {Employerhome} from './page/hr/employerhome';
 import {Recruit} from "./page/hr/recruit";
+import {MobileTest1} from './page/trash/mobile-test-1';
+import {MobileTest2} from './page/trash/mobile-test-2';
 
 export class App extends Component {
   render() {
@@ -160,7 +162,7 @@ export class App extends Component {
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
-            
+
             <Route
               path="/question/:questionId"
               component={routeProps => null}
@@ -225,6 +227,14 @@ export class App extends Component {
             <Route
               path="/searchs2"
               component={routeProps => <SearchS2 {...routeProps} />}
+            />
+            <Route
+              path="/mobile-test-1"
+              component={routeProps => <MobileTest1 {...routeProps} />}
+            />
+            <Route
+              path="/mobile-test-2"
+              component={routeProps => <MobileTest2 {...routeProps} />}
             />
             {/* ====== Trash End ====== */}
             <Redirect to="/page-no-found"/>
