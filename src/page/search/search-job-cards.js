@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../tool/language-helper';
+import {languageHelper} from '../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
@@ -14,7 +14,7 @@ import {
 } from 'mdbreact';
 
 
-export class CompanyCard extends React.Component {
+export class SearchJobCards extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -22,7 +22,7 @@ export class CompanyCard extends React.Component {
     this.state = {
       backend: null
     };
-    this.text = CompanyCard.i18n[languageHelper()];
+    this.text = SearchJobCards.i18n[languageHelper()];
   }
 
   componentWillMount() {
@@ -32,9 +32,9 @@ export class CompanyCard extends React.Component {
         name: 'New Frontier Data',
         avatarUrl: 'https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/small/hs-emp-logo-data.?1478033500',
         url: 'https://www.google.com',
-        type: 'Intership',
-        location: 'Shanghai, China',
-        area: 'Computer Software', // It would be defined in future.
+        scale: '500',
+        employNumber: '100',
+        type: 'Computer Software', // It would be defined in future.
         status: {
           code: 2000
         }
@@ -46,8 +46,8 @@ export class CompanyCard extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard 
-        className="px-3 py-4"
+      <MDBCard
+        className="px-3"
         style={{borderRadius: '0px'}}
       >
         <MDBCardBody
@@ -58,19 +58,7 @@ export class CompanyCard extends React.Component {
           }}
         >
           <MDBRow>
-            <MDBCol size="2">
-              <MDBRow>
-                <MDBCol size='9'>
-                  <MDBAvatar
-                    tag="img"
-                    src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
-                    className="rounded z-depth-1-half img-fluid"
-                    alt="Sample avatar"
-                  />
-                </MDBCol>
-              </MDBRow>
-            </MDBCol>
-            <MDBCol size="9">
+            <MDBCol className="pl-0" size="9">
               <MDBRow>
                 <MDBCol size="10">
                   <MDBCardTitle
@@ -85,7 +73,7 @@ export class CompanyCard extends React.Component {
                       fontSize: '1rem'
                     }}
                   >
-                    {this.state.backend.area}
+                    {this.state.backend.type}
                   </MDBCardTitle>
                   <MDBCardText
                     style={{
@@ -93,8 +81,8 @@ export class CompanyCard extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    <span className="mr-1">{this.text.type} </span>
-                    <span>{this.state.backend.type}</span>
+                    {this.text.scale} :
+                    {this.state.backend.scale}
                   </MDBCardText>
                   <MDBCardText
                     style={{
@@ -102,25 +90,23 @@ export class CompanyCard extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    <span className="mr-1">{this.text.location} </span>
-                    <span>{this.state.backend.location}</span>
+                    {this.text.employ} :
+                    {this.state.backend.employNumber}
                   </MDBCardText>
-                </MDBCol>
-                <MDBCol>
-                  <MDBIcon
-                    icon="bookmark-o"
-                    size="3x"
-                    className="pt-1 p-0"
-                    style={{color:'#45526e'}}
-                  />
                 </MDBCol>
               </MDBRow>
             </MDBCol>
-          </MDBRow>
-          <br/>
-          <MDBRow>
-            <MDBCol>
-              <p>滴滴出行（www.didiglobal.com）是全球领先的一站式移动出行平台</p>
+            <MDBCol size="3">
+              <MDBRow>
+                <MDBCol className="p-0" size='12'>
+                  <MDBAvatar
+                    tag="img"
+                    src="https://pbs.twimg.com/profile_images/762930018968334336/fePtGWo7_400x400.jpg"
+                    className="z-depth-1-half img-fluid"
+                    // alt="Sample avatar"
+                  />
+                </MDBCol>
+              </MDBRow>
             </MDBCol>
           </MDBRow>
         </MDBCardBody>
@@ -129,13 +115,13 @@ export class CompanyCard extends React.Component {
   }
 }
 
-CompanyCard.i18n = [
+SearchJobCards.i18n = [
   {
-    type: '类型',
-    location: '工作地点',
+    scale: '公司规模',
+    employ: '招聘职位数量',
   },
   {
-    type: 'Type',
-    location: 'Location',
+    scale: 'Company Scale',
+    employ: 'Employ Number',
   },
 ];

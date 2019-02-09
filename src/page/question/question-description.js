@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {languageHelper} from '../../tool/language-helper';
 import {
   MDBBadge,
@@ -21,27 +22,27 @@ export class QuestionDes extends React.Component {
     this.text = QuestionDes.i18n[languageHelper()];
   }
 
-  // componentWillMount() {
-  //   let mockData =
-  //     {
-  //       id: 0,
-  //       name: 'Summer 2019 Tech Internship',
-  //       // 下面四个从父组件传进来
-  //       tag: ['tag1', 'tag2', 'tag3', 'tag4'],
-  //       content: {
-  //         title: 'this is a title',
-  //         descrption: 'wen ti de miao shu'
-  //       },
-  //       focus: 123,
-  //       reading: 123,
-  //       status: {
-  //         code: 2000
-  //       }
-  //     };
-  //   this.setState(() => {
-  //     return {backend: mockData};
-  //   });
-  // }
+  componentWillMount() {
+    let mockData =
+      {
+        id: 0,
+        name: 'Summer 2019 Tech Internship',
+        // 下面四个从父组件传进来
+        tag: ['tag1', 'tag2', 'tag3', 'tag4'],
+        content: {
+          title: 'this is a title',
+          descrption: 'wen ti de miao shu'
+        },
+        focus: 123,
+        reading: 123,
+        status: {
+          code: 2000
+        }
+      };
+    this.setState(() => {
+      return {backend: mockData};
+    });
+  }
 
 
   render() {
@@ -89,12 +90,14 @@ export class QuestionDes extends React.Component {
           </MDBCol>
         </MDBRow>
         <MDBRow>
-          <MDBBtn color="primary" style={{padding: '5px 10px',marginLeft:'15px'}}>
+          <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '15px'}}>
             关注问题
           </MDBBtn>
-          <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
-          </MDBBtn>
+          <Link style={{color: '#fff'}} to={`/question/${this.props.questionId}/answer/create/`}>
+            <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
+            </MDBBtn>
+          </Link>
           <MDBBtn color="primary" style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
           </MDBBtn>

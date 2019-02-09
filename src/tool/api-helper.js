@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import {store} from '../global-data/store';
 
-const urlPrefix = 'http://34.239.119.14:4000';
+const urlPrefix = 'http://47.254.46.117:4000';
 
 const generateHeaders = () => {
   let headers = {'Content-Type': 'application/json'};

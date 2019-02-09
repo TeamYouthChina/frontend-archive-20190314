@@ -1,41 +1,31 @@
 import React from 'react';
 import {languageHelper} from '../../../../tool/language-helper';
 import {
-  MDBNavLink,
   MDBBtn,
-  MDBCol,
   MDBRow,
+  MDBCol,
 } from 'mdbreact';
-
+import {AnswerText} from '../../answerText';
+// import './public/style.css';
 import {Header} from '../../../../general-component/header';
 import {Footer} from '../../../../general-component/footer';
-import {ArticleEdit} from '../../../article/edit';
-import {QuestionDes} from '../../question-description'
 
-export class AnswerEdit extends React.Component {
+export class QuestionAnswerEdit extends React.Component {
   constructor(props) {
     super(props);
     /*
     * */
     this.state = {
-      backend: null,
-      selectType: 1
+      backend: null
     };
-    this.text = AnswerEdit.i18n[languageHelper()];
+    this.text = QuestionAnswerEdit.i18n[languageHelper()];
+    this.handleInputClick = this.handleInputClick.bind(this);
   }
 
   componentWillMount() {
     let mockData =
       {
         id: 0,
-        name: 'Summer 2019 Tech Internship',
-        tags: ['tag1', 'tag2', 'tag3', 'tag4'],
-        content: {
-          title: 'this is a title',
-          descrption: 'wen ti de miao shu'
-        },
-        focus: 123,
-        reading: 123,
         status: {
           code: 2000
         }
@@ -45,30 +35,52 @@ export class AnswerEdit extends React.Component {
     });
   }
 
+  handleInputClick() {
+    //todo,通过refs调用的方法
+    this.answerText.submitContent();
+    // this.refs.answerText.submitContent();
+  }
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <MDBRow>
-            <ArticleEdit>
-              <QuestionDes
-                tags={this.state.backend.tags}
-                content={this.state.backend.content}
-                focus={this.state.backend.focus}
-                reading={this.state.backend.reading}>
-              </QuestionDes>
-            </ArticleEdit>
-        </MDBRow>
+        <Header/>
+        <div style={{padding: '100px'}}>
+          <div className="form-group">
+            <h4>{this.text.write}</h4>
+            <MDBRow style={{padding:'20px'}}>
+              {this.props.children}
+            </MDBRow>
+            <MDBRow>
+              <MDBCol size="9">
+                <input className="form-control" placeholder={this.text.title}/>
+              </MDBCol>
+              <MDBCol size="1"></MDBCol>
+              <MDBCol size="2">
+                <MDBBtn style={{margin:'0px',float:'right'}} size="sm" rounded color="info" onClick={this.handleInputClick}>{this.text.submitBtn}</MDBBtn>
+              </MDBCol>
+            </MDBRow>
+
+          </div>
+          <br/>
+          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
+        </div>
+        <Footer/>
       </div>
+
     ) : null;
   }
 }
 
-AnswerEdit.i18n = [
+QuestionAnswerEdit.i18n = [
   {
-    applyBefore: '申请截止'
+    title: '标题',
+    submitBtn: '提交更改',
+    write:'编辑回答'
   },
   {
-    applyBefore: 'Apply Before'
+    title: 'Title',
+    submitBtn: 'submit modification',
+    write:'edit answer'
   },
 ];

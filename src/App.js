@@ -8,16 +8,21 @@ import 'mdbreact/dist/css/mdb.css';
 import {Home} from './page/home';
 import {Login} from './page/login';
 import {Article} from './page/article';
-import {ArticleEdit} from './page/article/edit';
 import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
-import {VideoEdit} from './page/video/edit';
-import {AnswerEdit} from './page/question/answer/edit';
+import {QuestionCreate} from './page/question/create';
+import {QuestionEdit} from './page/question/edit';
+import {QuestionAnswerCreate} from './page/question/answer/create';
+import {QuestionAnswerEdit} from './page/question/answer/edit';
+import {ArticleCreate} from './page/article/create';
+import {ArticleEdit} from './page/article/edit';
 import {Video} from './page/video';
+import {VideoCreate} from './page/video/create';
+import {VideoEdit} from './page/video/edit';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
@@ -40,6 +45,8 @@ import {SearchS1} from './page/trash/s1';
 import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
 import {HR} from './page/hr';
+import {Employerhome} from './page/hr/employerhome';
+import {Recruit} from "./page/hr/recruit";
 
 export class App extends Component {
   render() {
@@ -58,7 +65,7 @@ export class App extends Component {
             />
             <Route
               path="/article/create"
-              component={routeProps => <ArticleEdit {...routeProps} />}
+              component={routeProps => <ArticleCreate {...routeProps} />}
             />
             <Route
               path="/article/:id/edit"
@@ -83,6 +90,10 @@ export class App extends Component {
             <Route
               path="/discovery"
               component={routeProps => <Discovery {...routeProps} />}
+            />
+            <Route
+              path="/employerhome"
+              component={routeProps => <Employerhome {...routeProps} />}
             />
             <Route
               path="/help"
@@ -131,27 +142,32 @@ export class App extends Component {
 
             <Route
               path="/question/create"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionCreate {...routeProps} />}
             />
             <Route
               path="/question/:questionId/edit"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              component={routeProps => <QuestionEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/create"
+              component={routeProps => <QuestionAnswerCreate {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/:answerId/edit"
+              component={routeProps => <QuestionAnswerEdit {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
+            
             <Route
               path="/question/:questionId"
               component={routeProps => null}
             />
             <Route
-              path="/question/:questionId/answer/create"
-              component={routeProps => <AnswerEdit {...routeProps} />}
-            />
-            <Route
-              path="/question/:questionId/answer/:answerId/edit"
-              component={routeProps => <AnswerEdit {...routeProps} />}
+              path="/recruit"
+              component={routeProps => <Recruit {...routeProps} />}
             />
             <Route
               path="/register"
@@ -167,7 +183,7 @@ export class App extends Component {
             />
             <Route
               path="/video/create"
-              component={routeProps => <VideoEdit {...routeProps} />}
+              component={routeProps => <VideoCreate {...routeProps} />}
             />
             <Route
               path="/video/:id/edit"

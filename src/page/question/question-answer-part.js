@@ -237,9 +237,10 @@ export class QuestionAnswerPart extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
-          <strong>
-            {this.state.backend.answers.length}个回答
-          </strong>
+            <strong style={{paddingLeft:'15px'}}>
+              {this.state.backend.answers.length}个回答
+            </strong>
+          
         </MDBRow>
         {this.state.backend.answers.map((item, comIndex) => {
           return (
