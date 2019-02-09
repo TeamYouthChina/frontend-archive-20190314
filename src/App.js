@@ -32,7 +32,7 @@ import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
-import OnlineApplication from './page/OnlineApplication/OnlineApplication';
+import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
