@@ -1,0 +1,30 @@
+.prompts {
+    box-sizing: border-box;
+    margin: 0px;
+    position: relative;
+}
+
+.firstLine {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 24px;
+    color: #3E4850;
+    box-sizing: border-box;
+    padding-top: 37px;
+    padding-left: 77px;
+    margin: 0%
+}
+
+.secondLine {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    color: #3E4850;
+    padding-left: 77px;
+    padding-top: 10px;
+    margin: 0%;
+}

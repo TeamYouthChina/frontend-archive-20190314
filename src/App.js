@@ -27,6 +27,7 @@ import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
+import OnlineApplication from './page/OnlineApplication/OnlineApplication';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -123,6 +124,11 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
+            <Route
+              path="/OnlineApplication"
+              component={routeProps => <OnlineApplication {...routeProps} />}
+            />
+
             <Route
               path="/question/create"
               component={routeProps => <AnswerEdit {...routeProps} />}
