@@ -1,22 +1,23 @@
+import Cookies from 'js-cookie';
 import fetch from 'isomorphic-fetch';
-
-import {store} from '../global-data/store';
 
 const urlPrefix = 'http://47.254.46.117:4000';
 
 const generateHeaders = () => {
-  let headers = {'Content-Type': 'application/json'};
-  const state = store.getState();
-  if (state.token) {
-    headers = {
-      ...headers,
-      'x-token': state.token
-    };
+  let language = Cookies.get('language');
+  if (!language) {
+    language = 'zh_CN';
+    Cookies.set('language', language, {expires: 365});
   }
-  if (state.language) {
+  let headers = {
+    'Content-Type': 'application/json',
+    'x-language': language
+  };
+  const token = Cookies.get('token');
+  if (token) {
     headers = {
       ...headers,
-      'x-language': state.language
+      'x-token': token
     };
   }
   return headers;
