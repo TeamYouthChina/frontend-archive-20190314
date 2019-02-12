@@ -132,6 +132,10 @@ export class App extends Component {
               component={routeProps => <Notification {...routeProps} />}
             />
             <Route
+              path="/OnlineApplication"
+              component={routeProps => <OnlineApplication {...routeProps} />}
+            />
+            <Route
               path="/page-no-found"
               component={routeProps => <PageNoFound {...routeProps} />}
             />
@@ -139,11 +143,6 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
-            <Route
-              path="/OnlineApplication"
-              component={routeProps => <OnlineApplication {...routeProps} />}
-            />
-
             <Route
               path="/question/create"
               component={routeProps => <QuestionCreate {...routeProps} />}
