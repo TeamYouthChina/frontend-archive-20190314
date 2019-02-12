@@ -49,6 +49,8 @@ import {Employerhome} from './page/hr/employerhome';
 import {Recruit} from "./page/hr/recruit";
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
+import {SearchResume} from "./page/hr/searchresume";
+
 
 export class App extends Component {
   render() {
@@ -162,11 +164,6 @@ export class App extends Component {
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
-
-            <Route
-              path="/question/:questionId"
-              component={routeProps => null}
-            />
             <Route
               path="/recruit"
               component={routeProps => <Recruit {...routeProps} />}
@@ -178,6 +175,10 @@ export class App extends Component {
             <Route
               path="/search"
               component={routeProps => <Search {...routeProps} />}
+            />
+            <Route
+              path="/searchresume"
+              component={routeProps => <SearchResume {...routeProps} />}
             />
             <Route
               path="/setting"

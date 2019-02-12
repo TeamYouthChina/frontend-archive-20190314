@@ -58,6 +58,7 @@ export class Employerhome extends React.Component {
         id: 0,
         name: 'New Frontier Data',
         url: 'https://www.google.com',
+        tabname: ['新应聘简历', '待处理的推荐简历', '意向沟通', '猎头服务'],
         jobname: '数据分析实习(2019 Summer), GE 通用电气',
         jobtype: '实习（3月-6月）',
         scale: '02/01/2019',
@@ -94,28 +95,28 @@ export class Employerhome extends React.Component {
                   <MDBNavLink style={{color: "green"}} to="#"
                               className={this.state.activeItemPills === "1" ? "active" : ""}
                               onClick={this.togglePills("1")}>
-                    Active
+                    {this.state.backend.tabname[0]}
                   </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink style={{color: "green"}} to="#"
                               className={this.state.activeItemPills === "2" ? "active" : ""}
                               onClick={this.togglePills("2")}>
-                    Link
+                    {this.state.backend.tabname[1]}
                   </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink style={{color: "green"}} to="#"
                               className={this.state.activeItemPills === "3" ? "active" : ""}
                               onClick={this.togglePills("3")}>
-                    Link
+                    {this.state.backend.tabname[2]}
                   </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink style={{color: "green"}} to="#"
                               className={this.state.activeItemPills === "4" ? "active" : ""}
                               onClick={this.togglePills("4")}>
-                    Help
+                    {this.state.backend.tabname[3]}
                   </MDBNavLink>
                 </MDBNavItem>
               </MDBNav>
