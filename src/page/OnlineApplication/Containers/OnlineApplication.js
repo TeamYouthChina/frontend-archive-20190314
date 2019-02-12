@@ -117,13 +117,24 @@ class OnlineApplication extends Component{
     }
 
     selectHandler = (event) => {
-        this.setState({selected: event.target.id});
+        this.setState({selected: event.target.id, addingResume: false});
         console.log('selecting ' +event.target.id+ ' !');
+
+    }
+
+    typeResumeHander = () => {
+        console.log('typing resume');
+    }
+
+    uploadResuemHandler = () => {
+        console.log("uploading resume");
     }
 
 
     
     render(){
+        let active = this.state.selected >= 0 ? true : false;
+        console.log(active);
         let toShow = 
             <div className={classes.main}>
                 <Header/>
@@ -137,8 +148,10 @@ class OnlineApplication extends Component{
                     resumes={this.state.resumes}
                     selectHandler={this.selectHandler}
                     selected={this.state.selected}
-                    addingResume={this.state.addingResume}/>
-                <Submit clicked={this.submitHandler}/>
+                    addingResume={this.state.addingResume}
+                    typeResumeHander={this.typeResumeHander}
+                    uploadResuemHandler={this.uploadResuemHandler}/>
+                <Submit active={active} clicked={this.submitHandler}/>
                 <Footer/>
             </div>;
 
