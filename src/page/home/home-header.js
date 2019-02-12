@@ -81,14 +81,16 @@ export class HomeHeader extends React.Component {
                       <MDBDropdownToggle nav>
                         <div className="d-none d-md-inline">探 索</div>
                       </MDBDropdownToggle>
-                      <MDBDropdownMenu>
-                        <MDBDropdownItem href="/discovery/">文 章</MDBDropdownItem>
+                      <MDBDropdownMenu style={{marginTop:'20px'}}>
+                        <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/">视 频</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/">人 脉</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/question-answer">问 答</MDBDropdownItem>
                         <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/">直 播（空中宣讲会）</MDBDropdownItem>
+                        <MDBDropdownItem href="/discovery/video">视 频</MDBDropdownItem>
+                        <MDBDropdownItem divider/>
+                        <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
@@ -104,30 +106,22 @@ export class HomeHeader extends React.Component {
                   />
                 </MDBNavLink>
               </MDBNavbarNav>
-              <MDBNavbarNav right>
-                <MDBNavItem>
-                  <MDBNavLink className="waves-effect waves-light" to="#!">
-                    <MDBIcon icon="twitter"/>
-                  </MDBNavLink>
+              <MDBNavbarNav right style={{marginRight: '5em'}}>
+                <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
+                  <img
+                    src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                    className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
+                    alt="Sample avatar"
+                  />
                 </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink className="waves-effect waves-light" to="#!">
-                    <MDBIcon icon="google-plus"/>
-                  </MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
+                <MDBNavItem style={{marginTop:'5px'}}>
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <MDBIcon icon="user"/>
+                      <p className="h6">Zhicheng</p>
                     </MDBDropdownToggle>
-                    <MDBDropdownMenu color="blue" basic right>
+                    <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
                       <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
-                      {/*<MDBDropdownItem href="#!">我的消息</MDBDropdownItem>*/}
-                      {/*<MDBDropdownItem href="#!">我的申请</MDBDropdownItem>*/}
-                      {/*<MDBDropdownItem href="#!">我的好友</MDBDropdownItem>(*/}
                       <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
-                      {/*<MDBDropdownItem href="#!">帮助</MDBDropdownItem>*/}
-                      {/*<MDBDropdownItem href="#!">设置</MDBDropdownItem>*/}
                       <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
