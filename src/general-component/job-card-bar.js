@@ -2,11 +2,11 @@ import React from 'react';
 import {
   MDBCard,
   MDBCardBody,
-  Col, MDBBtn, MDBCol, MDBIcon, MDBModal, MDBModalBody, MDBRow, Row,MDBAvatar
+  Col, MDBBtn, MDBCol, MDBIcon, MDBModal, MDBModalBody, MDBRow, Row, MDBAvatar
 } from 'mdbreact';
 
 import {languageHelper} from '../tool/language-helper';
-
+import {getAsync} from "../tool/api-helper";
 
 
 export class JobCardBar extends React.Component {
@@ -28,31 +28,22 @@ export class JobCardBar extends React.Component {
   }
 
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: '数据分析实习(2019 Summer), GE 通用电气',
-        organization: {
-          id: 0,
-          name: "string",
-          avatarUrl: "string"
-        },
-        location: '上海',
-        type: '实习（3月-6月）',
-        deadLine: '02/01/2019',
-        
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/job/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/job/1`)
+      });
+    }
   }
+
+
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard 
+      <MDBCard
         className="px-4 pb-4 pt-4"
         style={{borderRadius: '0px'}}
       >
@@ -60,22 +51,22 @@ export class JobCardBar extends React.Component {
           <MDBRow>
 
             <MDBCol md="2">
-            <MDBRow>
-              <MDBCol size='10'>
-                <MDBAvatar
-                  tag="img"
-                  src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
-                  className="rounded z-depth-1-half img-fluid"
-                  alt="Sample avatar"
-                />
-              </MDBCol>
-            </MDBRow>
-              
+              <MDBRow>
+                <MDBCol size='10'>
+                  <MDBAvatar
+                    tag="img"
+                    src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                    className="rounded z-depth-1-half img-fluid"
+                    alt="Sample avatar"
+                  />
+                </MDBCol>
+              </MDBRow>
+
             </MDBCol>
             <MDBCol md="7">
               <h5 className="pt-1">
                 <strong>
-                  {this.state.backend.name}
+                  {this.state.backend.content.name}
                 </strong>
                 <MDBIcon
                   icon="bookmark-o"
@@ -93,11 +84,11 @@ export class JobCardBar extends React.Component {
               </h5>
               <br/>
               <Row>
-                <Col>{this.text.type}: {this.state.backend.type}</Col>
-                <Col>{this.text.deadline}: {this.state.backend.deadLine}</Col>
+                <Col>{this.text.type}: {this.state.backend.content.type}</Col>
+                <Col>{this.text.deadline}: {this.state.backend.content.deadLine}</Col>
               </Row>
               <Row>
-                <Col>{this.text.location}: {this.state.backend.location}</Col>
+                <Col>{this.text.location}: {this.state.backend.content.location}</Col>
                 <Col>
                   <Row bottom>
                     <Col>
@@ -164,7 +155,7 @@ export class JobCardBar extends React.Component {
                     icon="bookmark-o"
                     size="3x"
                     className="pt-1 p-0"
-                    style={{color:'#45526e'}}
+                    style={{color: '#45526e'}}
                   />
                 </MDBCol>
               </MDBRow>
@@ -179,20 +170,20 @@ export class JobCardBar extends React.Component {
 
 JobCardBar.i18n = [
   {
-    type:'工作类型',
-    deadline:'申请截止',
-    location:'地点',
-    match:'匹配度',
-    applicate:'申请',
-    applied:'已申请',
-  
+    type: '工作类型',
+    deadline: '申请截止',
+    location: '地点',
+    match: '匹配度',
+    applicate: '申请',
+    applied: '已申请',
+
   },
   {
-    type:'Type',
-    deadline:'Deadline',
-    location:'Location',
-    match:'Match',
-    applicate:'Applicate',
-    applied:'Applied',
+    type: 'Type',
+    deadline: 'Deadline',
+    location: 'Location',
+    match: 'Match',
+    applicate: 'Applicate',
+    applied: 'Applied',
   },
 ];

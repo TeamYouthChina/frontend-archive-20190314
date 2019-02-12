@@ -2,12 +2,11 @@ import React from 'react';
 
 import {
   MDBCol,
-  MDBCollapse,
+  MDBAvatar,
   MDBDropdown,
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,
-  MDBIcon,
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
@@ -39,7 +38,7 @@ export class Header extends React.Component {
   
   render() {
     return (
-      <div style={{marginBottom: '8px'}}>
+      <div>
         <div>
           <MDBNavbar
             dark
@@ -90,39 +89,53 @@ export class Header extends React.Component {
                     主 页
                   </MDBNavLink>
                 </MDBNavItem>
-               
-                <MDBNavItem>
-                  <MDBNavLink
-                    to="#"
-                    
-                    onClick={
-                      () => {
-                        this.setState({
-                          chosen: 2
-                        });
-                        this.toggleCollapse('discover');
-                       
-                      }
-                    }
-                    onMouseEnter={
-                      () => {
-                        this.setState({
-                          hover: 2
-                        });
-                      }
-                    }
-                    onMouseLeave={
-                      () => {
-                        this.setState({
-                          hover:0
-                        });
-                      }
-                    }
+                
+                <MDBNavItem
+                  onClick={
+                    () => {
+                      this.setState({
+                        chosen: 2
+                      });
+                      this.toggleCollapse('discover');
 
-                    style={this.state.chosen === 2 ||this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
-                  >
-                    探 索
-                  </MDBNavLink>
+                    }
+                  }
+                  onMouseEnter={
+                    () => {
+                      this.setState({
+                        hover: 2
+                      });
+                    }
+                  }
+                  onMouseLeave={
+                    () => {
+                      this.setState({
+                        hover:0
+                      });
+                    }
+                  }
+
+                  style={this.state.chosen === 2 ||this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                >
+                  <MDBDropdown>
+                    <MDBDropdownToggle nav>
+                      <div className="d-none d-md-inline">探 索</div>
+                    </MDBDropdownToggle>
+                    <MDBDropdownMenu style={{marginTop:'20px'}}>
+                      <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
+                      <MDBDropdownItem divider/>
+                      <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
+                      <MDBDropdownItem divider/>
+                      <MDBDropdownItem href="/discovery/question-answer">问 答</MDBDropdownItem>
+                      <MDBDropdownItem divider/>
+                      <MDBDropdownItem href="/discovery/video">视 频</MDBDropdownItem>
+                      <MDBDropdownItem divider/>
+                      <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
+
+                    </MDBDropdownMenu>
+                    
+                     
+                  </MDBDropdown>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCol>
@@ -137,19 +150,19 @@ export class Header extends React.Component {
               </MDBNavLink>
             </MDBNavbarNav>
             <MDBNavbarNav right style={{marginRight: '5em'}}>
-              <MDBNavItem>
+              <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
+                <img
+                  src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                  className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
+                  alt="Sample avatar"
+                />
+              </MDBNavItem>
+              <MDBNavItem style={{marginTop:'5px'}}>
                 <MDBDropdown>
                   <MDBDropdownToggle nav>
-                    <MDBRow>
-                      <MDBCol md="4">
-                        <MDBIcon icon="user"/>
-                      </MDBCol>
-                      <MDBCol md="8">
-                        <p className="h6">Username</p>
-                      </MDBCol>
-                    </MDBRow>
+                    <p className="h6">Zhicheng</p>
                   </MDBDropdownToggle>
-                  <MDBDropdownMenu color="indigo darken-1" basic left>
+                  <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
                     <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
                     <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
                     <MDBDropdownItem href="#!">退出</MDBDropdownItem>
@@ -159,159 +172,8 @@ export class Header extends React.Component {
             </MDBNavbarNav>
           </MDBNavbar>
         </div>
-        <main>
-          {/*
-          <MDBCollapse id="job" isOpen={this.state.collapseID}>
-            <MDBNavbar className="indigo-text" color="grey lighten-5" expand="md">
-              <MDBCol md="6" className="offset-md-4">
-                <MDBNavbarNav left>
-                  <MDBNavItem active>
-                    <MDBNavLink to="#!">
-                      <p className="h6 indigo-text">职 务</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#!">
-                      <p className="h6 indigo-text">| 实 习</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#!">
-                      <p className="h6 indigo-text">| 校园招聘</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#!">
-                      <p className="h6 indigo-text">| 社会招聘</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                </MDBNavbarNav>
-              </MDBCol>
-            </MDBNavbar>
-          </MDBCollapse>
-          */}
-          <MDBCollapse id="discover" isOpen={this.state.collapseID}>
-            <MDBNavbar 
-              className="indigo-text" 
-              color="grey lighten-5"
-              expand="md" 
-              style={{height:'143px'}}
-            >
-              
-              <MDBCol md="6" className="offset-md-5">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <MDBNavbarNav left >
-                  <MDBNavItem
-                    style={{borderBottom: '4px solid #7C97B8'}}
-                  >
-                    <MDBNavLink to="#">
-                      <p className="h6 " style={{color:'#7C97B8'}}>探 索</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem
-                    onClick={
-                      () => {
-                        this.setState({
-                          chosen: 3
-                        });
-                        this.toggleCollapse('discover');
-
-                      }
-
-                    }
-                    onMouseEnter={
-                      () => {
-                        this.setState({
-                          hover: 3
-                        });
-                      }
-                    }
-                    onMouseLeave={
-                      () => {
-                        this.setState({
-                          hover:0
-                        });
-                      }
-                    }
-
-                    style={this.state.chosen === 3 ||this.state.hover === 3 ? {borderBottom: '4px solid #7C97B8'} : null}
-                  >
-                    <MDBNavLink to="/discovery/">
-                      <p className="h6 " style={{color:'#7C97B8'}}>| 文 章</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem
-                    onClick={
-                      () => {
-                        this.setState({
-                          chosen: 4
-                        });
-                        this.toggleCollapse('discover');
-
-                      }
-
-                    }
-                    onMouseEnter={
-                      () => {
-                        this.setState({
-                          hover: 4
-                        });
-                      }
-                    }
-                    onMouseLeave={
-                      () => {
-                        this.setState({
-                          hover:0
-                        });
-                      }
-                    }
-
-                    style={this.state.chosen === 4 ||this.state.hover === 4 ? {borderBottom: '4px solid #7C97B8'} : null}
-                  >
-                    <MDBNavLink to="/discovery/">
-                      <p className="h6 " style={{color:'#7C97B8'}}>| 视 频</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem
-                    onClick={
-                      () => {
-                        this.setState({
-                          chosen: 5
-                        });
-                        this.toggleCollapse('discover');
-
-                      }
-
-                    }
-                    onMouseEnter={
-                      () => {
-                        this.setState({
-                          hover: 5
-                        });
-                      }
-                    }
-                    onMouseLeave={
-                      () => {
-                        this.setState({
-                          hover:0
-                        });
-                      }
-                    }
-
-                    style={this.state.chosen === 5 ||this.state.hover === 5 ? {borderBottom: '4px solid #7C97B8'} : null}
-                  >
-                    <MDBNavLink to="/discovery/">
-                      <p className="h6 " style={{color:'#7C97B8'}}>| 人 脉</p>
-                    </MDBNavLink>
-                  </MDBNavItem>
-                </MDBNavbarNav>
-              </MDBCol>
-            </MDBNavbar>
-          </MDBCollapse>
-        </main>
+        <div style={{height:'90px'}}></div>
+        
       </div>
     );
   }
