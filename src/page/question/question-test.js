@@ -98,14 +98,8 @@ export class QuestionAnswer extends React.Component {
               </MDBCol>
 
             </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
-            </MDBRow>
+            <MDBRow><RelatedPosition></RelatedPosition></MDBRow>
+            <MDBRow><RelatedPosition></RelatedPosition></MDBRow>
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBNavLink,
   MDBBtn,
@@ -8,15 +8,14 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
 import {QuestionDes} from './question-description'
 import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
-import {getAsync} from '../../tool/api-helper'
-import RelatedPosition from './related'
+import {getAsync} from '../../../tool/api-helper'
 
-export class QuestionAnswer extends React.Component {
+export class QuestionModify extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,12 +23,12 @@ export class QuestionAnswer extends React.Component {
       firstTime: 1,
       selectType: 1
     };
-    this.text = QuestionAnswer.i18n[languageHelper()];
+    this.text = QuestionModify.i18n[languageHelper()];
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/question/${this.props.match.params.questionId}`)
-    console.log(result)
+    // const result = await getAsync(`/question/${this.props.match.params.questionId}`)
+    const result = await getAsync('/question/0100')
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
@@ -74,7 +73,6 @@ export class QuestionAnswer extends React.Component {
         ) : (
           <div>
             <Header></Header>
-
             <MDBRow>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
@@ -82,7 +80,7 @@ export class QuestionAnswer extends React.Component {
                   tags={this.state.backend.tags}
                   content={this.state.backend.content}
                   focus={this.state.backend.focus}
-                  reading={this.state.backend.reading}
+                  reading={this.state.backend.reading} 
                   questionId={this.props.match.params.questionId}>
                 </QuestionDes>
               </MDBCol>
@@ -98,14 +96,7 @@ export class QuestionAnswer extends React.Component {
               </MDBCol>
 
             </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
-            </MDBRow>
+
           </div>
         )}
       </div>
@@ -113,7 +104,7 @@ export class QuestionAnswer extends React.Component {
   }
 }
 
-QuestionAnswer.i18n = [
+QuestionModify.i18n = [
   {
     applyBefore: '申请截止'
   },
