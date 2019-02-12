@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import {CookiesProvider} from 'react-cookie';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -54,196 +53,194 @@ import {MobileTest2} from './page/trash/mobile-test-2';
 export class App extends Component {
   render() {
     return (
-      <CookiesProvider>
-        <BrowserRouter>
-          <div>
-            <Switch>
-              <Route
-                path="/"
-                exact
-                component={() => <Redirect to="/home"/>}
-              />
-              <Route
-                path="/application/"
-                component={routeProps => <Application {...routeProps} />}
-              />
-              <Route
-                path="/article/create"
-                component={routeProps => <ArticleCreate {...routeProps} />}
-              />
-              <Route
-                path="/article/:id/edit"
-                component={routeProps => <ArticleEdit {...routeProps} />}
-              />
-              <Route
-                path="/article/:id"
-                component={routeProps => <Article {...routeProps} />}
-              />
-              <Route
-                path="/best-for-you"
-                component={routeProps => <BestForYou {...routeProps} />}
-              />
-              <Route
-                path="/collection"
-                component={routeProps => <Collection {...routeProps} />}
-              />
-              <Route
-                path="/company/:id"
-                component={routeProps => <Company {...routeProps} />}
-              />
-              <Route
-                path="/discovery"
-                component={routeProps => <Discovery {...routeProps} />}
-              />
-              <Route
-                path="/employerhome"
-                component={routeProps => <Employerhome {...routeProps} />}
-              />
-              <Route
-                path="/help"
-                component={routeProps => <Help {...routeProps} />}
-              />
-              <Route
-                path="/home"
-                component={routeProps => <Home {...routeProps} />}
-              />
-              <Route
-                path="/hr"
-                component={routeProps => <HR {...routeProps} />}
-              />
-              <Route
-                path="/job-for-you"
-                component={routeProps => <JobForYou {...routeProps} />}
-              />
-              <Route
-                path="/job/:id"
-                component={routeProps => <Job {...routeProps} />}
-              />
-              <Route
-                path="/login"
-                component={routeProps => <Login {...routeProps} />}
-              />
-              <Route
-                path="/message"
-                component={routeProps => <Message {...routeProps} />}
-              />
-              <Route
-                path="/notification"
-                component={routeProps => <Notification {...routeProps} />}
-              />
-              <Route
-                path="/page-no-found"
-                component={routeProps => <PageNoFound {...routeProps} />}
-              />
-              <Route
-                path="/profile"
-                component={routeProps => <Profile {...routeProps} />}
-              />
-              <Route
-                path="/OnlineApplication"
-                component={routeProps => <OnlineApplication {...routeProps} />}
-              />
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              component={() => <Redirect to="/home"/>}
+            />
+            <Route
+              path="/application/"
+              component={routeProps => <Application {...routeProps} />}
+            />
+            <Route
+              path="/article/create"
+              component={routeProps => <ArticleCreate {...routeProps} />}
+            />
+            <Route
+              path="/article/:id/edit"
+              component={routeProps => <ArticleEdit {...routeProps} />}
+            />
+            <Route
+              path="/article/:id"
+              component={routeProps => <Article {...routeProps} />}
+            />
+            <Route
+              path="/best-for-you"
+              component={routeProps => <BestForYou {...routeProps} />}
+            />
+            <Route
+              path="/collection"
+              component={routeProps => <Collection {...routeProps} />}
+            />
+            <Route
+              path="/company/:id"
+              component={routeProps => <Company {...routeProps} />}
+            />
+            <Route
+              path="/discovery"
+              component={routeProps => <Discovery {...routeProps} />}
+            />
+            <Route
+              path="/employerhome"
+              component={routeProps => <Employerhome {...routeProps} />}
+            />
+            <Route
+              path="/help"
+              component={routeProps => <Help {...routeProps} />}
+            />
+            <Route
+              path="/home"
+              component={routeProps => <Home {...routeProps} />}
+            />
+            <Route
+              path="/hr"
+              component={routeProps => <HR {...routeProps} />}
+            />
+            <Route
+              path="/job-for-you"
+              component={routeProps => <JobForYou {...routeProps} />}
+            />
+            <Route
+              path="/job/:id"
+              component={routeProps => <Job {...routeProps} />}
+            />
+            <Route
+              path="/login"
+              component={routeProps => <Login {...routeProps} />}
+            />
+            <Route
+              path="/message"
+              component={routeProps => <Message {...routeProps} />}
+            />
+            <Route
+              path="/notification"
+              component={routeProps => <Notification {...routeProps} />}
+            />
+            <Route
+              path="/page-no-found"
+              component={routeProps => <PageNoFound {...routeProps} />}
+            />
+            <Route
+              path="/profile"
+              component={routeProps => <Profile {...routeProps} />}
+            />
+            <Route
+              path="/OnlineApplication"
+              component={routeProps => <OnlineApplication {...routeProps} />}
+            />
 
-              <Route
-                path="/question/create"
-                component={routeProps => <QuestionCreate {...routeProps} />}
-              />
-              <Route
-                path="/question/:questionId/edit"
-                component={routeProps => <QuestionEdit {...routeProps} />}
-              />
-              <Route
-                path="/question/:questionId/answer/create"
-                component={routeProps => <QuestionAnswerCreate {...routeProps} />}
-              />
-              <Route
-                path="/question/:questionId/answer/:answerId/edit"
-                component={routeProps => <QuestionAnswerEdit {...routeProps} />}
-              />
-              <Route
-                path="/question/:questionId"
-                component={routeProps => <QuestionAnswer {...routeProps} />}
-              />
+            <Route
+              path="/question/create"
+              component={routeProps => <QuestionCreate {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/edit"
+              component={routeProps => <QuestionEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/create"
+              component={routeProps => <QuestionAnswerCreate {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/:answerId/edit"
+              component={routeProps => <QuestionAnswerEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId"
+              component={routeProps => <QuestionAnswer {...routeProps} />}
+            />
 
-              <Route
-                path="/question/:questionId"
-                component={routeProps => null}
-              />
-              <Route
-                path="/recruit"
-                component={routeProps => <Recruit {...routeProps} />}
-              />
-              <Route
-                path="/register"
-                component={routeProps => <Register {...routeProps} />}
-              />
-              <Route
-                path="/search"
-                component={routeProps => <Search {...routeProps} />}
-              />
-              <Route
-                path="/setting"
-                component={routeProps => <Setting {...routeProps} />}
-              />
-              <Route
-                path="/video/create"
-                component={routeProps => <VideoCreate {...routeProps} />}
-              />
-              <Route
-                path="/video/:id/edit"
-                component={routeProps => <VideoEdit {...routeProps} />}
-              />
-              <Route
-                path="/video/:id"
-                component={routeProps => <Video {...routeProps} />}
-              />
-              {/* ====== Trash Begin ====== */}
-              <Route
-                path="/discoverybackup"
-                component={routeProps => <DiscoveryBackup {...routeProps} />}
-              />
-              <Route
-                path="/job-old"
-                component={routeProps => <JobDetailx {...routeProps} />}
-              />
-              <Route
-                path="/myfavorite"
-                component={routeProps => <MyFavorite {...routeProps} />}
-              />
-              <Route
-                path="/mypage"
-                component={routeProps => <Mypage {...routeProps} />}
-              />
-              <Route
-                path="/recommondation"
-                component={routeProps => <Recommondation {...routeProps} />}
-              />
-              <Route
-                path="/test"
-                component={routeProps => <Test {...routeProps} />}
-              />
-              <Route
-                path="/searchs1"
-                component={routeProps => <SearchS1 {...routeProps} />}
-              />
-              <Route
-                path="/searchs2"
-                component={routeProps => <SearchS2 {...routeProps} />}
-              />
-              <Route
-                path="/mobile-test-1"
-                component={routeProps => <MobileTest1 {...routeProps} />}
-              />
-              <Route
-                path="/mobile-test-2"
-                component={routeProps => <MobileTest2 {...routeProps} />}
-              />
-              {/* ====== Trash End ====== */}
-              <Redirect to="/page-no-found"/>
-            </Switch>
-          </div>
-        </BrowserRouter>
-      </CookiesProvider>
+            <Route
+              path="/question/:questionId"
+              component={routeProps => null}
+            />
+            <Route
+              path="/recruit"
+              component={routeProps => <Recruit {...routeProps} />}
+            />
+            <Route
+              path="/register"
+              component={routeProps => <Register {...routeProps} />}
+            />
+            <Route
+              path="/search"
+              component={routeProps => <Search {...routeProps} />}
+            />
+            <Route
+              path="/setting"
+              component={routeProps => <Setting {...routeProps} />}
+            />
+            <Route
+              path="/video/create"
+              component={routeProps => <VideoCreate {...routeProps} />}
+            />
+            <Route
+              path="/video/:id/edit"
+              component={routeProps => <VideoEdit {...routeProps} />}
+            />
+            <Route
+              path="/video/:id"
+              component={routeProps => <Video {...routeProps} />}
+            />
+            {/* ====== Trash Begin ====== */}
+            <Route
+              path="/discoverybackup"
+              component={routeProps => <DiscoveryBackup {...routeProps} />}
+            />
+            <Route
+              path="/job-old"
+              component={routeProps => <JobDetailx {...routeProps} />}
+            />
+            <Route
+              path="/myfavorite"
+              component={routeProps => <MyFavorite {...routeProps} />}
+            />
+            <Route
+              path="/mypage"
+              component={routeProps => <Mypage {...routeProps} />}
+            />
+            <Route
+              path="/recommondation"
+              component={routeProps => <Recommondation {...routeProps} />}
+            />
+            <Route
+              path="/test"
+              component={routeProps => <Test {...routeProps} />}
+            />
+            <Route
+              path="/searchs1"
+              component={routeProps => <SearchS1 {...routeProps} />}
+            />
+            <Route
+              path="/searchs2"
+              component={routeProps => <SearchS2 {...routeProps} />}
+            />
+            <Route
+              path="/mobile-test-1"
+              component={routeProps => <MobileTest1 {...routeProps} />}
+            />
+            <Route
+              path="/mobile-test-2"
+              component={routeProps => <MobileTest2 {...routeProps} />}
+            />
+            {/* ====== Trash End ====== */}
+            <Redirect to="/page-no-found"/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
