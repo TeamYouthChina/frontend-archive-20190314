@@ -8,6 +8,7 @@ import {
   MDBCardText,
   MDBBtn
 } from 'mdbreact';
+import {getAsync} from "../tool/api-helper";
 
 
 export class JobCardSquare extends React.Component {
@@ -20,27 +21,16 @@ export class JobCardSquare extends React.Component {
     };
     this.text = JobCardSquare.i18n[languageHelper()];
   }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        organization: {
-          id: 0,
-          name: 'New Frontier Data',
-          avatarUrl: 'https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/small/hs-emp-logo-data.?1478033500'
-        },
-        location: 'Washington, D.C, U.S.A', // It would be "1-200" in future.
-        type: 'Unpaid Part-Time Internship', // It would be defined in future.
-        deadLine: 1546300800,
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/job/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/job/1`)
+      });
+    }
   }
 
   render() {
@@ -69,16 +59,16 @@ export class JobCardSquare extends React.Component {
                 fontSize: '1rem'
               }}
             >
-              {this.state.backend.name}
+              {this.state.backend.content.name}
             </MDBCardTitle>
             <MDBCardText
               style={{
                 fontSize: '0.8rem'
               }}
             >
-              {this.state.backend.organization.name}
+              {this.state.backend.content.organization.name}
               <br/>
-              {this.state.backend.location}
+              {this.state.backend.content.location}
             </MDBCardText>
           </div>
           <MDBCardText
@@ -92,7 +82,7 @@ export class JobCardSquare extends React.Component {
               ((unixTimeStamp) => {
                 let d = new Date(unixTimeStamp * 1000);
                 return d.toUTCString();
-              })(this.state.backend.deadLine)
+              })(this.state.backend.content.deadLine)
             }
           </MDBCardText>
         </MDBCardBody>

@@ -6,18 +6,28 @@
     text-align: center;
 }
 
-.controlcopy {
-    display: block;
-    height: 40px;
-    widows: 100%;
-    margin-top: 57px;
-    text-align: center;
-}
-
 .submitButton {
     width: 172px;
     height: 40px;
     background: #727272;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0px;
+
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 16px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.submitButton:disabled{
+    width: 172px;
+    height: 40px;
+    background: #E4E4E4;
     padding: 0;
     box-sizing: border-box;
     border: 0px;
