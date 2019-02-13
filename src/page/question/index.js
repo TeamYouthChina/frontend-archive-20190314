@@ -14,7 +14,7 @@ import {QuestionDes} from './question-description'
 import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
 import {getAsync} from '../../tool/api-helper'
-import RelatedPosition from './related'
+import {QuestionCard} from './question-card-test'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -100,11 +100,11 @@ export class QuestionAnswer extends React.Component {
             </MDBRow>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
+              <MDBCol size="10"><QuestionCard></QuestionCard></MDBCol>
             </MDBRow>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><RelatedPosition></RelatedPosition></MDBCol>
+              <MDBCol size="10"><QuestionCard></QuestionCard></MDBCol>
             </MDBRow>
           </div>
         )}
