@@ -34,10 +34,10 @@ export class ReplyCard extends React.Component {
         id: 0,
         long: '关于这是一家什么公司，我想没有人比我更有发言权了',
         user: '齐昊',
-        to:'别人家的孩子',
+        to: '别人家的孩子',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        time:8,
-        allReplys:[1,2,3,4,5],
+        time: 8,
+        allReplys: [1, 2, 3, 4, 5],
         agree: '',
         disagree: '',
         status: {
@@ -52,7 +52,8 @@ export class ReplyCard extends React.Component {
   componentDidMount() {
 
   }
-  showReplys(){
+
+  showReplys() {
     let showReplys = !this.state.showReplys
     let commontsText = this.state.commontsText === '回复' ? '取消回复' : '回复'
     this.setState({
@@ -60,9 +61,10 @@ export class ReplyCard extends React.Component {
       commontsText
     })
   }
+
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{padding: '30px 0px 30px 30px',marginTop:'20px'}}>
+      <div style={{padding: '30px 0px 30px 30px', marginTop: '20px'}}>
         <div>
           <MDBRow style={{margin: '10px 0px'}}>
             <MDBAvatar style={{marginRight: '5px'}}>
@@ -92,7 +94,11 @@ export class ReplyCard extends React.Component {
               fontSize: '14px', ...basicFont
             }}>{this.state.backend.to}</span>
             <MDBCol right>
-              <span style={{float:'right',color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.time}个月前回复</span>
+              <span style={{
+                float: 'right',
+                color: '#3E4850',
+                fontSize: '14px', ...basicFont
+              }}>{this.state.backend.time}个月前回复</span>
             </MDBCol>
 
           </MDBRow>
@@ -121,24 +127,23 @@ export class ReplyCard extends React.Component {
           </MDBBtn>
         </MDBRow>
         {this.state.showReplys ? (
-          <div>
-            <div style={{background: 'linear-gradient(to left, transparent 0%, #8C8C8C 15%, #8C8C8C 85%, transparent 100%)', height: '1px'}}>
-            </div>
-            <MDBRow>
-              <MDBCol size="10" center>
-                <input type="email" className="form-control" placeholder="回复" />
-              </MDBCol>
-              <MDBCol style={{paddingLeft:'0px'}}>
-                <MDBBtn flat style={{background:'#C4C4C4',padding: '5px 10px',color:'#FFFFFF',...basicFont}}>
-                  发布
-                </MDBBtn>
-              </MDBCol>
 
-            </MDBRow>
-          </div>
+
+          <MDBRow>
+            <MDBCol size="10" center>
+              <input type="email" className="form-control" placeholder="回复"/>
+            </MDBCol>
+            <MDBCol style={{paddingLeft: '0px'}}>
+              <MDBBtn flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                发布
+              </MDBBtn>
+            </MDBCol>
+
+          </MDBRow>
           
+
         ) : null}
-        
+
       </div>
     ) : null;
   }
