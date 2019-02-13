@@ -11,7 +11,6 @@ import {
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
-import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
 import {getAsync} from '../../tool/api-helper'
 import {QuestionCard} from './question-card-test'
@@ -42,7 +41,7 @@ export class QuestionAnswer extends React.Component {
           },
           author: result.content.author,
           editTime: result.content.editTime,
-          answerList: result.content.answerList,
+          answerList: [1,2,3,4]||result.content.answerList,
           focus: result.content.focus || 123,
           reading: result.content.reading || 123,
           status: {
@@ -90,21 +89,11 @@ export class QuestionAnswer extends React.Component {
             <br/>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
-              <MDBCol size="8">
-                <QuestionAnswerPart answerLists={this.state.backend.answerList}></QuestionAnswerPart>
+              <MDBCol size="10">
+                {this.state.backend.answerList.map((item)=>(
+                  <QuestionCard key={item}></QuestionCard>
+                ))}
               </MDBCol>
-              <MDBCol size="23">
-                <QuestionBar></QuestionBar>
-              </MDBCol>
-
-            </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><QuestionCard></QuestionCard></MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol size="1"></MDBCol>
-              <MDBCol size="10"><QuestionCard></QuestionCard></MDBCol>
             </MDBRow>
           </div>
         )}

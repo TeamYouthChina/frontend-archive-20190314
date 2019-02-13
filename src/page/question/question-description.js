@@ -8,7 +8,12 @@ import {
   MDBRow,
   MDBIcon,
 } from 'mdbreact';
-
+const basicFont = {
+  fontFamily: 'IBM Plex Sans',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  lineHeight: 'normal',
+}
 
 export class QuestionDes extends React.Component {
   constructor(props) {
@@ -67,9 +72,9 @@ export class QuestionDes extends React.Component {
               })}
             </MDBRow>
             <br/>
-            <h3><strong>{this.props.content.title}</strong></h3>
+            <p style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.props.content.title}</p>
 
-            <h5>{this.props.content.descrption}</h5>
+            <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption}</p>
           </MDBCol>
           <MDBCol size="3">
             <MDBRow>
@@ -94,20 +99,20 @@ export class QuestionDes extends React.Component {
             关注问题
           </MDBBtn>
           <Link style={{color: '#fff'}} to={`/question/${this.props.questionId}/answer/create/`}>
-            <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+            <MDBBtn flat style={{padding: '5px 10px',}}>
               <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
             </MDBBtn>
           </Link>
-          <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+          <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
           </MDBBtn>
-          <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+          <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>评论
           </MDBBtn>
-          <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+          <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
           </MDBBtn>
-          <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+          <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
             举报
           </MDBBtn>

@@ -12,7 +12,7 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswerPart} from '../question/question-answer-part'
+import {QuestionAnswerPart} from '../question/trash/question-answer-part'
 
 export class Video extends React.Component {
   constructor(props) {

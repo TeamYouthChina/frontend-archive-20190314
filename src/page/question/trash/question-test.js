@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBNavLink,
   MDBBtn,
@@ -8,13 +8,13 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
-import {QuestionDes} from './question-description'
+import {Header} from '../../../general-component/header';
+import {Footer} from '../../../general-component/footer';
+import {QuestionDes} from '../question-description'
 import {QuestionAnswerPart} from './question-answer-part'
-import {QuestionBar} from './question-side-bar'
-import {getAsync} from '../../tool/api-helper'
-import RelatedPosition from './question-card-test'
+import {QuestionBar} from '../question-side-bar'
+import {getAsync} from '../../../tool/api-helper'
+import RelatedPosition from '../question-card-test'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -93,7 +93,7 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="8">
                 <QuestionAnswerPart answerLists={this.state.backend.answerList}></QuestionAnswerPart>
               </MDBCol>
-              <MDBCol size="23">
+              <MDBCol size="3">
                 <QuestionBar></QuestionBar>
               </MDBCol>
 

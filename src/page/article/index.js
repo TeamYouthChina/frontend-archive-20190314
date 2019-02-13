@@ -14,7 +14,7 @@ import {
 import './public/style.css';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswerPart} from '../question/question-answer-part'
+import {QuestionAnswerPart} from '../question/trash/question-answer-part'
 
 export class Article extends React.Component {
   constructor(props) {
