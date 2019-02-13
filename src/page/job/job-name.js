@@ -16,7 +16,8 @@ import {
   MDBModalBody,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {JobCardBar} from "../../general-component/job-card-bar";
+import {getAsync} from "../../tool/api-helper";
+
 
 export class JobName extends React.Component {
   constructor(props) {
@@ -36,27 +37,16 @@ export class JobName extends React.Component {
     });
   }
 
-
-  componentDidMount() {
-    let mockData =
-      {
-        id: 0,
-        name: '数据分析实习(2019 Summer), GE 通用电气',
-        organization: {
-          id: 0,
-          name: "string",
-          avatarUrl: "string"
-        },
-        location: '上海',
-        type: '实习（3月-6月）',
-        deadLine: '02/01/2019',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/job/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/job/1`)
+      });
+    }
   }
 
   render() {
@@ -81,7 +71,7 @@ export class JobName extends React.Component {
           <MDBCol md="8">
             <h5 className="font-weight-bold mb-3 p-0">
               <strong>
-                {this.state.backend.name}
+                {this.state.backend.content.name}
               </strong>
               <MDBIcon
                 icon="bookmark-o"
@@ -99,11 +89,11 @@ export class JobName extends React.Component {
             </h5>
             <br/>
             <Row>
-              <Col>{this.text.type}: {this.state.backend.type}</Col>
-              <Col>{this.text.deadline}: {this.state.backend.deadLine}</Col>
+              <Col>{this.text.type}: {this.state.backend.content.type}</Col>
+              <Col>{this.text.deadline}: {this.state.backend.content.deadLine}</Col>
             </Row>
             <Row>
-              <Col>{this.text.location}: {this.state.backend.location}</Col>
+              <Col>{this.text.location}: {this.state.backend.content.location}</Col>
               <Col>
                 <Row bottom>
                   <Col>

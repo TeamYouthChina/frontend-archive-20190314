@@ -172,7 +172,7 @@ export class Header extends React.Component {
             </MDBNavbarNav>
           </MDBNavbar>
         </div>
-        <div style={{height:'90px'}}></div>
+        <div style={{height:'78px'}}></div>
         
       </div>
     );
