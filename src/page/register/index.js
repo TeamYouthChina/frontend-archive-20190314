@@ -6,6 +6,12 @@ import {
   MDBRow,
   MDBCol,
   MDBBtn,
+  MDBIcon,
+  MDBInput,
+  MDBMask,
+  MDBView,
+  MDBModal,
+  Animation
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header';
@@ -17,72 +23,126 @@ import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 export class Register extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      showInfo: false
+      showInfo: false,
+      modal: false
     }
-    
+
     this.text = Register.i18n[languageHelper()];
   }
-  
-  infoHandler() {
+
+  toggleUserInfo = () => {
     this.setState({
-      showInfo: true
+      modal: !this.state.modal
     });
   }
-  
+
+  // infoHandler() {
+  //   this.setState({
+  //     showInfo: true
+  //   });
+  // }
+
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    const btnColor = '#7C97B8';
+
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
+
     return (
       <MDBContainer
         fluid
         style={{padding: 0}}
       >
         <Header/>
-        {this.state.showInfo ? <UserInfo/> :
-          (<MDBContainer>
-            <MDBRow center>
-              <MDBCol md="6">
-                <form className="mx-5 my-5">
-                  <p className="display-4 font-weight-lighter text-center my-5">Sign Up</p>
-                  <div className="input-group mb-3 d-flex">
-                    <label htmlFor="defaultFormLoginEmailEx" className="grey-text my-2 mr-2">
-                      {this.text.email}
-                    </label>
-                    <input
+        <MDBRow className="m-0">
+          <MDBModal isOpen={this.state.modal} toggle={() => this.toggleUserInfo()} size="lg" position="center">
+            <UserInfo className="mx-5 px-5"/>
+          </MDBModal>
+          <MDBCol className="p-0" md="7">
+            <Animation type="fadeInLeft" duration="2s">
+              <MDBView hover>
+                <img className="img-fluid"
+                     src="https://images.unsplash.com/photo-1522152302542-71a8e5172aa1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3010&q=80"/>
+                <MDBMask className="flex-center" overlay="grey-light">
+                  <p className="h1 white-text">海外留学生找工作快捷通道</p>
+                </MDBMask>
+              </MDBView>
+            </Animation>
+          </MDBCol>
+          <MDBCol md="5">
+            <Animation type="fadeInRight" duration="2s" delay="1s">
+              <MDBRow className="my-4">
+                <MDBCol className="mt-5 offset-2" size="8">
+                  <div className="text-center">
+                    <Animation type="fadeInRight" duration="3s">
+                      <p className="mb-1" style={{
+                        color: '#757575',
+                        fontSize: '1.5rem'
+                      }}>
+                        开启智能求职之旅吧！
+                      </p>
+                    </Animation>
+                    <br/>
+                    <br/>
+                    <Animation type="fadeInRight" duration="2.5s">
+                      <p style={{
+                        color: '#757575',
+                        fontSize: '2.25rem',
+                        fontWeight: '500'
+                      }}>
+                        <MDBIcon className="mr-3" color="grey" icon="circle"/>
+                        Youth China
+                      </p>
+                    </Animation>
+                  </div>
+                  <form>
+                    <MDBInput
+                      label="邮箱"
+                      group
                       type="email"
-                      id="defaultFormLoginEmailEx"
-                      className="form-control"
+                      validate
+                      error="wrong"
+                      success="right"
                     />
-                  </div>
-
-                  <br/>
-
-                  <div className="input-group d-flex">
-                    <label htmlFor="defaultFormLoginPasswordEx" className="grey-text my-2 mr-2">
-                      {this.text.password}
-                    </label>
-                    <input
+                    <MDBInput
+                      label="手机号"
+                      group
+                      type="text"
+                      validate
+                    />
+                    <MDBInput
+                      label="密码"
+                      group
                       type="password"
-                      id="defaultFormLoginPasswordEx"
-                      className="form-control"
+                      validate
                     />
-                  </div>
-                  
-                  <div className="text-center mt-4">
-                    <MDBBtn color="indigo" onClick={() => (this.infoHandler())}>
-                      {this.text.submitBtn}
-                    </MDBBtn>
-                  </div>
-                </form>
-              </MDBCol>
-            </MDBRow>
-          </MDBContainer>)
-        }
-        <Footer />
+                    <div className="text-center mb-3">
+                      <MDBBtn
+                        className="btn-block z-depth-1a"
+                        color={btnColor}
+                        style={{
+                          backgroundColor: '#7C97B8'
+                        }} onClick={() => (this.toggleUserInfo())}>
+                        注册
+                      </MDBBtn>
+                    </div>
+                  </form>
+                  <p className="my-3 font-small grey-text d-flex justify-content-end">
+                    已有账号?
+                    <a href="/login" className="blue-text ml-1">
+                      登陆
+                    </a>
+                  </p>
+                </MDBCol>
+              </MDBRow>
+            </Animation>
+          </MDBCol>
+        </MDBRow>
+        <Footer/>
       </MDBContainer>
     );
   }
