@@ -44,7 +44,7 @@ export class AnswerText extends React.Component {
     
     this.setState({ editorState});
     let a = JSON.stringify(this.state.editorState.toRAW(true))
-    console.log(Object.assign({blocks:this.state.editorState.toRAW(true)},{id:1}));
+    // console.log(Object.assign({blocks:this.state.editorState.toRAW(true)},{id:1}));
   }
   
   
@@ -58,7 +58,7 @@ export class AnswerText extends React.Component {
       // 构建键值对，给内容加标记
       const fd = new FormData()
       const  result = await getAsync(serverURL)
-      console.log(result,'result')
+      // console.log(result,'result')
       const successFn = (response) => {
         // 假设服务端直接返回文件上传后的地址
         // 上传成功后调用param.success并传入上传后的文件地址
@@ -101,20 +101,20 @@ export class AnswerText extends React.Component {
     const { editorState } = this.state
 
     return (
-      <div>
-        <div className="editor-wrapper">
-          <BraftEditor className="myAnswerText" media={{uploadFn: myUploadFn}}
-            value={editorState}
+      <div className="textForQuestion">
+        <div className="editor-wrapper" style={{height:'100%'}}>
+          <BraftEditor media={{uploadFn: myUploadFn}}
+            value={editorState} contentStyle={{height:'100%'}}
             onChange={(editorState)=>{this.handleEditorChange(editorState)}
             }
           />
         </div>
         <br/>
-        {this.state.showNow === 0 ? null : (
-          <div className="output-content" 
-               dangerouslySetInnerHTML={{ __html: editorState.toHTML()}}>
-          </div>
-        )}
+        {/*{this.state.showNow === 0 ? null : (*/}
+          {/*<div className="output-content" */}
+               {/*dangerouslySetInnerHTML={{ __html: editorState.toHTML()}}>*/}
+          {/*</div>*/}
+        {/*)}*/}
       </div>
     )
 

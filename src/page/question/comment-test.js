@@ -22,10 +22,14 @@ export class CommentsCard extends React.Component {
     this.state = {
       backend: null,
       showReplys: false,
-      commontsText: '回复',
+      showGive:false,
+      commontsText: '查看回复',
+      giveCommons:'回复',
       stickyRow: {}
     }
     this.showReplys = this.showReplys.bind(this);
+    this.giveReplys = this.giveReplys.bind(this);
+    this.addComments = this.addComments.bind(this);
     this.text = CommentsCard.i18n[languageHelper()];
   }
 
@@ -36,8 +40,8 @@ export class CommentsCard extends React.Component {
         long: '关于这是一家什么公司，我想没有人比我更有发言权了',
         user: '齐昊',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        time:8,
-        allReplys:[1,2,3,4,5],
+        time: 8,
+        allReplys: [1, 2,],
         agree: '',
         disagree: '',
         status: {
@@ -52,17 +56,41 @@ export class CommentsCard extends React.Component {
   componentDidMount() {
 
   }
-  showReplys(){
+
+  showReplys() {
     let showReplys = !this.state.showReplys
-    let commontsText = this.state.commontsText === '回复' ? '收起回复' : '回复'
+    let commontsText = this.state.commontsText === '查看回复' ? '收起回复' : '查看回复'
     this.setState({
       showReplys,
       commontsText
     })
   }
+  giveReplys(){
+    let showGive = !this.state.showGive
+    let giveCommons = this.state.giveCommons === '回复' ? '取消回复' : '回复'
+    this.setState({
+      showGive,
+      giveCommons
+    })
+  }
+  addComments(e,input){
+    let {allReplys = []} = this.state.backend
+    allReplys.unshift(input.value)
+    // console.log(commentLists,this.props.id)
+    this.setState({
+      backend:{
+        allReplys,
+        ...this.state.backend
+      }
+    })
+    e.stopPropagation();
+  }
+
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{padding: '30px 0 30px 30px',marginTop:'20px'}}>
+
+
+      <div style={{padding: '30px 0 30px 30px', marginTop: '20px'}}>
         <div>
           <MDBRow style={{margin: '10px 0px'}}>
             <MDBAvatar style={{marginRight: '5px'}}>
@@ -80,15 +108,19 @@ export class CommentsCard extends React.Component {
               fontSize: '14px', ...basicFont
             }}>{this.state.backend.user}</span>
             <MDBCol right>
-              <span style={{float:'right',color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.time}个月前回复</span>
+              <span style={{
+                float: 'right',
+                color: '#3E4850',
+                fontSize: '14px', ...basicFont
+              }}>{this.state.backend.time}个月前回复</span>
             </MDBCol>
-            
+
           </MDBRow>
-          
-          <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
-          
+
+          <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{typeof this.props.message === 'string' ? this.props.message : this.state.backend.long}</span>
+
         </div>
-        
+
         <MDBRow style={this.state.stickyRow}>
           <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>支持
@@ -103,23 +135,36 @@ export class CommentsCard extends React.Component {
           <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
           </MDBBtn>
-          <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-            举报
+          <MDBBtn onClick={this.giveReplys} flat style={{padding: '5px 10px',}}>
+            <MDBIcon style={{marginRight: '5px'}} icon="reply"/>
+            {this.state.giveCommons}
           </MDBBtn>
         </MDBRow>
+        {this.state.showGive ? (
+          <MDBRow>
+            <MDBCol size="10" center>
+              <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
+            </MDBCol>
+            <MDBCol style={{paddingLeft: '0px'}}>
+              <MDBBtn onClick={(e)=>this.addComments(e,this.input)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                发布
+              </MDBBtn>
+            </MDBCol>
+
+          </MDBRow>
+        ):null}
         {this.state.showReplys ? (
           <div>
-            <div style={{background: 'linear-gradient(to left, transparent 0%, #8C8C8C 15%, #8C8C8C 85%, transparent 100%)', height: '1px'}}>
-            </div>
             {this.state.backend.allReplys.map((item) => (
-                <ReplyCard key={item} item={item}></ReplyCard>
+                <ReplyCard addComments={this.addComments} key={item} item={item}></ReplyCard>
               )
             )}
-          </div>
-          
-        ) : null}
+          </div>) : null}
+
+
       </div>
+      
+
     ) : null;
   }
 }

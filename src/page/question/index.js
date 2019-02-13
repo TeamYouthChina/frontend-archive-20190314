@@ -28,7 +28,7 @@ export class QuestionAnswer extends React.Component {
 
   async componentDidMount() {
     const result = await getAsync(`/question/${this.props.match.params.questionId}`)
-    console.log(result)
+    // console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
@@ -41,7 +41,7 @@ export class QuestionAnswer extends React.Component {
           },
           author: result.content.author,
           editTime: result.content.editTime,
-          answerList: [1,2,3,4]||result.content.answerList,
+          answerList: [1,2,]||result.content.answerList,
           focus: result.content.focus || 123,
           reading: result.content.reading || 123,
           status: {
@@ -91,7 +91,7 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard key={item}></QuestionCard>
+                  <QuestionCard key={item} id={item}></QuestionCard>
                 ))}
               </MDBCol>
             </MDBRow>
