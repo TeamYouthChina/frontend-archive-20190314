@@ -1,13 +1,13 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {CommentsCard} from './comment-test'
-
+import {PaginationUse} from './pagination-test'
 import {
   MDBBtn,
   MDBRow,
   MDBCol,
   MDBIcon,
-  MDBAvatar,
+  MDBAvatar
 } from 'mdbreact';
 
 const basicFont = {
@@ -26,9 +26,13 @@ export class QuestionCard extends React.Component {
       showBottom:true,
       showComments:false,
       commontsText:'评论',
+      pageConfig: {
+        totalPage: 14 //总页码
+      },
       stickyRow: {background: '#FFFFFF'}
     }
     this.handleSpanClick = this.handleSpanClick.bind(this);
+    this.getCurrentPage = this.getCurrentPage.bind(this);
     this.showComments = this.showComments.bind(this);
     this.orderScroll = this.orderScroll.bind(this)
     this.text = QuestionCard.i18n[languageHelper()];
@@ -109,6 +113,10 @@ export class QuestionCard extends React.Component {
       showComments,
       commontsText
     })
+  }
+  // todo,拿到点击好的页吗
+  getCurrentPage(currentPage){
+    
   }
   
   componentWillUnmount() {
@@ -192,6 +200,7 @@ export class QuestionCard extends React.Component {
               </MDBCol>
 
             </MDBRow>
+            <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
           </div>
           
         ) : null}
