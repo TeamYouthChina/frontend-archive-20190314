@@ -200,7 +200,9 @@ export class QuestionCard extends React.Component {
               </MDBCol>
 
             </MDBRow>
-            <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+            <MDBRow center style={{marginTop:'10px'}}>
+              <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+            </MDBRow>
           </div>
           
         ) : null}
