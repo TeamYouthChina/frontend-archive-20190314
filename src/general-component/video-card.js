@@ -58,35 +58,28 @@ export class VideoCard extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard>
-        <MDBRow>
-          <MDBCol md="3">
-            <MDBCardImage className="img-fluid"
-                          src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"/>
-          </MDBCol>
-          <MDBCol md="9">
-            <h3 className="h3-responsive">
-              {this.state.backend.heading}
-            </h3>
-            <p>
-              {this.state.backend.username}
-              &nbsp;
-              &nbsp;
-              <MDBIcon icon="user"/>
-              &nbsp;
-              &nbsp;
-              {this.state.backend.numberofviews}
-              &nbsp;
-              &middot;
-              &nbsp;
-              {this.state.backend.timeofpublication}
-            </p>
-            <p style={{fontSize: "large"}}>
-              {this.state.backend.content}
-            </p>
+      <MDBCard news className="my-5" style={{boxShadow: 'none'}}>
+        <div className="embed-responsive embed-responsive-16by9" style={{width: "400px"}}>
+          <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
+                  allowFullScreen></iframe>
 
-          </MDBCol>
-        </MDBRow>
+        </div>
+        <MDBCardBody>
+          <div className="social-meta">
+            <p className="h3">
+              Heading
+            </p>
+            <div className="content" style={{marginTop: "2rem"}}>
+              <div className="right-side-meta">2 h ago</div>
+              <img
+                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg"
+                alt=""
+                className="rounded-circle avatar-img z-depth-1-half"
+              />
+              Tony
+            </div>
+          </div>
+        </MDBCardBody>
       </MDBCard>
     ) : null;
   }
@@ -96,3 +89,4 @@ VideoCard.i18n = [
   {},
   {},
 ];
+
