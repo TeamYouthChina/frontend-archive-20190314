@@ -33,6 +33,7 @@ import {Application} from './page/application';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
+import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -142,6 +143,10 @@ export class App extends Component {
             <Route
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
+            />
+            <Route
+              path="/ProfileNew"
+              component={routeProps => <ProfileNew {...routeProps} />}
             />
             <Route
               path="/question/create"
