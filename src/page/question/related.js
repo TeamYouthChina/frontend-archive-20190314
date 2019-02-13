@@ -20,6 +20,7 @@ class RelatedPosition extends React.Component {
     this.state = {
       backend: null,
       isCollapsed: true,
+      showBottom:true,
       stickyRow: {background: '#FFFFFF'}
     }
     this.handleSpanClick = this.handleSpanClick.bind(this);
@@ -73,94 +74,68 @@ class RelatedPosition extends React.Component {
   orderScroll() {
     setTimeout(() => {
       if (this.scrollSpan) {
-        let discount = this.scrollMyRow.getBoundingClientRect().top - this.scrollSpan.getBoundingClientRect().top
-        console.log(discount,this.state.stickyRow)
-        if (discount < 120) {
-          console.log(discount, this.scrollMyRow.getBoundingClientRect().top, this.scrollSpan.getBoundingClientRect().top)
+        if (this.scrollSpan.getBoundingClientRect().top > 250) {
           this.setState({
-            stickyRow: {
-              background: '#FFFFFF',
-              position: 'sticky',
-              top: '100px'
-            }
+            showBottom:false
           })
 
-        } else if (discount > 140 && discount !== 288) {
-          console.log(discount, this.scrollMyRow.getBoundingClientRect().top, this.scrollSpan.getBoundingClientRect().top)
+        } else if (this.scrollSpan.getBoundingClientRect().top < 240) {
           this.setState({
-            stickyRow: {
-              background: '#FFFFFF',
-              position: 'sticky',
-              bottom: '0px'
-            }
+            showBottom:true
           })
         }
 
       }
     }, 100)
-
   }
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{padding: '30px'}}>
+      <div style={{padding: '30px'}} ref={(span) => this.scrollSpan = span}>
         <h4 style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</h4>
-        <dl>
-          {this.state.isCollapsed ? (
-            <dd>
-              <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
-              <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>  {this.state.backend.short}</span>
-              <span onClick={this.handleSpanClick}
-                    style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
-            </dd>
-          ) : (
-            <dd ref={(span) => this.scrollSpan = span}>
-              <span
-                style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
-
-            </dd>
-          )}
-
-          <br/>
-          <dt ref={(row) => this.scrollMyRow = row} style={this.state.stickyRow}>
-            <MDBRow >
-              <div >
-                <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
-                  <MDBIcon style={{marginRight: '5px'}} far icon="star"/>关注问题
-                </MDBBtn>
-
-                <MDBBtn flat style={{padding: '5px 10px',}}>
-                  <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
-                </MDBBtn>
-                <MDBBtn flat style={{padding: '5px 10px',}}>
-                  <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
-                </MDBBtn>
-                <MDBBtn flat style={{padding: '5px 10px',}}>
-                  <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>评论
-                </MDBBtn>
-                <MDBBtn flat style={{padding: '5px 10px',}}>
-                  <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
-                </MDBBtn>
-                <MDBBtn flat style={{padding: '5px 10px',}}>
-                  <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-                  举报
-                </MDBBtn>
-                {this.state.isCollapsed ? null :
-                  <MDBBtn onClick={this.handleSpanClick} flat
-                          style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}>
-                    收起
-                    <MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>
-                  </MDBBtn>}
-              </div>
-
-
-            </MDBRow>
-          </dt>
-          
-        </dl>
         
+        {this.state.isCollapsed ? (
+          <div>
+            <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
+            <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>  {this.state.backend.short}</span>
+            <span onClick={this.handleSpanClick} style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
+          </div>
+        ) : (
+          <div>
+            <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
+          </div>
+        )}
+        <br/>
+        {this.state.showBottom || this.state.isCollapsed ? (
+          <MDBRow style={this.state.stickyRow}>
+            <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+              <MDBIcon style={{marginRight: '5px'}} far icon="star"/>关注问题
+            </MDBBtn>
 
-
+            <MDBBtn flat style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
+            </MDBBtn>
+            <MDBBtn flat style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
+            </MDBBtn>
+            <MDBBtn flat style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>评论
+            </MDBBtn>
+            <MDBBtn flat style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+            </MDBBtn>
+            <MDBBtn flat style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
+              举报
+            </MDBBtn>
+            {this.state.isCollapsed ? null :
+              <MDBBtn onClick={this.handleSpanClick} flat style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}>
+                收起
+                <MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>
+              </MDBBtn>}
+          </MDBRow>
+        ) : null}
+        
       </div>
     ) : null;
   }
