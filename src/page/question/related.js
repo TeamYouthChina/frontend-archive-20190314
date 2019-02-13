@@ -24,6 +24,7 @@ class RelatedPosition extends React.Component {
       stickyRow: {background: '#FFFFFF'}
     }
     this.handleSpanClick = this.handleSpanClick.bind(this);
+    this.orderScroll = this.orderScroll.bind(this)
     this.text = RelatedPosition.i18n[languageHelper()];
   }
 
@@ -68,14 +69,16 @@ class RelatedPosition extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.orderScroll.bind(this));
+    window.addEventListener('scroll', this.orderScroll);
   }
 
   orderScroll() {
     setTimeout(() => {
       if (!this.state.isCollapsed) {
+        // 浏览器窗口减去元素的高度
         let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
         console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
+        // 手动给的250
         if (discount < 250) {
           this.setState({
             showBottom:false
@@ -89,6 +92,9 @@ class RelatedPosition extends React.Component {
 
       }
     }, 100)
+  }
+  componentWillUnmount() {
+    window.removeListener('scroll', this.orderScroll);
   }
 
   render() {
