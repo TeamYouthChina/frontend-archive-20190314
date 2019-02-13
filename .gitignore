@@ -216,3 +216,7 @@ typings/
 .next
 
 # [.gitignore]
+
+update.txt
+.nvm
+package-lock.json
