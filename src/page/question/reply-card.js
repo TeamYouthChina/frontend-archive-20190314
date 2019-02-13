@@ -25,6 +25,7 @@ export class ReplyCard extends React.Component {
       stickyRow: {}
     }
     this.showReplys = this.showReplys.bind(this);
+    
     this.text = ReplyCard.i18n[languageHelper()];
   }
 
@@ -37,7 +38,7 @@ export class ReplyCard extends React.Component {
         to: '别人家的孩子',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         time: 8,
-        allReplys: [1, 2, 3, 4, 5],
+        allReplys: [1, ],
         agree: '',
         disagree: '',
         status: {
@@ -61,7 +62,6 @@ export class ReplyCard extends React.Component {
       commontsText
     })
   }
-
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div style={{padding: '30px 0px 30px 30px', marginTop: '20px'}}>
@@ -131,10 +131,10 @@ export class ReplyCard extends React.Component {
 
           <MDBRow>
             <MDBCol size="10" center>
-              <input type="email" className="form-control" placeholder="回复"/>
+              <input ref={(input)=>this.input=input} type="email" className="form-control" placeholder="回复"/>
             </MDBCol>
             <MDBCol style={{paddingLeft: '0px'}}>
-              <MDBBtn flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+              <MDBBtn onClick={(e)=>this.props.addComments(e,this.input)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
                 发布
               </MDBBtn>
             </MDBCol>

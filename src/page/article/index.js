@@ -14,7 +14,15 @@ import {
 import './public/style.css';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswerPart} from '../question/trash/question-answer-part'
+import {CommentsCard} from "../question/comment-test";
+import {PaginationUse} from "../question/pagination-test";
+
+const basicFont = {
+  fontFamily: 'IBM Plex Sans',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  lineHeight: 'normal',
+}
 
 export class Article extends React.Component {
   constructor(props) {
@@ -23,7 +31,10 @@ export class Article extends React.Component {
     * */
     this.state = {
       backend: null,
-      ifShown: 'none',
+      ifShown: false,
+      pageConfig: {
+        totalPage: 14 //总页码
+      },
     };
     this.text = Article.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
@@ -57,6 +68,7 @@ export class Article extends React.Component {
         title: 'this is a title',
         date: '26/08/2018',
         author: 'John Smith',
+        commentLists: [1, 2],
         status: {
           code: 2000
         }
@@ -152,8 +164,27 @@ export class Article extends React.Component {
                   </MDBRow>
                   {ifShown && (
                     <div>
-                      <br/>
-                      <QuestionAnswerPart></QuestionAnswerPart>
+                      <div>
+                        {this.state.backend.commentLists.map((item)=>(
+                          <CommentsCard key={item} message={item}></CommentsCard>
+
+                        ))}
+
+                        <MDBRow>
+                          <MDBCol size="10" center>
+                            <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
+                          </MDBCol>
+                          <MDBCol style={{paddingLeft: '0px'}}>
+                            <MDBBtn onClick={(e)=>this.addComments(e)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                              发布
+                            </MDBBtn>
+                          </MDBCol>
+
+                        </MDBRow>
+                        <MDBRow center style={{marginTop: '10px'}}>
+                          <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                        </MDBRow>
+                      </div>
                     </div>
                     
                   )}
