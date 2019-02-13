@@ -27,7 +27,7 @@ export const getAsync = async (urlSuffix) => {
   return await get(urlSuffix);
 };
 
-const get = (urlSuffix) => {
+export const get = (urlSuffix) => {
   return fetch(
     `${urlPrefix}${urlSuffix}`,
     {
