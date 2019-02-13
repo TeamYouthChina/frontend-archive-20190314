@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router } from "react-router-dom";
 import {
   MDBCol,
   MDBCollapse,
@@ -7,7 +7,7 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBIcon,
+  MDBRow,
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
@@ -15,7 +15,8 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBMask,
-  MDBView
+  MDBView,
+  MDBBtn
 } from 'mdbreact';
 
 export class HomeHeader extends React.Component {
@@ -24,129 +25,122 @@ export class HomeHeader extends React.Component {
     this.state = {
       collapse: false,
       isWideEnough: false
-    };
-    this.onClick = this.onClick.bind(this);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      collapse: false,
-    };
-
+    }
   }
-
-  onClick() {
+  
+  handleTogglerClick = () => {
     this.setState({
-      collapse: !this.state.collapse
+      collapsed: !this.state.collapsed
     });
-  }
-
-  toggle() {
-    this.setState({collapse: !this.state.collapse});
-  }
+  };
 
   render() {
+    const navStyle = { marginTop: "4rem" };
+    const overlay = (
+      <div
+        id="sidenav-overlay"
+        style={{ backgroundColor: "transparent" }}
+        onClick={this.handleTogglerClick}
+      />
+    );
     return (
+
       <div>
-        <header>
-          <MDBNavbar color="indigo darken-1" dark expand="md" fixed="top" scrolling transparent>
-            <MDBCol md="1">
-              <MDBNavbarBrand href="/">
-                <strong>YouthChina</strong>
-              </MDBNavbarBrand>
-            </MDBCol>
-            {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick}/>}
-            <MDBCollapse isOpen={this.state.collapse} navbar>
-              <MDBCol md="4">
-                <MDBNavbarNav>
-                  {
-                    /*
+        <Router>
+          <div>
+            <MDBNavbar color="indigo darken-1" dark expand="md" fixed="top" scrolling transparent>
+              <MDBCol md="1">
+                <MDBNavbarBrand href="/">
+                  <strong>YouthChina</strong>
+                </MDBNavbarBrand>
+              </MDBCol>
+              {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.handleTogglerClick} />}
+              <MDBCollapse isOpen={this.state.collapse} navbar>
+                <MDBCol md="4">
+                  <MDBNavbarNav>
                     <MDBNavItem>
+                      <MDBDropdown>
+                        <MDBDropdownToggle nav>
+                          <div className="d-none d-md-inline">探 索</div>
+                        </MDBDropdownToggle>
+                        <MDBDropdownMenu style={{marginTop:'20px'}}>
+                          <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
+                          <MDBDropdownItem divider/>
+                          <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
+                          <MDBDropdownItem divider/>
+                          <MDBDropdownItem href="/discovery/question-answer">问 答</MDBDropdownItem>
+                          <MDBDropdownItem divider/>
+                          <MDBDropdownItem href="/discovery/video">视 频</MDBDropdownItem>
+                          <MDBDropdownItem divider/>
+                          <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
+                        </MDBDropdownMenu>
+                      </MDBDropdown>
+                    </MDBNavItem>
+                  </MDBNavbarNav>
+                </MDBCol>
+                <MDBNavbarNav>
+                  <MDBNavLink to="/search/s1">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="搜索"
+                      aria-label="Search"
+                    />
+                  </MDBNavLink>
+                </MDBNavbarNav>
+                <MDBNavbarNav right style={{marginRight: '5em'}}>
+                  <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
+                    <img
+                      src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                      className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
+                      alt="Sample avatar"
+                    />
+                  </MDBNavItem>
+                  <MDBNavItem style={{marginTop:'5px'}}>
                     <MDBDropdown>
                       <MDBDropdownToggle nav>
-                        <div className="d-none d-md-inline">职 务</div>
+                        <p className="h6">Zhicheng</p>
                       </MDBDropdownToggle>
-                      <MDBDropdownMenu>
-                        <MDBDropdownItem href="#!">实 习</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="#!">校园招聘</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="#!">社会招聘</MDBDropdownItem>
-                      </MDBDropdownMenu>
-                    </MDBDropdown>
-                  </MDBNavItem> 
-                    */
-                  }
-                  <MDBNavItem>
-                    <MDBDropdown>
-                      <MDBDropdownToggle nav>
-                        <div className="d-none d-md-inline">探 索</div>
-                      </MDBDropdownToggle>
-                      <MDBDropdownMenu style={{marginTop:'20px'}}>
-                        <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/question-answer">问 答</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/video">视 频</MDBDropdownItem>
-                        <MDBDropdownItem divider/>
-                        <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
+                      <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
+                        <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
+                        <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
+                        <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
                 </MDBNavbarNav>
+              </MDBCollapse>
+            </MDBNavbar>
+            {this.state.collapsed && overlay}
+          </div>
+        </Router>
+        <MDBView>
+          <img 
+            className="d-block w-100 img-fluid" 
+            src="http://47.254.46.117:5000/home/home.png"
+           
+          />
+          <MDBMask
+            overlay="stylish-strong"
+            className="flex-center  text-white"
+          >
+            <MDBRow between>
+              <MDBCol>
+                <p style={{fontFamily:'Ping Fang SC',fontSize:'12px'}}>超过10,000家公司资源</p>
+                <p style={{fontFamily:'Raleway',fontWeight:'bold',fontSize:'56px'}}>YouthChina</p>
+                <p style={{fontFamily:'Ping Fang SC',fontSize:'18px'}}>为1000万华人留学生打造的只能求职社交平台</p>
+                <br/>
+                <p> <MDBBtn rounded color="indigo">开启求职之旅</MDBBtn> </p>
               </MDBCol>
-              <MDBNavbarNav>
-                <MDBNavLink to="/search/s1">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="搜索"
-                    aria-label="Search"
-                  />
-                </MDBNavLink>
-              </MDBNavbarNav>
-              <MDBNavbarNav right style={{marginRight: '5em'}}>
-                <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
-                  <img
-                    src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
-                    className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
-                    alt="Sample avatar"
-                  />
-                </MDBNavItem>
-                <MDBNavItem style={{marginTop:'5px'}}>
-                  <MDBDropdown>
-                    <MDBDropdownToggle nav>
-                      <p className="h6">Zhicheng</p>
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
-                      <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
-                      <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
-                      <MDBDropdownItem href="#!">退出</MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavItem>
-              </MDBNavbarNav>
-            </MDBCollapse>
-          </MDBNavbar>
-          <MDBView>
-            <img className="d-block w-100" src="https://ws1.sinaimg.cn/large/94365dd2ly1fydxiftsgaj20sg0aygnj.jpg"/>
-            <MDBMask
-              overlay="indigo-light"
-              style={{
-                flexDirection: 'column',
-                height: '100vh'
-              }}
-              className="flex-center  text-white text-center"
-            >
-              <h2>YouthChina</h2>
-              <h5>欢迎，这是一句话</h5>
-              <br/>
-              <p>Full page intro with background image will be always displayed in full screen mode, regardless of
-                device </p>
-            </MDBMask>
-          </MDBView>
-        </header>
+              <MDBCol>
+                <p style={{fontFamily:'Ping Fang SC',fontSize:'36px'}}>"</p>
+                <p style={{fontFamily:'Ping Fang SC',fontSize:'24px'}}>IBM的面试主要分为三个阶段，最重要的是考验你的逻辑思维的能力</p>
+                <p style={{fontFamily:'Ping Fang SC',fontSize:'16px',textAlign:'end'}}>---郭同学</p>
+                <p><MDBBtn flat>更多经验分享</MDBBtn></p>
+              </MDBCol>
+            </MDBRow>
+          </MDBMask>
+        </MDBView>
       </div>
     );
   }

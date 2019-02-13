@@ -154,7 +154,7 @@ export class Company extends React.Component {
                   在此实习学生
                 </strong>
               </h4>
-              <MDBRow between>
+              <MDBRow>
                 <MDBCol>
                   <ApplicantCard/>
                 </MDBCol>
@@ -164,9 +164,8 @@ export class Company extends React.Component {
                 <MDBCol>
                   <ApplicantCard/>
                 </MDBCol>
-                <MDBCol>
-                  <ApplicantCard/>
-                </MDBCol>
+
+
               </MDBRow>
             </p>
           </MDBCol>

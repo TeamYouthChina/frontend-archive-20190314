@@ -4,15 +4,11 @@ import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCardTitle,
   MDBCardText,
-  MDBBtn,
   MDBRow,
   MDBCol,
-  MDBIcon,
-  MDBAvatar,
-  MDBCollapse
+  MDBAvatar
 } from 'mdbreact';
 
 export class ProjExpCard extends React.Component {
@@ -61,7 +57,7 @@ export class ProjExpCard extends React.Component {
         >
           <MDBRow>
             <MDBCol>
-              <MDBRow >
+              <MDBRow>
                 {this.props.url ? <MDBAvatar
                   tag="img"
                   src={this.props.url}

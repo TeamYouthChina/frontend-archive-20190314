@@ -12,7 +12,8 @@ import {
   MDBNavbarToggler,
   MDBNavItem,
   MDBNavLink,
-  MDBRow
+  MDBRow,
+  MDBListGroup, MDBListGroupItem
 } from 'mdbreact';
 
 import {Article} from './article';
@@ -47,7 +48,7 @@ export class Discovery extends React.Component {
       <MDBContainer fluid>
         <Header/>
         <MDBRow center>
-          <MDBCol md="8" lg="7">
+          <MDBCol md="9" lg="8">
 
             <MDBNavbar color="indigo" dark expand="md" style={{borderRadius: '5px'}}>
               <MDBNavbarBrand>
@@ -98,61 +99,75 @@ export class Discovery extends React.Component {
               <Redirect to={`${this.props.match.url}/article`}/>
             </Switch>
           </MDBCol>
-          <MDBCol md="4" lg="3">
-            <MDBCard>
-              <MDBRow>
-                <MDBCol>
-                  <div className="px-10">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="3x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      提问题
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <div className="px-10">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="3x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      写回答
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <div className="px-10">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="file" size="3x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      写文章
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <div className="px-10">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="3x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      写长评
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <div className="px-10">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="3x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      分享视频
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-              </MDBRow>
-            </MDBCard>
+          <MDBCol md="3" lg="2" className="pt-3" style={{marginTop: '50px'}}>
+            <p>
+              <MDBCard style={{height: '200px', width: '400px'}}>
+                <MDBRow>
+                  <MDBCol md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                  <MDBCol md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                  <MDBCol  md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow>
+                  <MDBCol md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                  <MDBCol md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                  <MDBCol  md="4" lg="4">
+                    <div className="px-10">
+                      <MDBRow center style={{marginTop: '20px'}}>
+                        <MDBIcon icon="shield" size="3x"/>
+                      </MDBRow>
+                      <MDBRow center>
+                        normal
+                      </MDBRow>
+                    </div>
+                  </MDBCol>
+                </MDBRow>             
+              </MDBCard>
+            </p>
           </MDBCol>
         </MDBRow>
         <Footer/>

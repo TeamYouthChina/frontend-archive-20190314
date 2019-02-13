@@ -1,0 +1,2 @@
+0 * * * * bash -c 'cd ~/frontend-new && ./update.sh' >~/frontend-new/update.txt 2>&1
+

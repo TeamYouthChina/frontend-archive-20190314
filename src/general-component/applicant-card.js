@@ -3,13 +3,13 @@ import {languageHelper} from '../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
   MDBRow,
   MDBCol,
-  MDBBtn
+  MDBBtn,
+  MDBAvatar,
+  MDBIcon
 } from 'mdbreact';
+import {getAsync} from "../tool/api-helper";
 
 
 export class ApplicantCard extends React.Component {
@@ -22,85 +22,57 @@ export class ApplicantCard extends React.Component {
     };
     this.text = ApplicantCard.i18n[languageHelper()];
   }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Xiao Ming',
-        type: 'student',
-        influence: '100',
-        friends: '100',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/applicants/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/applicants/1`)
+      });
+    }
   }
+  
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBCard>
-        <MDBCardImage
-          className="img-fluid"
-          src="https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/original/hs-emp-branding-image-data.?1522348756"
-        />
         <MDBCardBody
           style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}
         >
           <MDBRow>
-            <MDBCol size="6">
-              <MDBCardText
-                style={{
-                  fontSize: '0.8rem'
-                }}
-              >
-                {this.state.backend.name}
-              </MDBCardText>
-            </MDBCol>
-            <MDBCol size="6">
-              <MDBCardText
-                style={{
-                  fontSize: '0.8rem'
-                }}
-              >
-                {this.state.backend.influence}
-                {this.text.influence}
-              </MDBCardText>
-            </MDBCol>
-          </MDBRow>
-          <MDBRow>
             <MDBCol>
-              <MDBCardText
-                style={{
-                  fontSize: '0.8rem'
-                }}
-              >
-                {this.state.backend.type}
-              </MDBCardText>
-            </MDBCol>
-          </MDBRow>
-          <MDBRow>
-            <MDBCol>
-              <MDBCardText
-                style={{
-                  fontSize: '0.8rem'
-                }}
-              >
-                {this.state.backend.friends}
-                {this.text.friends}
-              </MDBCardText>
+              <p style={{textAlign:'center'}}>
+                <MDBAvatar
+                  tag="img"
+                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
+                  className="rounded-circle z-depth-1 img-fluid"
+                  alt="Sample avatar"
+                  style={{width:'104px',height:'104px'}}
+                />
+                <h5 className="font-weight-bold mt-4 mb-3">{this.state.backend.content.name}</h5>
+                <p className="text-uppercase blue-text">{this.state.backend.content.works[0].position}</p>
+                <p className="grey-text">
+                  {this.state.backend.content.educations[0].university}
+                </p>
+                <p>
+                  影响力分值：
+                </p>
+                <br/>
+                <p>
+                  2位共同好友
+                </p>
+              </p>
             </MDBCol>
           </MDBRow>
           <MDBRow center>
             <MDBBtn flat block>
-              TA的主页
+              加为好友
             </MDBBtn>
           </MDBRow>
         </MDBCardBody>

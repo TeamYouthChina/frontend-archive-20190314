@@ -23,9 +23,9 @@ export class QuestionCard extends React.Component {
     this.state = {
       backend: null,
       isCollapsed: true,
-      showBottom:true,
-      showComments:false,
-      commontsText:'评论',
+      showBottom: true,
+      showComments: false,
+      commontsText: '评论',
       pageConfig: {
         totalPage: 14 //总页码
       },
@@ -34,6 +34,7 @@ export class QuestionCard extends React.Component {
     this.handleSpanClick = this.handleSpanClick.bind(this);
     this.getCurrentPage = this.getCurrentPage.bind(this);
     this.showComments = this.showComments.bind(this);
+    this.addComments = this.addComments.bind(this);
     this.orderScroll = this.orderScroll.bind(this)
     this.text = QuestionCard.i18n[languageHelper()];
   }
@@ -67,9 +68,9 @@ export class QuestionCard extends React.Component {
         short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
         long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
         user: '齐昊',
-        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        description:'莫以为敌消彼长，然乾坤逆之天崩',
-        commentLists:[1,2],
+        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        description: '莫以为敌消彼长，然乾坤逆之天崩',
+        commentLists: [1, 2],
         agree: '',
         disagree: '',
         status: {
@@ -94,18 +95,19 @@ export class QuestionCard extends React.Component {
         // 手动给的250
         if (discount < 250) {
           this.setState({
-            showBottom:false
+            showBottom: false
           })
 
         } else if (discount > 260) {
           this.setState({
-            showBottom:true
+            showBottom: true
           })
         }
 
       }
     }, 100)
   }
+
   showComments() {
     let commontsText = this.state.commontsText === '评论' ? '收起评论' : '评论'
     let showComments = !this.state.showComments
@@ -114,25 +116,40 @@ export class QuestionCard extends React.Component {
       commontsText
     })
   }
-  // todo,拿到点击好的页吗
-  getCurrentPage(currentPage){
-    
-  }
   
+  addComments(e){
+    let {commentLists = []} = this.state.backend
+    commentLists.unshift(this.input.value)
+    // console.log(commentLists,this.props.id)
+    this.setState({
+      backend:{
+        commentLists,
+        ...this.state.backend
+      }
+    })
+    e.stopPropagation();
+  }
+  // todo,拿到点击好的页吗
+  getCurrentPage(currentPage) {
+
+  }
+
   componentWillUnmount() {
     window.removeListener('scroll', this.orderScroll);
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{padding: '30px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)',marginTop:'20px'}} ref={(span) => this.scrollSpan = span}>
+    return (
+      <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
+           ref={(span) => this.scrollSpan = span}>
         <h4 style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</h4>
-        
+
         {this.state.isCollapsed ? (
           <div>
             <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
             <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>  {this.state.backend.short}</span>
-            <span onClick={this.handleSpanClick} style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
+            <span onClick={this.handleSpanClick}
+                  style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
           </div>
         ) : (
           <div>
@@ -145,8 +162,17 @@ export class QuestionCard extends React.Component {
                   className="rounded-circle"
                 />
               </MDBAvatar>
-              <span style={{marginRight:'5px',padding:'5px 0px',color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>
-              <span style={{padding:'5px 0px',color: '#62686C', fontSize: '14px', ...basicFont}}>{this.state.backend.description}</span>
+              <span style={{
+                marginRight: '5px',
+                padding: '5px 0px',
+                color: '#3E4850',
+                fontSize: '14px', ...basicFont
+              }}>{this.state.backend.user}</span>
+              <span style={{
+                padding: '5px 0px',
+                color: '#62686C',
+                fontSize: '14px', ...basicFont
+              }}>{this.state.backend.description}</span>
             </MDBRow>
             <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
           </div>
@@ -174,40 +200,45 @@ export class QuestionCard extends React.Component {
               举报
             </MDBBtn>
             {this.state.isCollapsed ? null :
-              <MDBBtn onClick={this.handleSpanClick} flat style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}>
+              <MDBBtn onClick={this.handleSpanClick} flat
+                      style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}>
                 收起
                 <MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>
               </MDBBtn>}
           </MDBRow>
         ) : null}
-        
+
         {this.state.showComments ? (
           <div>
-            <div style={{background: 'linear-gradient(to left, transparent 0%, #8C8C8C 15%, #8C8C8C 85%, transparent 100%)', height: '1px'}}>
+            <div style={{
+              background: 'linear-gradient(to left, transparent 0%, #8C8C8C 15%, #8C8C8C 85%, transparent 100%)',
+              height: '1px'
+            }}>
             </div>
             {this.state.backend.commentLists.map((item)=>(
-                <CommentsCard key={item} data={item}></CommentsCard>
-              )
-            )}
+              <CommentsCard key={item} message={item}></CommentsCard>
+
+            ))}
+            
             <MDBRow>
               <MDBCol size="10" center>
-                <input type="email" className="form-control" placeholder="你的回复" />
+                <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
               </MDBCol>
-              <MDBCol style={{paddingLeft:'0px'}}>
-                <MDBBtn flat style={{background:'#C4C4C4',padding: '5px 10px',color:'#FFFFFF',...basicFont}}>
+              <MDBCol style={{paddingLeft: '0px'}}>
+                <MDBBtn onClick={(e)=>this.addComments(e)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
                   发布
                 </MDBBtn>
               </MDBCol>
 
             </MDBRow>
-            <MDBRow center style={{marginTop:'10px'}}>
+            <MDBRow center style={{marginTop: '10px'}}>
               <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
           </div>
-          
+
         ) : null}
       </div>
-    ) : null;
+    );
   }
 }
 

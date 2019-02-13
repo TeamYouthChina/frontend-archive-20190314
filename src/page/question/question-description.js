@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import {AnswerText} from './answerText'
 import {languageHelper} from '../../tool/language-helper';
 import {
   MDBBadge,
@@ -7,7 +8,9 @@ import {
   MDBCol,
   MDBRow,
   MDBIcon,
+  MDBAvatar,
 } from 'mdbreact';
+
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
   fontStyle: 'normal',
@@ -22,8 +25,10 @@ export class QuestionDes extends React.Component {
     * */
     this.state = {
       backend: null,
-      selectType: 1
-    };
+      selectType: 1,
+      showText:false,
+    }
+    this.handleClick = this.handleClick.bind(this)
     this.text = QuestionDes.i18n[languageHelper()];
   }
 
@@ -38,6 +43,8 @@ export class QuestionDes extends React.Component {
           title: 'this is a title',
           descrption: 'wen ti de miao shu'
         },
+        user: '齐昊',
+        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         focus: 123,
         reading: 123,
         status: {
@@ -48,7 +55,12 @@ export class QuestionDes extends React.Component {
       return {backend: mockData};
     });
   }
-
+  handleClick(){
+    const showText = !this.state.showText
+    this.setState({
+      showText
+    })
+  }
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
@@ -98,11 +110,10 @@ export class QuestionDes extends React.Component {
           <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '15px'}}>
             关注问题
           </MDBBtn>
-          <Link style={{color: '#fff'}} to={`/question/${this.props.questionId}/answer/create/`}>
-            <MDBBtn flat style={{padding: '5px 10px',}}>
-              <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
-            </MDBBtn>
-          </Link>
+          <MDBBtn onClick={this.handleClick} flat style={{padding: '5px 10px',}}>
+            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
+          </MDBBtn>
+         
           <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
           </MDBBtn>
@@ -117,7 +128,46 @@ export class QuestionDes extends React.Component {
             举报
           </MDBBtn>
         </MDBRow>
-
+        {this.state.showText ? (
+          <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
+            <MDBRow>
+              <MDBCol size="1">
+                <MDBAvatar style={{margin: '20px 5px 0px 20px'}}>
+                  <img
+                    style={{width: '32px', background: '#F4F4F4'}}
+                    src={this.state.backend.img}
+                    alt=""
+                    className="rounded-circle"
+                  />
+                </MDBAvatar>
+              </MDBCol>
+              <MDBCol size="8" style={{paddingTop:'10px'}}>
+                <MDBRow style={{paddingLeft:'5px'}}>{this.state.backend.user}</MDBRow>
+                <MDBRow>
+                  <MDBBtn flat style={{padding: '0px',}}>
+                    <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>添加备用内容
+                  </MDBBtn>
+                </MDBRow>
+              </MDBCol>
+              <MDBCol size="2"></MDBCol>
+            </MDBRow>
+            <MDBRow style={{height:'100%',margin:'20px 0px 0px 0px'}}>
+              <AnswerText></AnswerText>
+            </MDBRow>
+            <MDBRow>
+              <MDBCol size="10"></MDBCol>
+              <MDBCol size="2">
+                <MDBBtn flat style={{float:'right',padding: '5px 10px',zIndex:10}}>
+                  提交回答
+                </MDBBtn>
+              </MDBCol>
+                
+              
+            </MDBRow>
+          </div>
+          
+        ): null}
+        
       </div>
     ) : null;
   }
