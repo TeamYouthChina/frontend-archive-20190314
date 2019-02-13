@@ -73,13 +73,15 @@ class RelatedPosition extends React.Component {
 
   orderScroll() {
     setTimeout(() => {
-      if (this.scrollSpan) {
-        if (this.scrollSpan.getBoundingClientRect().top > 250) {
+      if (!this.state.isCollapsed) {
+        let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
+        console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
+        if (discount < 250) {
           this.setState({
             showBottom:false
           })
 
-        } else if (this.scrollSpan.getBoundingClientRect().top < 240) {
+        } else if (discount > 260) {
           this.setState({
             showBottom:true
           })
