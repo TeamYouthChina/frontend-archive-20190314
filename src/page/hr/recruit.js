@@ -10,6 +10,7 @@ import {
   Progress,
   MDBContainer,
   MDBTabPane, MDBTabContent,
+  MDBFormInline,
   MDBNav, MDBNavItem, MDBNavLink,
   MDBSelect, MDBSelectInput, MDBSelectOptions, MDBSelectOption,
 } from 'mdbreact';
@@ -55,6 +56,9 @@ export class Recruit extends React.Component {
         position: 'Position',
         age: 'Age',
 
+        tabname: ['社会招聘', '校园招聘', '海外人才招聘', '猎头职位'],
+        innertabname: ['职位模板', '草稿职位'],
+        heading: ['快速导入', '职位基本信息'],
         id: 0,
         name: 'New Frontier Data',
         url: 'https://www.google.com',
@@ -85,32 +89,32 @@ export class Recruit extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
-
+        
         <MDBContainer>
           <div className="classic-tabs">
             <MDBNav classicTabs color="cyan">
               <MDBNavItem>
                 <MDBNavLink to="#" className={this.state.activeItemClassicTabs1 === "1" ? "active" : ""}
                             onClick={this.toggleClassicTabs1("1")}>
-                  Profile
+                  {this.state.backend.tabname[0]}
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#" className={this.state.activeItemClassicTabs1 === "2" ? "active" : ""}
                             onClick={this.toggleClassicTabs1("2")}>
-                  Follow
+                  {this.state.backend.tabname[1]}
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#" className={this.state.activeItemClassicTabs1 === "3" ? "active" : ""}
                             onClick={this.toggleClassicTabs1("3")}>
-                  Contact
+                  {this.state.backend.tabname[2]}
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#" className={this.state.activeItemClassicTabs1 === "4" ? "active" : ""}
                             onClick={this.toggleClassicTabs1("4")}>
-                  Be Awesome
+                  {this.state.backend.tabname[3]}
                 </MDBNavLink>
               </MDBNavItem>
             </MDBNav>
@@ -119,7 +123,9 @@ export class Recruit extends React.Component {
 
                 <blockquote className="blockquote bq-primary"
                             style={{paddingTop: "0rem", paddingBottom: "0rem", margin: "0rem"}}>
-                  <p className="bq-title">Import</p>
+                  <p className="bq-title">
+                    {this.state.backend.heading[0]}
+                  </p>
                 </blockquote>
 
                 <MDBRow>
@@ -129,28 +135,14 @@ export class Recruit extends React.Component {
                         <MDBNavLink style={{color: "green"}} to="#"
                                     className={this.state.activeItemPills === "1" ? "active" : ""}
                                     onClick={this.togglePills("1")}>
-                          Active
+                          {this.state.backend.innertabname[0]}
                         </MDBNavLink>
                       </MDBNavItem>
                       <MDBNavItem>
                         <MDBNavLink style={{color: "green"}} to="#"
                                     className={this.state.activeItemPills === "2" ? "active" : ""}
                                     onClick={this.togglePills("2")}>
-                          Link
-                        </MDBNavLink>
-                      </MDBNavItem>
-                      <MDBNavItem>
-                        <MDBNavLink style={{color: "green"}} to="#"
-                                    className={this.state.activeItemPills === "3" ? "active" : ""}
-                                    onClick={this.togglePills("3")}>
-                          Link
-                        </MDBNavLink>
-                      </MDBNavItem>
-                      <MDBNavItem>
-                        <MDBNavLink style={{color: "green"}} to="#"
-                                    className={this.state.activeItemPills === "4" ? "active" : ""}
-                                    onClick={this.togglePills("4")}>
-                          Help
+                          {this.state.backend.innertabname[1]}
                         </MDBNavLink>
                       </MDBNavItem>
                     </MDBNav>
@@ -173,31 +165,6 @@ export class Recruit extends React.Component {
                           minima.
                         </p>
                       </MDBTabPane>
-                      <MDBTabPane tabId="3">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          Nihil odit magnam minima, soluta doloribus reiciendis
-                          molestiae placeat unde eos molestias. Quisquam aperiam,
-                          pariatur. Tempora, placeat ratione porro voluptate odit
-                          minima.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          Nihil odit magnam minima, soluta doloribus reiciendis
-                          molestiae placeat unde eos molestias. Quisquam aperiam,
-                          pariatur. Tempora, placeat ratione porro voluptate odit
-                          minima.
-                        </p>
-                      </MDBTabPane>
-                      <MDBTabPane tabId="4">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                          Nihil odit magnam minima, soluta doloribus reiciendis
-                          molestiae placeat unde eos molestias. Quisquam aperiam,
-                          pariatur. Tempora, placeat ratione porro voluptate odit
-                          minima.
-                        </p>
-                      </MDBTabPane>
                     </MDBTabContent>
                   </MDBContainer>
                 </MDBRow>
@@ -205,7 +172,9 @@ export class Recruit extends React.Component {
 
                 <blockquote className="blockquote bq-primary"
                             style={{paddingTop: "0rem", paddingBottom: "0rem", margin: "0rem"}}>
-                  <p className="bq-title">Import</p>
+                  <p className="bq-title">
+                    {this.state.backend.heading[1]}
+                  </p>
                 </blockquote>
 
                 <MDBRow center className="offset-md-1 pt-3" style={{margin: "10px"}}>

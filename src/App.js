@@ -16,7 +16,6 @@ import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {QuestionCreate} from './page/question/create';
 import {QuestionEdit} from './page/question/edit';
-import {QuestionModify} from './page/question/modify';
 import {QuestionAnswerCreate} from './page/question/answer/create';
 import {QuestionAnswerEdit} from './page/question/answer/edit';
 import {ArticleCreate} from './page/article/create';
@@ -31,9 +30,6 @@ import {Setting} from './page/setting';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
-import {ApplicationHome} from './page/application/home';
-import {ApplicationSuccess} from './page/application/home/success';
-import {NewResume} from './page/application/home/newResume';
 import {Message} from './page/message';
 import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
@@ -50,10 +46,11 @@ import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
 import {HR} from './page/hr';
 import {Employerhome} from './page/hr/employerhome';
-import {Recruit} from './page/hr/recruit';
+import {Recruit} from "./page/hr/recruit";
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
-import {ResumeFromDB} from "./page/application/home/resumeFromDB";
+import {SearchResume} from "./page/hr/searchresume";
+
 
 export class App extends Component {
   render() {
@@ -67,26 +64,9 @@ export class App extends Component {
               component={() => <Redirect to="/home"/>}
             />
             <Route
-              path="/application/home"
-              component={routeProps => <ApplicationHome {...routeProps} />}
-            />
-            <Route
-              path="/application/create"
-              component={routeProps => <NewResume {...routeProps} />}
-            />
-            <Route
-              path="/application/inject"
-              component={routeProps => <ResumeFromDB {...routeProps} />}
-            />
-            <Route
-              path="/application/success"
-              component={routeProps => <ApplicationSuccess {...routeProps} />}
-            />
-            <Route
               path="/application/"
               component={routeProps => <Application {...routeProps} />}
             />
-            
             <Route
               path="/article/create"
               component={routeProps => <ArticleCreate {...routeProps} />}
@@ -152,6 +132,10 @@ export class App extends Component {
               component={routeProps => <Notification {...routeProps} />}
             />
             <Route
+              path="/OnlineApplication"
+              component={routeProps => <OnlineApplication {...routeProps} />}
+            />
+            <Route
               path="/page-no-found"
               component={routeProps => <PageNoFound {...routeProps} />}
             />
@@ -159,11 +143,6 @@ export class App extends Component {
               path="/profile"
               component={routeProps => <Profile {...routeProps} />}
             />
-            <Route
-              path="/OnlineApplication"
-              component={routeProps => <OnlineApplication {...routeProps} />}
-            />
-
             <Route
               path="/question/create"
               component={routeProps => <QuestionCreate {...routeProps} />}
@@ -181,10 +160,6 @@ export class App extends Component {
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
             />
             <Route
-              path="/question/modify" exact
-              component={routeProps => <QuestionModify {...routeProps} />}
-            />
-            <Route
               path="/question/:questionId"
               component={routeProps => <QuestionAnswer {...routeProps} />}
             />
@@ -199,6 +174,10 @@ export class App extends Component {
             <Route
               path="/search"
               component={routeProps => <Search {...routeProps} />}
+            />
+            <Route
+              path="/searchresume"
+              component={routeProps => <SearchResume {...routeProps} />}
             />
             <Route
               path="/setting"

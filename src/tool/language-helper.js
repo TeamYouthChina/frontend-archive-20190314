@@ -1,7 +1,7 @@
-import {store} from '../global-data/store';
+import Cookies from 'js-cookie';
 
 export const languageHelper = () => {
-  switch (store.getState().language) {
+  switch (Cookies.get('language')) {
     case 'en_US':
       return 1;
     default: // 'zh_CN'
