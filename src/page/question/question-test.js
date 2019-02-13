@@ -14,7 +14,7 @@ import {QuestionDes} from './question-description'
 import {QuestionAnswerPart} from './question-answer-part'
 import {QuestionBar} from './question-side-bar'
 import {getAsync} from '../../tool/api-helper'
-import RelatedPosition from './related'
+import RelatedPosition from './question-card-test'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
