@@ -1,0 +1,31 @@
+.ProjectCard{
+    width: 230px;
+    height: 230px;
+    box-sizing: border-box;
+    margin: 5px;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.08);
+}
+
+.Name {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 16px;
+    
+    color: #62686C;
+    margin: 0%;
+
+}
+
+.Time, .Description {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    
+    color: #62686C;
+    margin: 0%;
+}
