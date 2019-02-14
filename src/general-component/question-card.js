@@ -1,5 +1,5 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../tool/language-helper';
 import {Link} from 'react-router-dom';
 import {CommentsCard} from '../page/question/comment-test'
 import {PaginationUse} from '../page/question/pagination-test'
@@ -17,6 +17,11 @@ const basicFont = {
   fontWeight: '600',
   lineHeight: 'normal',
 }
+
+// type={
+//   1:'discovery里面',
+//   2:'question里面'
+// }
 
 export class QuestionCard extends React.Component {
   constructor(props) {
@@ -47,6 +52,7 @@ export class QuestionCard extends React.Component {
   }
 
   handleSpanClick() {
+    console.log(this.props.type,1)
     let isCollapsed = !this.state.isCollapsed
     if (isCollapsed) {
       // this.divNow.style.height='100px'
@@ -70,7 +76,7 @@ export class QuestionCard extends React.Component {
   componentWillMount() {
     let mockData =
       {
-        id: 0,
+        id: '0100',
         title: 'YouthChina是怎样的一个公司',
         short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
         long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
@@ -116,6 +122,7 @@ export class QuestionCard extends React.Component {
   }
 
   showComments() {
+    
     let commontsText = this.state.commontsText === '评论' ? '收起评论' : '评论'
     let showComments = !this.state.showComments
     this.setState({
@@ -142,15 +149,16 @@ export class QuestionCard extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeListener('scroll', this.orderScroll);
+    window.removeEventListener('scroll', this.orderScroll.bind(this));
   }
 
   render() {
     return (
       <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
            ref={(span) => this.scrollSpan = span}>
-        <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
-
+        {this.props.type === 1 ? (
+          <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
+        ) : null}
         {this.state.isCollapsed ? (
           <div>
             <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
@@ -188,10 +196,6 @@ export class QuestionCard extends React.Component {
           <MDBRow style={this.state.stickyRow}>
             <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
               <MDBIcon style={{marginRight: '5px'}} far icon="star"/>关注问题
-            </MDBBtn>
-
-            <MDBBtn flat style={{padding: '5px 10px',}}>
-              <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
             </MDBBtn>
             <MDBBtn flat style={{padding: '5px 10px',}}>
               <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答

@@ -13,7 +13,7 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
 import {QuestionBar} from './question-side-bar'
 import {getAsync} from '../../tool/api-helper'
-import {QuestionCard} from './question-card-test'
+import {QuestionCard} from '../../general-component/question-card'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -91,10 +91,11 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard key={item} id={item}></QuestionCard>
+                  <QuestionCard type={2} key={item} id={item}></QuestionCard>
                 ))}
               </MDBCol>
             </MDBRow>
+            <Footer></Footer>
           </div>
         )}
       </div>

@@ -17,13 +17,13 @@ export class QuestionAnswer extends React.Component {
         style={{padding: 0}}
       >
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard/>
+          <QuestionCard type={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard/>
+          <QuestionCard type={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard/>
+          <QuestionCard type={1}/>
         </MDBRow>
       </MDBContainer>
     );
