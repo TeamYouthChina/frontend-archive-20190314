@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
-import {QuestionAnswerCard} from '../../general-component/question-answer-card';
+import {QuestionCard} from '../../general-component/question-card';
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -17,13 +17,13 @@ export class QuestionAnswer extends React.Component {
         style={{padding: 0}}
       >
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionAnswerCard/>
+          <QuestionCard/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionAnswerCard/>
+          <QuestionCard/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionAnswerCard/>
+          <QuestionCard/>
         </MDBRow>
       </MDBContainer>
     );

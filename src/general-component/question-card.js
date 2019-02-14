@@ -1,8 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {Link} from 'react-router-dom';
-import {CommentsCard} from './comment-test'
-import {PaginationUse} from './pagination-test'
+import {CommentsCard} from '../page/question/comment-test'
+import {PaginationUse} from '../page/question/pagination-test'
 import {
   MDBBtn,
   MDBRow,
