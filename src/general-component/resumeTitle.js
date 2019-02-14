@@ -22,6 +22,7 @@ export class ResumeTitle extends React.Component {
       firstTime: 1,
       selectType: 1,
       influence:68,
+      descrption:['1','2']
     };
     this.text = ResumeTitle.i18n[languageHelper()];
   }
@@ -52,9 +53,15 @@ export class ResumeTitle extends React.Component {
           <MDBCol size="4">
             <div style={{marginTop: '20px', marginBottom: '20px'}}>
               <p style={{fontSize:'18px',...basicFontStyle}} className="font-weight-bold">{name}</p>
-              {description.map((item) => {
-                return (<span style={{fontSize:'16px',...basicFontStyle}} key={item}>{item} </span>)
-              })}
+              {description ? (
+                description.map((item) => (
+                  <span style={{fontSize:'16px',...basicFontStyle}} key={item}>{item} </span>
+                ))
+              ) : (
+                this.state.description.map((item) => (
+                  <span style={{fontSize:'16px',...basicFontStyle}} key={item}>{item} </span>
+                ))
+              )}
               <br/>
               {work}
 

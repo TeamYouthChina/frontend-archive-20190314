@@ -2,6 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {CommentsCard} from './comment-test'
 import {PaginationUse} from './pagination-test'
+import {Link} from 'react-router-dom';
 import {
   MDBBtn,
   MDBRow,
@@ -31,11 +32,17 @@ export class QuestionCard extends React.Component {
       },
       stickyRow: {background: '#FFFFFF'}
     }
+    // 展开全文
     this.handleSpanClick = this.handleSpanClick.bind(this);
+    // 得到当前分页
     this.getCurrentPage = this.getCurrentPage.bind(this);
+    // 展开评论
     this.showComments = this.showComments.bind(this);
+    // 添加评论
     this.addComments = this.addComments.bind(this);
+    // 监听滚动事件
     this.orderScroll = this.orderScroll.bind(this)
+    // 多语言
     this.text = QuestionCard.i18n[languageHelper()];
   }
 
@@ -63,7 +70,7 @@ export class QuestionCard extends React.Component {
   componentWillMount() {
     let mockData =
       {
-        id: 0,
+        id: '0100',
         title: 'YouthChina是怎样的一个公司',
         short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
         long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
@@ -142,7 +149,7 @@ export class QuestionCard extends React.Component {
     return (
       <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
            ref={(span) => this.scrollSpan = span}>
-        <h4 style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</h4>
+        <h4  style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</h4>
 
         {this.state.isCollapsed ? (
           <div>

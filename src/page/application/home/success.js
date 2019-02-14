@@ -12,7 +12,7 @@ import {
 
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
-import {QuestionCard} from '../../../general-component/question-card';
+import {QuestionCard} from '../../trash/question-card';
 import {getAsync} from '../../../tool/api-helper'
 
 import './home.css';
