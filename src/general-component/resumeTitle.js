@@ -6,6 +6,13 @@ import {
   MDBCardUp, MDBAvatar, MDBCardBody, MDBIcon,MDBProgress
 } from "mdbreact";
 
+// data={
+//   img:'照片URL',
+//   name:'姓名',
+//   descrption:[称谓1，称谓2],
+//   work:'一个工作',
+//   influence:68,
+// }
 
 export class ResumeTitle extends React.Component {
   constructor(props) {
@@ -13,14 +20,15 @@ export class ResumeTitle extends React.Component {
     this.state = {
       backend: null,
       firstTime: 1,
-      selectType: 1
+      selectType: 1,
+      influence:68,
     };
     this.text = ResumeTitle.i18n[languageHelper()];
   }
 
 
   render() {
-    const {img, name, description, work} = this.props.data
+    const {img, name, description, work,influence} = this.props.data
     const basicFontStyle={
       fontFamily:'IBM Plex Sans',
       fontStyle:'normal',
@@ -36,7 +44,7 @@ export class ResumeTitle extends React.Component {
               <img
                 style={{width: '106px', background: '#F4F4F4'}}
                 src={img}
-                alt=""
+                alt="没有图片"
                 className="rounded-circle"
               />
             </MDBAvatar>
@@ -55,7 +63,7 @@ export class ResumeTitle extends React.Component {
           <MDBCol size="4">
             <div className="resumeProgress" style={{paddingTop:'28px'}}>
               <span style={{fontSize:'16px',...basicFontStyle}}>影响力分值  </span>
-              <span style={{fontSize:'24px',...basicFontStyle}}>68</span>
+              <span style={{fontSize:'24px',...basicFontStyle}}>{influence || 'fake'}</span>
               <br/>
               <MDBProgress style={{paddingTop:'10px',borderRadius:'20px'}} height="22px" material value={68} animated />
             </div>
