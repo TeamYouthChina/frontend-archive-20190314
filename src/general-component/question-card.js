@@ -96,26 +96,30 @@ export class QuestionCard extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.orderScroll);
+    window.addEventListener('scroll', this.orderScroll.bind(this));
   }
 
   orderScroll() {
     setTimeout(() => {
       if (!this.state.isCollapsed) {
-        // 浏览器窗口减去元素的高度
-        let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
-        // console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
-        // 手动给的250
-        if (discount < 250) {
-          this.setState({
-            showBottom: false
-          })
+        if(this.scrollSpan){
+          // 浏览器窗口减去元素的高度
+          let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
+          // console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
+          // 手动给的250
+          if (discount < 250) {
+            this.setState({
+              showBottom: false
+            })
 
-        } else if (discount > 260) {
-          this.setState({
-            showBottom: true
-          })
+          } else if (discount > 260) {
+            this.setState({
+              showBottom: true
+            })
+          }
         }
+        
+        
 
       }
     }, 100)
