@@ -5,7 +5,7 @@ import classes from './BasicInfo.module.css';
 const basicInfo = () => {
     return(
         <div className={classes.BasicInfo}>
-            <div className={classes.row}>
+            <div className={classes.Headline}>
                 <p className={classes.SectionName}>
                     Basic Info
                 </p>

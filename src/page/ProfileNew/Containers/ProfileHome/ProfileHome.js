@@ -4,6 +4,8 @@ import {Header} from '../../../../general-component/header';
 import {ResumeTitle} from '../../../../general-component/resumeTitle';
 import MainBody from '../../Components/MainBody/MainBody';
 import classes from './ProfileHome.module.css';
+import {getAsync} from '../../../../tool/api-helper';
+
 
 let dummyPersonalInfo = {
     id:'123',
@@ -16,13 +18,40 @@ let dummyPersonalInfo = {
 
 
 class ProfileHome extends Component{
+
+    state = {
+        requestID: null,
+        profileData: null
+    }
+
+    componentWillMount(){
+        console.log(this.props.match.params.id);
+        this.setState({requestID: this.props.match.params.id});
+    }
+
+    async componentDidMount(){
+        console.log(this.state.requestID);
+        let data = await getAsync('/applicants/'+this.state.requestID);
+        console.log(data);
+        this.setState({profileData: data});
+    }
+
     render(){
-        return(
+        let toShow = 
             <div className={classes.ProfileHome}>
                 <Header/>
-                <ResumeTitle data={dummyPersonalInfo}/>
-                <MainBody/>
-            </div>
+                <p>no data</p>
+            </div>;
+        if(this.state.profileData && this.state.profileData.content && this.state.profileData.status.code === 2000){
+            toShow = 
+                <div className={classes.ProfileHome}>
+                    <Header/>
+                    {/* <ResumeTitle data={this.state.profileData}/> */}
+                    <MainBody profileData={this.state.profileData}/>
+                </div>;
+        }
+        return(
+            toShow
         );
     }
 }

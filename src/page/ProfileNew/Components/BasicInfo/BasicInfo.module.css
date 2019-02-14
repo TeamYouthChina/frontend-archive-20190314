@@ -8,6 +8,17 @@
     margin-bottom: 10px;
 }
 
+.Headline{
+    width: 90%;
+    height: 52px;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .row {
     width: 90%;
     height: 52px;

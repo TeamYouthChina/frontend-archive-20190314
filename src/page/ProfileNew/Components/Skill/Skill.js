@@ -18,7 +18,7 @@ const skill = () => {
     return(
         <div className={classes.Skill}>
             <div className={classes.row}>
-                <p className={classes.SectionName}>Education</p>
+                <p className={classes.SectionName}>Skill</p>
                 <button className={classes.CornerButton}>edit</button>
             </div>
             <SkillCard/>
