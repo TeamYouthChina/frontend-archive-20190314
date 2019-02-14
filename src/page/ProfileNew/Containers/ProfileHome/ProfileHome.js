@@ -55,7 +55,7 @@ class ProfileHome extends Component{
             toShow = 
                 <div className={classes.ProfileHome}>
                     <Header/>
-                    <ResumeTitle data={this.state.requestedData}/>
+                    <ResumeTitle data={dataForResumeTitle}/>
                     <MainBody requestedData={this.state.requestedData}/>
                 </div>;
         }
