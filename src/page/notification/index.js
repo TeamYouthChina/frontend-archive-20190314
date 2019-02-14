@@ -40,25 +40,26 @@ export class Notification extends React.Component {
 
       notifications: [
         {
-          name: "John Doe",
-          avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
-          message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
-          when: "今天 03:09",
-          friend: true,
+          //type = 1: 系统推送; type = 2: 文章的赞; type = 3: 评论的赞;
+          name: "Youth China",
+          type: 1,
+          avatar: "https://avatars1.githubusercontent.com/u/44857031?s=200&v=4",
+          content: "欢迎你来到Youth China，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
+          when: "今天 03:09"
         },
         {
           name: "John Doe",
+          type: 2,
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
-          message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
-          when: "今天 03:09",
-          friend: false,
+          content: "诺基亚是一家什么样的公司？",
+          when: "今天 03:09"
         },
         {
           name: "John Doe",
+          type: 3,
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
-          message: "欢迎你来到知乎，一个认真、专业、友善的知识分享社区.在知乎，无论是满足好奇，或者解答疑惑，你都有机会找到可信赖的回答，你还可以与来自天南地北的知友，分享你的知识、经验见解",
-          when: "今天 03:09",
-          friend: false,
+          content: "你有安全感么？",
+          when: "今天 03:09"
         },
       ]
     };
@@ -128,13 +129,13 @@ export class Notification extends React.Component {
               {/*</MDBCol>*/}
             </MDBRow>
             <MDBRow>
-                <MDBListGroup>
-                  {this.state.notifications.map(notification => (
-                    <div key={notification.name}>
-                      <NotificationItem key={notification.name} pinglun={notification}/>
-                    </div>
-                  ))}
-                </MDBListGroup>
+              <MDBListGroup>
+                {this.state.notifications.map(notification => (
+                  <div key={notification.name}>
+                    <NotificationItem key={notification.name} notification={notification}/>
+                  </div>
+                ))}
+              </MDBListGroup>
             </MDBRow>
             <p/>
             <MDBRow>
@@ -150,29 +151,57 @@ export class Notification extends React.Component {
   }
 }
 
-const NotificationItem = ({pinglun: {name, avatar, message, when, friend,}}) => {
+const NotificationItem = (props) => {
   return (
     <MDBListGroupItem>
       <MDBRow>
         <MDBCol className="d-none d-md-inline-block mx-3 my-3" md="2">
-              <MDBAvatar>
-                <img src={avatar}
-                     style={{
-                       width: "100px"
-                     }}
-                     className="z-depth-1" />
-              </MDBAvatar>
+          <MDBAvatar>
+            <img src={props.notification.avatar}
+                 style={{
+                   width: "100px"
+                 }}
+                 className="z-depth-1"/>
+          </MDBAvatar>
         </MDBCol>
         <MDBCol className="my-3">
-          <div style={{fontSize: "0.95rem"}}>
-            <p className="text-muted">
-              <strong>{name}</strong>
-              {message}       {when}
-            </p>
+          <div style={{fontSize: "1.125rem"}}>
+            <MDBRow bottom className="text-muted">
+              <a href="#" style={{
+                color: "#7C97B8"
+              }}>
+                <strong>{props.notification.name}<span> </span></strong>
+              </a>
+              {props.notification.type === 1 ? <span>
+                  {props.notification.content}
+                  <strong> {props.notification.when}</strong>
+              </span>
+                : null}
+              {props.notification.type === 2 ? <span>
+                  赞了你的文章<span> </span>
+                  <a href="#" style={{
+                    color: "#7C97B8"
+                  }}>
+                    {props.notification.content}
+                  </a>
+                  <strong> {props.notification.when}</strong>
+              </span>
+                : null}
+              {props.notification.type === 3 ? <span>
+                  赞了你的评论<span> </span>
+                  <a href="#" style={{
+                    color: "#7C97B8"
+                  }}>
+                    {props.notification.content}
+                  </a>
+                  <strong> {props.notification.when}</strong>
+              </span>
+                : null}
+            </MDBRow>
           </div>
         </MDBCol>
       </MDBRow>
-      
+
     </MDBListGroupItem>
   )
 };
