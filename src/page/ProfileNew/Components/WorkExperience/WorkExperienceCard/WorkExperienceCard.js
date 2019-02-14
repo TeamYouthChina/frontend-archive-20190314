@@ -3,22 +3,22 @@ import React from 'react';
 import classes from './WorkExperienceCard.module.css';
 import workIcon from '../../../../assets/google.jpg';
 
-const workExperienceCard = () => {
+const workExperienceCard = (props) => {
     return(
         <div className={classes.WorkExperienceCard}>
             <img src={workIcon} alt="no img"></img>
             <div className={classes.WorkInfo}>
                 <p className={classes.Position}>
-                    Position
+                    {props.data.position}
                 </p>
                 <p className={classes.Company}>
-                    Company
+                    {props.data.employer}
                 </p>
                 <p className={classes.Time}>
-                    2018-2020
+                    {props.data.duration.begin+"-"+props.data.duration.end}
                 </p>
                 <p className={classes.Description}>
-                Comfort reached gay perhaps chamber his six detract besides add. Moonlight newspaper up he it enjoyment agreeable depending. 
+                    {props.data.note}
                 </p>
             </div>
         </div>

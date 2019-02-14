@@ -2,17 +2,17 @@ import React from 'react';
 
 import classes from './ProjectCard.module.css';
 
-const projectCard = () => {
+const projectCard = (props) => {
   return (
       <div className={classes.ProjectCard}>
           <p className={classes.Name}>
-              name
+            {props.data.name}
           </p>
           <p className={classes.Time}>
-              time
+            {props.data.duration.begin+"-"+props.data.duration.end}
           </p>
           <p className={classes.Description}>
-              description
+            {props.data.note}
           </p>
       </div>
   );

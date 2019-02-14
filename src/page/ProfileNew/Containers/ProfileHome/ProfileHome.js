@@ -30,7 +30,6 @@ class ProfileHome extends Component{
 
     async componentDidMount(){
         let data = await getAsync('/applicants/'+this.state.requestID);
-        console.log(data);
         this.setState({requestedData: data});
     }
 
@@ -38,7 +37,7 @@ class ProfileHome extends Component{
         let toShow = 
             <div className={classes.ProfileHome}>
                 <Header/>
-                <p>no data</p>
+                <p>no such data</p>
             </div>;
 
         
@@ -56,7 +55,7 @@ class ProfileHome extends Component{
                 <div className={classes.ProfileHome}>
                     <Header/>
                     <ResumeTitle data={dataForResumeTitle}/>
-                    <MainBody requestedData={this.state.requestedData}/>
+                    <MainBody data={this.state.requestedData.content}/>
                 </div>;
         }
         return(

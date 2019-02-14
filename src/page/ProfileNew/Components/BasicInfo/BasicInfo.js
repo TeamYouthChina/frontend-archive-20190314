@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './BasicInfo.module.css';
 
-const basicInfo = () => {
+const basicInfo = (props) => {
     return(
         <div className={classes.BasicInfo}>
             <div className={classes.Headline}>
@@ -18,7 +18,7 @@ const basicInfo = () => {
                     Name
                 </p>
                 <p className={classes.Value}>
-                    xzp
+                    {props.data.name}
                 </p>
             </div>
             <div className={classes.row}>
@@ -26,7 +26,7 @@ const basicInfo = () => {
                     Date of Birth
                 </p>
                 <p className={classes.Value}>
-                    06/17/1995
+                    {props.data.DOB}
                 </p>
             </div>
             <div className={classes.row}>
@@ -34,7 +34,7 @@ const basicInfo = () => {
                     Gender
                 </p>
                 <p className={classes.Value}>
-                    Male
+                    {props.data.gender}
                 </p>
             </div>
             <div className={classes.row}>
@@ -42,7 +42,7 @@ const basicInfo = () => {
                     Email
                 </p>
                 <p className={classes.Value}>
-                    xuzepei19950617@gmail.com
+                    {props.data.email}
                 </p>
             </div>
             <div className={classes.row}>
@@ -50,7 +50,7 @@ const basicInfo = () => {
                     Phone Number
                 </p>
                 <p className={classes.Value}>
-                    8587668067
+                    {props.data.phone}
                 </p>
             </div>
         </div>
