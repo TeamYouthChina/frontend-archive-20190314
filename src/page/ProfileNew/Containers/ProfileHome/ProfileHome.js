@@ -21,19 +21,17 @@ class ProfileHome extends Component{
 
     state = {
         requestID: null,
-        profileData: null
+        requestedData: null
     }
 
     componentWillMount(){
-        console.log(this.props.match.params.id);
         this.setState({requestID: this.props.match.params.id});
     }
 
     async componentDidMount(){
-        console.log(this.state.requestID);
         let data = await getAsync('/applicants/'+this.state.requestID);
         console.log(data);
-        this.setState({profileData: data});
+        this.setState({requestedData: data});
     }
 
     render(){
@@ -42,12 +40,23 @@ class ProfileHome extends Component{
                 <Header/>
                 <p>no data</p>
             </div>;
-        if(this.state.profileData && this.state.profileData.content && this.state.profileData.status.code === 2000){
+
+        
+        if(this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000){
+            
+            let dataForResumeTitle = {
+                img: this.state.requestedData.content.avatarUrl,
+                name: this.state.requestedData.content.name,
+                description: null,
+                work: this.state.requestedData.content.currentCompany.name,
+                influence: null
+            };
+
             toShow = 
                 <div className={classes.ProfileHome}>
                     <Header/>
-                    {/* <ResumeTitle data={this.state.profileData}/> */}
-                    <MainBody profileData={this.state.profileData}/>
+                    <ResumeTitle data={this.state.requestedData}/>
+                    <MainBody requestedData={this.state.requestedData}/>
                 </div>;
         }
         return(
