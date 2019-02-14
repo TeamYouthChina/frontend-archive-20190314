@@ -1,0 +1,44 @@
+.CertificationCard{
+    display: flex;
+    flex-direction: row;
+    height: 96px;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 0px 0px 5px 0px;
+    align-items: center;
+    border-bottom: 1px solid grey
+}
+
+.CertificationCard img {
+    height: 65px;
+    width: 65;
+}
+
+.certifiInfo {
+    margin-left: 20px;
+    height: 90%;
+}
+
+.Title {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 16px;
+
+    color: #62686C;
+    margin-right: 5px;
+    margin-bottom: 0%;
+}
+
+
+.Institute, .Time, .Description {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    
+    color: #62686C;
+    margin: 0%;
+}

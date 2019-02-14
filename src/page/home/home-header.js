@@ -117,7 +117,7 @@ export class HomeHeader extends React.Component {
         <MDBView>
           <img 
             className="d-block w-100 img-fluid" 
-            src="http://47.254.46.117:5000/home/photo-1512577107354-cc925a586320.jpeg"
+            src="http://47.254.46.117:5000/home/home.png"
            
           />
           <MDBMask

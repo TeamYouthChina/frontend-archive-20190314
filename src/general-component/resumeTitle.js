@@ -9,7 +9,7 @@ import {
 // data={
 //   img:'照片URL',
 //   name:'姓名',
-//   descrption:[称谓1，称谓2],
+//   description:[称谓1，称谓2],
 //   work:'一个工作',
 //   influence:68,
 // }
@@ -22,7 +22,7 @@ export class ResumeTitle extends React.Component {
       firstTime: 1,
       selectType: 1,
       influence:68,
-      descrption:['1','2']
+      description:['1','2']
     };
     this.text = ResumeTitle.i18n[languageHelper()];
   }
@@ -53,13 +53,15 @@ export class ResumeTitle extends React.Component {
           <MDBCol size="4">
             <div style={{marginTop: '20px', marginBottom: '20px'}}>
               <p style={{fontSize:'18px',...basicFontStyle}} className="font-weight-bold">{name}</p>
-              {description ? (
+              {description !== null ? ( 
+                
                 description.map((item) => (
                   <span style={{fontSize:'16px',...basicFontStyle}} key={item}>{item} </span>
                 ))
               ) : (
-                this.state.description.map((item) => (
-                  <span style={{fontSize:'16px',...basicFontStyle}} key={item}>{item} </span>
+                // console.log(this.state.descrption,2)
+                this.state.description.map((item,index) => (
+                  <span style={{fontSize:'16px',...basicFontStyle}} key={index}>{item} </span>
                 ))
               )}
               <br/>

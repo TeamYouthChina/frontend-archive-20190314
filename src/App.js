@@ -145,7 +145,7 @@ export class App extends Component {
               component={routeProps => <Profile {...routeProps} />}
             />
             <Route
-              path="/ProfileNew"
+              path="/ProfileNew/:id"
               component={routeProps => <ProfileNew {...routeProps} />}
             />
             <Route

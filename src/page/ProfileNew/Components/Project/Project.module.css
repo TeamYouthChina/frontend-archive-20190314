@@ -1,4 +1,4 @@
-.BasicInfo {
+.Project{
     background: #FFFFFF;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.08);
     width: 100%;
@@ -6,9 +6,11 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
+
 }
 
-.Headline{
+.row {
+    margin-top: 5px;
     width: 90%;
     height: 52px;
     /* border: 1px solid black; */
@@ -17,17 +19,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.row {
-    width: 90%;
-    height: 52px;
-    /* border: 1px solid black; */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
 
 }
 
@@ -43,28 +34,6 @@
 
 }
 
-.AttributeName {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    font-size: 14px;
-
-    color: #62686C;
-    margin: 0%;
-    width: 139px;
-}
-
-.Value {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    font-size: 16px;
-
-    color: #62686C;
-}
-
 .CornerButton {
     border: none;
     padding: 0;
@@ -77,4 +46,17 @@
 
     color: #62686C;
 
+}
+
+.MDBButton{
+    width: 230px;
+    height: 230px;
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.Container {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
 }
