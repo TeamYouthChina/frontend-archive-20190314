@@ -1,0 +1,33 @@
+.SkillCard{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 0%;
+    align-items: center;
+}
+
+.SkillCard img {
+    height: 30px;
+    width: 30px;
+}
+
+.SkillCard p{
+    margin: 0%;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-size: 16px;
+    
+    color: #62686C;
+}
+
+.SkillInfo {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+}

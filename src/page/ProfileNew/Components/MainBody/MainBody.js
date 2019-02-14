@@ -8,6 +8,7 @@ import WorkExperience from '../WorkExperience/WorkExperience';
 import Certifications from '../Certification/Certification';
 import SocialActivicies from '../SocialActivity/SocialActivity';
 import Projects from '../Project/Project';
+import Skills from '../Skill/Skill';
 
 
 const mainBody = (props) => {
@@ -20,7 +21,7 @@ const mainBody = (props) => {
             <Certifications/>
             <SocialActivicies/>
             <Projects/>
-            {/* <Skills/> */}
+            <Skills/>
         </div>
     );
 };
