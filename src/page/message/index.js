@@ -31,6 +31,8 @@ export class Message extends React.Component {
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    const btnColor = '#7C97B8';
+    
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
@@ -41,13 +43,15 @@ export class Message extends React.Component {
           <MDBRow>
             <MDBCol size="0"></MDBCol>
             <MDBCol size='12'>
-
-
               <MDBRow>
                 <MDBCol size="9">
                   <MDBRow>
                     <a href="http://localhost:3000/message">
-                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
+                      <MDBBtn 
+                        color={btnColor}
+                        style={{
+                          padding: '5px 10px', 
+                          backgroundColor: '#7c97b8'}}>
                         <MDBIcon style={{marginRight: '10px'}} far icon="comments"/>消息
                       </MDBBtn>
                     </a>
@@ -62,7 +66,6 @@ export class Message extends React.Component {
               <MDBRow>
                 <RensentInfo></RensentInfo>
               </MDBRow>
-
             </MDBCol>
             <MDBCol size="0"></MDBCol>
           </MDBRow>

@@ -17,12 +17,45 @@ import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+import {getAsync} from '../../tool/api-helper';
 
 export class Login extends React.Component {
   constructor(props) {
     super(props);
     this.text = Login.i18n[languageHelper()];
+    this.state = {
+      email: '',
+      username: '',
+      submitted: false
+    };
+
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount() {
+
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  emailAuthentication = () => {
+    console.log(this.state.email);
+    let userEmail = '';
+    getAsync('/me').then(function (myJson) {
+      userEmail = JSON.stringify(myJson['content']['email']);
+      console.log('this is' + userEmail);
+    });
+    console.log(userEmail);
+    if (this.state.email === userEmail) {
+      console.log('true');
+    } else {
+      console.log('false');
+    }
+  };
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
@@ -81,6 +114,7 @@ export class Login extends React.Component {
                       validate
                       error="wrong"
                       success="right"
+                      onChange={this.handleChange}
                     />
                     <MDBInput
                       label="密码"
@@ -95,8 +129,9 @@ export class Login extends React.Component {
                     </p>
                     <div className="text-center mb-3">
                       <MDBBtn
-                        href="/best-for-you"
+                        // href="/best-for-you"
                         className="btn-block z-depth-1a"
+                        onClick={() => this.emailAuthentication()}
                         color={btnColor}
                         style={{
                           backgroundColor: '#7C97B8'

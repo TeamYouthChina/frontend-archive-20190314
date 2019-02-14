@@ -38,7 +38,7 @@ export class Notification extends React.Component {
       collapseID: "",
       modal: false,
 
-      pingluns: [
+      notifications: [
         {
           name: "John Doe",
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
@@ -81,87 +81,68 @@ export class Notification extends React.Component {
     });
   }
 
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
   render() {
-
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
-        <MDBRow>
-          <MDBCol size="2"></MDBCol>
-          <MDBCol size='8'>
-
-            <MDBCard className="grey lighten-3 chat-room">
-              <MDBCardBody>
-                <MDBRow>
-                  <MDBCol size="10"><h4 className="font-weight-bold">推送提醒</h4></MDBCol>
-                  <MDBCol>
-                    <MDBBtn onClick={this.toggle} color="primary" style={{padding: '5px 10px',}}>
-                      写私信
-                    </MDBBtn>
-                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                      <MDBModalHeader toggle={this.toggle}>请选择回复的信息</MDBModalHeader>
-                      <MDBModalBody>
-                        <MDBCol md="18">
-                          <form className="form-inline mt-4 mb-4">
-                            <MDBIcon icon="search"/>
-                            <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="搜索要回复用户"
-                                   aria-label="Search"/>
-                          </form>
-                        </MDBCol>
-                        <div className="form-group basic-textarea">
-         <textarea
-           className="form-control pl-2 my-0"
-           id="exampleFormControlTextarea2"
-           rows="3"
-           placeholder="请输入回复信息"
-         />
-                          <MDBBtn
-                            color="info"
-                            rounded
-                            size="sm"
-                            className="float-right mt-4"
-                          >
-                            Send
-                          </MDBBtn>
-                        </div>
-                      </MDBModalBody>
-                      <MDBModalFooter>
-                        <MDBBtn color="secondary" onClick={this.toggle}>关闭</MDBBtn>
-                        <MDBBtn color="primary">保存</MDBBtn>
-                      </MDBModalFooter>
-                    </MDBModal>
-                  </MDBCol>
-                </MDBRow>
-                <hr/>
-                <MDBRow>
-                  <MDBCard>
-                    <MDBListGroup>
-                      {this.state.pingluns.map(pinglun => (
-                        <div key={pinglun.name}>
-                          <Pinglun key={pinglun.name} pinglun={pinglun}/>
-                        </div>
-                      ))}
-                    </MDBListGroup>
-                  </MDBCard>
-                </MDBRow>
-                <p/>
-                <MDBRow>
-                  <a href="http://localhost:3000/message">
-                    <MDBIcon icon="undo"/> 返回消息页
-                  </a>
-                </MDBRow>
-
-              </MDBCardBody>
-            </MDBCard>
-
+        <MDBRow className="mt-5">
+          <MDBCol className="offset-2" size='8'>
+            <MDBRow>
+              <MDBCol size="10"><h4 className="font-weight-bold">通知</h4></MDBCol>
+              {/*<MDBCol>*/}
+              {/*<MDBBtn onClick={this.toggle} color="primary" style={{padding: '5px 10px',}}>*/}
+              {/*写私信*/}
+              {/*</MDBBtn>*/}
+              {/*<MDBModal isOpen={this.state.modal} toggle={this.toggle}>*/}
+              {/*<MDBModalHeader toggle={this.toggle}>请选择回复的信息</MDBModalHeader>*/}
+              {/*<MDBModalBody>*/}
+              {/*<MDBCol md="18">*/}
+              {/*<form className="form-inline mt-4 mb-4">*/}
+              {/*<MDBIcon icon="search"/>*/}
+              {/*<input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="搜索要回复用户"*/}
+              {/*aria-label="Search"/>*/}
+              {/*</form>*/}
+              {/*</MDBCol>*/}
+              {/*<div className="form-group basic-textarea">*/}
+              {/*<textarea*/}
+              {/*className="form-control pl-2 my-0"*/}
+              {/*id="exampleFormControlTextarea2"*/}
+              {/*rows="3"*/}
+              {/*placeholder="请输入回复信息"*/}
+              {/*/>*/}
+              {/*<MDBBtn*/}
+              {/*color="info"*/}
+              {/*rounded*/}
+              {/*size="sm"*/}
+              {/*className="float-right mt-4"*/}
+              {/*>*/}
+              {/*Send*/}
+              {/*</MDBBtn>*/}
+              {/*</div>*/}
+              {/*</MDBModalBody>*/}
+              {/*<MDBModalFooter>*/}
+              {/*<MDBBtn color="secondary" onClick={this.toggle}>关闭</MDBBtn>*/}
+              {/*<MDBBtn color="primary">保存</MDBBtn>*/}
+              {/*</MDBModalFooter>*/}
+              {/*</MDBModal>*/}
+              {/*</MDBCol>*/}
+            </MDBRow>
+            <MDBRow>
+                <MDBListGroup>
+                  {this.state.notifications.map(notification => (
+                    <div key={notification.name}>
+                      <NotificationItem key={notification.name} pinglun={notification}/>
+                    </div>
+                  ))}
+                </MDBListGroup>
+            </MDBRow>
+            <p/>
+            <MDBRow>
+              <a href="http://localhost:3000/message">
+                <MDBIcon icon="undo"/> 返回消息页
+              </a>
+            </MDBRow>
           </MDBCol>
-          <MDBCol size="2"></MDBCol>
         </MDBRow>
         <Footer/>
       </div>
@@ -169,78 +150,30 @@ export class Notification extends React.Component {
   }
 }
 
-const Pinglun = ({
-                   pinglun: {name, avatar, message, when, friend,}
-                 }) => {
-  const a = <MDBIcon icon="check" aria-hidden="true"/>
-  const b = <MDBIcon icon="plus" aria-hidden="true"/>
+const NotificationItem = ({pinglun: {name, avatar, message, when, friend,}}) => {
   return (
     <MDBListGroupItem>
       <MDBRow>
-        <MDBCol size='10'>
-          <MDBAvatar
-            tag="img"
-            src={avatar}
-            alt="avatar"
-            className="mr-2 z-depth-1"
-          />
-          <strong>{name}</strong>
+        <MDBCol className="d-none d-md-inline-block mx-3 my-3" md="2">
+              <MDBAvatar>
+                <img src={avatar}
+                     style={{
+                       width: "100px"
+                     }}
+                     className="z-depth-1" />
+              </MDBAvatar>
         </MDBCol>
-        <MDBCol>
-          <div>
-            {friend ? (
-              <span className="text-muted float-right">
-          <MDBPopover component="button" placement="bottom" popoverBody={a}
-                      className="btn btn-default btn-sm Ripple-parent">
-          <MDBPopoverHeader>你们已经是好友</MDBPopoverHeader>
-          <MDBPopoverBody>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">发起会话</li>
-            <li class="list-group-item">删除好友</li>
-          </ul>
-          </MDBPopoverBody>
-        </MDBPopover>
-          </span>
-            ) : (
-              <span className="text-muted float-right">
-          <MDBPopover component="button" placement="bottom" popoverBody={b}
-                      className="btn btn-red btn-sm Ripple-parent">
-          <MDBPopoverHeader>准备成为朋友吗？</MDBPopoverHeader>
-          <MDBPopoverBody>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">添加好友</li>
-            <li class="list-group-item">忽略</li>
-          </ul>
-          </MDBPopoverBody>
-        </MDBPopover>
-          </span>
-            )}
+        <MDBCol className="my-3">
+          <div style={{fontSize: "0.95rem"}}>
+            <p className="text-muted">
+              <strong>{name}</strong>
+              {message}       {when}
+            </p>
           </div>
         </MDBCol>
       </MDBRow>
-      <div style={{fontSize: "0.95rem"}}>
-        <p/>
-        <p className="text-muted">{message}</p>
-        <MDBRow>
-          <MDBCol size="9">
-            <p className="text-muted mb-0" style={{fontSize: "0.75rem"}}>
-              {when}
-            </p>
-          </MDBCol>
-          <MDBCol>
-            <a className="text-muted mb-0" style={{fontSize: "0.75rem"}}>查看对话</a>
-            <span>|</span>
-            <a className="text-muted mb-0" style={{fontSize: "0.75rem"}}>回复</a>
-            <span>|</span>
-            <a className="text-muted mb-0" style={{fontSize: "0.75rem"}}>举报</a>
-            <span>|</span>
-            <a className="text-muted mb-0" style={{fontSize: "0.75rem"}}>删除</a>
-          </MDBCol>
-        </MDBRow>
-      </div>
-
+      
     </MDBListGroupItem>
-
   )
 };
 Notification.i18n = [
