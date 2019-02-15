@@ -52,7 +52,7 @@ export class QuestionCard extends React.Component {
   }
 
   handleSpanClick() {
-    console.log(this.props.type,1)
+    // console.log(this.props.type,1)
     let isCollapsed = !this.state.isCollapsed
     if (isCollapsed) {
       // this.divNow.style.height='100px'
