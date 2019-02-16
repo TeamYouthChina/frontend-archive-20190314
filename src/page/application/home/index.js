@@ -175,7 +175,7 @@ export class ApplicationHome extends React.Component {
         ) : (
           <div>
             <Header></Header>
-            <MDBRow style={{background: '#F4F4F4'}}>
+            <MDBRow>
               <ResumeTitle data = {this.state.backend.resumeTitle}></ResumeTitle>
             </MDBRow>
             <MDBRow style={{marginTop:'20px'}}>
