@@ -75,10 +75,15 @@ export class SearchJobCards extends React.Component {
                 <MDBCol size="10">
                   <MDBCardTitle
                     style={{
-                      fontSize: '1rem'
+                      fontSize: '1.125rem'
                     }}
                   >
-                    <a href="#">{this.state.backend.content.name}</a>
+                    <a href="#" style={{
+                      color: '#7C97B8'
+                    }}
+                    >
+                      {this.state.backend.content.name}
+                    </a>
                   </MDBCardTitle>
                   <MDBCardTitle
                     style={{

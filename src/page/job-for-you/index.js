@@ -7,10 +7,13 @@ import {JobPushed} from './job-pushed';
 import {languageHelper} from '../../tool/language-helper';
 
 import {
+  MDBRow,
+  MDBCol,
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
-  MDBNavLink
+  MDBNavLink,
+  MDBJumbotron
 } from 'mdbreact';
 
 export class JobForYou extends React.Component{
@@ -46,6 +49,20 @@ export class JobForYou extends React.Component{
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
+        <MDBJumbotron className="d-none d-md-block m-0 pt-5" style={{
+          height: '300px',
+          backgroundColor: '#949494',
+          color: 'white'
+        }}>
+          <MDBRow className="text-center">
+            <MDBCol>
+              <br/>
+              <br/>
+              <br/>
+              <h1>发现合适你的职位和公司</h1>
+            </MDBCol>
+          </MDBRow>
+        </MDBJumbotron>
         <MDBNavbar expand="md">
           <MDBNavbarNav center>
             {this.state.backend.jobType.map((item) =>{

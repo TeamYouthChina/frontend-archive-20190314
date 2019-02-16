@@ -19,7 +19,6 @@ const certification = (props) => {
         <div className={classes.Certification}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Certification</p>
-                <button className={classes.CornerButton}>edit</button>
             </div>
 
             <p>no certification</p>
@@ -42,7 +41,6 @@ const certification = (props) => {
             <div className={classes.Certification}>
                 <div className={classes.row}>
                     <p className={classes.SectionName}>Certification</p>
-                    <button className={classes.CornerButton}>edit</button>
                 </div>
 
                 {cards}

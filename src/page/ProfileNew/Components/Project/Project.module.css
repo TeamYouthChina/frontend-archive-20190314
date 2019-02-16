@@ -35,16 +35,19 @@
 }
 
 .CornerButton {
-    border: none;
-    padding: 0;
-
+    width: 45px;
     font-family: IBM Plex Sans;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     font-size: 16px;
-
     color: #62686C;
+    transition-duration: 0.4s;
+    text-align: center;
+    border: none;
+}
+.CornerButton:hover{
+    background-color: #e7e7e7;
 
 }
 

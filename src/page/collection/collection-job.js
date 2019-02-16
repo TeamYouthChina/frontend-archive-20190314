@@ -55,7 +55,7 @@ export class CollectionJob extends React.Component {
               return (
                 
                 <div key={item}>
-                  <JobCardBar ></JobCardBar>
+                  <JobCardBar></JobCardBar>
                 </div>
                 
               );

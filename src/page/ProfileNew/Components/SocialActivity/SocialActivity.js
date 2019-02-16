@@ -19,7 +19,6 @@ const socialActivity = (props) => {
         <div className={classes.SocialActivity}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Social Activity</p>
-                <button className={classes.CornerButton}>edit</button>
             </div>
 
             <p>no social activity</p>
@@ -41,7 +40,6 @@ const socialActivity = (props) => {
             <div className={classes.SocialActivity}>
                 <div className={classes.row}>
                     <p className={classes.SectionName}>Social Activity</p>
-                    <button className={classes.CornerButton}>edit</button>
                 </div>
 
                 {cards}

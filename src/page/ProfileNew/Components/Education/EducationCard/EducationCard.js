@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 import classes from './EducationCard.module.css';
 import schoolIcon from '../../../../assets/schoolIcon.jpg';
+import Dropdown from '../../Dropdown/Dropdown';
 
 const educationCard = (props) => {
     return(
@@ -18,6 +20,7 @@ const educationCard = (props) => {
                     {props.data.degree}
                 </p>
             </div>
+            <Dropdown/>
         </div>
     );
 };

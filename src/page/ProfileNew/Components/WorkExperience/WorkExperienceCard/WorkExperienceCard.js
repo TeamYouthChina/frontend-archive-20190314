@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './WorkExperienceCard.module.css';
 import workIcon from '../../../../assets/google.jpg';
+import Dropdown from '../../Dropdown/Dropdown';
 
 const workExperienceCard = (props) => {
     return(
@@ -21,6 +22,7 @@ const workExperienceCard = (props) => {
                     {props.data.note}
                 </p>
             </div>
+            <Dropdown/>
         </div>
     );
 };

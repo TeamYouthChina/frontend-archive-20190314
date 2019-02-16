@@ -19,7 +19,6 @@ const workExperience = (props) => {
         <div className={classes.WorkExperience}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Work Experience</p>
-                <button className={classes.CornerButton}>edit</button>
             </div>
 
             <p>no work experience</p>
@@ -41,7 +40,6 @@ const workExperience = (props) => {
             <div className={classes.WorkExperience}>
                 <div className={classes.row}>
                     <p className={classes.SectionName}>Work Experience</p>
-                    <button className={classes.CornerButton}>edit</button>
                 </div>
 
                 {cards}
