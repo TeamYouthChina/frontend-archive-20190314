@@ -19,8 +19,10 @@ export class JobCardSquare extends React.Component {
     this.state = {
       backend: null
     };
+    
     this.text = JobCardSquare.i18n[languageHelper()];
   }
+  
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
@@ -34,6 +36,9 @@ export class JobCardSquare extends React.Component {
   }
 
   render() {
+    
+    const applicationBtnUrl = 'job/' + this.props.id;
+    
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBCard
         style={{
@@ -44,7 +49,7 @@ export class JobCardSquare extends React.Component {
       >
         <MDBCardImage
           className="img-fluid"
-          src="https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/original/hs-emp-branding-image-data.?1522348756"
+          src={this.state.backend.content.organization.avatarUrl}
         />
         <MDBCardBody
           style={{
@@ -86,7 +91,7 @@ export class JobCardSquare extends React.Component {
             }
           </MDBCardText>
         </MDBCardBody>
-        <MDBBtn  flat href="job/1" className="indigo-text">立即申请</MDBBtn>
+        <MDBBtn  flat href={applicationBtnUrl} className="indigo-text">立即申请</MDBBtn>
       </MDBCard>
     ) : null;
   }

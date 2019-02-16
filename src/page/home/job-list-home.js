@@ -19,7 +19,7 @@ export class JobListHome extends React.Component {
   componentWillMount() {
     let mockData =
       {
-        searchResult: ['1', '2', '3', '4'],
+        searchResult: ['1', '1', '1', '1'],
         status: {
           code: 2000
         }
