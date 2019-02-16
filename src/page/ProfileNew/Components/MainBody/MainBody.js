@@ -12,16 +12,39 @@ import Skills from '../Skill/Skill';
 
 
 const mainBody = (props) => {
+    console.log(props.data);
+    
+    let dataForBasicInfo = {
+        name: props.data.name ? props.data.name : "no name given",
+        DOB: props.data.DOB ? props.data.DOB : "no DOB given",
+        gender: props.data.gender ? props.data.gender : "no gender given",
+        email: props.data.contacts.email ? props.data.contacts.email : "no email given",
+        phone: props.data.contacts.phonenumbers ? props.data.contacts.phonenumbers : "no phone given"
+    };
+
+    let dataForEducation = {
+        educations: props.data.educations
+    };
+    let dataForWorkExperience = {};
+
+    let dataForCertifications = {};
+    
+    let dataForSocialActivicies = {};
+
+    let dataForProjects = {};
+
+    let dataForSkills = {};
+
     return(
         <div className={classes.MainBody}>
             <ResumeButtons/>
-            <BasicInfo/>
-            <Education/>
-            <WorkExperience/>
-            <Certifications/>
-            <SocialActivicies/>
-            <Projects/>
-            <Skills/>
+            <BasicInfo data={dataForBasicInfo}/>
+            <Education data={props.data.educations}/>
+            <WorkExperience data={props.data.works}/>
+            <Certifications data={props.data.certifications}/>
+            <SocialActivicies data={props.data.extracurriculars}/>
+            <Projects data={props.data.projects}/>
+            <Skills data={props.data.skills}/>
         </div>
     );
 };

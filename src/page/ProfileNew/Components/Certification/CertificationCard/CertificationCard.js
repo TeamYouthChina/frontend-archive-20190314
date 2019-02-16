@@ -3,22 +3,22 @@ import React from 'react';
 import classes from './CertificationCard.module.css';
 import certificationIcon from '../../../../assets/coursera.png';
 
-const certificationCard = () => {
+const certificationCard = (props) => {
     return(
         <div className={classes.CertificationCard}>
             <img src={certificationIcon} alt="no img"></img>
             <div className={classes.certifiInfo}>
                 <p className={classes.Title}>
-                    Title
+                    {props.data.name}
                 </p>
                 <p className={classes.Institute}>
-                    Institute
+                    {props.data.authority}
                 </p>
                 <p className={classes.Time}>
-                    2018
+                    {props.data.duration.begin+"-"+props.data.duration.end}
                 </p>
                 <p className={classes.Description}>
-                Comfort reached gay perhaps chamber his six detract besides add. Moonlight newspaper up he it enjoyment agreeable depending. 
+                    {props.data.note}
                 </p>
             </div>
         </div>

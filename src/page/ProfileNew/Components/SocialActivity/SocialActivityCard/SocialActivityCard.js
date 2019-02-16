@@ -3,22 +3,22 @@ import React from 'react';
 import classes from './SocialActivityCard.module.css';
 import socialActivityIcon from '../../../../assets/activity-icon.png';
 
-const socialActivityCard = () => {
+const socialActivityCard = (props) => {
     return(
         <div className={classes.SocialActivityCard}>
             <img src={socialActivityIcon} alt="no img"></img>
             <div className={classes.ActivityInfo}>
                 <p className={classes.Title}>
-                    Volunteer
+                    {props.data.name}
                 </p>
                 <p className={classes.Institute}>
-                    What Institute?
+                    {props.data.organization}
                 </p>
                 <p className={classes.Time}>
-                    2018
+                    {props.data.duration.begin+"-"+props.data.duration.end}
                 </p>
                 <p className={classes.Description}>
-                Comfort reached gay perhaps chamber his six detract besides add. Moonlight newspaper up he it enjoyment agreeable depending. 
+                    {props.data.note}
                 </p>
             </div>
         </div>

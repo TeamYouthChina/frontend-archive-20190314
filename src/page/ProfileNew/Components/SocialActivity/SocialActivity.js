@@ -14,19 +14,15 @@ const MDBButtonStyle = {
     font_size: "18px",
     text_align: "center"};
 
-const socialActivity = () => {
-    return(
+const socialActivity = (props) => {
+    let toShow = 
         <div className={classes.SocialActivity}>
             <div className={classes.row}>
-                <p className={classes.SectionName}>SocialActivity</p>
+                <p className={classes.SectionName}>Social Activity</p>
                 <button className={classes.CornerButton}>edit</button>
             </div>
 
-            <SocialActivityCard/>
-            <SocialActivityCard/>
-            <SocialActivityCard/>
-            <SocialActivityCard/>
-            
+            <p>no social activity</p>
             
             <MDBBtn 
                 flat 
@@ -35,6 +31,32 @@ const socialActivity = () => {
                     + Add Social Activity
             </MDBBtn>
         </div>
+
+    let cards;
+    if(props.data){
+        cards = props.data.map((e,i)=>(
+            <SocialActivityCard key={i} data={e}/>
+        ));
+        toShow = 
+            <div className={classes.SocialActivity}>
+                <div className={classes.row}>
+                    <p className={classes.SectionName}>Social Activity</p>
+                    <button className={classes.CornerButton}>edit</button>
+                </div>
+
+                {cards}
+                
+                
+                <MDBBtn 
+                    flat 
+                    className={classes.MDBButton}
+                    style={MDBButtonStyle}>
+                        + Add Social Activity
+                </MDBBtn>
+            </div>
+    }
+    return(
+        toShow
     );
 };
 

@@ -3,19 +3,19 @@ import React from 'react';
 import classes from './EducationCard.module.css';
 import schoolIcon from '../../../../assets/schoolIcon.jpg';
 
-const educationCard = () => {
+const educationCard = (props) => {
     return(
         <div className={classes.EducationCard}>
             <img src={schoolIcon} alt="no img"></img>
             <div className={classes.SchoolInfo}>
                 <h1>
-                    Georege Washington University
+                    {props.data.university}
                 </h1>
                 <p>
-                    2018-2020
+                    {props.data.duration.begin+"-"+props.data.duration.end}
                 </p>
                 <p>
-                    Master of Science
+                    {props.data.degree}
                 </p>
             </div>
         </div>
