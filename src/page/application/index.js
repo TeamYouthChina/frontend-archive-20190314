@@ -15,7 +15,7 @@ import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
 import {JobApp} from "../job/job-app-progress";
 import {getAsync, get} from "../../tool/api-helper";
-
+import {ResumeTitle} from "../../general-component/resumeTitle";
 const data = {
   columns: [
     {
@@ -137,7 +137,7 @@ export class Application extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
-
+       
         <MDBRow top>
           <MDBCol md="2" className="offset-md-1 my-5 px-3 pb-3">
 

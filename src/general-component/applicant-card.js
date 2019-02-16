@@ -50,7 +50,7 @@ export class ApplicantCard extends React.Component {
               <p style={{textAlign:'center'}}>
                 <MDBAvatar
                   tag="img"
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg"
+                  src={this.state.backend.content.avatarUrl}
                   className="rounded-circle z-depth-1 img-fluid"
                   alt="Sample avatar"
                   style={{width:'104px',height:'104px'}}
