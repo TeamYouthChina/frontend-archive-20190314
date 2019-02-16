@@ -32,7 +32,8 @@ export class ApplicantCard extends React.Component {
         backend: await getAsync(`/applicants/1`)
       });
     }
-  }
+  } 
+ 
   
 
   render() {

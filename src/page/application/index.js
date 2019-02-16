@@ -5,10 +5,8 @@ import {
   MDBRow,
   MDBCard,
   MDBCardBody,
-  MDBBtn,
   MDBDataTable,
-  MDBAvatar,
-  MDBIcon,
+
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
@@ -16,6 +14,8 @@ import {Footer} from "../../general-component/footer";
 import {JobApp} from "../job/job-app-progress";
 import {getAsync, get} from "../../tool/api-helper";
 import {ResumeTitle} from "../../general-component/resumeTitle";
+import {UserMenu} from "./menu";
+
 const data = {
   columns: [
     {
@@ -36,13 +36,7 @@ const data = {
       sort: 'asc',
       width: 200
     },
-
-    {
-      label: '更新时间',
-      field: 'date',
-      sort: 'asc',
-      width: 150
-    },
+    
     {
       label: '状态',
       field: 'salary',
@@ -132,70 +126,36 @@ export class Application extends React.Component {
       });
     }
   }
+  
   render() {
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
-       
+        <ResumeTitle/>
         <MDBRow top>
-          <MDBCol md="2" className="offset-md-1 my-5 px-3 pb-3">
+          <MDBCol md="10" className="offset-md-1 my-5 p-0">
 
-            <MDBRow>
-              <MDBCol style={{textAlign: 'center'}}>
-                <MDBRow center>
-                  <MDBCol size='7'>
-                    <MDBAvatar
-                      tag="img"
-                      src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg"
-                      className="rounded z-depth-1-half img-fluid"
-                      alt="Sample avatar"
+            <div className="d-flex flex-row">
+              <div><UserMenu/></div>
+              <div className="flex-fill">
+                <MDBCard className="px-5 pb-3 mx-5">
+                  <br/>
+                  <MDBCardBody>
+                    <JobApp/>
+                    <MDBDataTable
+                      striped
+                      hover
+                      big
+                      data={data}
+                      style={{fontSize:'large',fontStyle:'Helvetica Neue'}}
                     />
-                    <h6 className="font-weight-bold dark-grey-text my-4">
-                      Maria Kate
-                    </h6>
-                  </MDBCol>
-                </MDBRow>
-                <p>
-                  <MDBBtn flat>已投递 6</MDBBtn>
-                </p>
-                <p>
-                  <MDBBtn flat>已查阅 3</MDBBtn>
-                </p>
-                <p>
-                  <MDBBtn flat>拟面试 1</MDBBtn>
-                </p>
-                <p>
-                  <MDBBtn flat>已面试 2</MDBBtn>
-                </p>
-                <p>
-                  <MDBBtn flat>offer 1</MDBBtn>
-                </p>
-
-              </MDBCol>
-
-            </MDBRow>
-
-
-
-          </MDBCol>
-          <MDBCol size="8">
-            <MDBCard className="my-5 px-3 pb-3">
-              <br/>
-              <MDBCardBody>
-                <JobApp/>
-                <MDBDataTable
-                  striped
-                  hover
-                  big
-                  data={data}
-                  style={{fontSize:'large',fontStyle:'Helvetica Neue'}}
-                />
-              </MDBCardBody>
-            </MDBCard>
+                  </MDBCardBody>
+                </MDBCard>
+              </div>
+            </div>
           </MDBCol>
         </MDBRow>
-
         <Footer/>
       </div>
     ): null;
