@@ -111,8 +111,8 @@ export class Article extends React.Component {
                     <MDBMask overlay="white-slight" className="waves-light"/>
                   </MDBView>
                   <MDBCardBody cascade className="text-center">
-                    <h2 className="font-weight-bold">
-                      <a href="#!">{this.state.backend.title}</a>
+                    <h2 style={{fontSize: '18px',color: '#3E4850',...basicFont}}>
+                      {this.state.backend.title}
                     </h2>
                     <p>
                       {this.text.written}
@@ -121,25 +121,7 @@ export class Article extends React.Component {
                       </a>
                       , {this.state.backend.date}
                     </p>
-                    <MDBBtn className="btn-fb waves-light">
-                      <MDBIcon icon="facebook" className="pr-2"/>
-                      Facebook
-                    </MDBBtn>
-                    <span className="counter">46</span>
-                    <MDBBtn className="btn-tw waves-light">
-                      <MDBIcon icon="twitter" className="pr-2"/>
-                      Twitter
-                    </MDBBtn>
-                    <span className="counter">22</span>
-                    <MDBBtn className="btn-gplus waves-light">
-                      <MDBIcon icon="google-plus" className="pr-2"/>
-                      Google
-                    </MDBBtn>
-                    <span className="counter">31</span>
-                    <MDBBtn color="default" className="waves-light">
-                      <MDBIcon icon="comments" className="pr-2"/>
-                      Comments
-                    </MDBBtn>
+                    
                     <span className="counter">18</span>
                   </MDBCardBody>
                 </MDBCard>

@@ -92,9 +92,6 @@ export class Company extends React.Component {
                 <MDBCol>
                   <JobCardSquare/>
                 </MDBCol>
-                <MDBCol>
-                  <JobCardSquare/>
-                </MDBCol>
               </MDBRow>
               <MDBRow center className="mt-2">
                 <MDBBtn flat block>查看全部相似职位</MDBBtn>
