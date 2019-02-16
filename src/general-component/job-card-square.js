@@ -3,9 +3,6 @@ import {languageHelper} from '../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
   MDBBtn,
   MDBAvatar, MDBCol, MDBRow
 } from 'mdbreact';
@@ -21,8 +18,10 @@ export class JobCardSquare extends React.Component {
     this.state = {
       backend: null
     };
+    
     this.text = JobCardSquare.i18n[languageHelper()];
   }
+  
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
@@ -36,7 +35,11 @@ export class JobCardSquare extends React.Component {
   }
 
   render() {
+    
+    const applicationBtnUrl = 'job/' + this.props.id;
+    
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+
       <MDBCard>
         <MDBCardBody  style={{
           display: 'flex',
@@ -93,6 +96,7 @@ export class JobCardSquare extends React.Component {
 
           
         </MDBCardBody>
+
 
       </MDBCard>
     ) : null;
