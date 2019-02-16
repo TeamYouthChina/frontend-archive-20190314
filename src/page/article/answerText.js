@@ -14,6 +14,7 @@ export class AnswerText extends React.Component {
       myUploadFn: null
     }
     this.setup()
+    this.submitContent = this.submitContent.bind(this)
   }
 
   setup() {
@@ -32,6 +33,7 @@ export class AnswerText extends React.Component {
 
   submitContent() {
     let showNow = this.state.showNow + 1
+    console.log('submitContent')
     this.setState({
       showNow
     })
@@ -46,6 +48,7 @@ export class AnswerText extends React.Component {
     this.setState({editorState});
     let a = JSON.stringify(this.state.editorState.toRAW(true))
     console.log(JSON.stringify(Object.assign({blocks: this.state.editorState.toRAW(true)}, {id: 1})));
+    
   }
 
 
@@ -103,13 +106,14 @@ export class AnswerText extends React.Component {
 
     return (
       <div>
-        <div className="editor-wrapper">
+        <div ref={(div) => this.div =div } className="editor-wrapper">
           <BraftEditor className="myAnswerText" media={{uploadFn: myUploadFn}}
                        value={editorState}
                        onChange={(editorState) => {
                          this.handleEditorChange(editorState)
-                       }
-                       }
+                         
+                       }}
+                       onSave={this.submitContent}
           />
         </div>
         <br/>
