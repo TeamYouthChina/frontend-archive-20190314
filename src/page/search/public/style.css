@@ -17,10 +17,15 @@
   color: #BDBDBD;
 }
 
+.md-form .prefix.active{
+  color: rgb(124, 151, 184);
+}
+
 .dropdown .dropdown-menu .dropdown-item.active, 
 .dropdown .dropdown-menu .dropdown-item:active, 
 .dropdown .dropdown-menu .dropdown-item:hover {
   color: white;
   background-color: #727272 !important;
 }
+
 
