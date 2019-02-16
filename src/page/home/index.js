@@ -109,6 +109,18 @@ export class Home extends React.Component {
                             skipAuth: true
                           }}
                         />
+                        <JobListHome
+                          name={this.text.industry}
+                          search={{
+                            industry: 'industry',
+                            tagList: [
+                              `${tag}`
+                            ],
+                            page: 1,
+                            size: 4,
+                            skipAuth: true
+                          }}
+                        />
                       </div>
                     );
                   }
@@ -128,12 +140,14 @@ Home.i18n = [
     hot: '热门企业',
     new: '新锐公司',
     it: 'IT / 互联网',
-    finance: '金融'
+    finance: '金融',
+    industry: '工业'
   },
   {
     hot: 'Hot',
     new: 'New',
     it: 'IT / Internet',
-    finance: 'Finance'
+    finance: 'Finance',
+    industry: 'Industry'
   },
 ];

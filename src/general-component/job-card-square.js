@@ -8,7 +8,7 @@ import {
   MDBCardText,
   MDBBtn
 } from 'mdbreact';
-import {getAsync} from "../tool/api-helper";
+import {getAsync} from '../tool/api-helper';
 
 
 export class JobCardSquare extends React.Component {
@@ -37,7 +37,7 @@ export class JobCardSquare extends React.Component {
 
   render() {
     
-    const applicationBtnUrl = 'job/' + this.props.id;
+    const applicationBtnUrl = `job/${this.props.id}`;
     
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBCard
