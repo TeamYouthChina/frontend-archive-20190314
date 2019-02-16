@@ -13,6 +13,7 @@ import {
   MDBAvatar
 } from 'mdbreact';
 
+import {getAsync} from '../../tool/api-helper';
 
 export class SearchJobCards extends React.Component {
   constructor(props) {
@@ -25,23 +26,34 @@ export class SearchJobCards extends React.Component {
     this.text = SearchJobCards.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'New Frontier Data',
-        avatarUrl: 'https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/small/hs-emp-logo-data.?1478033500',
-        url: 'https://www.google.com',
-        scale: '500',
-        employNumber: '100',
-        type: 'Computer Software', // It would be defined in future.
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    
+    if(this.props.id === 1) {
+      this.setState({
+        backend: await getAsync(`/job/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`job/1`)
+      });
+    }
+    
+    // let mockData =
+    //   {
+    //     id: 0,
+    //     name: 'New Frontier Data',
+    //     avatarUrl: 'https://s3.amazonaws.com/handshake.production/app/public/assets/institutions/111044/small/hs-emp-logo-data.?1478033500',
+    //     url: 'https://www.google.com',
+    //     scale: '500',
+    //     employNumber: '100',
+    //     type: 'Computer Software', // It would be defined in future.
+    //     status: {
+    //       code: 2000
+    //     }
+    //   };
+    // this.setState(() => {
+    //   return {backend: mockData};
+    // });
   }
 
   render() {
@@ -66,14 +78,14 @@ export class SearchJobCards extends React.Component {
                       fontSize: '1rem'
                     }}
                   >
-                    <a href={this.state.backend.url}>{this.state.backend.name}</a>
+                    <a href="#">{this.state.backend.content.name}</a>
                   </MDBCardTitle>
                   <MDBCardTitle
                     style={{
                       fontSize: '1rem'
                     }}
                   >
-                    {this.state.backend.type}
+                    {this.state.backend.content.location}
                   </MDBCardTitle>
                   <MDBCardText
                     style={{
@@ -81,8 +93,8 @@ export class SearchJobCards extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    {this.text.scale} :
-                    {this.state.backend.scale}
+                    {this.text.type}
+                    {this.state.backend.content.type}
                   </MDBCardText>
                   <MDBCardText
                     style={{
@@ -90,8 +102,8 @@ export class SearchJobCards extends React.Component {
                       marginTop: '5px',
                     }}
                   >
-                    {this.text.employ} :
-                    {this.state.backend.employNumber}
+                    {this.text.deadline}
+                    {this.state.backend.content.deadLine}
                   </MDBCardText>
                 </MDBCol>
               </MDBRow>
@@ -101,7 +113,7 @@ export class SearchJobCards extends React.Component {
                 <MDBCol className="p-0" size='12'>
                   <MDBAvatar
                     tag="img"
-                    src="https://pbs.twimg.com/profile_images/762930018968334336/fePtGWo7_400x400.jpg"
+                    src={this.state.backend.content.organization.avatarUrl}
                     className="z-depth-1-half img-fluid"
                     // alt="Sample avatar"
                   />
@@ -117,11 +129,11 @@ export class SearchJobCards extends React.Component {
 
 SearchJobCards.i18n = [
   {
-    scale: '公司规模',
-    employ: '招聘职位数量',
+    type: '工作类型: ',
+    deadline: '截止日期: ',
   },
   {
-    scale: 'Company Scale',
-    employ: 'Employ Number',
+    type: 'jobType: ',
+    deadline: 'deadline: ',
   },
 ];

@@ -37,18 +37,17 @@ export class SearchJobResult extends React.Component{
   componentWillMount() {
     let mockData =
       {
-        id: 0,
         jobList: [
           {id:1},
-          {id:2},
-          {id:3},
-          {id:4},
-          {id:5},
-          {id:6},
-          {id:7},
-          {id:8},
-          {id:9},
-          {id:10}
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1},
+          {id:1}
         ],
         status: {
           code: 2000
@@ -167,7 +166,7 @@ export class SearchJobResult extends React.Component{
           {this.state.backend.jobList.map((item, index) => {
             return(
               <MDBCol className="my-3" md="6" key={index}>
-                <SearchJobCards/>
+                <SearchJobCards id={item.id}/>
               </MDBCol>
             );
           })}
