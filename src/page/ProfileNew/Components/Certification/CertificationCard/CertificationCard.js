@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './CertificationCard.module.css';
 import certificationIcon from '../../../../assets/coursera.png';
+import Dropdown from '../../Dropdown/Dropdown';
 
 const certificationCard = (props) => {
     return(
@@ -21,6 +22,7 @@ const certificationCard = (props) => {
                     {props.data.note}
                 </p>
             </div>
+            <Dropdown/>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './SocialActivityCard.module.css';
 import socialActivityIcon from '../../../../assets/activity-icon.png';
+import Dropdown from '../../Dropdown/Dropdown';
 
 const socialActivityCard = (props) => {
     return(
@@ -21,6 +22,7 @@ const socialActivityCard = (props) => {
                     {props.data.note}
                 </p>
             </div>
+            <Dropdown/>
         </div>
     );
 };

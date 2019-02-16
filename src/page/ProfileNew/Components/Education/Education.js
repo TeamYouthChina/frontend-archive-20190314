@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { MDBBtn } from "mdbreact";
-import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
 
 import EducationCard from './EducationCard/EducationCard';
 import classes from './Education.module.css';
@@ -24,7 +23,6 @@ class Education extends Component {
         <div className={classes.Education}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Education</p>
-                <button className={classes.CornerButton}>edit</button>
             </div>
             
             <p>no education </p>
@@ -46,7 +44,6 @@ class Education extends Component {
                 <div className={classes.Education}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Education</p>
-                        <button className={classes.CornerButton}>edit</button>
                     </div>
                     
                     {cards}
