@@ -3,12 +3,11 @@ import {languageHelper} from '../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn
+  MDBBtn,
+  MDBAvatar, MDBCol, MDBRow
 } from 'mdbreact';
 import {getAsync} from '../tool/api-helper';
+
 
 
 export class JobCardSquare extends React.Component {
@@ -40,58 +39,65 @@ export class JobCardSquare extends React.Component {
     const applicationBtnUrl = `job/${this.props.id}`;
     
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard
-        style={{
-          width: '16rem',
-          height: '16rem'
-        }}
-        
-      >
-        <MDBCardImage
-          className="img-fluid"
-          src={this.state.backend.content.organization.avatarUrl}
-        />
-        <MDBCardBody
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
-          <div>
-            <MDBCardTitle
-              style={{
-                fontSize: '1rem'
-              }}
-            >
-              {this.state.backend.content.name}
-            </MDBCardTitle>
-            <MDBCardText
-              style={{
-                fontSize: '0.8rem'
-              }}
-            >
-              {this.state.backend.content.organization.name}
-              <br/>
-              {this.state.backend.content.location}
-            </MDBCardText>
-          </div>
-          <MDBCardText
-            style={{
-              fontSize: '0.8rem'
-            }}
-          >
-            {this.text.applyBefore}
-            <br/>
-            {
-              ((unixTimeStamp) => {
-                let d = new Date(unixTimeStamp * 1000);
-                return d.toUTCString();
-              })(this.state.backend.content.deadLine)
-            }
-          </MDBCardText>
+
+      <MDBCard>
+        <MDBCardBody  style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}>
+          
+          <MDBRow>
+            <MDBCol>
+              <p style={{textAlign:'center'}}>
+                <MDBAvatar
+                  tag="img"
+                  src={this.state.backend.content.organization.avatarUrl}
+                  className="z-depth-1 img-fluid"
+                
+                  style={{width:'104px',height:'104px'}}
+                />
+              </p>
+              <p
+                style={{
+                  fontSize: '1rem'
+                }}
+              >
+                {this.state.backend.content.name}
+              </p>
+              <p
+                style={{
+                  fontSize: '0.8rem'
+                }}
+              >
+                {this.state.backend.content.organization.name}
+                <br/>
+                {this.state.backend.content.location}
+              </p>
+              <p
+                style={{
+                  fontSize: '0.8rem'
+                }}
+              >
+                {this.text.applyBefore}
+                <br/>
+                {
+                  ((unixTimeStamp) => {
+                    let d = new Date(unixTimeStamp * 1000);
+                    return d.toUTCString();
+                  })(this.state.backend.content.deadLine)
+                }
+              </p>
+              <p>
+                <MDBBtn  block flat href="job/1" className="indigo-text">立即申请</MDBBtn>
+              </p>
+            </MDBCol>
+          </MDBRow>
+
+          
         </MDBCardBody>
-        <MDBBtn  flat href={applicationBtnUrl} className="indigo-text">立即申请</MDBBtn>
+
+
       </MDBCard>
     ) : null;
   }
