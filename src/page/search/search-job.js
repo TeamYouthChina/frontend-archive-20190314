@@ -9,7 +9,7 @@ import {
   MDBDropdownItem,
   MDBDropdownMenu,
   MDBDropdownToggle,
-  MDBIcon, 
+  MDBIcon,
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
@@ -18,36 +18,36 @@ import {
 
 import {SearchJobCards} from './search-job-cards';
 
-export class SearchJobResult extends React.Component{
-  constructor (props) {
-    
+export class SearchJobResult extends React.Component {
+  constructor(props) {
+
     super(props);
-    
-    this.state={
+
+    this.state = {
       backend: null,
       collapseID: ''
     };
-    
+
   }
 
   toggleCollapse = collapseID => () => {
-    this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
+    this.setState(prevState => ({collapseID: (prevState.collapseID !== collapseID ? collapseID : '')}));
   }
-  
+
   componentWillMount() {
     let mockData =
       {
         jobList: [
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1},
-          {id:1}
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1},
+          {id: 1}
         ],
         status: {
           code: 2000
@@ -57,26 +57,30 @@ export class SearchJobResult extends React.Component{
       return {backend: mockData};
     });
   }
-  
-  render () {
+
+  render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBNavbar light className="mb-3" expand="md" style={{
-          background:'#F9F9F9',
+          background: 'white',
+          boxShadow: 'none',
+          borderTop: 'solid #E0E0E0 1px',
+          borderBottom: 'solid #E0E0E0 1px'
         }}>
           <MDBContainer>
-            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
+            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')}/>
             <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{color: 'black'
+                      <div className="d-md-inline" style={{
+                        color: 'black'
                       }}>职位 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
-                      <MDBDropdownItem href="#!" 
+                      <MDBDropdownItem href="#!"
                                        className="active"
                                        onClick={this.props.toggleClassicTabs1("1")}>
                         <MDBIcon icon="user-circle"/> 职位
@@ -162,10 +166,11 @@ export class SearchJobResult extends React.Component{
             </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>
-        <MDBRow>
+
+        <MDBRow className="mx-5" center>
           {this.state.backend.jobList.map((item, index) => {
-            return(
-              <MDBCol className="my-3" md="6" key={index}>
+            return (
+              <MDBCol className="my-3" md="5" key={index}>
                 <SearchJobCards id={item.id}/>
               </MDBCol>
             );
