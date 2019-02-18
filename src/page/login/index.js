@@ -26,7 +26,8 @@ export class Login extends React.Component {
     this.state = {
       email: '',
       username: '',
-      submitted: false
+      submitted: false,
+      type: 'password'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,6 +41,14 @@ export class Login extends React.Component {
     this.setState({
       email: event.target.value
     });
+  };
+
+  showHidePasswd = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    this.setState({
+      type: this.state.type === 'text' ? 'password' : 'text'
+    })
   };
 
   emailAuthentication = () => {
@@ -116,12 +125,24 @@ export class Login extends React.Component {
                       success="right"
                       onChange={this.handleChange}
                     />
-                    <MDBInput
-                      label="密码"
-                      group
-                      type="password"
-                      validate
-                    />
+                    <div style={{position: 'relative'}}>
+                      <MDBInput
+                        label="密码"
+                        group
+                        type={this.state.type}
+                        validate
+                      />
+                      <span onClick={this.showHidePasswd} style={{
+                        position: 'absolute', 
+                        right: '20px', 
+                        top: '7px',
+                        color: '#616161'
+                      }}>
+                        {this.state.type === 'text' ?
+                          <MDBIcon icon="eye"/> :
+                          <MDBIcon flip="horizontal" icon="eye-slash"/>}
+                      </span>
+                    </div>
                     <p className="font-small blue-text d-flex justify-content-end pb-3">
                       <a href="#!" className="blue-text ml-1">
                         忘记密码?
@@ -129,46 +150,59 @@ export class Login extends React.Component {
                     </p>
                     <div className="text-center mb-3">
                       <MDBBtn
-                        // href="/best-for-you"
+                        href="/best-for-you"
                         className="btn-block z-depth-1a"
                         onClick={() => this.emailAuthentication()}
                         color={btnColor}
                         style={{
                           backgroundColor: '#7C97B8'
                         }}>
-                        登陆
+                        登录
                       </MDBBtn>
                     </div>
                   </form>
                   <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
-                    使用社交平台登陆:
+                    使用社交平台登录：
                   </p>
-                  <div className="row d-flex justify-content-center">
-                    <MDBBtn
+                  <div className="row d-flex justify-content-around">
+                    <a
                       type="button"
                       color="white"
-                      rounded
+                      href="https://www.facebook.com"
                       className=" z-depth-1a"
                     >
-                      <MDBIcon icon="facebook-f" className="text-center" color={btnColor} style={{color: '#7C97B8'}}
+                      <MDBIcon 
+                        icon="facebook-f" 
+                        className="text-center" 
+                        color={btnColor} 
+                        size="2x"
+                        style={{color: '#7C97B8'}}
                       />
-                    </MDBBtn>
-                    <MDBBtn
+                    </a>
+                    <a
                       type="button"
                       color="white"
-                      rounded
+                      href="https://twitter.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon icon="twitter" color={btnColor} style={{color: '#7C97B8'}}/>
-                    </MDBBtn>
-                    <MDBBtn
+                      <MDBIcon 
+                        icon="twitter" 
+                        color={btnColor} 
+                        size="2x" 
+                        style={{color: '#7C97B8'}}/>
+                    </a>
+                    <a
                       type="button"
                       color="white"
-                      rounded
+                      href="https://www.google.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon icon="google-plus" color={btnColor} style={{color: '#7C97B8'}}/>
-                    </MDBBtn>
+                      <MDBIcon 
+                        icon="google-plus" 
+                        color={btnColor} 
+                        size="2x" 
+                        style={{color: '#7C97B8'}}/>
+                    </a>
                   </div>
                   <p className="my-3 font-small grey-text d-flex justify-content-end">
                     还没有账号?

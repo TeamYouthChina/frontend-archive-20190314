@@ -8,20 +8,20 @@ import {
   MDBContainer,
   MDBInput,
   MDBRow,
-  MDBTabPane, 
-  MDBTabContent, 
-  MDBNav, 
-  MDBNavItem, 
+  MDBTabPane,
+  MDBTabContent,
+  MDBNav,
+  MDBNavItem,
   MDBNavLink,
-  MDBNavbar, 
-  MDBNavbarBrand, 
-  MDBNavbarNav, 
-  MDBNavbarToggler, 
-  MDBCollapse, 
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavbarToggler,
+  MDBCollapse,
   MDBFormInline,
-  MDBDropdown, 
-  MDBDropdownToggle, 
-  MDBDropdownMenu, 
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
   MDBDropdownItem,
   MDBIcon
 } from 'mdbreact';
@@ -44,7 +44,7 @@ export class Search extends React.Component {
       activeItemClassicTabs1: "1",
       collapseID: ""
     };
-    
+
     this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
   }
 
@@ -55,71 +55,78 @@ export class Search extends React.Component {
       });
     }
   }
-  
+
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
     return (
-      <MDBContainer
-        fluid
-        style={{padding: 0}}
+      <div
+        style={{
+          padding: 0,
+          backgroundColor: '#F3F5F7'
+        }}
       >
         <Header/>
-        <MDBContainer>
-          <img
-            alt="aligment"
-            className="rounded mx-auto d-block"
-            src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-          />
-          <MDBRow>
-            <MDBCol className="m-0 p-0">
-              <MDBInput className="flex-fill form-control" icon="search" hint="通过以下方式搜索" style={{
-                fontSize: '28px'
-              }}/>
-            </MDBCol>
-          </MDBRow>
-        </MDBContainer>
-        {/*////////////////////////////////////////////////////////////////*/}
-        {/*<MDBRow center className="mt-5">*/}
-          {/*<MDBCol className="mt-5" md="12" lg="10">*/}
-            <div className="classic-tabs">
-              <MDBTabContent className="mx-5 px-5" activeItem={this.state.activeItemClassicTabs1}>
-                <MDBTabPane tabId="1">
-                  <SearchJobResult
-                    toggleClassicTabs1={this.toggleClassicTabs1}
-                    activeTab={this.state.activeItemClassicTabs1}
-                  />
-                </MDBTabPane>
-                <MDBTabPane tabId="2">
-                  <SearchCompanyResult 
-                    toggleClassicTabs1={this.toggleClassicTabs1}
-                    activeTab={this.state.activeItemClassicTabs1}
-                  />
-                </MDBTabPane>
-                <MDBTabPane tabId="3">
-                  <SearchCommunityResult
-                    toggleClassicTabs1={this.toggleClassicTabs1}
-                    activeTab={this.state.activeItemClassicTabs1}
-                  />
-                </MDBTabPane>
-                <MDBTabPane tabId="4">
-                  <SearchVideoResult
-                    toggleClassicTabs1={this.toggleClassicTabs1}
-                    activeTab={this.state.activeItemClassicTabs1}
-                  />
-                </MDBTabPane>
-                <MDBTabPane tabId="5">
-                  <MDBBtn color="primary" href="/search">建设中，点我返回</MDBBtn>
-                </MDBTabPane>
-              </MDBTabContent>
-            </div>
-          {/*</MDBCol>*/}
-        {/*</MDBRow>*/}
+        <div style={{
+          backgroundColor: 'white'
+        }}>
+          <MDBContainer>
+            <MDBRow>
+              <MDBCol className="mt-5 p-0">
+                <MDBInput
+                  className="flex-fill form-control"
+                  icon="search"
+                  hint="通过以下方式搜索"
+                  style={{
+                    fontSize: '28px',
+                  }}/>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </div>
+        
+        <div className="classic-tabs">
+          <MDBTabContent className="px-0 py-0" activeItem={this.state.activeItemClassicTabs1}>
+
+            <MDBTabPane tabId="1">
+              <SearchJobResult
+                toggleClassicTabs1={this.toggleClassicTabs1}
+                activeTab={this.state.activeItemClassicTabs1}
+              />
+            </MDBTabPane>
+
+            <MDBTabPane tabId="2">
+              <SearchCompanyResult
+                toggleClassicTabs1={this.toggleClassicTabs1}
+                activeTab={this.state.activeItemClassicTabs1}
+              />
+            </MDBTabPane>
+
+            <MDBTabPane tabId="3">
+              <SearchCommunityResult
+                toggleClassicTabs1={this.toggleClassicTabs1}
+                activeTab={this.state.activeItemClassicTabs1}
+              />
+            </MDBTabPane>
+
+            <MDBTabPane tabId="4">
+              <SearchVideoResult
+                toggleClassicTabs1={this.toggleClassicTabs1}
+                activeTab={this.state.activeItemClassicTabs1}
+              />
+            </MDBTabPane>
+
+            <MDBTabPane tabId="5">
+              <MDBBtn color="primary" href="/search">建设中，点我返回</MDBBtn>
+            </MDBTabPane>
+
+          </MDBTabContent>
+        </div>
 
         <Footer/>
-      </MDBContainer>
+      </div>
     );
   }
 }
