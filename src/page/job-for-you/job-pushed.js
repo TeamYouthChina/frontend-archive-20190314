@@ -11,17 +11,15 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {JobCardBar} from "../../general-component/job-card-bar";
+// import {JobCardBar} from '../../general-component/job-card-bar';
+import {JobListHome} from '../home/job-list-home';
 
 export class JobPushed extends React.Component {
 
   render() {
     return (
       <div>
-        <JobCardBar/>
-        <JobCardBar/>
-        <JobCardBar/>
-        <JobCardBar/>
+        <JobListHome/>
       </div>
     );
   }

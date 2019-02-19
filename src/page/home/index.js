@@ -1,15 +1,10 @@
 import React from 'react';
 
 import {
-  MDBNavbar,
-  MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBContainer,
   MDBRow,
   MDBCol,
-  MDBTabPane,
-  MDBTabContent,
   MDBNav
 } from 'mdbreact';
 
@@ -60,11 +55,7 @@ export class Home extends React.Component {
               <MDBCol size="12" md="4">
                 <MDBNavItem className="ml-0">
                   <MDBNavLink
-                    onClick={
-                      () => {
-                        this.setState({selectedTab: 0});
-                      }
-                    }
+                    onClick={() => {this.setState({selectedTab: 0});}}
                     to="#"
                     className={this.state.selectedTab === 0 ? 'active h5' : ''}
                     style={{
