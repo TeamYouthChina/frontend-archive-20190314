@@ -21,7 +21,19 @@ export class JobListHome extends React.Component {
   componentWillMount() {
     let mockData =
       {
-        searchResult: ['1', '1', '1', '1', '1', '1'],
+        content: {
+          name: '金融',
+          jobIdList: [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+          ],
+          searchRequestBody: null
+
+        },
         status: {
           code: 2000
         }
@@ -48,13 +60,13 @@ export class JobListHome extends React.Component {
               fontSize: '18px',
               color: '#454F69'
             }}>
-              {this.props.name}
+              {this.state.backend.content.name}
             </span>
           </div>
-  
+
           <MDBRow center>
             {
-              this.state.backend.searchResult.map(
+              this.state.backend.content.jobIdList.map(
                 (item, index) =>
                   <MDBCol
                     key={index}
@@ -63,9 +75,7 @@ export class JobListHome extends React.Component {
                     md="6"
                     xl="4"
                   >
-                    <JobCardSquare
-                      id={item}
-                    />
+                    <JobCardSquare id={null}/>
                   </MDBCol>
               )
             }
