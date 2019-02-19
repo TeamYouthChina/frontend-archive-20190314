@@ -59,12 +59,16 @@ export class SearchCompanyResult extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBNavbar light className="mb-3" expand="md" style={{
-          background: '#F9F9F9',
+          background: 'white',
+          boxShadow: 'none',
+          borderTop: 'solid #E0E0E0 1px',
+          borderBottom: 'solid #E0E0E0 1px'
         }}>
           <MDBContainer>
             <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
             <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -94,6 +98,7 @@ export class SearchCompanyResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -110,6 +115,7 @@ export class SearchCompanyResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -126,6 +132,7 @@ export class SearchCompanyResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -142,6 +149,7 @@ export class SearchCompanyResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -162,9 +170,11 @@ export class SearchCompanyResult extends React.Component {
             </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>
+        
         {this.state.backend.companyList.map((item, index) => {
           return (
-            <MDBRow key={index}>
+            
+            <MDBRow className="mx-5" center key={index}>
               <MDBCol className="my-3">
                 <CompanyCard/>
               </MDBCol>
