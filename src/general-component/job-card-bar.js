@@ -15,7 +15,8 @@ export class JobCardBar extends React.Component {
     this.state = {
       backend: null,
       modal15: false,
-      tick: false
+      tick: false,
+      collect: false
     };
     this.text = JobCardBar.i18n[languageHelper()];
   }
@@ -151,12 +152,27 @@ export class JobCardBar extends React.Component {
                   </MDBModal>
                 </MDBCol>
                 <MDBCol>
-                  <MDBIcon
-                    icon="bookmark-o"
-                    size="3x"
-                    className="pt-1 p-0"
-                    style={{color: '#45526e'}}
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="60"
+                    height="60"
+                    viewBox="0 0 24 24"
+                    fill={this.state.collect ? "#45526e" : "none"}
+                    stroke="#45526e"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-bookmark"
+                    onClick={
+                      () => {
+                        this.setState((prev) => (
+                          {collect: !prev.collect})
+                        );
+                      }
+                    }
+                  >
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                  </svg>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
