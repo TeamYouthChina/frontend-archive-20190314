@@ -24,8 +24,6 @@ export class Login extends React.Component {
     super(props);
     this.text = Login.i18n[languageHelper()];
     this.state = {
-      email: '',
-      username: '',
       submitted: false,
       type: 'password'
     };
@@ -49,21 +47,6 @@ export class Login extends React.Component {
     this.setState({
       type: this.state.type === 'text' ? 'password' : 'text'
     })
-  };
-
-  emailAuthentication = () => {
-    console.log(this.state.email);
-    let userEmail = '';
-    getAsync('/me').then(function (myJson) {
-      userEmail = JSON.stringify(myJson['content']['email']);
-      console.log('this is' + userEmail);
-    });
-    console.log(userEmail);
-    if (this.state.email === userEmail) {
-      console.log('true');
-    } else {
-      console.log('false');
-    }
   };
 
   render() {
@@ -152,7 +135,6 @@ export class Login extends React.Component {
                       <MDBBtn
                         href="/best-for-you"
                         className="btn-block z-depth-1a"
-                        onClick={() => this.emailAuthentication()}
                         color={btnColor}
                         style={{
                           backgroundColor: '#7C97B8'
