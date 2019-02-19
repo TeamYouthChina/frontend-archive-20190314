@@ -5,6 +5,12 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBTabPane,
+  MDBTabContent,
+  MDBNav
 } from 'mdbreact';
 
 import {languageHelper} from '../../tool/language-helper';
@@ -18,11 +24,16 @@ export class Home extends React.Component {
     /*
     * */
     this.state = {
-      selectedTab: 1
+      selectedTab: 1,
+      activeItemClassicTabs1: 1
     };
     /*
     * */
     this.text = Home.i18n[languageHelper()];
+  }
+
+  toggleClassicTabs1() {
+
   }
 
   render() {
@@ -34,100 +45,149 @@ export class Home extends React.Component {
         }}
       >
         <HomeHeader/>
-        <MDBNavbar expand="md">
-          <MDBNavbarNav>
-            <MDBNavItem>
-              <MDBNavLink
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 1});
-                  }
-                }
-                to="#"
-              >
-                {this.text.hot}
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 2});
-                  }
-                }
-                to="#"
-              >
-                {this.text.new}
-              </MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
-        </MDBNavbar>
-        <div
-          style={{
-            display: 'flex',
-            marginTop: '55px',
-            justifyContent: 'center'
-          }}
-        >
+        <div className="classic-tabs">
+
+          <MDBNav
+            classicTabs
+            className="d-flex justify-content-center"
+            style={{
+              boxShadow: 'none',
+              borderBottom: 'solid #E0E0E0 1px'
+            }}
+          >
+            <MDBRow>
+
+              <MDBCol size="12" md="4">
+                <MDBNavItem className="ml-0">
+                  <MDBNavLink
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 0});
+                      }
+                    }
+                    to="#"
+                    className={this.state.selectedTab === 0 ? 'active h5' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}
+                  >
+                    推荐
+                  </MDBNavLink>
+                </MDBNavItem>
+              </MDBCol>
+
+              <MDBCol size="12" md="4">
+                <MDBNavItem className="ml-0">
+                  <MDBNavLink
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 1});
+                      }
+                    }
+                    to="#"
+                    className={this.state.selectedTab === 1 ? 'active h5' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}
+                  >
+                    {this.text.hot}
+                  </MDBNavLink>
+                </MDBNavItem>
+              </MDBCol>
+
+              <MDBCol size="12" md="4">
+                <MDBNavItem className="ml-0">
+                  <MDBNavLink
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 2});
+                      }
+                    }
+                    to="#"
+                    className={this.state.selectedTab === 2 ? 'active h5' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}
+                  >
+                    {this.text.new}
+                  </MDBNavLink>
+                </MDBNavItem>
+              </MDBCol>
+
+            </MDBRow>
+          </MDBNav>
+
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              width: 1224,
+              justifyContent: 'center',
+              backgroundColor: '#FAFBFD'
             }}
           >
-            {
-              (
-                () => {
-                  let tag;
-                  if (this.state.selectedTab === 2) {
-                    return null;
-                  } else { // this.state.selectedTab === 1
-                    return (
-                      <div>
-                        <JobListHome
-                          name={this.text.it}
-                          search={{
-                            industry: 'IT',
-                            tagList: [
-                              `${tag}`
-                            ],
-                            page: 1,
-                            size: 4,
-                            skipAuth: true
-                          }}
-                        />
-                        <JobListHome
-                          name={this.text.finance}
-                          search={{
-                            industry: 'finance',
-                            tagList: [
-                              `${tag}`
-                            ],
-                            page: 1,
-                            size: 4,
-                            skipAuth: true
-                          }}
-                        />
-                        <JobListHome
-                          name={this.text.industry}
-                          search={{
-                            industry: 'industry',
-                            tagList: [
-                              `${tag}`
-                            ],
-                            page: 1,
-                            size: 4,
-                            skipAuth: true
-                          }}
-                        />
-                      </div>
-                    );
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: 1224,
+              }}
+            >
+              {
+                (
+                  () => {
+                    let tag;
+                    if (this.state.selectedTab === 2) {
+                      return null;
+                    } else { // this.state.selectedTab === 1
+                      return (
+                        <div>
+                          <JobListHome
+                            name={this.text.it}
+                            search={{
+                              industry: 'IT',
+                              tagList: [
+                                `${tag}`
+                              ],
+                              page: 1,
+                              size: 4,
+                              skipAuth: true
+                            }}
+                          />
+                          <JobListHome
+                            name={this.text.finance}
+                            search={{
+                              industry: 'finance',
+                              tagList: [
+                                `${tag}`
+                              ],
+                              page: 1,
+                              size: 4,
+                              skipAuth: true
+                            }}
+                          />
+                          <JobListHome
+                            name={this.text.industry}
+                            search={{
+                              industry: 'industry',
+                              tagList: [
+                                `${tag}`
+                              ],
+                              page: 1,
+                              size: 4,
+                              skipAuth: true
+                            }}
+                          />
+                        </div>
+                      );
+                    }
                   }
-                }
-              )()
-            }
+                )()
+              }
+            </div>
           </div>
+
         </div>
         <Footer/>
       </div>
