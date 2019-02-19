@@ -9,16 +9,32 @@
     border-bottom: 1px solid grey
 }
 
+.EducationCard input {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    color: #62686C;
+    margin: 0%;
+    padding-left: 4px;
+}
+
+.EducationCard input:disabled {
+    border: 2px solid white;
+    padding-left: 4px;
+}
+
 .EducationCard img {
     height: 65px;
-    width: 65;
+    width: 65px;
 }
 
 .SchoolInfo {
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     height: 90%;
     width: 590px;
 }
@@ -42,6 +58,22 @@
 
     color: #62686C;
     margin: 0%;
+}
+
+.SchoolInfo div p{
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+
+    color: #62686C;
+    margin: 0%;
+}
+
+.SchoolInfo div{
+    display: flex;
+    flex-direction: row;
 }
 
 

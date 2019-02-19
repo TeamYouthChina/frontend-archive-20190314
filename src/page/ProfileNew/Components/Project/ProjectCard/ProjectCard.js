@@ -1,21 +1,85 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import classes from './ProjectCard.module.css';
+import Dropdown from '../../Dropdown/Dropdown';
 
-const projectCard = (props) => {
-  return (
-      <div className={classes.ProjectCard}>
-          <p className={classes.Name}>
-            {props.data.name}
-          </p>
-          <p className={classes.Time}>
-            {props.data.duration.begin+"-"+props.data.duration.end}
-          </p>
-          <p className={classes.Description}>
-            {props.data.note}
-          </p>
-      </div>
-  );
+
+class projectCard extends Component {
+  
+  constructor(props){
+    super(props)
+    this.state = {
+        editing: false,
+        proData: {
+            name: this.props.data.name,
+            begin: this.props.data.duration.begin,
+            end: this.props.data.duration.end,
+            note: this.props.data.note
+        }
+    } 
+    this.nameRef = React.createRef();
+    this.beginRef = React.createRef();
+    this.endRef = React.createRef();
+    this.noteRef = React.createRef();
+
+}
+
+editHandler=()=>{
+    console.log("editing")
+    this.setState({editing: true});
+    
+    
+}
+deleteHandler=()=>{
+    console.log("deleteing")
+}
+
+saveHandler=()=>{
+    console.log("saving");
+    this.setState({
+        editing: false,
+        proData: {
+            name: this.nameRef.current.value,
+            begin: this.beginRef.current.value,
+            end: this.endRef.current.value,
+            note: this.noteRef.current.value
+        }
+    }, ()=>{
+        console.log(this.state.proData)
+    });
+    
+    // API PUT!
+
+}
+
+  render(){
+    let toShow =
+            <div className={classes.ProjectCard}>
+                    <input disabled type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
+                    <div className={classes.Time}>
+                        <input disabled type="text" defaultValue={this.state.proData.begin} ref={this.beginRef}/>
+                        <p> - </p>
+                        <input disabled type="text" defaultValue={this.state.proData.end} ref={this.endRef}/>
+                    </div>
+                    <input disabled type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
+                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+            </div>;
+
+    if(this.state.editing){
+      toShow = 
+          <div className={classes.ProjectCard}>
+              <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
+              <div className={classes.Time}>
+                  <input type="text" defaultValue={this.state.proData.begin} ref={this.beginRef}/>
+                  <p> - </p>
+                  <input type="text" defaultValue={this.state.proData.end} ref={this.endRef}/>
+              </div>
+              <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
+              <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+          </div>
+}
+    return( toShow )
+  }
 }
 
 export default projectCard;

@@ -1,11 +1,27 @@
 .SkillCard{
     display: flex;
     flex-direction: row;
+    align-items: center;
     height: 50px;
     width: 90%;
     box-sizing: border-box;
     padding: 0%;
-    align-items: center;
+}
+
+.SkillCard input {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    color: #62686C;
+    margin: 0%;
+    padding-left: 4px;
+}
+
+.SkillCard input:disabled {
+    border: 2px solid white;
+    padding-left: 4px;
 }
 
 .SkillCard img {
@@ -13,21 +29,11 @@
     width: 30px;
 }
 
-.SkillCard p{
-    margin: 0%;
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    font-size: 16px;
-    
-    color: #62686C;
-}
-
 .SkillInfo {
     margin-left: 20px;
+    height: 90%;
+    width: 590px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 90%;
+    justify-content: center;
 }

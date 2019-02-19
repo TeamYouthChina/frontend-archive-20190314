@@ -18,6 +18,9 @@ class Education extends Component {
 
     }
 
+    deleteHander = () =>{
+    }
+
     render(){
         let toShow = 
         <div className={classes.Education}>

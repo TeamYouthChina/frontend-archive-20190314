@@ -20,7 +20,6 @@ const project = (props) => {
         <div className={classes.Project}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Project</p>
-                <button className={classes.CornerButton}>edit</button>
 
             </div>
             <div className={classes.Container}>
@@ -45,7 +44,6 @@ const project = (props) => {
             <div className={classes.Project}>
                 <div className={classes.row}>
                     <p className={classes.SectionName}>Project</p>
-                    <button className={classes.CornerButton}>edit</button>
 
                 </div>
                 <div className={classes.Container}>

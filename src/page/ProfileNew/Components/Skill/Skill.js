@@ -19,7 +19,6 @@ const skill = (props) => {
         <div className={classes.Skill}>
             <div className={classes.row}>
                 <p className={classes.SectionName}>Skill</p>
-                <button className={classes.CornerButton}>edit</button>
             </div>
             
             <p>no skill</p>
@@ -41,8 +40,8 @@ const skill = (props) => {
             <div className={classes.Skill}>
                 <div className={classes.row}>
                     <p className={classes.SectionName}>Skill</p>
-                    <button className={classes.CornerButton}>edit</button>
                 </div>
+                
                 {cards}
                 
                 <MDBBtn 

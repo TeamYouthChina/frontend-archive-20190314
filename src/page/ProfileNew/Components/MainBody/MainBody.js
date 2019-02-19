@@ -12,7 +12,7 @@ import Skills from '../Skill/Skill';
 
 
 const mainBody = (props) => {
-    console.log(props.data);
+    // console.log(props.data);
     
     let dataForBasicInfo = {
         name: props.data.name ? props.data.name : "no name given",
@@ -44,7 +44,7 @@ const mainBody = (props) => {
             <Certifications data={props.data.certifications}/>
             <SocialActivicies data={props.data.extracurriculars}/>
             <Projects data={props.data.projects}/>
-            <Skills data={props.data.skills}/>
+            <Skills data={[{name: "javascript"}]}/>
         </div>
     );
 };

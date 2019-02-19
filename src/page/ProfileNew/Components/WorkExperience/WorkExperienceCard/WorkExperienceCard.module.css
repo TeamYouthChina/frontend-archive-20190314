@@ -1,12 +1,28 @@
 .WorkExperienceCard{
     display: flex;
     flex-direction: row;
-    height: 96px;
+    height: 110px;
     width: 90%;
     box-sizing: border-box;
     padding: 0px 0px 5px 0px;
     align-items: center;
     border-bottom: 1px solid grey
+}
+
+.WorkExperienceCard input {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    color: #62686C;
+    margin: 0%;
+    padding-left: 4px;
+}
+
+.WorkExperienceCard input:disabled {
+    border: 2px solid white;
+    padding-left: 4px;
 }
 
 .WorkExperienceCard img {
@@ -18,54 +34,13 @@
     margin-left: 20px;
     height: 90%;
     width: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }
 
-.Position {
-    display: inline-block;
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    font-size: 16px;
-
-    color: #62686C;
-    margin-right: 5px;
-    margin-bottom: 0%;
-}
-
-.Company {
-    display: inline-block;
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    font-size: 16px;
-
-    color: #62686C;
-    margin-bottom: 0%;
-
-}
-
-.Time {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 14px;
-    
-    color: #62686C;
-    margin: 0%;
-}
-
-.Description {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 14px;
-    
-    color: #62686C;
-    margin: 0%;
-
+.WorkInfo div{
+    display: flex;
+    flex-direction: row;
 }
