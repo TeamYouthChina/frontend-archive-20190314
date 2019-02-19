@@ -25,24 +25,26 @@ export class Register extends React.Component {
     super(props);
 
     this.state = {
-      showInfo: false,
-      modal: false
+      modal: false,
+      type: 'password'
     }
 
     this.text = Register.i18n[languageHelper()];
   }
+
+  showHidePasswd = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    this.setState({
+      type: this.state.type === 'text' ? 'password' : 'text'
+    })
+  };
 
   toggleUserInfo = () => {
     this.setState({
       modal: !this.state.modal
     });
   }
-
-  // infoHandler() {
-  //   this.setState({
-  //     showInfo: true
-  //   });
-  // }
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
@@ -114,12 +116,24 @@ export class Register extends React.Component {
                       type="text"
                       validate
                     />
-                    <MDBInput
-                      label="密码"
-                      group
-                      type="password"
-                      validate
-                    />
+                    <div style={{position: 'relative'}}>
+                      <MDBInput
+                        label="密码"
+                        group
+                        type={this.state.type }
+                        validate
+                      />
+                      <span onClick={this.showHidePasswd} style={{
+                        position: 'absolute',
+                        right: '20px',
+                        top: '7px',
+                        color: '#616161'
+                      }}>
+                        {this.state.type === 'text' ?
+                          <MDBIcon icon="eye"/> :
+                          <MDBIcon flip="horizontal" icon="eye-slash"/>}
+                      </span>
+                    </div>
                     <div className="text-center mb-3">
                       <MDBBtn
                         className="btn-block z-depth-1a"

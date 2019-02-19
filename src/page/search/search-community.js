@@ -10,7 +10,7 @@ import {
   MDBDropdown,
   MDBDropdownItem,
   MDBDropdownMenu,
-  MDBDropdownToggle, 
+  MDBDropdownToggle,
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
@@ -19,12 +19,12 @@ import {
 
 import {ArticleCard} from '../../general-component/article-card';
 
-export class SearchCommunityResult extends React.Component{
-  constructor (props) {
+export class SearchCommunityResult extends React.Component {
+  constructor(props) {
 
     super(props);
 
-    this.state={
+    this.state = {
       backend: null,
       collapseID: ''
     };
@@ -32,18 +32,18 @@ export class SearchCommunityResult extends React.Component{
   }
 
   toggleCollapse = collapseID => () => {
-    this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
+    this.setState(prevState => ({collapseID: (prevState.collapseID !== collapseID ? collapseID : '')}));
   }
-  
+
   componentWillMount() {
     let mockData =
       {
         id: 0,
         jobList: [
-          {id:1},
-          {id:2},
-          {id:3},
-          {id:4}
+          {id: 1},
+          {id: 2},
+          {id: 3},
+          {id: 4}
         ],
         status: {
           code: 2000
@@ -54,20 +54,24 @@ export class SearchCommunityResult extends React.Component{
     });
   }
 
-  render () {
+  render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBNavbar light className="mb-3" expand="md" style={{
-          background:'#F9F9F9',
+          background: 'white',
+          boxShadow: 'none',
+          borderTop: 'solid #E0E0E0 1px',
+          borderBottom: 'solid #E0E0E0 1px'
         }}>
           <MDBContainer>
-            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
+            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')}/>
             <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{color: 'black'
+                      <div className="d-md-inline" style={{
+                        color: 'black'
                       }}>社区 <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -78,7 +82,7 @@ export class SearchCommunityResult extends React.Component{
                       <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("2")}>
                         <MDBIcon icon="building"/> 公司
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="#!"                                        
+                      <MDBDropdownItem href="#!"
                                        className="active"
                                        onClick={this.props.toggleClassicTabs1("3")}>
                         <MDBIcon icon="bullhorn"/> 社区
@@ -109,7 +113,7 @@ export class SearchCommunityResult extends React.Component{
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{color: 'black'}}>帖子类型 
+                      <div className="d-md-inline" style={{color: 'black'}}>帖子类型
                         <MDBIcon icon="caret-down" style={{color: '#BDBDBD'}}/>
                       </div>
                     </MDBDropdownToggle>
@@ -124,45 +128,61 @@ export class SearchCommunityResult extends React.Component{
             </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>
-        <MDBRow>
-          <MDBCol className="my-3" md="8" lg="9">
-            <MDBRow>
-              {this.state.backend.jobList.map((item, index) => {
-                return(
-                  <MDBCol size="12" className="mb-4" key={index}>
-                    <ArticleCard/>
-                  </MDBCol>
-                );
-              })}
-            </MDBRow>
-          </MDBCol>
-          <MDBCol className="my-3" md="4" lg="3">
-            <MDBCard>
+
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol className="my-3" md="8" lg="9">
               <MDBRow>
-                <MDBCol>
-                  <div className="mb-3">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="2x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      提问题
-                    </MDBRow>
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <div className="mb-3">
-                    <MDBRow center style={{marginTop: '20px'}}>
-                      <MDBIcon icon="question" size="2x"/>
-                    </MDBRow>
-                    <MDBRow center>
-                      写文章
-                    </MDBRow>
-                  </div>
-                </MDBCol>
+                {this.state.backend.jobList.map((item, index) => {
+                  return (
+                    <MDBCol size="12" className="mb-4" key={index}>
+                      <ArticleCard/>
+                    </MDBCol>
+                  );
+                })}
               </MDBRow>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
+            </MDBCol>
+
+            <MDBCol className="order-first order-md-last my-3" md="4" lg="3">
+              <MDBCard style={{
+                // boxShadow: 'none'
+              }}>
+                <MDBRow around>
+                  <MDBCol size="5">
+                    <div className="ml-3 mb-3">
+                      <a href="/article/1/edit" style={{
+                        color: 'black'
+                      }}>
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="question" size="2x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          提问题
+                        </MDBRow>
+                      </a>
+                    </div>
+                  </MDBCol>
+
+                  <MDBCol size="5">
+                    <div className="mr-3 mb-3">
+                      <a href="/article/1/edit" style={{
+                        color: 'black'
+                      }}>
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="edit" size="2x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          写文章
+                        </MDBRow>
+                      </a>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+
       </div>
     ) : null;
   }

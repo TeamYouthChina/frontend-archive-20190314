@@ -27,14 +27,14 @@ export class SearchVideoResult extends React.Component {
     this.state = {
       backend: null,
       collapseID: ''
-  };
+    };
 
   }
 
   toggleCollapse = collapseID => () => {
-    this.setState(prevState => ({ collapseID: (prevState.collapseID !== collapseID ? collapseID : '') }));
+    this.setState(prevState => ({collapseID: (prevState.collapseID !== collapseID ? collapseID : '')}));
   }
-  
+
   componentWillMount() {
     let mockData =
       {
@@ -60,12 +60,16 @@ export class SearchVideoResult extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBNavbar light className="mb-3" expand="md" style={{
-          background: '#F9F9F9',
+          background: 'white',
+          boxShadow: 'none',
+          borderTop: 'solid #E0E0E0 1px',
+          borderBottom: 'solid #E0E0E0 1px'
         }}>
           <MDBContainer>
-            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')} />
+            <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')}/>
             <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -84,12 +88,12 @@ export class SearchVideoResult extends React.Component {
                       <MDBDropdownItem href="#!" onClick={this.props.toggleClassicTabs1("3")}>
                         <MDBIcon icon="bullhorn"/> 社区
                       </MDBDropdownItem>
-                      <MDBDropdownItem href="#!"                                        
+                      <MDBDropdownItem href="#!"
                                        className="active"
-                                       onClick={this.props.toggleClassicTabs1("4")} 
-                                       // style={{
-                                       //   backgroundColor: 'pink'
-                                       // }}
+                                       onClick={this.props.toggleClassicTabs1("4")}
+                        // style={{
+                        //   backgroundColor: 'pink'
+                        // }}
                       >
                         <MDBIcon icon="headphones"/> 视频
                       </MDBDropdownItem>
@@ -99,6 +103,7 @@ export class SearchVideoResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -113,6 +118,7 @@ export class SearchVideoResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
@@ -128,17 +134,21 @@ export class SearchVideoResult extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
+                
               </MDBNavbarNav>
             </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>
+        
         {this.state.backend.videoList.map((item, index) => {
           return (
-            <MDBRow key={index}>
-              <MDBCol className="my-3">
-                <VideoCard/>
-              </MDBCol>
-            </MDBRow>
+            <MDBContainer>
+              <MDBRow key={index}>
+                <MDBCol className="my-3">
+                  <VideoCard/>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
           );
         })}
       </div>
