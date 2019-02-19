@@ -25,7 +25,8 @@ export class JobName extends React.Component {
     this.state = {
       backend: null,
       modal15: false,
-      tick: false
+      tick: false,
+      collect:false
     };
     this.text = JobName.i18n[languageHelper()];
   }
@@ -68,7 +69,7 @@ export class JobName extends React.Component {
             </MDBRow>
 
           </MDBCol>
-          <MDBCol md="8">
+          <MDBCol md="7">
             <h5 className="font-weight-bold mb-3 p-0">
               <strong>
                 {this.state.backend.content.name}
@@ -104,27 +105,32 @@ export class JobName extends React.Component {
             </Row>
 
           </MDBCol>
-          <MDBCol md="2">
-            <ul className="list-inline">
-              <li className="list-inline-item">
+          <MDBCol md="3">
+            <MDBRow>
+              <MDBCol>
                 {
                   this.state.tick ? (
-                    <MDBBtn
-                      color="mdb-color"
-                      style={{borderRadius: '10px'}}
-                    >
-                      {this.text.applied}
-                    </MDBBtn>
+                    <Row>
+                      <MDBBtn
+                        color="mdb-color"
+                        style={{borderRadius: '10px'}}
+                        className="px-6"
+                      >
+                        {this.text.applied}
+                      </MDBBtn>
+                    </Row>
                   ) : (
-                    <MDBBtn
-                      color="mdb-color"
-
-                      outline
-                      style={{borderRadius: '10px'}}
-                      onClick={this.toggle(15)}
-                    >
-                      {this.text.applicate}
-                    </MDBBtn>
+                    <Row>
+                      <MDBBtn
+                        className="px-6"
+                        color="mdb-color"
+                        outline
+                        style={{borderRadius: '10px'}}
+                        onClick={this.toggle(15)}
+                      >
+                        {this.text.applicate}
+                      </MDBBtn>
+                    </Row>
                   )
                 }
                 <MDBModal
@@ -134,23 +140,48 @@ export class JobName extends React.Component {
                 >
                   <MDBModalBody>
                     <h3 style={{textAlign: 'center'}}>
-                      {this.text.import}
+                      导入简历
                     </h3>
                     <hr/>
                     <MDBRow center>
                       <MDBBtn outline color="mdb-color" size="lg"
-                              style={{borderRadius: '10px', width: '250px'}}>{this.text.upload}</MDBBtn>
+                              style={{borderRadius: '10px', width: '250px'}}>上传简历文件</MDBBtn>
                     </MDBRow>
                     <MDBRow center>
-                      <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '10px', width: '250px'}}>{this.text.youthchina}</MDBBtn>
+                      <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '10px', width: '250px'}}>从 YouthChina
+                        导入</MDBBtn>
                     </MDBRow>
                     <MDBRow center>
-                      <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '10px', width: '250px'}}>{this.text.linkedin}</MDBBtn>
+                      <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '10px', width: '250px'}}>从 LinkedIn
+                        导入</MDBBtn>
                     </MDBRow>
                   </MDBModalBody>
                 </MDBModal>
-              </li>
-            </ul>
+              </MDBCol>
+              <MDBCol>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill={this.state.collect ? "#45526e" : "none"}
+                  stroke="#45526e"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="feather feather-bookmark"
+                  onClick={
+                    () => {
+                      this.setState((prev) => (
+                        {collect: !prev.collect})
+                      );
+                    }
+                  }
+                >
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </MDBCol>
+            </MDBRow>
           </MDBCol>
         </MDBRow>
       </div>

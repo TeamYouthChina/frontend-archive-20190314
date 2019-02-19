@@ -60,8 +60,33 @@ export class Company extends React.Component {
             />
           </View>
         </div>
-        <MDBRow>
-          <MDBCol md="8" className="offset-md-1">
+        <MDBRow top>
+          <MDBCol
+            md="1"
+            className="offset-md-1 p-0"
+          >
+
+            <MDBCard
+              classNmae="p-0"
+              style={{
+                boxShadow: 'none',
+                marginTop:'150px',
+              }}
+            >
+              <MDBCardBody className="px-0">
+                <h5
+                  style={{borderLeft: '4px solid #7C97B8'}}
+                  className="px-2 pt-2"
+                >职位详情</h5>
+                <h5 className="px-2 pt-2">公司详情</h5>
+                <h5 className="px-2 pt-2">相似职位</h5>
+                <h5 className="px-2 pt-2">评价</h5>
+                <h5 className="px-2 pt-2">问答</h5>
+
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+          <MDBCol md="9" >
             <p><CompanyCard/></p>
             <p>
               <MDBCard className="my-5 px-3 pb-3">
@@ -165,26 +190,6 @@ export class Company extends React.Component {
 
               </MDBRow>
             </p>
-          </MDBCol>
-          <MDBCol md="2" style={{marginTop:'150px'}}>
-            <MDBCard
-              style={{boxShadow:'none'}}
-            >
-              <MDBCardBody>
-                <h5
-                  style={{borderLeft: '4px solid #7C97B8'}}
-                  className="px-2 pt-2"
-                >简介</h5>
-                <h5 className="px-2 pt-2">公司详情</h5>
-                <h5 className="px-2 pt-2">职位</h5>
-                <h5 className="px-2 pt-2">评价</h5>
-                <h5 className="px-2 pt-2">问答</h5>
-                <h5 className="px-2 pt-2">公司LIVE</h5>
-                <h5 className="px-2 pt-2">公司照片</h5>
-                <h5 className="px-2 pt-2">历史实习学生</h5>
-
-              </MDBCardBody>
-            </MDBCard>
           </MDBCol>
         </MDBRow>
         
