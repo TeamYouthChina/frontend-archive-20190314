@@ -3,7 +3,8 @@ import React from 'react';
 import {
   MDBCol,
   MDBRow,
-  MDBContainer
+  MDBContainer,
+  MDBBtn
 } from 'mdbreact';
 
 import {JobCardSquare} from '../../general-component/job-card-square';
@@ -50,7 +51,7 @@ export class JobListHome extends React.Component {
               {this.props.name}
             </span>
           </div>
-
+  
           <MDBRow center>
             {
               this.state.backend.searchResult.map(
@@ -69,21 +70,23 @@ export class JobListHome extends React.Component {
               )
             }
           </MDBRow>
-          <div>
-            <div>
-              <a
-                href="https://www.google.com/"
-                style={{
-                  fontSize: '16px',
-                  marginTop: '8px',
-                  display: 'inline-block',
-                  fontWeight: '500',
-                  color: '#454F69'
-                }}
-              >
-                显示全部
-              </a>
-            </div>
+          <div className="text-center">
+            <MDBBtn
+              rounded
+              color="rgba-grey-strong"
+              href="/job-for-you"
+              style={{
+                boxShadow: 'none',
+                fontSize: '16px',
+                marginTop: '8px',
+                display: 'inline-block',
+                fontWeight: '300',
+                color: '#454F69',
+                background: '#F0F3FA'
+              }}
+            >
+              显示全部
+            </MDBBtn>
           </div>
         </MDBContainer>
       </div>
