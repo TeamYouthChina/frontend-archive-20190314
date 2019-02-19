@@ -1,9 +1,5 @@
 import React from 'react';
 
-import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
-import {JobPushed} from './job-pushed';
-
 import {languageHelper} from '../../tool/language-helper';
 
 import {
@@ -15,6 +11,7 @@ import {
   MDBNavLink,
   MDBJumbotron
 } from 'mdbreact';
+import {JobListHome} from '../home/job-list-home';
 
 export class General extends React.Component {
   constructor(props) {
@@ -51,7 +48,9 @@ export class General extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <div className="h3 font-weight-light mb-4">{this.text.general}</div>
-        <JobPushed/>
+        <JobListHome/>
+        <JobListHome/>
+        <JobListHome/>
       </div>
     ) : null;
   }

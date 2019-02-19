@@ -2,7 +2,6 @@ import React from 'react';
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {JobPushed} from './job-pushed';
 
 import {languageHelper} from '../../tool/language-helper';
 
@@ -14,6 +13,7 @@ import {
   MDBNavLink,
   MDBJumbotron
 } from 'mdbreact';
+import {JobListHome} from '../home/job-list-home';
 
 export class JobForYou extends React.Component {
   constructor(props) {
@@ -117,19 +117,25 @@ export class JobForYou extends React.Component {
                     if (this.state.selectedTab === 1) {
                       return (
                         <div>
-                          <JobPushed/>
+                          <JobListHome/>
+                          <JobListHome/>
+                          <JobListHome/>
                         </div>
                       );
                     } else if (this.state.selectedTab === 2) {
                       return (
                         <div>
-                          <JobPushed/>
+                          <JobListHome/>
+                          <JobListHome/>
+                          <JobListHome/>
                         </div>
                       );
                     } else {
                       return (
                         <div>
-                          <JobPushed/>
+                          <JobListHome/>
+                          <JobListHome/>
+                          <JobListHome/>
                         </div>
                       );
                     }
