@@ -1,20 +1,18 @@
 import React from 'react';
 
 import {
-  Col,
+  MDBCol,
   MDBAvatar,
   MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBCardUp,
-  MDBCol,
   MDBIcon,
   MDBMask,
   MDBRow,
   MDBView,
   Progress,
-  Row,
   View,
   Mask,
 } from 'mdbreact';
@@ -86,8 +84,8 @@ export class Job extends React.Component {
 
         </div>
 
-        <Row top>
-          <Col 
+        <MDBRow top>
+          <MDBCol 
             md="1" 
             className="offset-md-1 p-0"
           >
@@ -111,8 +109,8 @@ export class Job extends React.Component {
 
               </MDBCardBody>
             </MDBCard>
-          </Col>
-          <Col md="9">
+          </MDBCol>
+          <MDBCol md="9">
             <p>
               <MDBCard className="my-5 px-3 pb-3">
                 <br/>
@@ -178,9 +176,9 @@ export class Job extends React.Component {
                 </MDBCardBody>
               </MDBCard>
             </p>
-          </Col>
+          </MDBCol>
           
-        </Row>
+        </MDBRow>
 
         <Footer/>
       </div>

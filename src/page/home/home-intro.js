@@ -3,6 +3,7 @@ import {
   MDBCol,
   MDBRow,
   MDBBtn,
+  MDBIcon
   
 } from 'mdbreact';
 
@@ -28,10 +29,16 @@ export class HomeIntro extends React.Component {
             <p><MDBBtn rounded color="indigo">开启求职之旅</MDBBtn></p>
           </MDBCol>
           <MDBCol>
-            <p style={{fontFamily: 'Ping Fang SC', fontSize: '36px'}}>"</p>
+            <p><MDBIcon icon="quote-left" size="1x" pull="left" /></p>
+            <br/>
             <p style={{fontFamily: 'Ping Fang SC', fontSize: '24px'}}>IBM的面试主要分为三个阶段，最重要的是考验你的逻辑思维的能力</p>
-            <p style={{fontFamily: 'Ping Fang SC', fontSize: '16px', textAlign: 'end'}}>---郭同学</p>
-            <p><MDBBtn flat>更多经验分享</MDBBtn></p>
+            <br/>
+            <p>
+              <p style={{fontFamily: 'Ping Fang SC', fontSize: '16px', textAlign: 'first'}}>---郭同学</p>
+              <p style={{fontSize: '24px', textAlign: 'end'}}><MDBBtn flat>更多经验分享 -></MDBBtn></p>
+            </p>
+           
+           
           </MDBCol>
         </MDBRow>
 
