@@ -96,7 +96,7 @@ export class Article extends React.Component {
   }
   showReplys(){
     let ifShown = !this.state.ifShown
-    let showCom = this.state.showCom === '评论'? '展开评论' : '评论'
+    let showCom = this.state.showCom === '评论'? '收起评论' : '评论'
     this.setState({
       ifShown,
       showCom

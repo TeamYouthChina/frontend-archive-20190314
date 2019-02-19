@@ -1,7 +1,7 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {
-  MDBNavLink,MDBCardBody,
+  MDBNavLink, MDBCardBody,
   MDBCard,
   MDBBtn,
   MDBIcon,
@@ -12,7 +12,15 @@ import {
 
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionAnswerPart} from '../question/trash/question-answer-part'
+import {CommentsCard} from "../question/comment-test";
+import {PaginationUse} from "../question/pagination-test";
+
+const basicFont = {
+  fontFamily: 'IBM Plex Sans',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  lineHeight: 'normal',
+}
 
 export class Video extends React.Component {
   constructor(props) {
@@ -21,9 +29,17 @@ export class Video extends React.Component {
     * */
     this.state = {
       backend: null,
-      selectType: 1
+      selectType: 1,
+      ifShown: false,
+      showCom: '评论',
+      pageConfig: {
+        totalPage: 14 //总页码
+      },
     };
     this.text = Video.i18n[languageHelper()];
+    this.handleInputClick = this.handleInputClick.bind(this);
+    this.addComments = this.addComments.bind(this);
+    this.getCurrentPage = this.getCurrentPage.bind(this);
   }
 
   componentWillMount() {
@@ -36,6 +52,9 @@ export class Video extends React.Component {
           title: 'this is a title',
           descrption: 'wen ti de miao shu'
         },
+        time:8,
+        commentLists: [1, 2, 3],
+        allReplys: [1, 2],
         focus: 123,
         reading: 123,
         status: {
@@ -46,9 +65,42 @@ export class Video extends React.Component {
       return {backend: mockData};
     });
   }
-  showReplys(){}
+
+  handleInputClick() {
+    if (this.state.ifShown === 'none') {
+      this.setState({
+        ifShown: ''
+      });
+    }
+  }
+
+  showReplys() {
+    let ifShown = !this.state.ifShown
+    let showCom = this.state.showCom === '评论' ? '收起评论' : '评论'
+    this.setState({
+      ifShown,
+      showCom
+    })
+  }
+
+  getCurrentPage() {
+  }
+
+  addComments(e, input) {
+    let {allReplys = []} = this.state.backend
+    allReplys.unshift(input.value)
+    // console.log(commentLists,this.props.id)
+    this.setState({
+      backend: {
+        allReplys,
+        ...this.state.backend
+      }
+    })
+    e.stopPropagation();
+  }
 
   render() {
+    const ifShown = this.state.ifShown
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header></Header>
@@ -59,86 +111,78 @@ export class Video extends React.Component {
           </MDBCol>
           <MDBCol size="9">
             <MDBRow>
-              <MDBCol size="8">
+              <MDBCol size="8" style={{paddingLeft: '0px'}}>
                 <MDBContainer className="text-center" style={{paddingLeft: '0px'}}>
                   {/*<Iframe src="http://www.youtube.com/embed/M7lc1UVf-VE?origion=https://www.youtube.com/embed/v64KOxKVLVg"/>*/}
-                  <video width="640" height="480" controls src="http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D">
+                  <video width="640" height="480" controls
+                         src="http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D">
                   </video>
                 </MDBContainer>
                 <br/>
                 <h3 style={{
                   fontSize: '1.2rem',
                   lineHeight: '2.4rem',
-                  }}><strong>
+                }}><strong>
                   The Future of the Web // Mikeal Rogers // CascadiaJS 2018
                 </strong></h3>
                 <MDBRow>
-                  <MDBCol size="4" style={{margin:'auto'}}>
+                  <MDBCol size="4" style={{margin: 'auto'}}>
                     <strong>32000次观看</strong>
                   </MDBCol>
-                  <MDBCol size="8" style={{paddingRight:'25px'}}>
-                    <div style={{float:'right'}}>
-                      <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
-                        <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
-                      </MDBBtn>
+                  <MDBCol style={{paddingLeft: '17px',paddingRight:'10px'}}>
+                    <div style={{float: 'right'}}>
+                        <span style={{
+                          padding: '5px 0px',
+                          fontSize: '14px',
+                          color: '#62686C', ...basicFont
+                        }}>{this.state.backend.time}天前发布</span>
                       <MDBBtn onClick={() => {
                         this.showReplys()
-                      }} color="primary" style={{padding: '5px 10px',}}>
-                        <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
+                      }} flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                        <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.showCom}
                       </MDBBtn>
-                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                        <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+                      <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                        <MDBIcon style={{marginRight: '5px'}} far
+                                 icon="heart"/><span>{this.state.backend.agree}赞同</span>
                       </MDBBtn>
-                      <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                        <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-                        举报
+                      <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                        <MDBIcon style={{marginRight: '5px'}} far icon="star"/>收藏
                       </MDBBtn>
                     </div>
-                    
                   </MDBCol>
                 </MDBRow>
-                <MDBCard
-                  className="my-5"
-                  style={{
-                    boxShadow:'none',
-                    borderTop: '1px solid #e8e8e8',
-                    borderBottom: '1px solid #e8e8e8',
-                    padding:'20px 0px'
-                  }}
-                >
+                {ifShown && (
+                  <div>
+                    <div>
+                      {this.state.backend.commentLists.map((item) => (
+                        <CommentsCard key={item} message={item}></CommentsCard>
 
-                  <MDBCardBody className="py-0" >
-                    <MDBRow >
-                      <div className="mdb-feed">
-                        <div className="news">
-                          <div className="label">
-                            <img
-                              src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
-                              alt=""
-                              className="rounded-circle z-depth-1-half"
-                            />
-                          </div>
-                          <div className="excerpt">
-                            <div className="brief">
+                      ))}
 
-                              John Doe
-                              <div className="date">1 hour ago</div>
-                              <p>this is a description of this film and after reading this you will find that some you can not understand, because akjlsdakhdlkajshljhlhdiahjsdi </p>
-                            </div>
-                            <div className="feed-footer">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </MDBRow>
+                      <MDBRow>
+                        <MDBCol size="10" center>
+                          <input ref={(input) => (this.input = input)} className="form-control" placeholder="你的回复"/>
+                        </MDBCol>
+                        <MDBCol style={{paddingLeft: '0px'}}>
+                          <MDBBtn onClick={(e) => this.addComments(e, this.input)} flat
+                                  style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                            发布
+                          </MDBBtn>
+                        </MDBCol>
 
-                  </MDBCardBody>
-                </MDBCard>
-                <QuestionAnswerPart></QuestionAnswerPart>
+                      </MDBRow>
+                      <MDBRow center style={{marginTop: '10px'}}>
+                        <PaginationUse pageConfig={this.state.pageConfig}
+                                       pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                      </MDBRow>
+                    </div>
+                  </div>)
+                }
+
               </MDBCol>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="3">
-                <h3>this is a sideBar</h3>
+                <h3></h3>
               </MDBCol>
             </MDBRow>
 

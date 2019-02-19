@@ -5,7 +5,7 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from '../answerText';
+import {VideoEditInit} from '../VideoEditInit';
 // import './public/style.css';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
@@ -63,7 +63,7 @@ export class VideoEdit extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
+          <VideoEditInit ref={(answerText)=>{this.answerText = answerText}}></VideoEditInit>
         </div>
         <Footer/>
       </div>
