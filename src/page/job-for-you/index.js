@@ -85,7 +85,7 @@ export class JobForYou extends React.Component {
                             this.setState({selectedTab: item.id});
                           }
                         }
-                        className={this.state.selectedTab === item.id ? 'active h5' : ''}
+                        className={this.state.selectedTab === item.id ? 'active font-weight-bold' : ''}
                         to="#"
                         style={{
                           color: '#454F69',

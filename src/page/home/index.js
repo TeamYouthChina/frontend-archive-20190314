@@ -52,7 +52,7 @@ export class Home extends React.Component {
                 <MDBNavItem className="ml-0">
                   <MDBNavLink
                     to={`${this.props.match.url}/hot`}
-                    className={this.props.location.pathname.indexOf('/hot') > -1 ? 'active h5' : ''}
+                    className={this.props.location.pathname.indexOf('/hot') > -1 ? 'active font-weight-bold' : ''}
                     style={{
                       color: '#454F69',
                       fontSize: '16px'
@@ -66,7 +66,7 @@ export class Home extends React.Component {
                 <MDBNavItem className="ml-0">
                   <MDBNavLink
                     to={`${this.props.match.url}/new`}
-                    className={this.props.location.pathname.indexOf('/new') > -1 ? 'active h5' : ''}
+                    className={this.props.location.pathname.indexOf('/new') > -1 ? 'active font-weight-bold' : ''}
                     style={{
                       color: '#454F69',
                       fontSize: '16px'
