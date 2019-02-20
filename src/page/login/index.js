@@ -61,6 +61,7 @@ export class Login extends React.Component {
       <div>
         <Header/>
         <MDBRow className="m-0">
+
           <MDBCol className="p-0" md="7">
             <Animation type="fadeInLeft" duration="2s">
               <MDBView hover>
@@ -72,9 +73,10 @@ export class Login extends React.Component {
               </MDBView>
             </Animation>
           </MDBCol>
+
           <MDBCol md="5">
             <Animation type="fadeInRight" duration="2s" delay="1s">
-              <MDBRow className="my-4">
+              <MDBRow className="mt-4">
                 <MDBCol className="mt-5 offset-2" size="8">
                   <div className="text-center">
                     <Animation type="fadeInRight" duration="3s">
@@ -116,8 +118,8 @@ export class Login extends React.Component {
                         validate
                       />
                       <span onClick={this.showHidePasswd} style={{
-                        position: 'absolute', 
-                        right: '20px', 
+                        position: 'absolute',
+                        right: '20px',
                         top: '7px',
                         color: '#616161'
                       }}>
@@ -153,10 +155,10 @@ export class Login extends React.Component {
                       href="https://www.facebook.com"
                       className=" z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="facebook-f" 
-                        className="text-center" 
-                        color={btnColor} 
+                      <MDBIcon
+                        icon="facebook-f"
+                        className="text-center"
+                        color={btnColor}
                         size="2x"
                         style={{color: '#7C97B8'}}
                       />
@@ -167,10 +169,10 @@ export class Login extends React.Component {
                       href="https://twitter.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="twitter" 
-                        color={btnColor} 
-                        size="2x" 
+                      <MDBIcon
+                        icon="twitter"
+                        color={btnColor}
+                        size="2x"
                         style={{color: '#7C97B8'}}/>
                     </a>
                     <a
@@ -179,10 +181,10 @@ export class Login extends React.Component {
                       href="https://www.google.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="google-plus" 
-                        color={btnColor} 
-                        size="2x" 
+                      <MDBIcon
+                        icon="google-plus"
+                        color={btnColor}
+                        size="2x"
                         style={{color: '#7C97B8'}}/>
                     </a>
                   </div>
@@ -196,6 +198,7 @@ export class Login extends React.Component {
               </MDBRow>
             </Animation>
           </MDBCol>
+
         </MDBRow>
         <Footer/>
       </div>
