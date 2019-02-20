@@ -16,7 +16,8 @@ class SocialActivityCard extends Component{
                 begin: this.props.data.duration.begin,
                 end: this.props.data.duration.end,
                 note: this.props.data.note
-            }
+            },
+            show: true
         } 
         this.nameRef = React.createRef();
         this.orgRef = React.createRef();
@@ -34,6 +35,8 @@ class SocialActivityCard extends Component{
     }
     deleteHandler=()=>{
         console.log("deleteing")
+        this.setState({show: false})
+        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
@@ -56,6 +59,11 @@ class SocialActivityCard extends Component{
     }
 
     render(){
+        if(!this.state.show){
+            return(
+                <div></div>
+            )
+        }
         let toShow =
             <div className={classes.SocialActivityCard}>
                 <img src={socialActivityIcon} alt="no img"></img>

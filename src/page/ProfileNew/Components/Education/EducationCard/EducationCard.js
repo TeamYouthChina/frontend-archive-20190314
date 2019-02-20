@@ -15,7 +15,8 @@ class EducationCard extends Component {
                 begin: this.props.data.duration.begin,
                 end: this.props.data.duration.end,
                 degree: this.props.data.degree
-            }
+            },
+            show: true
         } 
         this.uniRef = React.createRef();
         this.beginRef = React.createRef();
@@ -31,6 +32,8 @@ class EducationCard extends Component {
     }
     deleteHandler=()=>{
         console.log("deleteing")
+        this.setState({show: false})
+        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
@@ -47,12 +50,17 @@ class EducationCard extends Component {
             console.log(this.state.educationData)
         });
         
-        // API PUT!
+        // TODO: truely edit the card in server
 
     }
 
 
     render(){
+        if(!this.state.show){
+            return(
+                <div></div>
+            )
+        }
         let toShow =
             <div className={classes.EducationCard}>
                 <img src={schoolIcon} alt="no img"></img>

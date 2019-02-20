@@ -16,7 +16,8 @@ class CertificationCard extends Component{
                 begin: this.props.data.duration.begin,
                 end: this.props.data.duration.end,
                 note: this.props.data.note
-            }
+            },
+            show: true
         } 
         this.nameRef = React.createRef();
         this.authRef = React.createRef();
@@ -33,6 +34,8 @@ class CertificationCard extends Component{
     }
     deleteHandler=()=>{
         console.log("deleteing")
+        this.setState({show: false})
+        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
@@ -55,6 +58,11 @@ class CertificationCard extends Component{
     }
 
     render(){
+        if(!this.state.show){
+            return(
+                <div></div>
+            )
+        }
         let toShow =
             <div className={classes.CertificationCard}>
                 <img src={certificationIcon} alt="no img"></img>

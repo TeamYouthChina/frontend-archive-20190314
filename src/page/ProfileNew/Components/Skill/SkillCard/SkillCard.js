@@ -11,7 +11,8 @@ class skillCard extends Component{
             editing: false,
             skillData: {
                 name: this.props.data.name,
-            }
+            },
+            show: true
         } 
         this.nameRef = React.createRef();
 
@@ -25,6 +26,8 @@ class skillCard extends Component{
     }
     deleteHandler=()=>{
         console.log("deleteing")
+        this.setState({show: false})
+        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
@@ -42,6 +45,11 @@ class skillCard extends Component{
 
     }
     render(){
+        if(!this.state.show){
+            return(
+                <div></div>
+            )
+        }
         let toShow =
             <div className={classes.SkillCard}>
                 <img src={SkillIcon} alt="no img"></img>

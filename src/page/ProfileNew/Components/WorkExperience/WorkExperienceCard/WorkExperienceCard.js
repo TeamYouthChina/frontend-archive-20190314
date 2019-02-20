@@ -15,7 +15,8 @@ class WorkExperienceCard extends Component{
                 begin: this.props.data.duration.begin,
                 end: this.props.data.duration.end,
                 note: this.props.data.note
-            }
+            },
+            show: true
         } 
         this.posRef = React.createRef();
         this.employerRef = React.createRef();
@@ -28,11 +29,11 @@ class WorkExperienceCard extends Component{
     editHandler=()=>{
         console.log("editing")
         this.setState({editing: true});
-        
-        
     }
     deleteHandler=()=>{
         console.log("deleteing")
+        this.setState({show: false})
+        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
@@ -54,6 +55,11 @@ class WorkExperienceCard extends Component{
 
     }
     render(){
+        if(!this.state.show){
+            return(
+                <div></div>
+            )
+        }
         let toShow =
             <div className={classes.WorkExperienceCard}>
                 <img src={workIcon} alt="no img"></img>
