@@ -11,38 +11,8 @@ export class ArticleEditInit extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      backend: null,
-      editorState: null,
-      showNow:0
+      
     }
-    this.submitContent = this.submitContent.bind(this)
-  }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        tags: ['tag1', 'tag2', 'tag3', 'tag4'],
-        content: {
-          title: 'this is a title',
-          descrption: 'wen ti de miao shu'
-        },
-        time:8,
-        commentLists: [1, 2, 3],
-        allReplys: [1, 2],
-        focus: 123,
-        reading: 123,
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
-  }
-  submitContent(){
-    
   }
   
   render () {

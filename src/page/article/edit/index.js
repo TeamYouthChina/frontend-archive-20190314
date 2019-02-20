@@ -5,7 +5,7 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from '../answerText';
+import {ArticleEditInit} from '../articleEditInit';
 // import './public/style.css';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
@@ -48,9 +48,6 @@ export class ArticleEdit extends React.Component {
         <div style={{padding: '100px'}}>
           <div className="form-group">
             <h4>{this.text.write}</h4>
-            <MDBRow style={{padding:'20px'}}>
-              {this.props.children}
-            </MDBRow>
             <MDBRow>
               <MDBCol size="9">
                 <input className="form-control" placeholder={this.text.title}/>
@@ -63,7 +60,7 @@ export class ArticleEdit extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
+          <ArticleEditInit ref={(answerText)=>{this.answerText = answerText}}></ArticleEditInit>
         </div>
         <Footer/>
       </div>
