@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { MDBBtn } from "mdbreact";
 
 
@@ -14,48 +14,62 @@ const MDBButtonStyle = {
     font_size: "18px",
     text_align: "center"};
 
-const socialActivity = (props) => {
-    let toShow = 
-        <div className={classes.SocialActivity}>
-            <div className={classes.row}>
-                <p className={classes.SectionName}>Social Activity</p>
-            </div>
+class SocialActivity extends Component {
 
-            <p>no social activity</p>
-            
-            <MDBBtn 
-                flat 
-                className={classes.MDBButton}
-                style={MDBButtonStyle}>
-                    + Add Social Activity
-            </MDBBtn>
-        </div>
-
-    let cards;
-    if(props.data){
-        cards = props.data.map((e,i)=>(
-            <SocialActivityCard key={i} data={e}/>
-        ));
-        toShow = 
-            <div className={classes.SocialActivity}>
-                <div className={classes.row}>
-                    <p className={classes.SectionName}>Social Activity</p>
-                </div>
-
-                {cards}
-                
-                
-                <MDBBtn 
-                    flat 
-                    className={classes.MDBButton}
-                    style={MDBButtonStyle}>
-                        + Add Social Activity
-                </MDBBtn>
-            </div>
+    addHandler = () => {
+        this.setState({deleteCounter: this.state.deleteCounter-1})
     }
-    return(
-        toShow
-    );
+
+    deleteHandler = (id, e) => {
+        this.state.cards.splice(id,1);
+        this.setState({deleteCounter: this.state.deleteCounter+1})
+    }
+
+    state = {
+        cards: this.props.data 
+            ? this.props.data.map((e,i)=>(<SocialActivityCard key={i} id={i} data={e} deleteHandler={this.deleteHandler}/>))
+            : Array(),
+        
+        deleteCounter: 0
+    }
+    render(){
+        let toShow; 
+        if(this.state.cards.length == 0){
+            toShow = 
+                <div className={classes.SocialActivity}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Social Activity</p>
+                    </div>
+                    <p>no social activity</p>
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Social Activity
+                    </MDBBtn>
+                </div>
+        }
+        else {
+            toShow = 
+                <div className={classes.SocialActivity}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Social Activity</p>
+                    </div>
+                    {this.state.cards}
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>>
+                            + Add Social Activity
+                    </MDBBtn>
+                </div>
+        }
+        return(
+            toShow
+        );
+    }
 };
 
-export default socialActivity;
+export default SocialActivity;

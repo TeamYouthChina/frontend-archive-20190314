@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { MDBBtn } from "mdbreact";
 
 
@@ -14,49 +14,62 @@ const MDBButtonStyle = {
     font_size: "18px",
     text_align: "center"};
 
-const certification = (props) => {
-    let toShow = 
-        <div className={classes.Certification}>
-            <div className={classes.row}>
-                <p className={classes.SectionName}>Certification</p>
-            </div>
+class Certification extends Component{
 
-            <p>no certification</p>
-            
-            
-            <MDBBtn 
-                flat 
-                className={classes.MDBButton}
-                style={MDBButtonStyle}>
-                    + Add Certification
-            </MDBBtn>
-        </div>;
-    
-    let cards;
-    if(props.data){
-        cards = props.data.map((e,i)=>(
-            <CertificationCard key={i} data={e}/>
-        ));
-        toShow = 
-            <div className={classes.Certification}>
-                <div className={classes.row}>
-                    <p className={classes.SectionName}>Certification</p>
-                </div>
-
-                {cards}
-                
-                
-                <MDBBtn 
-                    flat 
-                    className={classes.MDBButton}
-                    style={MDBButtonStyle}>
-                        + Add Certification
-                </MDBBtn>
-            </div>
+    addHandler = () => {
+        this.setState({deleteCounter: this.state.deleteCounter-1})
     }
-    return(
-        toShow
-    );
+
+    deleteHandler = (id, e) => {
+        this.state.cards.splice(id,1);
+        this.setState({deleteCounter: this.state.deleteCounter+1})
+    }
+
+    state = {
+        cards: this.props.data 
+            ? this.props.data.map((e,i)=>(<CertificationCard key={i} id={i} data={e} deleteHandler={this.deleteHandler}/>))
+            : Array(),
+        
+        deleteCounter: 0
+    }
+
+    render(){
+        console.log(this.state.cards.length)
+        let toShow;
+        if(this.state.cards.length == 0){
+            toShow = 
+                <div className={classes.Certification}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Certification</p>
+                    </div>
+                    <p>no certification</p>
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Certification
+                    </MDBBtn>
+                </div>;
+        }
+        else {
+            toShow =
+                <div className={classes.Certification}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Certification</p>
+                    </div>
+                    {this.state.cards}
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Certification
+                    </MDBBtn>
+                </div>
+        }
+        return(toShow);
+    }
 };
 
-export default certification;
+export default Certification;

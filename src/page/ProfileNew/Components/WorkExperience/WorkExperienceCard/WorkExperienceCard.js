@@ -16,7 +16,6 @@ class WorkExperienceCard extends Component{
                 end: this.props.data.duration.end,
                 note: this.props.data.note
             },
-            show: true
         } 
         this.posRef = React.createRef();
         this.employerRef = React.createRef();
@@ -27,12 +26,10 @@ class WorkExperienceCard extends Component{
     }
 
     editHandler=()=>{
-        console.log("editing")
         this.setState({editing: true});
     }
-    deleteHandler=()=>{
-        console.log("deleteing")
-        this.setState({show: false})
+    deleteHandler=(e)=>{
+        this.props.deleteHandler(this.props.id,e);
         // TODO: truely delete the card in server
     }
 
@@ -50,16 +47,10 @@ class WorkExperienceCard extends Component{
         }, ()=>{
             console.log(this.state.workData)
         });
-        
-        // API PUT!
+        // TODO: truely edit the card in server
 
     }
     render(){
-        if(!this.state.show){
-            return(
-                <div></div>
-            )
-        }
         let toShow =
             <div className={classes.WorkExperienceCard}>
                 <img src={workIcon} alt="no img"></img>

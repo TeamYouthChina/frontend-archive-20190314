@@ -14,47 +14,54 @@ const MDBButtonStyle = {
     text_align: "center"};
 
 class Education extends Component {
-    state = {
 
+    addHandler = () => {
+        this.setState({deleteCounter: this.state.deleteCounter-1})
     }
 
-    deleteHander = () =>{
+    deleteHandler = (id, e) => {
+        this.state.cards.splice(id,1);
+        this.setState({deleteCounter: this.state.deleteCounter+1})
+    }
+
+    state = {
+        cards: this.props.data 
+            ? this.props.data.map((e,i)=>(<EducationCard key={i} id={i} data={e} deleteHandler={this.deleteHandler}/>))
+            : Array(),
+        
+        deleteCounter: 0
     }
 
     render(){
-        let toShow = 
-        <div className={classes.Education}>
-            <div className={classes.row}>
-                <p className={classes.SectionName}>Education</p>
-            </div>
-            
-            <p>no education </p>
-            
-            <MDBBtn 
-                flat 
-                className={classes.MDBButton}
-                style={MDBButtonStyle}>
-                    + Add Education
-            </MDBBtn>
-        </div>;
-
-        let cards;
-        if(this.props.data){
-            cards = this.props.data.map((e,i)=>(
-                <EducationCard key={i} data={e}/>
-            ));
+        let toShow; 
+        if(this.state.cards.length == 0){
+            toShow = 
+                <div className={classes.Education}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Education</p>
+                    </div>
+                    <p>no education </p>
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Education
+                    </MDBBtn>
+                </div>;
+        }
+        else {
             toShow =
                 <div className={classes.Education}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Education</p>
                     </div>
-                    
-                    {cards}
-                    
+                    {this.state.cards}
                     <MDBBtn 
                         flat 
                         className={classes.MDBButton}
-                        style={MDBButtonStyle}>
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
                             + Add Education
                     </MDBBtn>
                 </div>;

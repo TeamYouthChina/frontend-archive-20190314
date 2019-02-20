@@ -16,7 +16,6 @@ class EducationCard extends Component {
                 end: this.props.data.duration.end,
                 degree: this.props.data.degree
             },
-            show: true
         } 
         this.uniRef = React.createRef();
         this.beginRef = React.createRef();
@@ -25,19 +24,16 @@ class EducationCard extends Component {
     }
 
     editHandler=()=>{
-        console.log("editing")
         this.setState({editing: true});
         
         
     }
-    deleteHandler=()=>{
-        console.log("deleteing")
-        this.setState({show: false})
+    deleteHandler=(e)=>{
+        this.props.deleteHandler(this.props.id,e);
         // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
-        console.log("saving");
         this.setState({
             editing: false,
             educationData: {
@@ -48,19 +44,13 @@ class EducationCard extends Component {
             }
         }, ()=>{
             console.log(this.state.educationData)
-        });
-        
+        });       
         // TODO: truely edit the card in server
 
     }
 
 
     render(){
-        if(!this.state.show){
-            return(
-                <div></div>
-            )
-        }
         let toShow =
             <div className={classes.EducationCard}>
                 <img src={schoolIcon} alt="no img"></img>

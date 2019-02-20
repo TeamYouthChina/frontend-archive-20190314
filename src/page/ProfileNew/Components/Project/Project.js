@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MDBBtn } from "mdbreact";
 
 
@@ -15,53 +15,68 @@ const MDBButtonStyle = {
 
 
 
-const project = (props) => {
-    let toShow = 
-        <div className={classes.Project}>
-            <div className={classes.row}>
-                <p className={classes.SectionName}>Project</p>
+class Project extends Component{
 
-            </div>
-            <div className={classes.Container}>
-                
-                <p>no project</p>
-                
-                <MDBBtn 
-                    outline
-                    className={classes.MDBButton}
-                    style={MDBButtonStyle}
-                    color="blue-grey">
-                        + Add Certification
-                </MDBBtn>
-            </div>
-        </div>;
-    let cards;
-    if(props.data){
-        cards = props.data.map((e,i)=>(
-            <ProjectCard key={i} data={e}/>
-        ));
-        toShow = 
-            <div className={classes.Project}>
-                <div className={classes.row}>
-                    <p className={classes.SectionName}>Project</p>
-
-                </div>
-                <div className={classes.Container}>
-                    {cards}
-                    
-                    <MDBBtn 
-                        outline
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        color="blue-grey">
-                            + Add Certification
-                    </MDBBtn>
-                </div>
-            </div>; 
+    addHandler = () => {
+        this.setState({deleteCounter: this.state.deleteCounter-1})
     }
-    return(
-        toShow
-    );
+
+    deleteHandler = (id, e) => {
+        this.state.cards.splice(id,1);
+        this.setState({deleteCounter: this.state.deleteCounter+1})
+    }
+
+    state = {
+        cards: this.props.data 
+            ? this.props.data.map((e,i)=>(<ProjectCard key={i} id={i} data={e} deleteHandler={this.deleteHandler}/>))
+            : Array(),
+        
+        deleteCounter: 0
+    }
+
+    render(){
+        let toShow; 
+        if(this.state.cards.length == 0){
+            toShow = 
+                <div className={classes.Project}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Project</p>
+
+                    </div>
+                    <div className={classes.Container}>
+                        <p>no project</p>
+                        <MDBBtn 
+                            outline
+                            className={classes.MDBButton}
+                            style={MDBButtonStyle}
+                            color="blue-grey"
+                            onClick={this.addHandler}>
+                                + Add Certification
+                        </MDBBtn>
+                    </div>
+                </div>;
+        }
+        else {
+            toShow =
+                <div className={classes.Project}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Project</p>
+                    </div>
+                    <div className={classes.Container}>
+                        {this.state.cards}   
+                        <MDBBtn 
+                            outline
+                            className={classes.MDBButton}
+                            style={MDBButtonStyle}
+                            color="blue-grey"
+                            onClick={this.addHandler}>
+                                + Add Certification
+                        </MDBBtn>
+                    </div>
+                </div>; 
+        }
+        return(toShow)
+    }
 };
 
-export default project;
+export default Project;

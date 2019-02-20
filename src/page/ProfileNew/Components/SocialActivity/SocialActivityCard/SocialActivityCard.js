@@ -17,7 +17,6 @@ class SocialActivityCard extends Component{
                 end: this.props.data.duration.end,
                 note: this.props.data.note
             },
-            show: true
         } 
         this.nameRef = React.createRef();
         this.orgRef = React.createRef();
@@ -28,19 +27,16 @@ class SocialActivityCard extends Component{
     }
 
     editHandler=()=>{
-        console.log("editing")
         this.setState({editing: true});
         
         
     }
-    deleteHandler=()=>{
-        console.log("deleteing")
-        this.setState({show: false})
+    deleteHandler=(e)=>{
+        this.props.deleteHandler(this.props.id,e);
         // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
-        console.log("saving");
         this.setState({
             editing: false,
             socialData: {
@@ -53,17 +49,11 @@ class SocialActivityCard extends Component{
         }, ()=>{
             console.log(this.state.socialData)
         });
-        
-        // API PUT!
+        // TODO: truely edit the card in server
 
     }
 
     render(){
-        if(!this.state.show){
-            return(
-                <div></div>
-            )
-        }
         let toShow =
             <div className={classes.SocialActivityCard}>
                 <img src={socialActivityIcon} alt="no img"></img>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MDBBtn } from "mdbreact";
 
 
@@ -14,48 +14,64 @@ const MDBButtonStyle = {
     font_size: "18px",
     text_align: "center"};
 
-const workExperience = (props) => {
-    let toShow = 
-        <div className={classes.WorkExperience}>
-            <div className={classes.row}>
-                <p className={classes.SectionName}>Work Experience</p>
-            </div>
+class WorkExperience extends Component {
 
-            <p>no work experience</p>
-            
-            <MDBBtn 
-                flat 
-                className={classes.MDBButton}
-                style={MDBButtonStyle}>
-                    + Add Work Experience
-            </MDBBtn>
-        </div>;
-
-    let cards;
-    if(props.data){
-        cards = props.data.map((e,i)=>(
-            <WorkExperienceCard key={i} data={e}/>
-        ));
-        toShow = 
-            <div className={classes.WorkExperience}>
-                <div className={classes.row}>
-                    <p className={classes.SectionName}>Work Experience</p>
-                </div>
-
-                {cards}
-                
-                
-                <MDBBtn 
-                    flat 
-                    className={classes.MDBButton}
-                    style={MDBButtonStyle}>
-                        + Add Work Experience
-                </MDBBtn>
-            </div>;
+    addHandler = () => {
+        this.setState({deleteCounter: this.state.deleteCounter-1})
     }
-    return(
-        toShow
-    );
+
+    deleteHandler = (id, e) => {
+        this.state.cards.splice(id,1);
+        this.setState({deleteCounter: this.state.deleteCounter+1})
+    }
+
+    state = {
+        cards: this.props.data 
+            ? this.props.data.map((e,i)=>(<WorkExperienceCard key={i} id={i} data={e} deleteHandler={this.deleteHandler}/>))
+            : Array(),
+        
+        deleteCounter: 0
+    }
+
+    render(){
+        let toShow;
+        if ( this.state.cards.length == 0 ) {
+            toShow = 
+                <div className={classes.WorkExperience}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Work Experience</p>
+                    </div>
+                    <p>no work experience</p>
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Work Experience
+                    </MDBBtn>
+                </div>;
+        }
+        else {
+            toShow = 
+                <div className={classes.WorkExperience}>
+                    <div className={classes.row}>
+                        <p className={classes.SectionName}>Work Experience</p>
+                    </div>
+                    {this.state.cards}
+                    <MDBBtn 
+                        flat 
+                        className={classes.MDBButton}
+                        style={MDBButtonStyle}
+                        onClick={this.addHandler}>
+                            + Add Work Experience
+                    </MDBBtn>
+                </div>;
+        }
+
+        return(
+            toShow
+        );
+    }
 };
 
-export default workExperience;
+export default WorkExperience;
