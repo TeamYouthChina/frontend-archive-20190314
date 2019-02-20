@@ -17,6 +17,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {HomeHeader} from './home-header';
 import {Footer} from '../../general-component/footer';
 import {JobListHome} from './job-list-home';
+import {JobName} from "../job/job-name";
 
 export class Home extends React.Component {
   constructor(props) {
