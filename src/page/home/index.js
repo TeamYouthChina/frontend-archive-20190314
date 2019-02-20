@@ -20,6 +20,7 @@ import {Footer} from '../../general-component/footer';
 import {New} from './new';
 import {Hot} from './hot';
 
+
 export class Home extends React.Component {
   constructor(props) {
     super(props);
