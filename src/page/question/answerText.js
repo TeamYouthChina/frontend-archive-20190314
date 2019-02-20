@@ -3,6 +3,55 @@ import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 import {getAsync} from "../../tool/api-helper";
 
+const myUploadFn = async (param) => {
+  // console.log(param)
+  const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
+  // 数据传输协议，添加注释，类似json
+  const xhr = new XMLHttpRequest
+  // 构建键值对，给内容加标记
+  const fd = new FormData()
+  const  result = await getAsync(serverURL)
+  // console.log(result,'result')
+  const successFn = (response) => {
+    // 假设服务端直接返回文件上传后的地址
+    // 上传成功后调用param.success并传入上传后的文件地址
+    param.success({
+      url:'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D',
+      meta: {
+        id: '123',
+        title: '123',
+        alt: '123',
+        loop: true, // 指定音视频是否循环播放
+        autoPlay: true, // 指定音视频是否自动播放
+        controls: true, // 指定音视频是否显示控制栏
+        poster: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg', // 指定视频播放器的封面
+      }
+    })
+  }
+
+  const progressFn = (event) => {
+    // 上传进度发生变化时调用param.progress
+    param.progress(event.loaded / event.total * 100)
+  }
+
+  const errorFn = (response) => {
+    // 上传发生错误时调用param.error
+    param.error({
+      msg: 'unable to upload.'
+    })
+  }
+
+  xhr.upload.addEventListener('progress', progressFn, false)
+  xhr.addEventListener('load', successFn, false)
+  xhr.addEventListener('error', errorFn, false)
+  xhr.addEventListener('abort', errorFn, false)
+
+  fd.append('file', param.file)
+  xhr.open('POST', serverURL, true)
+  xhr.send(fd)
+
+}
+
 export class AnswerText extends React.Component {
 
   constructor(props){
@@ -50,54 +99,7 @@ export class AnswerText extends React.Component {
   
   render () {
     // 这里是上传函数
-    const myUploadFn = async (param) => {
-      // console.log(param)
-      const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
-      // 数据传输协议，添加注释，类似json
-      const xhr = new XMLHttpRequest
-      // 构建键值对，给内容加标记
-      const fd = new FormData()
-      const  result = await getAsync(serverURL)
-      // console.log(result,'result')
-      const successFn = (response) => {
-        // 假设服务端直接返回文件上传后的地址
-        // 上传成功后调用param.success并传入上传后的文件地址
-        param.success({
-          url:'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D',
-          meta: {
-            id: '123',
-            title: '123',
-            alt: '123',
-            loop: true, // 指定音视频是否循环播放
-            autoPlay: true, // 指定音视频是否自动播放
-            controls: true, // 指定音视频是否显示控制栏
-            poster: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg', // 指定视频播放器的封面
-          }
-        })
-      }
-
-      const progressFn = (event) => {
-        // 上传进度发生变化时调用param.progress
-        param.progress(event.loaded / event.total * 100)
-      }
-
-      const errorFn = (response) => {
-        // 上传发生错误时调用param.error
-        param.error({
-          msg: 'unable to upload.'
-        })
-      }
-
-      xhr.upload.addEventListener('progress', progressFn, false)
-      xhr.addEventListener('load', successFn, false)
-      xhr.addEventListener('error', errorFn, false)
-      xhr.addEventListener('abort', errorFn, false)
-
-      fd.append('file', param.file)
-      xhr.open('POST', serverURL, true)
-      xhr.send(fd)
-
-    }
+    
     const { editorState } = this.state
 
     return (

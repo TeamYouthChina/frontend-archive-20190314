@@ -5,7 +5,7 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {AnswerText} from '../answerText';
+import {ArticleEditInit} from '../articleEditInit';
 // import './public/style.css';
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
@@ -63,7 +63,7 @@ export class ArticleCreate extends React.Component {
 
           </div>
           <br/>
-          <AnswerText ref={(answerText)=>{this.answerText = answerText}}></AnswerText>
+          <ArticleEditInit ref={(answerText)=>{this.answerText = answerText}}></ArticleEditInit>
         </div>
         <Footer/>
       </div>
