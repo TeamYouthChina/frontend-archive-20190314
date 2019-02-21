@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 
-import {Header} from '../../../../general-component/header';
-import {ResumeTitle} from '../../../../general-component/resumeTitle';
-import MainBody from '../../Components/MainBody/MainBody';
-import classes from './ProfileHome.module.css';
-import {getAsync} from '../../../../tool/api-helper';
+import {Header} from '../../general-component/header';
+import MainBody from './MainBody/MainBody'
+import {getAsync} from '../../tool/api-helper';
+import classes from './CreateResume.module.css';
 
-class ProfileHome extends Component{
+
+class CreateResume extends Component {
 
     state = {
         requestID: null,
         requestedData: null
     }
-
+    
     componentWillMount(){
         this.setState({requestID: this.props.match.params.id});
     }
@@ -23,7 +23,7 @@ class ProfileHome extends Component{
         this.setState({requestedData: data});
     }
 
-    render(){
+    render() {
         let toShow = 
             <div className={classes.ProfileHome}>
                 <Header/>
@@ -32,19 +32,10 @@ class ProfileHome extends Component{
 
         
         if(this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000){
-            
-            let dataForResumeTitle = {
-                img: this.state.requestedData.content.avatarUrl,
-                name: this.state.requestedData.content.name,
-                description: null,
-                work: this.state.requestedData.content.currentCompany.name,
-                influence: null
-            };
 
             toShow = 
                 <div className={classes.ProfileHome}>
                     <Header/>
-                    <ResumeTitle data={dataForResumeTitle}/>
                     <MainBody requestID={this.state.requestID} data={this.state.requestedData.content}/>
                 </div>;
         }
@@ -54,4 +45,4 @@ class ProfileHome extends Component{
     }
 }
 
-export default ProfileHome;
+export default CreateResume

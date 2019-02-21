@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 import classes from './BasicInfo.module.css';
-import {getAsync} from '../../../../tool/api-helper';
+import {getAsync} from '../../../tool/api-helper';
 
-// this section have no seperate api
+// this section has not api yet
 class BasicInfo extends Component {
     constructor(props){
         super(props)

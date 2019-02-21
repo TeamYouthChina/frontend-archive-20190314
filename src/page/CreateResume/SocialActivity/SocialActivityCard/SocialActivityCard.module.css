@@ -1,0 +1,45 @@
+.SocialActivityCard{
+    display: flex;
+    flex-direction: row;
+    height: 110px;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 0px 0px 5px 0px;
+    align-items: center;
+    border-bottom: 1px solid grey
+}
+
+.SocialActivityCard img {
+    height: 65px;
+    width: 65;
+}
+
+.SocialActivityCard input {
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+    color: #62686C;
+    margin: 0%;
+    padding-left: 4px;
+}
+
+.SocialActivityCard input:disabled {
+    border: 2px solid white;
+    padding-left: 4px;
+}
+
+.ActivityInfo {
+    margin-left: 20px;
+    height: 90%;
+    width: 590px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.ActivityInfo div{
+    display: flex;
+    flex-direction: row;
+}
