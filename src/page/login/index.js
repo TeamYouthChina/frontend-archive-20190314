@@ -17,7 +17,7 @@ import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {getAsync} from '../../tool/api-helper';
+import {postAsync} from '../../tool/api-helper';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -31,8 +31,12 @@ export class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-
+  async componentDidMount() {
+    const frontend = await postAsync('/login', {
+      id: '',
+      password: ''
+    });
+    console.log('frontend', frontend);
   }
 
   handleChange = (event) => {
@@ -50,6 +54,7 @@ export class Login extends React.Component {
   };
 
   render() {
+
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     const btnColor = '#7C97B8';
 
