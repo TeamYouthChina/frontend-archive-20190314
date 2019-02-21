@@ -19,6 +19,7 @@ import {Footer} from '../../general-component/footer';
 import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+import {postAsync} from "../../tool/api-helper";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -32,6 +33,16 @@ export class Register extends React.Component {
     this.text = Register.i18n[languageHelper()];
   }
 
+  handleRegisterSubmit = (event) => {
+
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+    // console.log('success');
+
+    postAsync('/applicants/register', data).then(json => console.log(json));
+  };
+  
   showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -62,7 +73,7 @@ export class Register extends React.Component {
         <Header/>
         <MDBRow className="m-0">
           <MDBModal isOpen={this.state.modal} toggle={() => this.toggleUserInfo()} size="lg" position="center">
-            <UserInfo className="mx-5 px-5"/>
+            <UserInfo handleSubmit={this.handleRegisterSubmit} className="mx-5 px-5"/>
           </MDBModal>
           <MDBCol className="p-0" md="7">
             <Animation type="fadeInLeft" duration="2s">

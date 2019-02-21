@@ -17,7 +17,7 @@ import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {getAsync} from '../../tool/api-helper';
+import {postAsync} from '../../tool/api-helper';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -29,12 +29,23 @@ export class Login extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   componentDidMount() {
 
   }
 
+  handleLoginSubmit = (event) => {
+    
+    event.preventDefault();
+    
+    const data = new FormData(event.target);
+    // console.log('success');
+    
+    postAsync('/login', data).then(json => console.log(json));
+  };
+  
   handleChange = (event) => {
     this.setState({
       email: event.target.value
@@ -100,22 +111,19 @@ export class Login extends React.Component {
                       </p>
                     </Animation>
                   </div>
-                  <form>
+                  <form onSubmit={this.handleLoginSubmit}>
                     <MDBInput
                       label="邮箱"
-                      group
-                      type="email"
-                      validate
-                      error="wrong"
-                      success="right"
+                      // name='email'
+                      group type="email"
+                      validate error="wrong" success="right"
                       onChange={this.handleChange}
                     />
                     <div style={{position: 'relative'}}>
                       <MDBInput
                         label="密码"
-                        group
-                        type={this.state.type}
-                        validate
+                        // name='password'
+                        group type={this.state.type} validate
                       />
                       <span onClick={this.showHidePasswd} style={{
                         position: 'absolute',
@@ -135,12 +143,10 @@ export class Login extends React.Component {
                     </p>
                     <div className="text-center mb-3">
                       <MDBBtn
-                        href="/best-for-you"
+                        // href="/best-for-you"
                         className="btn-block z-depth-1a"
-                        color={btnColor}
-                        style={{
-                          backgroundColor: '#7C97B8'
-                        }}>
+                        type="submit" color={btnColor}
+                        style={{backgroundColor: '#7C97B8'}}>
                         登录
                       </MDBBtn>
                     </div>
