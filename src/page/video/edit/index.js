@@ -81,6 +81,6 @@ VideoEdit.i18n = [
   {
     title: 'Title',
     submitBtn: 'submit modification',
-    write:'edit video'
+    write:'edit video-mobile'
   },
 ];

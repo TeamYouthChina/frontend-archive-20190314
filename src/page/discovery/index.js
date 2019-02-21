@@ -256,6 +256,6 @@ Discovery.i18n = [
     connection: 'Connection',
     review: 'Review',
     questionAnswer: 'Question & Answer',
-    video: 'Video',
+    video: 'VideoMobile',
   }
 ];
