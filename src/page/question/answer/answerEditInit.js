@@ -2,9 +2,9 @@ import React from 'react';
 import {
   MDBRow,
 } from 'mdbreact';
-import {AnswerTextForVideo} from './answerTextForVideo'
+import {AnswerTextForQuestion} from './answerTextForQuestion'
 
-export class VideoEditInit extends React.Component {
+export class AnswerEditInit extends React.Component {
 
   constructor(props){
     super(props)
@@ -17,7 +17,7 @@ export class VideoEditInit extends React.Component {
     return (
       <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
         <MDBRow style={{height:'100%',margin:'20px 0px 0px 0px'}}>
-          <AnswerTextForVideo data={this.props.inputData}></AnswerTextForVideo>
+          <AnswerTextForQuestion data={this.props.inputData}></AnswerTextForQuestion>
         </MDBRow>
       </div>
     )
