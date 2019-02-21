@@ -6,17 +6,6 @@ import MainBody from '../../Components/MainBody/MainBody';
 import classes from './ProfileHome.module.css';
 import {getAsync} from '../../../../tool/api-helper';
 
-
-let dummyPersonalInfo = {
-    id:'123',
-    name:'郭益豪',
-    img:'https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg',
-    description:['美国乔治华盛顿大学,','数据科学家'],
-    work:'张三技术总监',
-    counts:86
-  }
-
-
 class ProfileHome extends Component{
 
     state = {
@@ -29,6 +18,7 @@ class ProfileHome extends Component{
     }
 
     async componentDidMount(){
+        // ideally only get /applicants/id/basicinfo
         let data = await getAsync('/applicants/'+this.state.requestID);
         this.setState({requestedData: data});
     }
@@ -55,7 +45,7 @@ class ProfileHome extends Component{
                 <div className={classes.ProfileHome}>
                     <Header/>
                     <ResumeTitle data={dataForResumeTitle}/>
-                    <MainBody data={this.state.requestedData.content}/>
+                    <MainBody requestID={this.state.requestID} data={this.state.requestedData.content}/>
                 </div>;
         }
         return(

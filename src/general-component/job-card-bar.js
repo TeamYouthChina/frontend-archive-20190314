@@ -159,7 +159,7 @@ export class JobCardBar extends React.Component {
                     viewBox="0 0 24 24"
                     fill={this.state.collect ? "#45526e" : "none"}
                     stroke="#45526e"
-                    strokeWidth="1.5"
+                    strokeWidth="1.0"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="feather feather-bookmark"
