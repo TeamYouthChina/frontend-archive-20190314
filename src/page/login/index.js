@@ -32,8 +32,12 @@ export class Login extends React.Component {
     // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  componentDidMount() {
-
+  async componentDidMount() {
+    const frontend = await postAsync('/login', {
+      id: '1',
+      password: '123456'
+    });
+    console.log('frontend', frontend);
   }
 
   handleLoginSubmit = (event) => {
@@ -61,6 +65,7 @@ export class Login extends React.Component {
   };
 
   render() {
+
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     const btnColor = '#7C97B8';
 

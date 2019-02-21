@@ -1,7 +1,10 @@
 import Cookies from 'js-cookie';
 import fetch from 'isomorphic-fetch';
 
-const urlPrefix = 'http://47.254.46.117:4000';
+const mock = 'http://47.254.46.117:4000';
+const production = 'http://47.254.46.117:8080/api/v1';
+
+const urlPrefix = mock;
 
 const generateHeaders = () => {
   let language = Cookies.get('language');
@@ -10,17 +13,25 @@ const generateHeaders = () => {
     Cookies.set('language', language, {expires: 365});
   }
   let headers = {
-    'Content-Type': 'application/json',
+    'Accept': '*/*',
+    'Content-Type': 'application/json;charset=utf8',
     'x-language': language
   };
   const token = Cookies.get('token');
   if (token) {
     headers = {
       ...headers,
-      'x-token': token
+      'X-AUTHENTICATION': token
     };
   }
   return headers;
+};
+
+const updateToken = (header) => {
+  const token = header.get('X-AUTHENTICATION');
+  if (token) {
+    Cookies.set('token', token, {expires: 1});
+  }
 };
 
 export const getAsync = async (urlSuffix) => {
@@ -35,6 +46,7 @@ export const get = (urlSuffix) => {
       headers: generateHeaders()
     }
   ).then((response) => {
+    updateToken(response.header);
     return response.json();
   }).catch((error) => {
     return {
@@ -59,6 +71,7 @@ const post = (urlSuffix, requestBody) => {
       body: JSON.stringify(requestBody)
     }
   ).then((response) => {
+    updateToken(response);
     return response.json();
   }).catch((error) => {
     return {
@@ -83,6 +96,7 @@ const put = (urlSuffix, requestBody) => {
       body: JSON.stringify(requestBody)
     }
   ).then((response) => {
+    updateToken(response);
     return response.json();
   }).catch((error) => {
     return {
@@ -106,6 +120,7 @@ const deleteHttp = (urlSuffix) => {
       headers: generateHeaders()
     }
   ).then((response) => {
+    updateToken(response);
     return response.json();
   }).catch((error) => {
     return {
