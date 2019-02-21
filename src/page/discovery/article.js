@@ -17,13 +17,13 @@ export class Article extends React.Component {
         style={{padding: 0}}
       >
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard/>
+          <ArticleCard type={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard/>
+          <ArticleCard type={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard/>
+          <ArticleCard type={1}/>
         </MDBRow>
       </MDBContainer>
     );

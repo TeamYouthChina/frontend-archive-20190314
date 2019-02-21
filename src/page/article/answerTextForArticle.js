@@ -120,7 +120,7 @@ export class AnswerTextForArticle extends React.Component {
     ]
 
     return (
-      <div className="textForQuestion">
+      <div className="myAnswerText">
         <div className="editor-wrapper" style={{height: '100%'}}>
           <BraftEditor media={{uploadFn: myUploadFn}}
                        value={editorState} contentStyle={{height: '100%'}}
