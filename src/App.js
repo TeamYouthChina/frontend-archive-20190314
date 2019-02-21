@@ -36,6 +36,7 @@ import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplica
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
 
+
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {Mypage} from './page/trash/mypage';
@@ -52,6 +53,7 @@ import {Recruit} from "./page/hr/recruit";
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
 import {SearchResume} from "./page/hr/searchresume";
+import {Mobile} from './page/mobile';
 
 
 export class App extends Component {
@@ -134,6 +136,10 @@ export class App extends Component {
               component={routeProps => <Message {...routeProps} />}
             />
             <Route
+              path="/mobile"
+              component={routeProps => <Mobile {...routeProps} />}
+            />
+            <Route
               path="/notification"
               component={routeProps => <Notification {...routeProps} />}
             />
@@ -168,6 +174,10 @@ export class App extends Component {
             <Route
               path="/question/:questionId/answer/:answerId/edit"
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/:answerId"
+              component={routeProps => <QuestionAnswer {...routeProps} />}
             />
             <Route
               path="/question/:questionId"

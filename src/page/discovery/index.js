@@ -30,7 +30,7 @@ export class Discovery extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      selectedTab: 1
+      selectedTab: null
     };
     this.text = Discovery.i18n[languageHelper()];
   }
@@ -256,6 +256,6 @@ Discovery.i18n = [
     connection: 'Connection',
     review: 'Review',
     questionAnswer: 'Question & Answer',
-    video: 'Video',
+    video: 'VideoMobile',
   }
 ];

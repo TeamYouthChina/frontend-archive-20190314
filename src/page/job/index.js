@@ -2,30 +2,23 @@ import React from 'react';
 
 import {
   MDBCol,
-  MDBAvatar,
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBCardUp,
-  MDBIcon,
-  MDBMask,
   MDBRow,
-  MDBView,
-  Progress,
   View,
   Mask,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
-import CoDetail from './company-detail';
-import {JobName} from './job-name'
+import {CoDetail} from "../company/company-detail";
+import {JobName} from './job-name';
 import {JobDescri} from "./job-descri";
-import {QuestionAnswer} from "../company/question-answer";
 import {JobApp} from "./job-app-progress";
-import {Comment} from "../company/comment";
+import {QuestionCard} from "../../general-component/question-card";
 import {JobCardSquare} from "../../general-component/job-card-square";
+import {ReviewCard} from "../../general-component/review-card";
 
 
 export class Job extends React.Component {
@@ -133,22 +126,44 @@ export class Job extends React.Component {
                 <MDBBtn flat block>查看全部相似职位</MDBBtn>
               </MDBRow>
             </p>
+            <p id="comment">
+              <h4 className="font-weight-bold mb-3 px-3">
+                <strong>
+                  评论
+                </strong>
+              </h4>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <ReviewCard/>
+                </p>
+                <p>
+                  <ReviewCard/>
+                </p>
+                <p>
+                  <ReviewCard/>
+                </p>
+              </MDBRow>
+            </p>
             <p id="questionanswer">
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   问答
                 </strong>
               </h4>
-              <MDBCard className="px-3 pb-3 mb-4">
-                <MDBCardBody>
-                  <QuestionAnswer/>
-                  <hr/>
-                  <QuestionAnswer/>
-                  <MDBRow center>
-                    <MDBBtn flat block> See More</MDBBtn>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <QuestionCard/>
+                </p>
+
+                <p>
+                  <QuestionCard/>
+                </p> 
+                <p>
+                  <QuestionCard/>
+                </p>
+                <MDBBtn flat block> See More</MDBBtn>
+                
+              </MDBRow>
             </p>
           </MDBCol>
           
