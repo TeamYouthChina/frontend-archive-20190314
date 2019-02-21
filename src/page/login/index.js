@@ -34,8 +34,8 @@ export class Login extends React.Component {
 
   async componentDidMount() {
     const frontend = await postAsync('/login', {
-      id: '',
-      password: ''
+      id: '1',
+      password: '123456'
     });
     console.log('frontend', frontend);
   }

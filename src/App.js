@@ -49,10 +49,10 @@ import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
 import {HR} from './page/hr';
 import {Employerhome} from './page/hr/employerhome';
-import {Recruit} from "./page/hr/recruit";
+import {Recruit} from './page/hr/recruit';
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
-import {SearchResume} from "./page/hr/searchresume";
+import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
 
 
@@ -114,10 +114,6 @@ export class App extends Component {
             <Route
               path="/home"
               component={routeProps => <Home {...routeProps} />}
-            />
-            <Route
-              path="/hr"
-              component={routeProps => <HR {...routeProps} />}
             />
             <Route
               path="/job-for-you"
@@ -255,6 +251,10 @@ export class App extends Component {
             <Route
               path="/mobile-test-2"
               component={routeProps => <MobileTest2 {...routeProps} />}
+            />
+            <Route
+              path="/hr"
+              component={routeProps => <HR {...routeProps} />}
             />
             {/* ====== Trash End ====== */}
             <Redirect to="/page-no-found"/>

@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 const mock = 'http://47.254.46.117:4000';
 const production = 'http://47.254.46.117:8080/api/v1';
 
-const urlPrefix = production;
+const urlPrefix = mock;
 
 const generateHeaders = () => {
   let language = Cookies.get('language');
@@ -13,7 +13,8 @@ const generateHeaders = () => {
     Cookies.set('language', language, {expires: 365});
   }
   let headers = {
-    'Content-Type': 'application/json',
+    'Accept': '*/*',
+    'Content-Type': 'application/json;charset=utf8',
     'x-language': language
   };
   const token = Cookies.get('token');
