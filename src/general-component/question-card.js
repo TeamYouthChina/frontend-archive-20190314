@@ -158,7 +158,7 @@ export class QuestionCard extends React.Component {
 
   render() {
     return (
-      <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
+      <div style={{background: '#FFFFFF',padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
            ref={(span) => this.scrollSpan = span}>
         {this.props.type === 1 ? (
           <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>

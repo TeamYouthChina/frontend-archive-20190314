@@ -92,6 +92,7 @@ export class ArticleCreate extends React.Component {
   }
 
   handleSetInput(e){
+    // console.log(this.input.current.value)
     let value = e.target.value
     setTimeout(()=>(
       this.setState({
