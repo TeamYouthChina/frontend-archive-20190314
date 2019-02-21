@@ -9,14 +9,28 @@ class SocialActivityCard extends Component{
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
-            socialData: {
-                name: this.props.data.name,
-                organization: this.props.data.organization,
-                begin: this.props.data.duration.begin,
-                end: this.props.data.duration.end,
-                note: this.props.data.note
-            },
+            editing: this.props.data
+                ? false
+                : true,
+            socialData: this.props.data
+                ? {
+                    name: this.props.data.name,
+                    organization: this.props.data.organization,
+                    duration: {
+                        begin: this.props.data.duration.begin,
+                        end: this.props.data.duration.end
+                    },
+                    note: this.props.data.note
+                }
+                : { 
+                    name: '',
+                    organization: '',
+                    duration: {
+                        begin: '',
+                        end: ''   
+                    },
+                    note: ''
+                }
         } 
         this.nameRef = React.createRef();
         this.orgRef = React.createRef();
@@ -26,14 +40,14 @@ class SocialActivityCard extends Component{
 
     }
 
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
-        
-        
     }
-    deleteHandler=(e)=>{
-        this.props.deleteHandler(this.props.id,e);
-        // TODO: truely delete the card in server
+
+    // tell parent the id of the current card
+    deleteHandler=()=>{
+        this.props.deleteHandler(this.props.id);
     }
 
     saveHandler=()=>{
@@ -42,15 +56,15 @@ class SocialActivityCard extends Component{
             socialData: {
                 name: this.nameRef.current.value,
                 organization: this.orgRef.current.value,
-                begin: this.beginRef.current.value,
-                end: this.endRef.current.value,
+                duration: {
+                    begin: this.beginRef.current.value,
+                    end: this.endRef.current.value,
+                },
                 note: this.noteRef.current.value
             }
         }, ()=>{
-            console.log(this.state.socialData)
+            this.props.saveHandler(this.state.socialData, this.props.id);     
         });
-        // TODO: truely edit the card in server
-
     }
 
     render(){
@@ -61,9 +75,9 @@ class SocialActivityCard extends Component{
                     <input disabled type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
                     <input disabled type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
                     <div>
-                        <input disabled type="text" defaultValue={this.state.socialData.begin} ref={this.beginRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
                         <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.socialData.end} ref={this.endRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
                     </div>
                     <input disabled type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
                 </div>
@@ -78,9 +92,9 @@ class SocialActivityCard extends Component{
                         <input type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
                         <input type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
                         <div>
-                            <input type="text" defaultValue={this.state.socialData.begin} ref={this.beginRef}/>
+                            <input type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input type="text" defaultValue={this.state.socialData.end} ref={this.endRef}/>
+                            <input type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
                         </div>
                         <input type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
                     </div>

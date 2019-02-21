@@ -9,13 +9,22 @@ class projectCard extends Component {
   constructor(props){
     super(props)
     this.state = {
-        editing: false,
-        proData: {
+        editing: this.props.data ? false : true,
+        proData: this.props.data ? {
             name: this.props.data.name,
-            begin: this.props.data.duration.begin,
-            end: this.props.data.duration.end,
+            duration: {
+                begin: this.props.data.duration.begin,
+                end: this.props.data.duration.end
+            },
             note: this.props.data.note
-        },
+        } : {
+            name: '',
+            duration: {
+                begin: '',
+                end: ''   
+            },
+            note: ''
+        }
     } 
     this.nameRef = React.createRef();
     this.beginRef = React.createRef();
@@ -24,31 +33,30 @@ class projectCard extends Component {
 
 }
 
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
-        
-        
     }
-    deleteHandler=(e)=>{
-        this.props.deleteHandler(this.props.id,e);
-        // TODO: truely delete the card in server
+
+    // tell parent the id of the current card
+    deleteHandler=()=>{
+        this.props.deleteHandler(this.props.id);
     }
 
     saveHandler=()=>{
-        console.log("saving");
         this.setState({
             editing: false,
             proData: {
                 name: this.nameRef.current.value,
-                begin: this.beginRef.current.value,
-                end: this.endRef.current.value,
+                duration: {
+                    begin: this.beginRef.current.value,
+                    end: this.endRef.current.value,
+                },
                 note: this.noteRef.current.value
             }
         }, ()=>{
-            console.log(this.state.proData)
+            this.props.saveHandler(this.state.proData, this.props.id);     
         });
-        // TODO: truely edit the card in server
-
     }
 
     render(){
@@ -57,9 +65,9 @@ class projectCard extends Component {
                 <div className={classes.ProjectCard}>
                         <input disabled type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
                         <div className={classes.Time}>
-                            <input disabled type="text" defaultValue={this.state.proData.begin} ref={this.beginRef}/>
+                            <input disabled type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input disabled type="text" defaultValue={this.state.proData.end} ref={this.endRef}/>
+                            <input disabled type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
                         </div>
                         <input disabled type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
                     <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
@@ -70,9 +78,9 @@ class projectCard extends Component {
             <div className={classes.ProjectCard}>
                 <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
                 <div className={classes.Time}>
-                    <input type="text" defaultValue={this.state.proData.begin} ref={this.beginRef}/>
+                    <input type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
                     <p> - </p>
-                    <input type="text" defaultValue={this.state.proData.end} ref={this.endRef}/>
+                    <input type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
                 </div>
                 <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
                 <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>

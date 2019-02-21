@@ -8,14 +8,28 @@ class CertificationCard extends Component{
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
-            certiData: {
-                name: this.props.data.name,
-                auth: this.props.data.authority,
-                begin: this.props.data.duration.begin,
-                end: this.props.data.duration.end,
-                note: this.props.data.note
-            },
+            editing: this.props.data
+                ? false
+                : true,
+            certiData: this.props.data
+                ? {
+                    name: this.props.data.name,
+                    auth: this.props.data.authority,
+                    duration: {
+                        begin: this.props.data.duration.begin,
+                        end: this.props.data.duration.end
+                    },
+                    note: this.props.data.note
+                }
+                : {
+                    name: '',
+                    auth: '',
+                    duration: {
+                        begin: '',
+                        end: ''   
+                    },
+                    note: ''
+                }
         } 
         this.nameRef = React.createRef();
         this.authRef = React.createRef();
@@ -24,32 +38,31 @@ class CertificationCard extends Component{
         this.noteRef = React.createRef();
     }
 
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
-        
-        
     }
-    deleteHandler=(e)=>{
-        this.props.deleteHandler(this.props.id,e);
-        // TODO: truely delete the card in server
+
+    // tell parent the id of the current card
+    deleteHandler=()=>{
+        this.props.deleteHandler(this.props.id);
     }
 
     saveHandler=()=>{
-        console.log("saving");
         this.setState({
             editing: false,
             certiData: {
                 name: this.nameRef.current.value,
                 auth: this.authRef.current.value,
-                begin: this.beginRef.current.value,
-                end: this.endRef.current.value,
+                duration: {
+                    begin: this.beginRef.current.value,
+                    end: this.endRef.current.value,
+                },
                 note: this.noteRef.current.value
             }
         }, ()=>{
-            console.log(this.state.certiData)
+            this.props.saveHandler(this.state.certiData, this.props.id);     
         });
-        
-        // API PUT!
 
     }
 
@@ -61,9 +74,9 @@ class CertificationCard extends Component{
                     <input disabled type="text" defaultValue={this.state.certiData.name} ref={this.nameRef}/>
                     <input disabled type="text" defaultValue={this.state.certiData.auth} ref={this.authRef}/>
                     <div>
-                        <input disabled type="text" defaultValue={this.state.certiData.begin} ref={this.beginRef}/>
+                        <input disabled type="text" defaultValue={this.state.certiData.duration.begin} ref={this.beginRef}/>
                         <p>-</p>
-                        <input disabled type="text" defaultValue={this.state.certiData.end} ref={this.endRef}/>
+                        <input disabled type="text" defaultValue={this.state.certiData.duration.end} ref={this.endRef}/>
                     </div>
                     <input disabled type="text" defaultValue={this.state.certiData.note} ref={this.noteRef}/>
                 </div>
@@ -78,9 +91,9 @@ class CertificationCard extends Component{
                         <input type="text" defaultValue={this.state.certiData.name} ref={this.nameRef}/>
                         <input type="text" defaultValue={this.state.certiData.auth} ref={this.authRef}/>
                         <div>
-                            <input type="text" defaultValue={this.state.certiData.begin} ref={this.beginRef}/>
+                            <input type="text" defaultValue={this.state.certiData.duration.begin} ref={this.beginRef}/>
                             <p>-</p>
-                            <input type="text" defaultValue={this.state.certiData.end} ref={this.endRef}/>
+                            <input type="text" defaultValue={this.state.certiData.duration.end} ref={this.endRef}/>
                         </div>
                         <input type="text" defaultValue={this.state.certiData.note} ref={this.noteRef}/>
                     </div>

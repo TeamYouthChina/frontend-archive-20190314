@@ -22,29 +22,16 @@ const mainBody = (props) => {
         phone: props.data.contacts.phonenumbers ? props.data.contacts.phonenumbers : "no phone given"
     };
 
-    let dataForEducation = {
-        educations: props.data.educations
-    };
-    let dataForWorkExperience = {};
-
-    let dataForCertifications = {};
-    
-    let dataForSocialActivicies = {};
-
-    let dataForProjects = {};
-
-    let dataForSkills = {};
-
     return(
         <div className={classes.MainBody}>
             <ResumeButtons/>
             <BasicInfo data={dataForBasicInfo}/>
-            <Education data={props.data.educations}/>
-            <WorkExperience data={props.data.works}/>
-            <Certifications data={props.data.certifications}/>
-            <SocialActivicies data={props.data.extracurriculars}/>
-            <Projects data={props.data.projects}/>
-            <Skills data={[{name: "javascript"}]}/>
+            <Education requestID={props.requestID} />
+            <WorkExperience requestID={props.requestID}/>
+            <Certifications requestID={props.requestID}/>
+            <SocialActivicies requestID={props.requestID}/>
+            <Projects requestID={props.requestID}/>
+            <Skills requestID={props.requestID}/>
         </div>
     );
 };

@@ -9,13 +9,27 @@ class EducationCard extends Component {
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
-            educationData: {
-                university: this.props.data.university,
-                begin: this.props.data.duration.begin,
-                end: this.props.data.duration.end,
-                degree: this.props.data.degree
-            },
+            editing: this.props.data
+                ? false
+                : true,
+            educationData: this.props.data
+                ? {
+                    university: this.props.data.university,
+                    duration: {
+                        begin: this.props.data.duration.begin,
+                        end: this.props.data.duration.end
+                    },
+                    degree: this.props.data.degree
+                }
+                : {
+                    university: '',
+                    duration: {
+                        begin: '',
+                        end: ''
+                    },
+                    degree: ''
+                }
+            
         } 
         this.uniRef = React.createRef();
         this.beginRef = React.createRef();
@@ -23,30 +37,31 @@ class EducationCard extends Component {
         this.degreeRef = React.createRef();
     }
 
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
-        
-        
-    }
-    deleteHandler=(e)=>{
-        this.props.deleteHandler(this.props.id,e);
-        // TODO: truely delete the card in server
     }
 
+    // tell parent the id of the current card
+    deleteHandler=()=>{
+        this.props.deleteHandler(this.props.id);
+    }
+
+    // packup new data for this card and send to parent
     saveHandler=()=>{
         this.setState({
             editing: false,
             educationData: {
                 university: this.uniRef.current.value,
-                begin: this.beginRef.current.value,
-                end: this.endRef.current.value,
+                duration:{
+                    begin: this.beginRef.current.value,
+                    end: this.endRef.current.value
+                },
                 degree: this.degreeRef.current.value
             }
         }, ()=>{
-            console.log(this.state.educationData)
-        });       
-        // TODO: truely edit the card in server
-
+            this.props.saveHandler(this.state.educationData, this.props.id);     
+        });  
     }
 
 
@@ -57,9 +72,9 @@ class EducationCard extends Component {
                 <div className={classes.SchoolInfo}>
                     <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
                     <div>
-                        <input disabled type="text" defaultValue={this.state.educationData.begin} ref={this.beginRef}/>
+                        <input disabled type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
                         <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.educationData.end} ref={this.endRef}/>
+                        <input disabled type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
                     </div>
                     <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                 </div>
@@ -73,9 +88,9 @@ class EducationCard extends Component {
                     <div className={classes.SchoolInfo}>
                         <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
                         <div>
-                            <input type="text" defaultValue={this.state.educationData.begin} ref={this.beginRef}/>
+                            <input type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input type="text" defaultValue={this.state.educationData.end} ref={this.endRef}/>
+                            <input type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
                         </div>
                         <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                     </div>

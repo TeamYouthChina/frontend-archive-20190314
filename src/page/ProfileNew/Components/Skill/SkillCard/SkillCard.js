@@ -8,36 +8,39 @@ class skillCard extends Component{
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
-            skillData: {
+            editing: this.props.data ? false : true,
+            skillData: this.props.data ? {
                 name: this.props.data.name,
-            },
+            } : {
+                name: ''
+            }
         } 
         this.nameRef = React.createRef();
 
     }
 
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
-        
-        
     }
+
+    // tell parent the id of the current card
     deleteHandler=()=>{
         this.props.deleteHandler(this.props.id);
-        // TODO: truely delete the card in server
     }
 
     saveHandler=()=>{
         this.setState({
             editing: false,
             skillData: {
-                name: this.nameRef.current.value,
+                name: this.nameRef.current.value
             }
         }, ()=>{
-            console.log(this.state.skillData)
+            this.props.saveHandler(this.state.skillData, this.props.id);     
         });
-        // TODO: truely edit the card in server
     }
+
+
     render(){
         let toShow =
             <div className={classes.SkillCard}>

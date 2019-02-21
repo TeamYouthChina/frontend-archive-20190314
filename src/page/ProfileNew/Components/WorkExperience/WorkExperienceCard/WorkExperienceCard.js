@@ -8,15 +8,30 @@ class WorkExperienceCard extends Component{
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
-            workData: {
-                position: this.props.data.position,
-                employer: this.props.data.employer,
-                begin: this.props.data.duration.begin,
-                end: this.props.data.duration.end,
-                note: this.props.data.note
-            },
+            editing: this.props.data
+                ? false
+                : true,
+            workData: this.props.data 
+                ? {
+                    position: this.props.data.position,
+                    employer: this.props.data.employer,
+                    duration: {
+                        begin: this.props.data.duration.begin,
+                        end: this.props.data.duration.end   
+                    },
+                    note: this.props.data.note
+                }
+                : {
+                    position: '',
+                    employer: '',
+                    duration: {
+                        begin: '',
+                        end: ''   
+                    },
+                    note: ''
+                }
         } 
+        
         this.posRef = React.createRef();
         this.employerRef = React.createRef();
         this.beginRef = React.createRef();
@@ -24,30 +39,33 @@ class WorkExperienceCard extends Component{
         this.noteRef = React.createRef();
 
     }
-
+    
+    // this method only toggle 'editing'
     editHandler=()=>{
         this.setState({editing: true});
     }
-    deleteHandler=(e)=>{
-        this.props.deleteHandler(this.props.id,e);
-        // TODO: truely delete the card in server
+
+    // tell parent the id of the current card
+    deleteHandler=()=>{
+        this.props.deleteHandler(this.props.id);
     }
 
+    // packup new data for this card and send to parent
     saveHandler=()=>{
-        console.log("saving");
         this.setState({
             editing: false,
             workData: {
                 position: this.posRef.current.value,
                 employer: this.employerRef.current.value,
-                begin: this.beginRef.current.value,
-                end: this.endRef.current.value,
+                duration: {
+                    begin: this.beginRef.current.value,
+                    end: this.endRef.current.value,
+                },
                 note: this.noteRef.current.value
             }
         }, ()=>{
-            console.log(this.state.workData)
+            this.props.saveHandler(this.state.workData, this.props.id);     
         });
-        // TODO: truely edit the card in server
 
     }
     render(){
@@ -58,9 +76,9 @@ class WorkExperienceCard extends Component{
                     <input disabled type="text" defaultValue={this.state.workData.position} ref={this.posRef}/>
                     <input disabled type="text" defaultValue={this.state.workData.employer} ref={this.employerRef}/>
                     <div>
-                        <input disabled type="text" defaultValue={this.state.workData.begin} ref={this.beginRef}/>
+                        <input disabled type="text" defaultValue={this.state.workData.duration.begin} ref={this.beginRef}/>
                         <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.workData.end} ref={this.endRef}/>
+                        <input disabled type="text" defaultValue={this.state.workData.duration.end} ref={this.endRef}/>
                     </div>
                     <input disabled type="text" defaultValue={this.state.workData.note} ref={this.noteRef}/>
                 </div>
@@ -75,9 +93,9 @@ class WorkExperienceCard extends Component{
                         <input type="text" defaultValue={this.state.workData.position} ref={this.posRef}/>
                         <input type="text" defaultValue={this.state.workData.employer} ref={this.employerRef}/>
                         <div>
-                            <input type="text" defaultValue={this.state.workData.begin} ref={this.beginRef}/>
+                            <input type="text" defaultValue={this.state.workData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input type="text" defaultValue={this.state.workData.end} ref={this.endRef}/>
+                            <input type="text" defaultValue={this.state.workData.duration.end} ref={this.endRef}/>
                         </div>
                         <input type="text" defaultValue={this.state.workData.note} ref={this.noteRef}/>
                     </div>
