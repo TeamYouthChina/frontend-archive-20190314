@@ -30,20 +30,18 @@ export class Discovery extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      selectedTab: 1
+      selectedTab: null
     };
     this.text = Discovery.i18n[languageHelper()];
   }
 
-  toggleCollapse() {
-    this.setState({isOpen: !this.state.isOpen});
-  }
-
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
+    
     return (
       <div>
         <Header/>
@@ -63,7 +61,7 @@ export class Discovery extends React.Component {
                     this.setState({selectedTab: 1});
                   }
                 }
-                className={this.state.selectedTab === 1 ? 'active h5' : ''}
+                className={this.state.selectedTab === 1 ? 'active font-weight-bold' : ''}
                 style={{
                   color: '#454F69',
                   fontSize: '16px'
@@ -80,7 +78,7 @@ export class Discovery extends React.Component {
                     this.setState({selectedTab: 2});
                   }
                 }
-                className={this.state.selectedTab === 2 ? 'active h5' : ''}
+                className={this.state.selectedTab === 2 ? 'active font-weight-bold' : ''}
                 style={{
                   color: '#454F69',
                   fontSize: '16px'
@@ -97,7 +95,7 @@ export class Discovery extends React.Component {
                     this.setState({selectedTab: 3});
                   }
                 }
-                className={this.state.selectedTab === 3 ? 'active h5' : ''}
+                className={this.state.selectedTab === 3 ? 'active font-weight-bold' : ''}
                 style={{
                   color: '#454F69',
                   fontSize: '16px'
@@ -114,7 +112,7 @@ export class Discovery extends React.Component {
                     this.setState({selectedTab: 4});
                   }
                 }
-                className={this.state.selectedTab === 4 ? 'active h5' : ''}
+                className={this.state.selectedTab === 4 ? 'active font-weight-bold' : ''}
                 style={{
                   color: '#454F69',
                   fontSize: '16px'
@@ -131,7 +129,7 @@ export class Discovery extends React.Component {
                     this.setState({selectedTab: 5});
                   }
                 }
-                className={this.state.selectedTab === 5 ? 'active h5' : ''}
+                className={this.state.selectedTab === 5 ? 'active font-weight-bold' : ''}
                 style={{
                   color: '#454F69',
                   fontSize: '16px'
@@ -143,7 +141,7 @@ export class Discovery extends React.Component {
 
           <div style={{backgroundColor: '#FAFBFD'}}>
             <MDBContainer>
-              <MDBRow className="mt-3 mx-0">
+              <MDBRow className="mx-0">
                 <MDBCol md="9" lg="9">
                   <Switch>
                     <Route
@@ -170,11 +168,11 @@ export class Discovery extends React.Component {
                   </Switch>
                 </MDBCol>
 
-                <MDBCol md="3" lg="3">
+                <MDBCol className="mt-5" md="3" lg="3">
                   <MDBCard>
                     <MDBRow>
 
-                      <MDBCol className="mt-5" md="4" lg="4">
+                      <MDBCol md="4" lg="4">
                         <MDBRow center style={{marginTop: '20px'}}>
                           <MDBIcon icon="shield" size="3x"/>
                         </MDBRow>
@@ -258,6 +256,6 @@ Discovery.i18n = [
     connection: 'Connection',
     review: 'Review',
     questionAnswer: 'Question & Answer',
-    video: 'Video',
+    video: 'VideoMobile',
   }
 ];

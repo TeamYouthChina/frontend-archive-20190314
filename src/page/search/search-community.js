@@ -150,7 +150,7 @@ export class SearchCommunityResult extends React.Component {
                 <MDBRow around>
                   <MDBCol size="5">
                     <div className="ml-3 mb-3">
-                      <a href="/article/1/edit" style={{
+                      <a href="/question/create" style={{
                         color: 'black'
                       }}>
                         <MDBRow center style={{marginTop: '20px'}}>
@@ -165,7 +165,7 @@ export class SearchCommunityResult extends React.Component {
 
                   <MDBCol size="5">
                     <div className="mr-3 mb-3">
-                      <a href="/article/1/edit" style={{
+                      <a href="/article/create" style={{
                         color: 'black'
                       }}>
                         <MDBRow center style={{marginTop: '20px'}}>

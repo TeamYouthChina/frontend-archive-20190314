@@ -21,12 +21,7 @@ import {
   MDBPopoverHeader, MDBTooltip
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from '../../general-component/header';
-import {Footer} from "../../general-component/footer";
-
-import CoDetail from './company-detail';
-import {JobName} from '../job/job-name'
-import {JobDescri} from "../job/job-descri";
+import {getAsync} from "../../tool/api-helper";
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -46,36 +41,38 @@ export class QuestionAnswer extends React.Component {
   }
 
 
-  componentWillMount() {
-    let mockData =
-      {
-        companyname: 'Google',
-        schoolname: 'Columbia Collage',
-        rank: '影响力分值',
-        comment: '问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问题的答案，J回答了这个问题问',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/answers/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/answers/1`)
+      });
+    }
   }
 
   render() {
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <h5>
-          <strong>问题1： Our global teams are constantly iterating, solving problems, and working together to
-            empower people around the world to build community and connect in meaningful ways.</strong>
-        </h5>
-        <MDBRow className="px-3 pt-4">
+        <p
+          style={{fontFamily:'PingFang SC',fontSize:'18px'}}
+        >
+          {this.state.backend.content.question.title}
+        </p>
+        <p
+          style={{fontFamily:'PingFang SC',fontSize:'14px',color:'#8D9AAF'}}
+        >
+          预计阅读时间：10分钟
+        </p>
+        <p>
           <div className="mdb-feed">
             <div className="news">
               <div className="label">
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg"
+                  src={this.state.backend.content.creator.avatar_url}
                   alt=""
                   className="rounded-circle z-depth-1-half"
                 />
@@ -83,25 +80,24 @@ export class QuestionAnswer extends React.Component {
               <div className="excerpt">
                 <div className="brief">
                   <div>
-                    <a>John Doe</a>
+                    <a>{this.state.backend.content.creator.username}</a>
                     <div className="date">1 hour ago</div>
-                    <div
+                    <p
                       style={{
-                        fontSize: '0.7rem'
+                        fontFamily:'PingFang SC',fontSize:'12px',color:'#8D9AAF'
                       }}
                     >
-                      &nbsp;&nbsp;&nbsp;&nbsp;{this.state.backend.companyname}/{this.state.backend.schoolname} &nbsp;&nbsp; {this.state.backend.rank}
-                    </div>
+                      {this.state.backend.content.creator.role}/影响力分值 &nbsp;&nbsp; 79
+                    </p>
                   </div>
-
-                  <p
-                    style={{
-                      fontSize: '0.9rem'
-                    }}
-                  >
-                    {this.state.backend.comment}
-                  </p>
+                  
                 </div>
+                <p style={{
+                  fontFamily:'PingFang SC',fontSize:'14px',
+                }}>
+                  answer
+                </p>
+
                 <div className="feed-footer">
                   <a href="#!" className="like mx-3">
                     <MDBIcon icon="comment"/>
@@ -115,7 +111,9 @@ export class QuestionAnswer extends React.Component {
               </div>
             </div>
           </div>
-        </MDBRow>
+        </p>
+        
+        
 
       </div>
     ) : null;

@@ -175,7 +175,7 @@ VideoCreate.i18n = [
   },
   {
     title: 'Title',
-    submitBtn: 'submit article',
-    write: 'write article'
+    submitBtn: 'submit modification',
+    write:'edit video-mobile'
   },
 ];

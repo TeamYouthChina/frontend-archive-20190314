@@ -17,7 +17,7 @@ import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {getAsync} from '../../tool/api-helper';
+import {postAsync} from '../../tool/api-helper';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -29,12 +29,23 @@ export class Login extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   componentDidMount() {
 
   }
 
+  handleLoginSubmit = (event) => {
+    
+    event.preventDefault();
+    
+    const data = new FormData(event.target);
+    // console.log('success');
+    
+    postAsync('/login', data).then(json => console.log(json));
+  };
+  
   handleChange = (event) => {
     this.setState({
       email: event.target.value
@@ -61,6 +72,7 @@ export class Login extends React.Component {
       <div>
         <Header/>
         <MDBRow className="m-0">
+
           <MDBCol className="p-0" md="7">
             <Animation type="fadeInLeft" duration="2s">
               <MDBView hover>
@@ -72,9 +84,10 @@ export class Login extends React.Component {
               </MDBView>
             </Animation>
           </MDBCol>
+
           <MDBCol md="5">
             <Animation type="fadeInRight" duration="2s" delay="1s">
-              <MDBRow className="my-4">
+              <MDBRow className="mt-4">
                 <MDBCol className="mt-5 offset-2" size="8">
                   <div className="text-center">
                     <Animation type="fadeInRight" duration="3s">
@@ -98,26 +111,23 @@ export class Login extends React.Component {
                       </p>
                     </Animation>
                   </div>
-                  <form>
+                  <form onSubmit={this.handleLoginSubmit}>
                     <MDBInput
                       label="邮箱"
-                      group
-                      type="email"
-                      validate
-                      error="wrong"
-                      success="right"
+                      // name='email'
+                      group type="email"
+                      validate error="wrong" success="right"
                       onChange={this.handleChange}
                     />
                     <div style={{position: 'relative'}}>
                       <MDBInput
                         label="密码"
-                        group
-                        type={this.state.type}
-                        validate
+                        // name='password'
+                        group type={this.state.type} validate
                       />
                       <span onClick={this.showHidePasswd} style={{
-                        position: 'absolute', 
-                        right: '20px', 
+                        position: 'absolute',
+                        right: '20px',
                         top: '7px',
                         color: '#616161'
                       }}>
@@ -133,12 +143,10 @@ export class Login extends React.Component {
                     </p>
                     <div className="text-center mb-3">
                       <MDBBtn
-                        href="/best-for-you"
+                        // href="/best-for-you"
                         className="btn-block z-depth-1a"
-                        color={btnColor}
-                        style={{
-                          backgroundColor: '#7C97B8'
-                        }}>
+                        type="submit" color={btnColor}
+                        style={{backgroundColor: '#7C97B8'}}>
                         登录
                       </MDBBtn>
                     </div>
@@ -153,10 +161,10 @@ export class Login extends React.Component {
                       href="https://www.facebook.com"
                       className=" z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="facebook-f" 
-                        className="text-center" 
-                        color={btnColor} 
+                      <MDBIcon
+                        icon="facebook-f"
+                        className="text-center"
+                        color={btnColor}
                         size="2x"
                         style={{color: '#7C97B8'}}
                       />
@@ -167,10 +175,10 @@ export class Login extends React.Component {
                       href="https://twitter.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="twitter" 
-                        color={btnColor} 
-                        size="2x" 
+                      <MDBIcon
+                        icon="twitter"
+                        color={btnColor}
+                        size="2x"
                         style={{color: '#7C97B8'}}/>
                     </a>
                     <a
@@ -179,10 +187,10 @@ export class Login extends React.Component {
                       href="https://www.google.com"
                       className="z-depth-1a"
                     >
-                      <MDBIcon 
-                        icon="google-plus" 
-                        color={btnColor} 
-                        size="2x" 
+                      <MDBIcon
+                        icon="google-plus"
+                        color={btnColor}
+                        size="2x"
                         style={{color: '#7C97B8'}}/>
                     </a>
                   </div>
@@ -196,6 +204,7 @@ export class Login extends React.Component {
               </MDBRow>
             </Animation>
           </MDBCol>
+
         </MDBRow>
         <Footer/>
       </div>

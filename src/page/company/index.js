@@ -3,21 +3,21 @@ import {languageHelper} from '../../tool/language-helper';
 import {
   MDBRow,
   MDBCol,
-  View,
   MDBCard, 
   MDBCardBody,
-  MDBBtn
+  MDBBtn,
+  Mask,
+  View
 } from 'mdbreact';
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
-import CoDetail from './company-detail';
+import {CoDetail} from "./company-detail";
 import {JobCardSquare} from "../../general-component/job-card-square";
-import {Comment} from "./comment";
 import {Photo} from "./photo";
 import {ApplicantCard} from "../../general-component/applicant-card";
-import {QuestionAnswer} from "./question-answer";
-
+import {ReviewCard} from "../../general-component/review-card";
+import {QuestionCard} from "../../general-component/question-card";
 
 export class Company extends React.Component {
   constructor(props) {
@@ -31,65 +31,56 @@ export class Company extends React.Component {
     this.text = Company.i18n[languageHelper()];
     
   }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        jobs:['1','2','3','5','6'],
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {
-        backend: mockData,
-      };
-    });
-  }
+  
   
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div>
+    return (
+      <div style={{background:' #F2F2F2'}}>
         <Header/>
-        <div style={{marginBottom: '-150px' ,marginTop:'-7px'}}>
+        <div style={{marginBottom: '-180px', marginTop: '-7px'}}>
           <View>
             <img
-              className="d-block w-100 card-background img-fluid" src="https://i.postimg.cc/gjFqt1dN/photo-1531497865144-0464ef8fb9a9.png"
+              className="d-block w-100 card-background"
+              src="http://47.254.46.117:5000/discovery/rawpixel-665368-1.png"
             />
+            <Mask className="flex-center  text-white text-center">
+            </Mask>
           </View>
         </div>
         <MDBRow top>
+          <MDBCol  
+            md="10"
+            className="offset-md-1"
+          >
+            <p><CompanyCard/></p>
+          </MDBCol>
+        </MDBRow>
+        <MDBRow top>
           <MDBCol
             md="1"
-            className="offset-md-1 p-0"
+            className="offset-md-1"
           >
 
-            <MDBCard
-              classNmae="p-0"
-              style={{
-                boxShadow: 'none',
-                marginTop:'150px',
-              }}
-            >
-              <MDBCardBody className="px-0">
-                <h5
+            <MDBCard className="my-2" style={{height:'375px'}}>
+              <MDBCardBody className="px-0 ">
+                <h6
                   style={{borderLeft: '4px solid #7C97B8'}}
-                  className="px-2 pt-2"
-                >职位详情</h5>
-                <h5 className="px-2 pt-2">公司详情</h5>
-                <h5 className="px-2 pt-2">相似职位</h5>
-                <h5 className="px-2 pt-2">评价</h5>
-                <h5 className="px-2 pt-2">问答</h5>
+                  className="px-2 pt-2 mx-2"
+                >概况</h6>
+                <h6 className="px-2 pt-2 mx-2">在招职位</h6>
+                <h6 className="px-2 pt-2 mx-2">评价</h6>
+                <h6 className="px-2 pt-2 mx-2">问答</h6>
+                <h6 className="px-2 pt-2 mx-2">图片</h6>
+                <h6 className="px-2 pt-2 mx-2">视频</h6>
 
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
           <MDBCol md="9" >
-            <p><CompanyCard/></p>
+           
             <p>
-              <MDBCard className="my-5 px-3 pb-3">
+              <MDBCard className="my-2 px-3 pb-3">
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
@@ -128,16 +119,17 @@ export class Company extends React.Component {
                   评论
                 </strong>
               </h4>
-              <MDBCard className="px-3 pb-3 mb-4">
-                <MDBCardBody>
-                  <Comment/>
-                  <hr/>
-                  <Comment/>
-                  <MDBRow center>
-                    <MDBBtn flat block> See More</MDBBtn>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <ReviewCard/>
+                </p>
+                <p>
+                  <ReviewCard/>
+                </p>  
+                <p>
+                  <ReviewCard/>
+                </p>
+              </MDBRow>
             </p>
             <p id="questionanswer">
               <h4 className="font-weight-bold mb-3 px-3">
@@ -145,16 +137,19 @@ export class Company extends React.Component {
                   问答
                 </strong>
               </h4>
-              <MDBCard className="px-3 pb-3 mb-4">
-                <MDBCardBody>
-                  <QuestionAnswer/>
-                  <hr/>
-                  <QuestionAnswer/>
-                  <MDBRow center>
-                    <MDBBtn flat block> See More</MDBBtn>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+
+
+              </MDBRow>
             </p>
             <p id="photo">
               <h4 className="font-weight-bold mb-3 px-3">
@@ -196,7 +191,7 @@ export class Company extends React.Component {
         <Footer/>
       </div>
 
-    ) : null;
+    );
   }
 }
 

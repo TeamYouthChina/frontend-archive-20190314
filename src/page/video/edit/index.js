@@ -166,7 +166,7 @@ VideoEdit.i18n = [
   },
   {
     title: 'Title',
-    submitBtn: 'submit article',
-    write:'edit article'
+    submitBtn: 'submit modification',
+    write:'edit video-mobile'
   },
 ];

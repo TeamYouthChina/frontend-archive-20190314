@@ -23,6 +23,7 @@ import {ArticleEdit} from './page/article/edit';
 import {Video} from './page/video';
 import {VideoCreate} from './page/video/create';
 import {VideoEdit} from './page/video/edit';
+import {VideoMobile} from './page/mobile/video-mobile';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
@@ -34,6 +35,9 @@ import {Message} from './page/message';
 import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
+import CreateResume from './page/CreateResume/CreateResume';
+import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
+
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -85,6 +89,10 @@ export class App extends Component {
               component={routeProps => <BestForYou {...routeProps} />}
             />
             <Route
+              path="/create-resume/:id"
+              component={routeProps => <CreateResume {...routeProps} />}
+            />
+            <Route
               path="/collection"
               component={routeProps => <Collection {...routeProps} />}
             />
@@ -127,6 +135,14 @@ export class App extends Component {
             <Route
               path="/message"
               component={routeProps => <Message {...routeProps} />}
+            />
+            <Route
+              path="/mobile/question-answer-mobile"
+              component={routeProps => <QuestionAnswerMobile {...routeProps} />}
+            />
+            <Route
+              path="/mobile/video-mobile"
+              component={routeProps => <VideoMobile {...routeProps} />}
             />
             <Route
               path="/notification"

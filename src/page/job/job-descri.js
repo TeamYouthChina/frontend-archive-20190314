@@ -9,6 +9,7 @@ import {
   Row,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
+import {getAsync} from "../../tool/api-helper";
 
 export class JobDescri extends React.Component {
   constructor(props) {
@@ -21,19 +22,16 @@ export class JobDescri extends React.Component {
   }
 
 
-  componentWillMount() {
-    let mockData =
-      {
-        requirements: ['Good knowledge of mysql', 'Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies', 'skill4'],
-        better: ['Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies.','Vestibulum laoreet porttitor sem','Ac tristique libero volutpat at'],
-        employNumber: '100',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/job/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/job/1`)
+      });
+    }
   }
   render() {
 
@@ -45,33 +43,8 @@ export class JobDescri extends React.Component {
             <h4>
               <strong>职位描述</strong>
             </h4>
-            <h5>
-              <strong>Candidate requirements</strong>
-            </h5>
             <p>
-              <ul>
-                {this.state.backend.requirements.map((item) => {
-                  return (
-                    <li key={item}>
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </p>
-            <h5>
-              <strong>Good to have</strong>
-            </h5>
-            <p>
-              <ul>
-                {this.state.backend.better.map((item) => {
-                  return (
-                    <li key={item}>
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
+              {this.state.backend.content.organization.note}
             </p>
           </MDBCol>
         </MDBRow>
