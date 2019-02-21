@@ -34,6 +34,7 @@ import {Message} from './page/message';
 import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
+import CreateResume from './page/CreateResume/CreateResume';
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -83,6 +84,10 @@ export class App extends Component {
             <Route
               path="/best-for-you"
               component={routeProps => <BestForYou {...routeProps} />}
+            />
+            <Route
+              path="/create-resume/:id"
+              component={routeProps => <CreateResume {...routeProps} />}
             />
             <Route
               path="/collection"
