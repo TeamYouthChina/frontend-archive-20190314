@@ -2,15 +2,10 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {
-  MDBNavbar,
-  MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBContainer,
   MDBRow,
   MDBCol,
-  MDBTabPane,
-  MDBTabContent,
   MDBNav
 } from 'mdbreact';
 
