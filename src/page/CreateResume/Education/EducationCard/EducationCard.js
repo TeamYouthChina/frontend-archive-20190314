@@ -68,6 +68,7 @@ class EducationCard extends Component {
     render(){
         let toShow =
             <div className={classes.EducationCard}>
+                <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
                 <img src={schoolIcon} alt="no img"></img>
                 <div className={classes.SchoolInfo}>
                     <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
@@ -78,12 +79,13 @@ class EducationCard extends Component {
                     </div>
                     <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                 </div>
-                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+                {/* <Dropdown delete={this.deleteHandler} edit={this.editHandler}/> */}
             </div>;
         
         if(this.state.editing){
             toShow =
                 <div className={classes.EducationCard}>
+                    <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
                     <img src={schoolIcon} alt="no img"></img>
                     <div className={classes.SchoolInfo}>
                         <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
@@ -94,7 +96,7 @@ class EducationCard extends Component {
                         </div>
                         <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                     </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+                    {/* <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/> */}
                 </div>;
         }
         return(

@@ -1,8 +1,9 @@
 .EducationCard{
+    position: relative;
     display: flex;
     flex-direction: row;
     height: 96px;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
     padding: 0%;
     align-items: center;
@@ -36,7 +37,7 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 90%;
-    width: 590px;
+    /* width: 590px; */
 }
 
 .SchoolInfo h1{

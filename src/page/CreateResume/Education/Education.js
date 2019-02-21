@@ -24,28 +24,28 @@ class Education extends Component {
             cards: Array(), 
             flipper: true,
             requestedData: null,
-            showModal: false
+            cardShown: Array()
         }
         this.date = null;
     }
 
     // get educations data set requestedData and cards in state
     async componentDidMount(){
-        // let data = await getAsync('/applicants/'+this.props.requestID+'/educations');
-        // this.setState({requestedData: data});
-        // let temp = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
-        //     ? this.state.requestedData.content.map((e)=>{
-        //         this.date = new Date();
-        //         const time = this.date.getTime();
-        //         return <EducationCard 
-        //             key={time} 
-        //             id={time} 
-        //             data={e} 
-        //             deleteHandler={this.deleteHandler}
-        //             saveHandler={this.saveHandler}/>
-        //     })
-        //     : Array();
-        // this.setState({cards: temp});
+        let data = await getAsync('/applicants/'+this.props.requestID+'/educations');
+        this.setState({requestedData: data});
+        let temp = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
+            ? this.state.requestedData.content.map((e)=>{
+                this.date = new Date();
+                const time = this.date.getTime();
+                return <EducationCard 
+                    key={time} 
+                    id={time} 
+                    data={e} 
+                    deleteHandler={this.deleteHandler}
+                    saveHandler={this.saveHandler}/>
+            })
+            : Array();
+        this.setState({cards: temp});
     }
 
     async componentDidUpdate(){
@@ -73,6 +73,7 @@ class Education extends Component {
         });
     }
 
+    
     // save data locally and send back to server
     saveHandler = (newEducation,id) =>{
         // TODO: update server with new saved cards
@@ -103,70 +104,63 @@ class Education extends Component {
         });
     }
 
-    // addhandler only create a empty cards in state.cards
-    // update the data in server and local happens in saveHandler
-    addHandler = () => {
-        // timestamp
+    
+    // add a card
+    addHandler = (id) => {
         // this.date = new Date();
         // const time = this.date.getTime();
-        // let temp = this.state.cards.splice(0);
-        // temp.push(<EducationCard 
-        //     key={time} 
-        //     id={time} 
-        //     deleteHandler={this.deleteHandler}
-        //     saveHandler={this.saveHandler}/>)
-        // this.setState({
-        //     cards: temp,
-        //     flipper: !this.state.flipper});
-        
-        this.setState({
-            showModal : true
+        let copy;
+        this.state.cards.forEach((e,i)=>{
+            if(e.id == id){
+                copy = React.cloneElement(e);
+            }
         })
-        console.log("add clicked")
-        
-        
+        let temp = this.state.cards.splice(0);
+        temp.push(copy);
+
+
+
+        this.setState({
+            cardShown: temp,
+            flipper: !this.state.flipper
+        },()=>{
+            // prepare data to be sent back to server
+            // let dataToSend = this.state.cards.map((e)=>{
+            //     return e.props.data;
+            // })
+        });
     }
 
+    
+    
+    
     render(){
-        console.log("rerendered")
         let toShow; 
         if(this.state.cards.length == 0){
-            console.log(this.state.showModal)
+            console.log(this.state.cards)
             toShow = 
                 <div className={classes.Education}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Education</p>
                     </div>
                     <p>no education </p>
-                    {/* <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Education
-                    </MDBBtn> */}
                     <ModalPage 
-                        showModal={this.state.showModal}
-                        requestID={this.props.requestID}/>
+                        requestID={this.props.requestID}
+                        cards={this.state.cards}
+                        addHandler={this.addHandler}/>
                 </div>;
         }
         else {
+            console.log(this.state.cards)
             toShow =
                 <div className={classes.Education}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Education</p>
                     </div>
-                    {this.state.cards}
-                    {/* <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Education
-                    </MDBBtn> */}
                     <ModalPage 
-                        showModal={this.state.showModal}
-                        requestID={this.props.requestID}/>
+                        requestID={this.props.requestID}
+                        cards={this.state.cards}
+                        addHandler={this.addHandler}/>
                 </div>;
         }
         return(
