@@ -42,14 +42,14 @@ export class Notification extends React.Component {
       unreadNotifications: [
         {
           //type = 1: 系统推送; type = 2: 文章的赞; type = 3: 评论的赞;
-          name: "John Doe",
+          name: "gardness",
           type: 2,
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           content: "诺基亚是一家什么样的公司？",
           when: "昨天 12:41"
         },
         {
-          name: "John Doe",
+          name: "齐昊",
           type: 3,
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           content: "你有安全感么？",
@@ -67,7 +67,7 @@ export class Notification extends React.Component {
           when: "今天 03:09"
         },
         {
-          name: "John Doe",
+          name: "王二",
           type: 2,
           avatar: "https://mdbootstrap.com/img/Photos/Avatars/img(2).jpg",
           content: "诺基亚是一家什么样的公司？",
@@ -108,9 +108,21 @@ export class Notification extends React.Component {
 
         <MDBRow className="mt-5">
           <MDBCol className="offset-2" size='8'>
-
+            
             <MDBRow>
-              <MDBCol size="10"><h4 className="mb-3 font-weight-bold">新消息</h4></MDBCol>
+              <MDBCol size="10"><p className="mb-3" style={{
+                fontSize: '24px',
+                fontWeight: '600',
+                color: '#454F69'
+              }}>通知</p></MDBCol>
+            </MDBRow>
+            
+            <MDBRow>
+              <MDBCol size="10"><p className="mb-3" style={{
+                fontSize: '18px',
+                fontWeight: '400',
+                color: '#454F69'
+              }}>新消息</p></MDBCol>
             </MDBRow>
 
             <MDBRow>
@@ -128,7 +140,11 @@ export class Notification extends React.Component {
             </MDBRow>
 
             <MDBRow>
-              <MDBCol size="10"><h4 className="mt-5 mb-3 font-weight-bold">以往消息</h4></MDBCol>
+              <MDBCol size="10"><p className="mt-5 mb-3" style={{
+                fontSize: '18px',
+                fontWeight: '400',
+                color: '#454F69'
+              }}>以往消息</p></MDBCol>
             </MDBRow>
 
             <MDBRow>
@@ -141,14 +157,6 @@ export class Notification extends React.Component {
                   ))}
                 </MDBListGroup>
               </MDBCol>
-            </MDBRow>
-            
-            <MDBRow className="mt-4">
-              <a href="http://localhost:3000/message" style={{
-                color: '#7C97B8'
-              }}>
-                <MDBIcon icon="undo"/> 返回消息页
-              </a>
             </MDBRow>
 
           </MDBCol>
