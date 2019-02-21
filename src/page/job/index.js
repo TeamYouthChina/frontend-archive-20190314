@@ -38,45 +38,19 @@ export class Job extends React.Component {
     this.text = Job.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'New Frontier Data',
-        url: 'https://www.google.com',
-        jobname: '数据分析实习(2019 Summer), GE 通用电气',
-        jobtype: '实习（3月-6月）',
-        scale: '02/01/2019',
-        location: '上海',
-        requirements: ['Good knowledge of mysql', 'Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies', 'skill4'],
-        better: ['Good knowledge of programming lanuguage(C++, Java).', 'Purus sodales ultricies.', 'Vestibulum laoreet porttitor sem', 'Ac tristique libero volutpat at'],
-        employNumber: '100',
-        description: 'Through our family of apps and services, we are building a different kind of company that\n' +
-          '                        connects billions of people around the world, gives them ways to share what matters most to\n' +
-          '                        them, and helps bring people closer together. Whether we\'re creating new products or helping a\n' +
-          '                        small business expand its reach, people at Facebook are builders at heart. Our global teams are\n' +
-          '                        constantly iterating, solving problems, and working together to empower people around the world\n' +
-          '                        to build community and connect in meaningful ways.',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
-  }
+  
 
   render() {
 
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return  (
       <div>
         <Header/>
 
-        <div style={{marginBottom: '-300px', marginTop: '-7px'}}>
+        <div style={{marginBottom: '-180px', marginTop: '-7px'}}>
           <View>
             <img
               className="d-block w-100 card-background"
-              src="https://i.postimg.cc/gjFqt1dN/photo-1531497865144-0464ef8fb9a9.png"
+              src="http://47.254.46.117:5000/discovery/rawpixel-665368-1.png"
             />
             <Mask className="flex-center  text-white text-center">
             </Mask>
@@ -94,18 +68,18 @@ export class Job extends React.Component {
               classNmae="p-0"
               style={{
                 boxShadow: 'none',
-                marginTop:'300px',
+                marginTop:'180px',
               }}
             >
               <MDBCardBody className="px-0">
-                <h5
+                <h6
                   style={{borderLeft: '4px solid #7C97B8'}}
-                  className="px-2 pt-2"
-                >职位详情</h5>
-                <h5 className="px-2 pt-2">公司详情</h5>
-                <h5 className="px-2 pt-2">相似职位</h5>
-                <h5 className="px-2 pt-2">评价</h5>
-                <h5 className="px-2 pt-2">问答</h5>
+                  className="px-2 pt-2 mx-2"
+                >职位详情</h6>
+                <h6 className="px-2 pt-2 mx-2">公司详情</h6>
+                <h6 className="px-2 pt-2 mx-2">相似职位</h6>
+                <h6 className="px-2 pt-2 mx-2">评价</h6>
+                <h6 className="px-2 pt-2 mx-2">问答</h6>
 
               </MDBCardBody>
             </MDBCard>
@@ -182,7 +156,7 @@ export class Job extends React.Component {
 
         <Footer/>
       </div>
-    ) : null;
+    );
 
 
   }
