@@ -1,4 +1,4 @@
-åimport React from 'react';
+import React from 'react'
 
 import classes from './MainBody.module.css';
 import ResumeButtons from '../ResumeButtons/ResumeButtons';
