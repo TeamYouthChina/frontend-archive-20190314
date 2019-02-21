@@ -12,13 +12,12 @@ import {
 import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
-import CoDetail from './company-detail';
+import {CoDetail} from "./company-detail";
 import {JobCardSquare} from "../../general-component/job-card-square";
-import {Comment} from "./comment";
 import {Photo} from "./photo";
 import {ApplicantCard} from "../../general-component/applicant-card";
-import {QuestionAnswer} from "./question-answer";
-
+import {ReviewCard} from "../../general-component/review-card";
+import {QuestionCard} from "../../general-component/question-card";
 
 export class Company extends React.Component {
   constructor(props) {
@@ -52,7 +51,7 @@ export class Company extends React.Component {
         <MDBRow top>
           <MDBCol  
             md="10"
-            className="offset-md-1 p-0"
+            className="offset-md-1"
           >
             <p><CompanyCard/></p>
           </MDBCol>
@@ -60,7 +59,7 @@ export class Company extends React.Component {
         <MDBRow top>
           <MDBCol
             md="1"
-            className="offset-md-1 p-0"
+            className="offset-md-1"
           >
 
             <MDBCard className="my-2" style={{height:'375px'}}>
@@ -120,16 +119,17 @@ export class Company extends React.Component {
                   评论
                 </strong>
               </h4>
-              <MDBCard className="px-3 pb-3 mb-4">
-                <MDBCardBody>
-                  <Comment/>
-                  <hr/>
-                  <Comment/>
-                  <MDBRow center>
-                    <MDBBtn flat block> See More</MDBBtn>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <ReviewCard/>
+                </p>
+                <p>
+                  <ReviewCard/>
+                </p>  
+                <p>
+                  <ReviewCard/>
+                </p>
+              </MDBRow>
             </p>
             <p id="questionanswer">
               <h4 className="font-weight-bold mb-3 px-3">
@@ -137,16 +137,19 @@ export class Company extends React.Component {
                   问答
                 </strong>
               </h4>
-              <MDBCard className="px-3 pb-3 mb-4">
-                <MDBCardBody>
-                  <QuestionAnswer/>
-                  <hr/>
-                  <QuestionAnswer/>
-                  <MDBRow center>
-                    <MDBBtn flat block> See More</MDBBtn>
-                  </MDBRow>
-                </MDBCardBody>
-              </MDBCard>
+              <MDBRow className="px-3 pb-3 mb-4">
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+                <p>
+                  <QuestionCard type={1}/>
+                </p>
+
+
+              </MDBRow>
             </p>
             <p id="photo">
               <h4 className="font-weight-bold mb-3 px-3">
