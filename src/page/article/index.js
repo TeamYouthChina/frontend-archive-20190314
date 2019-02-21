@@ -32,12 +32,15 @@ export class Article extends React.Component {
     this.state = {
       backend: null,
       ifShown: false,
+      showCom:'评论',
       pageConfig: {
         totalPage: 14 //总页码
       },
     };
     this.text = Article.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
+    this.addComments = this.addComments.bind(this);
+    this.getCurrentPage = this.getCurrentPage.bind(this);
   }
 
   componentWillMount() {
@@ -65,10 +68,16 @@ export class Article extends React.Component {
           </p>
         </div>),
         imgUrl: 'https://mdbootstrap.com/img/Photos/Slides/img%20(142).jpg',
-        title: 'this is a title',
+        title: '诺基亚是怎样的一家公司',
+        // 计算几天前发布
         date: '26/08/2018',
-        author: 'John Smith',
+        agree:'2k',
+        author: '王某某',
+        authorDes: '用户体验设计专家',
+        readingTime:'6',
+        time:1,
         commentLists: [1, 2],
+        allReplys:[1,2],
         status: {
           code: 2000
         }
@@ -87,62 +96,79 @@ export class Article extends React.Component {
   }
   showReplys(){
     let ifShown = !this.state.ifShown
+    let showCom = this.state.showCom === '评论'? '收起评论' : '评论'
     this.setState({
-      ifShown
+      ifShown,
+      showCom
     })
   }
-  
+  getCurrentPage(){}
+  addComments(e,input){
+    let {allReplys = []} = this.state.backend
+    allReplys.unshift(input.value)
+    // console.log(commentLists,this.props.id)
+    this.setState({
+      backend:{
+        allReplys,
+        ...this.state.backend
+      }
+    })
+    e.stopPropagation();
+  }
   render() {
     const ifShown = this.state.ifShown
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
-        <MDBCard className="my-5 px-5 pb-5">
+        <MDBCard style={{boxShadow:'none'}} className="my-5 px-5 pb-5">
           <MDBCardBody>
             <MDBRow>
-              <MDBCol md="12">
+              <MDBCol md="1"></MDBCol>
+              <MDBCol md="10">
                 <MDBCard reverse>
-                  <MDBView hover cascade waves>
-                    <img
-                      src={this.state.backend.imgUrl}
-                      alt=""
-                      className="img-fluid"
-                    />
-                    <MDBMask overlay="white-slight" className="waves-light"/>
-                  </MDBView>
-                  <MDBCardBody cascade className="text-center">
+
+                  <MDBCardBody>
                     <h2 style={{fontSize: '18px',color: '#3E4850',...basicFont}}>
                       {this.state.backend.title}
                     </h2>
                     <p>
-                      {this.text.written}
-                      <a href="#!">
-                        <strong>{this.state.backend.author}</strong>
+                      <a href="#!" style={{fontSize: '14px',color: '#3E4850',...basicFont}}>
+                        <strong>{this.state.backend.author}    </strong>
                       </a>
-                      , {this.state.backend.date}
+                      <span style={{fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.authorDes}</span>
                     </p>
-                    
-                    <span className="counter">18</span>
+                    <p style={{fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.readingTime}分钟阅读时间</p>
+                    <MDBView hover waves>
+                      <img
+                        src={this.state.backend.imgUrl}
+                        alt=""
+                        className="img-fluid"
+                      />
+                      <MDBMask overlay="white-slight" className="waves-light"/>
+                    </MDBView>
                   </MDBCardBody>
                 </MDBCard>
-                <MDBContainer className="mt-5" style={{marginLeft: '2rem'}}>
+                <MDBContainer className="mt-5" style={{fontSize: '14px',color: '#62686C',...basicFont}}>
                   {this.state.backend.contents}
                   <MDBRow style={{paddingLeft:'17px'}}>
-                    <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '0px'}}>
-                      <MDBIcon style={{marginRight: '5px'}} icon="heart"/>喜欢
-                    </MDBBtn>
-                    <MDBBtn onClick={() => {
-                      this.showReplys()
-                    }} color="primary" style={{padding: '5px 10px',}}>
-                      <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>回复
-                    </MDBBtn>
-                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                      <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
-                    </MDBBtn>
-                    <MDBBtn color="primary" style={{padding: '5px 10px',}}>
-                      <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-                      举报
-                    </MDBBtn>
+                    <span style={{padding:'5px 0px',fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.time}天前发布</span>
+                    <MDBCol>
+                      <div style={{float:'right'}}>
+                        <MDBBtn onClick={() => {
+                          this.showReplys()
+                        }} flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                          <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.showCom}
+                        </MDBBtn>
+                        <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                          <MDBIcon style={{marginRight: '5px'}} far icon="heart"/><span>{this.state.backend.agree}赞同</span>
+                        </MDBBtn>
+                        <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                          <MDBIcon style={{marginRight: '5px'}} far icon="star"/>收藏
+                        </MDBBtn>
+                      </div>
+                      
+                    </MDBCol>
+                    
                   </MDBRow>
                   {ifShown && (
                     <div>
@@ -157,7 +183,7 @@ export class Article extends React.Component {
                             <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
                           </MDBCol>
                           <MDBCol style={{paddingLeft: '0px'}}>
-                            <MDBBtn onClick={(e)=>this.addComments(e)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                            <MDBBtn onClick={(e)=>this.addComments(e,this.input)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
                               发布
                             </MDBBtn>
                           </MDBCol>
@@ -168,12 +194,14 @@ export class Article extends React.Component {
                         </MDBRow>
                       </div>
                     </div>
-                    
+
                   )}
-                  
+
                 </MDBContainer>
-                
+
               </MDBCol>
+              <MDBCol md="1"></MDBCol>
+              
             </MDBRow>
             
           </MDBCardBody>

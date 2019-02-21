@@ -16,120 +16,75 @@ import {getAsync, get} from "../../tool/api-helper";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {UserMenu} from "./menu";
 
-const data = {
-  columns: [
-    {
-      label: '职位名称',
-      field: 'name',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: '公司名称',
-      field: 'position',
-      sort: 'asc',
-      width: 250
-    },
-    {
-      label: '工作类型',
-      field: 'office',
-      sort: 'asc',
-      width: 200
-    },
-    
-    {
-      label: '状态',
-      field: 'salary',
-      sort: 'asc',
-      width: 100
-    }
-  ],
-  rows: [
-    {
-      name: 'Tiger Nixon',
-      position: 'System Architect',
-      office: 'Edinburgh',
-      date: '2011/04/25',
-      salary: '已投递'
-    },
-    {
-      name: 'Garrett Winters',
-      position: 'Accountant',
-      office: 'Tokyo',
-      date: '2011/07/25',
-      salary: '已投递'
-    },
-    {
-      name: 'Ashton Cox',
-      position: 'Junior Technical Author',
-      office: 'San Francisco',
-      date: '2009/01/12',
-      salary: '已查阅'
-    },
-    {
-      name: 'Cedric Kelly',
-      position: 'Senior Javascript Developer',
-      office: 'Edinburgh',
-      date: '2012/03/29',
-      salary: '拟面试'
-    },
-    {
-      name: 'Airi Satou',
-      position: 'Accountant',
-      office: 'Tokyo',
-      date: '2008/11/28',
-      salary: '已面试'
-    },
-    {
-      name: 'Brielle Williamson',
-      position: 'Integration Specialist',
-      office: 'New York',
-      date: '2012/12/02',
-      salary: 'Offer'
-    },
-    {
-      name: 'Herrod Chandler',
-      position: 'Sales Assistant',
-      office: 'San Francisco',
-      date: '2012/08/06',
-      salary: 'Offer'
-    },
-    {
-      name: 'Rhona Davidson',
-      position: 'Integration Specialist',
-      office: 'Tokyo',
-      date: '2010/10/14',
-      salary: '已投递'
-    },
 
-  ]
-};
 export class Application extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      backend: null,
-      isOpen: false
+      isOpen: false,
+      data: {
+        columns: [
+          {
+            label: '职位名称',
+            field: 'jobname',
+            sort: 'asc',
+            width: 150
+          },
+          {
+            label: '公司名称',
+            field: 'companyname',
+            sort: 'asc',
+            width: 250
+          },
+          {
+            label: '工作类型',
+            field: 'type',
+            sort: 'asc',
+            width: 200
+          },
+
+          {
+            label: '状态',
+            field: 'status',
+            sort: 'asc',
+            width: 100
+          }
+        ],
+        rows: []
+      }
     };
     this.text = Application.i18n[languageHelper()];
+    this.pip = 0;
   }
 
 
   async componentDidMount() {
+    let backend = null;
     if (this.props.id) {
-      this.setState({
-        backend: await getAsync(`/applicants/${this.props.id}/applications`)
-      });
+      backend = await getAsync(`/applicants/${this.props.id}/applications`);
     } else {
+      backend = await getAsync('/applicants/1/applications');
+    }
+    if (backend && backend.status && backend.status.code === 2000) {
+      let data = this.state.data;
+      data.rows = [];
+      for (let i = 0; i < backend.content.length; i++) {
+        data.rows.push({
+          jobname: backend.content[i].position.name,
+          companyname: backend.content[i].position.organization.name,
+          type: backend.content[i].position.organization.location,
+          status: backend.content[i].status
+        });
+      }
       this.setState({
-        backend: await getAsync(`/applicants/1/applications`)
+        tabledata: data
       });
     }
   }
-  
+
   render() {
 
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (
       <div>
         <Header/>
         <ResumeTitle/>
@@ -147,8 +102,8 @@ export class Application extends React.Component {
                       striped
                       hover
                       big
-                      data={data}
-                      style={{fontSize:'large',fontStyle:'Helvetica Neue'}}
+                      data={this.state.tabledata}
+                      style={{fontSize: 'large', fontStyle: 'Helvetica Neue'}}
                     />
                   </MDBCardBody>
                 </MDBCard>
@@ -158,11 +113,12 @@ export class Application extends React.Component {
         </MDBRow>
         <Footer/>
       </div>
-    ): null;
+    );
 
 
   }
 }
+
 Application.i18n = [
   {
     description: '职位描述',

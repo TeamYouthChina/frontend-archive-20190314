@@ -1,19 +1,17 @@
-import React from "react";
+import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
+
 import {
   MDBCol,
   MDBCard,
-  MDBCollapse,
   MDBContainer,
   MDBIcon,
+  MDBNav,
   MDBNavbar,
-  MDBNavbarBrand,
   MDBNavbarNav,
-  MDBNavbarToggler,
   MDBNavItem,
   MDBNavLink,
   MDBRow,
-  MDBListGroup, MDBListGroupItem
 } from 'mdbreact';
 
 import {Article} from './article';
@@ -27,151 +25,220 @@ import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
 export class Discovery extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      selectedTab: 1
     };
     this.text = Discovery.i18n[languageHelper()];
   }
 
-  toggleCollapse() {
-    this.setState({isOpen: !this.state.isOpen});
-  };
-
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
+    
     return (
-      <MDBContainer fluid>
+      <div>
         <Header/>
-        <MDBRow center>
-          <MDBCol md="9" lg="8">
+        <div className="classic-tabs">
+          <MDBNav
+            classicTabs
+            className="d-flex justify-content-center"
+            style={{
+              boxShadow: 'none',
+              borderBottom: 'solid #E0E0E0 1px'
+            }}>
+            <MDBNavItem className="ml-0">
+              <MDBNavLink
+                to={`${this.props.match.url}/article`}
+                onClick={
+                  () => {
+                    this.setState({selectedTab: 1});
+                  }
+                }
+                className={this.state.selectedTab === 1 ? 'active font-weight-bold' : ''}
+                style={{
+                  color: '#454F69',
+                  fontSize: '16px'
+                }}>
+                {this.text.article}
+              </MDBNavLink>
+            </MDBNavItem>
 
-            <MDBNavbar color="indigo" dark expand="md" style={{borderRadius: '5px'}}>
-              <MDBNavbarBrand>
-                <strong className="white-text">Navbar</strong>
-              </MDBNavbarBrand>
-              <MDBNavbarToggler onClick={this.toggleCollapse}/>
-              <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                <MDBNavbarNav left>
-                  <MDBNavItem>
-                    <MDBNavLink to={`${this.props.match.url}/article`}>{this.text.article}</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to={`${this.props.match.url}/review`}>{this.text.review}</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to={`${this.props.match.url}/question-answer`}>{this.text.questionAnswer}</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to={`${this.props.match.url}/video`}>{this.text.video}</MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to={`${this.props.match.url}/connection`}>{this.text.connection}</MDBNavLink>
-                  </MDBNavItem>
-                </MDBNavbarNav>
-              </MDBCollapse>
-            </MDBNavbar>
-            <Switch>
-              <Route
-                path={`${this.props.match.url}/article`}
-                component={routeProps => <Article {...routeProps} />}
-              />
-              <Route
-                path={`${this.props.match.url}/review`}
-                component={routeProps => <Review {...routeProps} />}
-              />
-              <Route
-                path={`${this.props.match.url}/question-answer`}
-                component={routeProps => <QuestionAnswer {...routeProps} />}
-              />
-              <Route
-                path={`${this.props.match.url}/video`}
-                component={routeProps => <Video {...routeProps} />}
-              />
-              <Route
-                path={`${this.props.match.url}/connection`}
-                component={routeProps => <Connection {...routeProps} />}
-              />
-              <Redirect to={`${this.props.match.url}/article`}/>
-            </Switch>
-          </MDBCol>
-          <MDBCol md="3" lg="2" className="pt-3" style={{marginTop: '50px'}}>
-            <p>
-              <MDBCard style={{height: '200px', width: '400px'}}>
-                <MDBRow>
-                  <MDBCol md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                  <MDBCol  md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                  <MDBCol md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                  <MDBCol  md="4" lg="4">
-                    <div className="px-10">
-                      <MDBRow center style={{marginTop: '20px'}}>
-                        <MDBIcon icon="shield" size="3x"/>
-                      </MDBRow>
-                      <MDBRow center>
-                        normal
-                      </MDBRow>
-                    </div>
-                  </MDBCol>
-                </MDBRow>             
-              </MDBCard>
-            </p>
-          </MDBCol>
-        </MDBRow>
+            <MDBNavItem>
+              <MDBNavLink
+                to={`${this.props.match.url}/review`}
+                onClick={
+                  () => {
+                    this.setState({selectedTab: 2});
+                  }
+                }
+                className={this.state.selectedTab === 2 ? 'active font-weight-bold' : ''}
+                style={{
+                  color: '#454F69',
+                  fontSize: '16px'
+                }}>
+                {this.text.review}
+              </MDBNavLink>
+            </MDBNavItem>
+
+            <MDBNavItem>
+              <MDBNavLink
+                to={`${this.props.match.url}/question-answer`}
+                onClick={
+                  () => {
+                    this.setState({selectedTab: 3});
+                  }
+                }
+                className={this.state.selectedTab === 3 ? 'active font-weight-bold' : ''}
+                style={{
+                  color: '#454F69',
+                  fontSize: '16px'
+                }}>
+                {this.text.questionAnswer}
+              </MDBNavLink>
+            </MDBNavItem>
+
+            <MDBNavItem>
+              <MDBNavLink
+                to={`${this.props.match.url}/video`}
+                onClick={
+                  () => {
+                    this.setState({selectedTab: 4});
+                  }
+                }
+                className={this.state.selectedTab === 4 ? 'active font-weight-bold' : ''}
+                style={{
+                  color: '#454F69',
+                  fontSize: '16px'
+                }}>
+                {this.text.video}
+              </MDBNavLink>
+            </MDBNavItem>
+
+            <MDBNavItem>
+              <MDBNavLink
+                to={`${this.props.match.url}/connection`}
+                onClick={
+                  () => {
+                    this.setState({selectedTab: 5});
+                  }
+                }
+                className={this.state.selectedTab === 5 ? 'active font-weight-bold' : ''}
+                style={{
+                  color: '#454F69',
+                  fontSize: '16px'
+                }}>
+                {this.text.connection}
+              </MDBNavLink>
+            </MDBNavItem>
+          </MDBNav>
+
+          <div style={{backgroundColor: '#FAFBFD'}}>
+            <MDBContainer>
+              <MDBRow className="mx-0">
+                <MDBCol md="9" lg="9">
+                  <Switch>
+                    <Route
+                      path={`${this.props.match.url}/article`}
+                      component={routeProps => <Article {...routeProps} />}
+                    />
+                    <Route
+                      path={`${this.props.match.url}/review`}
+                      component={routeProps => <Review {...routeProps} />}
+                    />
+                    <Route
+                      path={`${this.props.match.url}/question-answer`}
+                      component={routeProps => <QuestionAnswer {...routeProps} />}
+                    />
+                    <Route
+                      path={`${this.props.match.url}/video`}
+                      component={routeProps => <Video {...routeProps} />}
+                    />
+                    <Route
+                      path={`${this.props.match.url}/connection`}
+                      component={routeProps => <Connection {...routeProps} />}
+                    />
+                    <Redirect to={`${this.props.match.url}/article`}/>
+                  </Switch>
+                </MDBCol>
+
+                <MDBCol className="mt-5" md="3" lg="3">
+                  <MDBCard>
+                    <MDBRow>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+                    </MDBRow>
+
+                    <MDBRow>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+
+                      <MDBCol md="4" lg="4">
+                        <MDBRow center style={{marginTop: '20px'}}>
+                          <MDBIcon icon="shield" size="3x"/>
+                        </MDBRow>
+                        <MDBRow center>
+                          normal
+                        </MDBRow>
+                      </MDBCol>
+
+                    </MDBRow>
+                  </MDBCard>
+
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </div>
+        </div>
         <Footer/>
-      </MDBContainer>
+      </div>
     );
   }
 }

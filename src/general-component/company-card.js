@@ -7,19 +7,19 @@ import {
   MDBCardText,
   MDBRow,
   MDBCol,
-  MDBIcon,
   MDBAvatar
 } from 'mdbreact';
 import {getAsync} from "../tool/api-helper";
+import {MDBBtn, Row} from "./job-card-bar";
 
 
 export class CompanyCard extends React.Component {
   constructor(props) {
     super(props);
-    /*
-    * */
+
     this.state = {
-      backend: null
+      backend: null,
+      collect: false,
     };
     this.text = CompanyCard.i18n[languageHelper()];
   }
@@ -37,10 +37,9 @@ export class CompanyCard extends React.Component {
   }
 
 
-
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard 
+      <MDBCard
         className="px-3 py-4"
         style={{borderRadius: '0px'}}
       >
@@ -100,13 +99,29 @@ export class CompanyCard extends React.Component {
                     <span>{this.state.backend.content.location}</span>
                   </MDBCardText>
                 </MDBCol>
-                <MDBCol>
-                  <MDBIcon
-                    icon="bookmark-o"
-                    size="3x"
-                    className="pt-1 p-0"
-                    style={{color:'#45526e'}}
-                  />
+                <MDBCol 
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="60"
+                    height="60"
+                    viewBox="0 0 24 24"
+                    fill={this.state.collect ? "#45526e" : "none"}
+                    stroke="#45526e"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-bookmark"
+                    onClick={
+                      () => {
+                        this.setState((prev) => (
+                          {collect: !prev.collect})
+                        );
+                      }
+                    }
+                  >
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                  </svg>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
