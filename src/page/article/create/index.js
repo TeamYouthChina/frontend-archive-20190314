@@ -27,13 +27,15 @@ export class ArticleCreate extends React.Component {
     * */
     this.state = {
       backend: null,
-      showPic: false
+      showPic: false,
+      title:'空标题'
     };
     this.text = ArticleCreate.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getObjectURL = this.getObjectURL.bind(this);
     this.deletePic = this.deletePic.bind(this);
+    this.handleSetInput = this.handleSetInput.bind(this);
   }
 
   componentWillMount() {
@@ -61,12 +63,13 @@ export class ArticleCreate extends React.Component {
     })
     this.imgUrl.src = imgSrcI
   }
-
+  // 富文本提交
   handleInputClick() {
     //todo,通过refs调用的方法
     this.answerText.submitContent();
     // this.refs.answerText.submitContent();
   }
+  // 删除图片
   deletePic(){
     this.imgUrl.src = ''
     // 避免重复照片不能上传
@@ -75,7 +78,7 @@ export class ArticleCreate extends React.Component {
       showPic: false
     })
   }
-
+  // 转化上传文件到url
   getObjectURL(file) {
     let url = null;
     if (window.createObjectURL !== undefined) { // basic
@@ -88,6 +91,15 @@ export class ArticleCreate extends React.Component {
     return url;
   }
 
+  handleSetInput(e){
+    let value = e.target.value
+    setTimeout(()=>(
+      this.setState({
+        title:value
+      })
+    ),100)
+  }
+  
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
@@ -136,13 +148,15 @@ export class ArticleCreate extends React.Component {
             </MDBRow>
             <MDBRow style={{marginTop:'20px'}}>
               <MDBCol middle>
-                <input className="form-control" placeholder={this.text.title}/>
+                <input onChange={(e)=>this.handleSetInput(e)} className="form-control" placeholder={this.text.title}/>
               </MDBCol>
             </MDBRow>
             <br/>
-            <ArticleEditInit ref={(answerText) => this.answerText = answerText}></ArticleEditInit>
+            <ArticleEditInit inputData={this.state.title} ref={(answerText) => this.answerText = answerText}></ArticleEditInit>
           </MDBCol>
-          <MDBCol size="1"></MDBCol>
+          <MDBCol size="1">
+            
+          </MDBCol>
         </MDBRow>
 
 
