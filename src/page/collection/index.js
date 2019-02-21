@@ -11,10 +11,9 @@ import {
 import {CollectionCompany} from './collection-company';
 import {CollectionJob} from './collection-job';
 import {Header} from '../../general-component/header';
-import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {ResumeTitle} from "../../general-component/resumeTitle";
+
 
 
 export class Collection extends React.Component {
@@ -28,19 +27,7 @@ export class Collection extends React.Component {
     this.text = Collection.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
-  }
+  
   
   togglePills = tab => () => {
     if (this.state.activePills !== tab) {
@@ -55,12 +42,10 @@ export class Collection extends React.Component {
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (
       <div>
-        <Header/>
-        <MDBRow>
-         
-          <MDBCol size="10" className="offset-md-1">
+        <MDBRow className="mx-4">
+          <MDBCol>
             <p>
                 <MDBNav pills color="mdb-color">
                   <MDBNavItem>
@@ -90,10 +75,8 @@ export class Collection extends React.Component {
             </p>
           </MDBCol>
         </MDBRow>
-        
-        <Footer/>
       </div>
-    ) : null;
+    ) ;
   }
 }
 
