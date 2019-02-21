@@ -23,7 +23,6 @@ import {ArticleEdit} from './page/article/edit';
 import {Video} from './page/video';
 import {VideoCreate} from './page/video/create';
 import {VideoEdit} from './page/video/edit';
-import {VideoMobile} from './page/mobile/video-mobile';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
@@ -36,7 +35,6 @@ import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
-import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
 
 
 // Trash
@@ -55,6 +53,7 @@ import {Recruit} from "./page/hr/recruit";
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
 import {SearchResume} from "./page/hr/searchresume";
+import {Mobile} from './page/mobile';
 
 
 export class App extends Component {
@@ -137,12 +136,8 @@ export class App extends Component {
               component={routeProps => <Message {...routeProps} />}
             />
             <Route
-              path="/mobile/question-answer-mobile"
-              component={routeProps => <QuestionAnswerMobile {...routeProps} />}
-            />
-            <Route
-              path="/mobile/video-mobile"
-              component={routeProps => <VideoMobile {...routeProps} />}
+              path="/mobile"
+              component={routeProps => <Mobile {...routeProps} />}
             />
             <Route
               path="/notification"
@@ -179,6 +174,10 @@ export class App extends Component {
             <Route
               path="/question/:questionId/answer/:answerId/edit"
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/:answerId"
+              component={routeProps => <QuestionAnswer {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
