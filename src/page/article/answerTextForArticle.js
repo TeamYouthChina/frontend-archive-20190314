@@ -139,11 +139,11 @@ export class AnswerTextForArticle extends React.Component {
 
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn onClick={this.preview} flat style={{padding: '5px 0', marginLeft: '15px'}}>
-              <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>提交
+            <MDBBtn flat onClick={this.preview} far="true" style={{padding: '5px 0', marginLeft: '15px'}}>
+              <MDBIcon style={{marginRight: '5px'}} far="true" icon="thumbs-up"/>提交
             </MDBBtn>
-            <MDBBtn onClick={this.preview} flat style={{padding: '5px 10px',}}>
-              <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-down"/>返回
+            <MDBBtn flat onClick={this.preview} far="true" style={{padding: '5px 10px',}}>
+              <MDBIcon style={{marginRight: '5px'}} far="true" icon="thumbs-down"/>返回
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
