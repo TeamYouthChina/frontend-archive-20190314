@@ -12,6 +12,8 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBRow,
+  MDBListGroup,
+  MDBListGroupItem
 } from 'mdbreact';
 
 import {Article} from './article';
@@ -139,10 +141,10 @@ export class Discovery extends React.Component {
             </MDBNavItem>
           </MDBNav>
 
-          <div style={{backgroundColor: '#FAFBFD'}}>
+          <div style={{backgroundColor: '#F3F5F7'}}>
             <MDBContainer>
-              <MDBRow className="mx-0">
-                <MDBCol md="9" lg="9">
+              <MDBRow center className="mx-0">
+                <MDBCol className="mt-2" md="9" lg="10">
                   <Switch>
                     <Route
                       path={`${this.props.match.url}/article`}
@@ -168,70 +170,36 @@ export class Discovery extends React.Component {
                   </Switch>
                 </MDBCol>
 
-                <MDBCol className="mt-5" md="3" lg="3">
-                  <MDBCard>
-                    <MDBRow>
+                <MDBCol className="mt-5" md="3" lg="2">
 
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-                    </MDBRow>
-
-                    <MDBRow>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                    </MDBRow>
-                  </MDBCard>
-
+                  <div>
+                    <MDBListGroup style={{
+                      fontSize: '16px'
+                    }}>
+                      <MDBListGroupItem
+                        hover
+                        href="/article/create"
+                        className="d-flex justify-content-center align-items-center"
+                        style={{color: '#454F69', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0}}>
+                        <MDBIcon fa icon="edit" className="mr-2"/>  写文章
+                      </MDBListGroupItem>
+                      <MDBListGroupItem 
+                        hover
+                        href="/question/create"
+                        className="d-flex justify-content-center align-items-center"
+                        style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
+                        <MDBIcon far icon="question-circle" className="mr-2"/>  提问题
+                      </MDBListGroupItem>
+                      <MDBListGroupItem 
+                        hover
+                        href="/article/create"
+                        className="d-flex justify-content-center align-items-center"
+                        style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
+                        <MDBIcon fal icon="comments" className="mr-2"/>  写短评
+                      </MDBListGroupItem>
+                    </MDBListGroup>
+                  </div>
+                  
                 </MDBCol>
               </MDBRow>
             </MDBContainer>
