@@ -148,7 +148,7 @@ export class ArticleCreate extends React.Component {
               </MDBCol>
             </MDBRow>
             <MDBRow style={{marginTop:'20px'}}>
-              <MDBCol middle>
+              <MDBCol>
                 <input onChange={(e)=>this.handleSetInput(e)} className="form-control" placeholder={this.text.title}/>
               </MDBCol>
             </MDBRow>
