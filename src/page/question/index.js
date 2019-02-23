@@ -28,24 +28,24 @@ export class QuestionAnswer extends React.Component {
   }
 
   async componentDidMount() {
-    // const result = await getAsync(`/question/${this.props.match.params.questionId}`)
+    const result = await getAsync(`/questions/${this.props.match.params.questionId}`)
     // console.log(result)
     const result = {status:{code:2000}}
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
-          id: 1 || result.id,
+          id: result.content.id,
           name: 'Summer 2019 Tech Internship',
           tags: ['tag1', 'tag2', 'tag3', 'tag4'] || result.content.tags  ,
           content: {
-            title: '如何成为一个合格的天文爱好者？' || result.content.title,
-            descrption: '小的时候有个梦想，长大了要当个天文学家。\n时光荏苒，自己一天天长大，慢慢也淡忘了小时候常做的梦。\n前段时间，偶尔在豆瓣上看到了天文小组，突然记起自己小时候也有，梦想，原来一直未曾忘却。\n虽然也会苦笑自己的幼稚，但心底的热浪不能轻易抹掉。\n所以有了这个苦恼，只是如何成为一个合格的天文爱好者？\n也关注了几个天文论坛，买了本书《大众天文学》，暂时还没有入观星设备。\n但还是很感觉入不了门，一头雾水，希望大家能指点、分享。\n这就是我的故事。' || result.content.body
+            title: result.content.title,
+            descrption: result.content.richTextDTO || '123'
           },
-          author: 'title' || result.content.author,
-          editTime: 'title' || result.content.editTime,
-          answerList: [1,2,3,4]||result.content.answerList,
-          focus: 123 || result.content.focus,
-          reading: 123 || result.content.reading,
+          author: result.content.creator,
+          editTime: result.content.editTime,
+          answerList: result.content.answers,
+          focus: result.content.focus || 123,
+          reading: result.content.reading || 123,
           status: {
             // code: result.status.code,
             code:2000
@@ -94,7 +94,11 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard type={2} key={item} id={item}></QuestionCard>
+                  <QuestionCard 
+                    type={2} 
+                    key={item.id} 
+                    answerData={item} title={this.state.backend.title}>
+                  </QuestionCard>
                 ))}
               </MDBCol>
             </MDBRow>

@@ -176,7 +176,7 @@ export class SearchCompanyResult extends React.Component {
             
             <MDBRow className="mx-5" center key={index}>
               <MDBCol className="my-3">
-                <CompanyCard/>
+                <CompanyCard id={item.id}/>
               </MDBCol>
             </MDBRow>
           );

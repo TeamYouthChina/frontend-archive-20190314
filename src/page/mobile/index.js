@@ -4,6 +4,9 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {QuestionAnswerMobile} from './question-answer-mobile';
 import {VideoMobile} from './video-mobile';
 import VideoUploadMobile from './video-upload-mobile';
+import QuestionUploadMobile from "./question-upload-mobile";
+import ArticleUploadMobile from "./article-upload-mobile";
+import AnswerUploadMobile from "./answer-upload-mobile";
 
 export class Mobile extends React.Component {
   constructor(props) {
@@ -14,8 +17,12 @@ export class Mobile extends React.Component {
     return (
       <Switch>
         <Route
+          path={`${this.props.match.url}/answer/create`}
+          component={routeProps => <AnswerUploadMobile/>}
+        />
+        <Route
           path={`${this.props.match.url}/article/create`}
-          component={routeProps => null}
+          component={routeProps => <ArticleUploadMobile/>}
         />
         <Route
           path={`${this.props.match.url}/article/:id/edit`}
@@ -27,7 +34,7 @@ export class Mobile extends React.Component {
         />
         <Route
           path={`${this.props.match.url}/question/create`}
-          component={routeProps => null}
+          component={routeProps => <QuestionUploadMobile/>}
         />
         <Route
           path={`${this.props.match.url}/question/:questionId/edit`}
