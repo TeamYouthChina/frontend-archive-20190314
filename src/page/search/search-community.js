@@ -136,7 +136,7 @@ export class SearchCommunityResult extends React.Component {
                 {this.state.backend.jobList.map((item, index) => {
                   return (
                     <MDBCol size="12" className="mb-4" key={index}>
-                      <ArticleCard/>
+                      <ArticleCard type={1}/>
                     </MDBCol>
                   );
                 })}
