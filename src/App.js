@@ -36,6 +36,9 @@ import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
+import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
+import VideoUploadMobile from './page/mobile/video-upload-mobile';
+
 
 
 // Trash
@@ -55,6 +58,7 @@ import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
 import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
+import {Applicant} from "./page/applicant";
 
 
 export class App extends Component {
@@ -67,6 +71,10 @@ export class App extends Component {
               path="/"
               exact
               component={() => <Redirect to="/home"/>}
+            />
+            <Route
+              path="/applicant/"
+              component={routeProps => <Applicant {...routeProps} />}
             />
             <Route
               path="/application/"

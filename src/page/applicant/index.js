@@ -7,24 +7,23 @@ import {
 
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from '../../general-component/header';
+import {Header} from "../../general-component/header";
 import {Footer} from "../../general-component/footer";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
-import {AppTable} from "./apptable";
-import {Collection} from "../collection";
+import {AppTable} from "./application/apptable";
+import {Collection} from "./collection";
 
-export class Application extends React.Component {
+
+export class Applicant extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isOpen: false,
-      hover: 0,
     };
-    this.text = Application.i18n[languageHelper()];
-    this.pip = 0;
+    this.text = Applicant.i18n[languageHelper()];
+    
   }
-  
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
@@ -41,13 +40,13 @@ export class Application extends React.Component {
             <div className="d-flex flex-row">
               <div>
                 <p style={{textAlign:'left'}}>
-                  
+
                   <p>
                     <MDBBtn
-                      
-                      style={this.props.location.pathname.indexOf('/application') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}} 
-                      flat 
-                      href={`${this.props.match.url}/application` } 
+
+                      style={this.props.location.pathname.indexOf('/applicant/application') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}}
+                      flat
+                      href={`${this.props.match.url}/application` }
                     >我的申请</MDBBtn>
                   </p>
                   <p >
@@ -58,15 +57,15 @@ export class Application extends React.Component {
                   </p>
                   <p>
                     <MDBBtn
-                     
-                      style={this.props.location.pathname.indexOf('/collection/company')>-1||this.props.location.pathname.indexOf('/collection/job') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}}
-                      flat href={`${this.props.match.url}/collection`}>收 藏</MDBBtn>
+
+                      style={this.props.location.pathname.indexOf('/collection/company') > -1 || this.props.location.pathname.indexOf('/collection/job') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}}
+                      flat href={`${this.props.match.url}/collection`}>收藏</MDBBtn>
                   </p>
                   <p>
-                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>好友列表</MDBBtn>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>好友</MDBBtn>
                   </p>
                   <p>
-                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>消 息</MDBBtn>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>通知</MDBBtn>
                   </p>
                 </p>
               </div>
@@ -80,22 +79,31 @@ export class Application extends React.Component {
                     path={`${this.props.match.url}/collection`}
                     component={routeProps => <Collection {...routeProps} />}
                   />
+                  <Route
+                    path={`${this.props.match.url}/message`}
+                    component={routeProps => null}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/notification`}
+                    component={routeProps => null}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/profile/:id`}
+                    component={routeProps => null}
+                  />
                   <Redirect to={`${this.props.match.url}/application`}/>
                 </Switch>
-               
               </div>
             </div>
           </MDBCol>
         </MDBRow>
         <Footer/>
+       
       </div>
     );
-
-
   }
 }
-
-Application.i18n = [
+Applicant.i18n = [
   {
     description: '职位描述',
     requirements: '职位要求',
