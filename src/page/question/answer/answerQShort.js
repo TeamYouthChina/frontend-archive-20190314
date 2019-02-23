@@ -58,7 +58,7 @@ export class AnswerQShort extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div style={{width: '100%'}}>
         <MDBRow style={{marginLeft:'0px'}}>
-          <MDBCol size="9">
+          <MDBCol size="12">
             <p style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.props.content.title}</p>
 
             <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption}</p>
