@@ -1,5 +1,6 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import {
   MDBContainer,
@@ -29,43 +30,42 @@ export class Login extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    // const frontend = await postAsync('/login', {
-    //   id: '1',
-    //   password: '123456'
-    // });
-    // console.log('frontend', frontend);
-  }
-
-  handleLoginSubmit = async (event) => {
-
+  async handleLoginSubmit(event) {
     event.preventDefault();
-
     const data = new FormData(event.target);
+    const backend = await postAsync('/login', data);
+    // must clean token, valid token will always cause 200 OK return.
+    Cookies.remove('token');
+    if (backend && backend.status && backend.status.code === 2000) {
+      Cookies.set('id', backend.content.id, {expires: 1});
+      Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
+      // login success: --> /best-for-you
+      this.props.history.push('/best-for-you');
+    } else {
+      // login fail
+      console.log(backend);
+      alert('login fain');
+    }
+  }
 
-    const result = await postAsync('/login', data);
-    console.log('Result', result);
-  };
-
-  handleChange = (event) => {
+  async handleChange(event) {
     this.setState({
       email: event.target.value
     });
-  };
+  }
 
-  showHidePasswd = (event) => {
+  showHidePasswd(event) {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
       type: this.state.type === 'text' ? 'password' : 'text'
-    })
-  };
+    });
+  }
 
   render() {
-
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     const btnColor = '#7C97B8';
 
@@ -138,9 +138,11 @@ export class Login extends React.Component {
                           top: '7px',
                           color: '#616161'
                         }}>
-                        {this.state.type === 'text' ?
-                          <MDBIcon icon="eye"/> :
-                          <MDBIcon flip="horizontal" icon="eye-slash"/>}
+                        {
+                          this.state.type === 'text' ?
+                            <MDBIcon icon="eye"/> :
+                            <MDBIcon flip="horizontal" icon="eye-slash"/>
+                        }
                       </span>
                       </div>
                       <p className="font-small blue-text d-flex justify-content-end pb-3">
