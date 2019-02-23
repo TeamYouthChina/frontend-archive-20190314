@@ -30,11 +30,11 @@ export class SearchJobCards extends React.Component {
     
     if(this.props.id === 1) {
       this.setState({
-        backend: await getAsync(`/job/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`)
       });
     } else {
       this.setState({
-        backend: await getAsync(`job/1`)
+        backend: await getAsync(`jobs/1`)
       });
     }
     
@@ -82,7 +82,7 @@ export class SearchJobCards extends React.Component {
                       color: '#7C97B8'
                     }}
                     >
-                      {this.state.backend.content.name}
+                      {this.state.backend.content.jobName}
                     </a>
                   </MDBCardTitle>
                   <MDBCardTitle
@@ -118,7 +118,7 @@ export class SearchJobCards extends React.Component {
                 <MDBCol className="p-0" size='12'>
                   <MDBAvatar
                     tag="img"
-                    src={this.state.backend.content.organization.avatarUrl}
+                    src={this.state.backend.content.companyLogo}
                     className="z-depth-1-half img-fluid"
                     // alt="Sample avatar"
                   />
