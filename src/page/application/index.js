@@ -7,7 +7,7 @@ import {
 
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header, MDBNavItem} from '../../general-component/header';
+import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
@@ -23,21 +23,6 @@ export class Application extends React.Component {
     };
     this.text = Application.i18n[languageHelper()];
     this.pip = 0;
-  }
-  onClick(clickID){
-    this.setState( {
-      chosen:clickID
-    });
-  }
-  onMouseEnter(enterID){
-    this.setState( {
-      hover:enterID
-    });
-  }
-  onMouseLeave(leaveID){
-    this.setState( {
-      hover:leaveID
-    });
   }
   
 
@@ -60,7 +45,7 @@ export class Application extends React.Component {
                   <p>
                     <MDBBtn
                       
-                      style={this.props.location.pathname.indexOf('/application/application') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}} 
+                      style={this.props.location.pathname.indexOf('/application') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}} 
                       flat 
                       href={`${this.props.match.url}/application` } 
                     >我的申请</MDBBtn>
