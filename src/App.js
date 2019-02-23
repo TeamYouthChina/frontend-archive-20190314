@@ -14,6 +14,7 @@ import {Company} from './page/company';
 import {Profile} from './page/profile';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
+import {QuestionAnswerOne} from './page/question/answer';
 import {QuestionCreate} from './page/question/create';
 import {QuestionEdit} from './page/question/edit';
 import {QuestionAnswerCreate} from './page/question/answer/create';
@@ -173,7 +174,7 @@ export class App extends Component {
             />
             <Route
               path="/question/:questionId/answer/:answerId"
-              component={routeProps => <QuestionAnswer {...routeProps} />}
+              component={routeProps => <QuestionAnswerOne {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
