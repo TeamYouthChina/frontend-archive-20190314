@@ -11,6 +11,7 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
+  MDBIcon
 } from 'mdbreact';
 
 import {languageHelper} from '../tool/language-helper';
@@ -43,7 +44,7 @@ export class Header extends React.Component {
             expand="md"
             fixed="top"
             scrolling
-            style={{background:'#7C97B8'}}
+            color="navbarColor"
           >
             <MDBCol
               md="1"
@@ -147,8 +148,14 @@ export class Header extends React.Component {
                 />
               </MDBNavLink>
             </MDBNavbarNav>
+            <MDBNavbarNav right style={{marginRight: '0.5em'}}>
+              <MDBNavItem className="align-middle">
+                <MDBIcon icon="bell" className="white-text" />
+              </MDBNavItem>
+            </MDBNavbarNav>
             <MDBNavbarNav right style={{marginRight: '5em'}}>
               <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
+                
                 <img
                   src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
                   className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
@@ -161,8 +168,8 @@ export class Header extends React.Component {
                     <p className="h6">Zhicheng</p>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
-                    <MDBDropdownItem href="/application/1">个人主页</MDBDropdownItem>
-                    <MDBDropdownItem href="/collection/1">我的关注</MDBDropdownItem>
+                    <MDBDropdownItem href="/applicant">个人主页</MDBDropdownItem>
+                    <MDBDropdownItem href="/">我的消息</MDBDropdownItem>
                     <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>

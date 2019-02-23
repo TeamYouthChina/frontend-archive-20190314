@@ -7,7 +7,8 @@ export class Footer extends React.Component {
       <MDBFooter 
         
         className="font-small pt-4 mt-4"
-        style={{background:'#7C97B8'}}
+        color="navbarColor"
+       
       >
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>

@@ -27,6 +27,7 @@ export class Applicant extends React.Component {
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    const navStyle = {marginTop: "4rem"};
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
