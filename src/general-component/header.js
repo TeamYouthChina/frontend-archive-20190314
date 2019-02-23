@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   MDBCol,
-  MDBAvatar,
   MDBDropdown,
   MDBDropdownItem,
   MDBDropdownMenu,
@@ -12,7 +11,6 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBRow
 } from 'mdbreact';
 
 import {languageHelper} from '../tool/language-helper';
