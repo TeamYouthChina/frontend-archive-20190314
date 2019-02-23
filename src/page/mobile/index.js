@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {QuestionAnswerMobile} from './question-answer-mobile';
 import {VideoMobile} from './video-mobile';
+import VideoUploadMobile from './video-upload-mobile';
 
 export class Mobile extends React.Component {
   constructor(props) {
@@ -49,16 +50,16 @@ export class Mobile extends React.Component {
           component={routeProps => <QuestionAnswerMobile {...routeProps} />}
         />
         <Route
+          path={`${this.props.match.url}/video/create`}
+          component={routeProps => <VideoUploadMobile/>}
+        />
+        <Route
           path={`${this.props.match.url}/video/:id/edit`}
           component={routeProps => null}
         />
         <Route
           path={`${this.props.match.url}/video/:id`}
           component={routeProps => <VideoMobile {...routeProps} />}
-        />
-        <Route
-          path={`${this.props.match.url}/video/create`}
-          component={routeProps => null}
         />
         <Redirect to="page-no-found"/>
       </Switch>
