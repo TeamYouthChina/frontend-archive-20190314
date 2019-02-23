@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {languageHelper} from '../../../tool/language-helper';
 import {
   MDBNavLink,
@@ -10,9 +10,17 @@ import {
 
 import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
-import {AnswerQShort} from './answerQShort'
+import {QuestionDes} from '../question-description'
 import {getAsync} from '../../../tool/api-helper'
-import {QuestionCard} from '../../../general-component/question-card'
+import {MDBIcon, QuestionCard} from '../../../general-component/question-card'
+
+const basicFont = {
+  fontFamily: 'IBM Plex Sans',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  lineHeight: 'normal',
+}
+
 
 export class QuestionAnswerOne extends React.Component {
   constructor(props) {
@@ -80,25 +88,57 @@ export class QuestionAnswerOne extends React.Component {
           <div>
             <Header></Header>
 
-            <MDBRow>
+            <MDBRow style={{marginTop:'10px'}}>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
-                <AnswerQShort
+                <QuestionDes
                   tags={this.state.backend.tags}
                   content={this.state.backend.content}
                   focus={this.state.backend.focus}
                   reading={this.state.backend.reading}
                   questionId={1}>
-                </AnswerQShort>
+                </QuestionDes>
               </MDBCol>
             </MDBRow>
             <br/>
             <MDBRow>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
+                <MDBRow style={{
+                  textAlign:'center',
+                  background: '#FFFFFF',
+                  padding:'10px 0px',
+                  boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', 
+                  margin: '20px 0px'}}>
+                  <MDBCol middle>
+                    <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                      <Link 
+                        to={`/question/${this.state.backend.id}`} 
+                        style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>
+                        查看全部回答
+                        </Link>
+                    </MDBBtn>
+                  </MDBCol>
+                </MDBRow>
                 {this.state.backend.answerList.map((item)=>(
                   <QuestionCard type={2} key={item} id={item}></QuestionCard>
                 ))}
+                <MDBRow style={{
+                  textAlign:'center',
+                  background: '#FFFFFF',
+                  padding:'10px 0px',
+                  boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)',
+                  margin: '20px 0px',}}>
+                  <MDBCol middle>
+                    <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                      <Link
+                        to={`/question/${this.state.backend.id}`}
+                        style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>
+                        查看全部回答
+                      </Link>
+                    </MDBBtn>
+                  </MDBCol>
+                </MDBRow>
               </MDBCol>
             </MDBRow>
             <Footer></Footer>

@@ -26,6 +26,7 @@ export class QuestionDes extends React.Component {
     this.state = {
       backend: null,
       selectType: 1,
+      hiddenAns:false,
       showText:false,
     }
     this.handleClick = this.handleClick.bind(this)
@@ -67,19 +68,17 @@ export class QuestionDes extends React.Component {
       <div style={{width: '100%'}}>
         <MDBRow>
           <MDBCol size="9">
-            <MDBRow>
+            {/*tag的样式*/}
+            <MDBRow style={{display:'none'}}>
               {/*展现标签*/}
               {/*todo,超过一定数量就不显示*/}
               {this.props.tags.map((item) => {
                 return (
                   <MDBCol key={item} size="1">
-                    <MDBBadge key={item} color="light-blue lighten-2"
-                              text="white"
-                              style={{borderRadius: '100px', padding: '5px 10px'}}>
+                    <MDBBtn rounded outline color="info" key={item} style={{padding: '5px 10px', marginLeft: '15px'}}>
                       {item}
-                    </MDBBadge>
+                    </MDBBtn>
                   </MDBCol>
-
                 );
               })}
             </MDBRow>
@@ -111,9 +110,9 @@ export class QuestionDes extends React.Component {
             <MDBIcon style={{marginRight: '5px'}} far icon="heart"/>关注问题
           </MDBBtn>
           <MDBBtn onClick={this.handleClick} flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
+            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>
+            <Link to={'/question/1/answer/create'} style={{color: '#3E4850'}}>写回答</Link>
           </MDBBtn>
-         
           <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
           </MDBBtn>
@@ -128,7 +127,9 @@ export class QuestionDes extends React.Component {
             举报
           </MDBBtn>
         </MDBRow>
-        {this.state.showText ? (
+        {/*取消点击回复，变成跳转回复*/}
+        {/*{this.state.showText ? (*/}
+        { this.state.hiddenAns ? (
           <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
             <MDBRow>
               <MDBCol size="1">

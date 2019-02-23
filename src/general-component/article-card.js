@@ -161,7 +161,7 @@ export class ArticleCard extends React.Component {
       <div style={{background: '#FFFFFF',padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}
            ref={(span) => this.scrollSpan = span}>
         {this.props.type === 1 ? (
-          <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
+          <Link to={`/article/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
         ) : null}
         {this.state.isCollapsed ? (
           <div>
