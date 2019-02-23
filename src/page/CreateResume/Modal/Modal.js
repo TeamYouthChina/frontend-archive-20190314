@@ -13,29 +13,29 @@ class ModalPage extends Component {
         this.state = {
             modal: false,
             editorState: BraftEditor.createEditorState(null),
-            newCards : null,
+            newCards : [],
             selected: -1
         }
     }
 
     componentDidMount(){
         // this changed cards in education
-        let newCards = this.props.cards.splice(0).map((e,i)=>(React.cloneElement(e,{toggle: this.toggle})))
-        this.setState({newCards: newCards});
+        let temp = this.props.cards.map((e,i)=>(
+            React.cloneElement(e,{toggle: this.toggle})
+        ))
+        this.setState({...this.state, newCards: temp},()=>{
+        });
     }
 
-    async componentDidUpdate(){
+    componentDidUpdate(){
+        
     }
 
     toggle = (id,event) => {
-        console.log(this.state.newCards)
-        console.log("clicked")
         this.setState({
             modal: !this.state.modal,
             selected: id}, ()=>{
-                console.log(this.state.selected)
                 if(!isNaN(id)){
-                    console.log(id)
                     this.props.addHandler(id);
                 }
             });
@@ -44,7 +44,9 @@ class ModalPage extends Component {
 
     
     render(){
-
+        let temp = this.props.cards.map((e,i)=>(
+            React.cloneElement(e,{toggle: this.toggle, modal: true})
+        ))
         return (
             <MDBContainer>
                 <MDBRow center>
@@ -52,8 +54,7 @@ class ModalPage extends Component {
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle} size="lg">
                         <MDBModalHeader toggle={this.toggle}>Choose To Add In Your Resume</MDBModalHeader>
                         <MDBModalBody>
-                            {this.state.newCards}
-                            {/* {newCards} */}
+                            {temp}
                         </MDBModalBody>
                         <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle}>Cancel</MDBBtn>
