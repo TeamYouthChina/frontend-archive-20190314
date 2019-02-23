@@ -33,21 +33,21 @@ export class Login extends React.Component {
   }
 
   async componentDidMount() {
-    const frontend = await postAsync('/login', {
-      id: '1',
-      password: '123456'
-    });
-    console.log('frontend', frontend);
+    // const frontend = await postAsync('/login', {
+    //   id: '1',
+    //   password: '123456'
+    // });
+    // console.log('frontend', frontend);
   }
 
-  handleLoginSubmit = (event) => {
+  handleLoginSubmit = async (event) => {
 
     event.preventDefault();
 
     const data = new FormData(event.target);
-    // console.log('success');
 
-    postAsync('/login', data).then(json => console.log(json));
+    const result = await postAsync('/login', data);
+    console.log('Result', result);
   };
 
   handleChange = (event) => {
@@ -122,7 +122,7 @@ export class Login extends React.Component {
                       <MDBInput
                         label="邮箱"
                         // name='email'
-                        group type="email"
+                        group type="text"
                         validate error="wrong" success="right"
                         onChange={this.handleChange}
                       />
