@@ -35,6 +35,9 @@ import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
+import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
+import VideoUploadMobile from './page/mobile/video-upload-mobile';
+
 
 
 // Trash
