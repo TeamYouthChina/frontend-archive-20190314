@@ -10,7 +10,7 @@ import {
 
 import {CollectionCompany} from './collection-company';
 import {CollectionJob} from './collection-job';
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 

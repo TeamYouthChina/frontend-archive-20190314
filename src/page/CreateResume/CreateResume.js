@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import MainBody from './MainBody/MainBody'
 import {getAsync} from '../../tool/api-helper';
 import classes from './CreateResume.module.css';
