@@ -2,15 +2,10 @@ import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {
-  MDBNavbar,
-  MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBContainer,
   MDBRow,
   MDBCol,
-  MDBTabPane,
-  MDBTabContent,
   MDBNav
 } from 'mdbreact';
 
@@ -19,6 +14,7 @@ import {HomeHeader} from './home-header';
 import {Footer} from '../../general-component/footer';
 import {New} from './new';
 import {Hot} from './hot';
+
 
 export class Home extends React.Component {
   constructor(props) {

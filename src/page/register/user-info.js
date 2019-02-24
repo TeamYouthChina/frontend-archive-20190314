@@ -38,10 +38,6 @@ export class UserInfo extends React.Component {
     });
   };
 
-  handleSubmission = () => {
-    // alert('Form submitted!');
-  };
-
   calculateAutofocus = (a) => {
     if (this.state['formActivePanel' + a + 'Changed']) {
       return true
@@ -101,7 +97,7 @@ export class UserInfo extends React.Component {
                   </MDBStep>
                 </MDBStepper>
 
-                <form action="" method="post">
+                <form onSubmit={this.props.handleSubmit}>
                   <MDBRow>
                     {this.state.formActivePanel1 === 1 && (
                       <MDBCol md="12">
@@ -164,7 +160,7 @@ export class UserInfo extends React.Component {
                                 autoFocus={this.calculateAutofocus(1)}>
                           previous
                         </MDBBtn>
-                        <MDBBtn color="default" rounded className="float-right" href="/" onClick={this.handleSubmission}>
+                        <MDBBtn color="default" rounded className="float-right" href="/" type='submit'>
                           submit
                         </MDBBtn>
                       </MDBCol>

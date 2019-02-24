@@ -32,11 +32,11 @@ export class JobCardBar extends React.Component {
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/job/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/job/1`)
+        backend: await getAsync(`/jobs/1`)
       });
     }
   }
@@ -56,7 +56,7 @@ export class JobCardBar extends React.Component {
                 <MDBCol size='10'>
                   <MDBAvatar
                     tag="img"
-                    src={this.state.backend.content.organization.avatarUrl}
+                    src={this.state.backend.content.company.avatarUrl}
                     className="rounded z-depth-1-half img-fluid"
                     alt="Sample avatar"
                   />
@@ -159,7 +159,7 @@ export class JobCardBar extends React.Component {
                     viewBox="0 0 24 24"
                     fill={this.state.collect ? "#45526e" : "none"}
                     stroke="#45526e"
-                    strokeWidth="1.5"
+                    strokeWidth="1.0"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="feather feather-bookmark"

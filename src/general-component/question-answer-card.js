@@ -7,6 +7,7 @@ import {
 } from 'mdbreact';
 
 import {languageHelper} from '../tool/language-helper';
+import {getAsync} from "../tool/api-helper";
 
 export class QuestionAnswerCard extends React.Component {
   constructor(props) {
@@ -19,26 +20,27 @@ export class QuestionAnswerCard extends React.Component {
     this.text = QuestionAnswerCard.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/answers/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/answers/1`)
+      });
+    }
   }
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBCard>
         <div>
-          <h5>
-            <strong>问题1： Our global teams are constantly iterating, solving problems, and working together to
-              empower people around the world to build community and connect in meaningful ways.</strong>
-          </h5>
+          <p
+            style={{fontFamily:'PingFang SC',fontSize:'18px'}}
+          >
+            {this.state.backend.content.question.title}
+          </p>
           <MDBRow className="px-3 pt-4">
             <div className="mdb-feed">
               <div className="news">

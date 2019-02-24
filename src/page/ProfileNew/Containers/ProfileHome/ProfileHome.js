@@ -42,6 +42,7 @@ class ProfileHome extends Component{
             };
 
             toShow = 
+              
                 <div className={classes.ProfileHome}>
                     <Header/>
                     <ResumeTitle data={dataForResumeTitle}/>

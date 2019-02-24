@@ -78,7 +78,7 @@ export class CompanyCard extends React.Component {
                       fontSize: '1rem'
                     }}
                   >
-                    {this.state.backend.content.nation}
+                    {this.state.backend.content.nation.countryAbbre}
                   </MDBCardTitle>
                   <MDBCardText
                     style={{
@@ -96,7 +96,7 @@ export class CompanyCard extends React.Component {
                     }}
                   >
                     <span className="mr-1">{this.text.location} </span>
-                    <span>{this.state.backend.content.location}</span>
+                    <span>{this.state.backend.content.location.region_num}</span>
                   </MDBCardText>
                 </MDBCol>
                 <MDBCol 
@@ -108,7 +108,7 @@ export class CompanyCard extends React.Component {
                     viewBox="0 0 24 24"
                     fill={this.state.collect ? "#45526e" : "none"}
                     stroke="#45526e"
-                    strokeWidth="1.5"
+                    strokeWidth="1.0"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="feather feather-bookmark"

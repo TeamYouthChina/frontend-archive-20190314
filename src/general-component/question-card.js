@@ -10,6 +10,7 @@ import {
   MDBIcon,
   MDBAvatar
 } from 'mdbreact';
+import {getAsync} from "../tool/api-helper";
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
@@ -74,16 +75,20 @@ export class QuestionCard extends React.Component {
   }
 
   componentWillMount() {
+    const answer = this.props.answerData || {}
     let mockData =
       {
-        id: '0100',
-        title: 'YouthChina是怎样的一个公司',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-        user: '齐昊',
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        id: answer.id || '0100',
+        title: this.props.title||'YouthChina是怎样的一个公司',
+        short: answer.short||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: answer.body||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: answer.creator.username||'齐昊',
+        img:  answer.creator.avatar || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        // 缺少个人签名
         description: '莫以为敌消彼长，然乾坤逆之天崩',
+        // 缺少评论
         commentLists: [1, 2],
+        // 缺少赞同和反对
         agree: '',
         disagree: '',
         status: {
@@ -95,8 +100,11 @@ export class QuestionCard extends React.Component {
     });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
+    // const result = await getAsync(`/questions/${this.props.match.params.questionId}/answer/${this.props.answerData.id}`)
+    // console.log(result)
+    
   }
 
   orderScroll() {
@@ -158,7 +166,7 @@ export class QuestionCard extends React.Component {
 
   render() {
     return (
-      <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
+      <div style={{background: '#FFFFFF',padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
            ref={(span) => this.scrollSpan = span}>
         {this.props.type === 1 ? (
           <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>

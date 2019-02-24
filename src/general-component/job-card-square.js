@@ -9,7 +9,6 @@ import {
 import {getAsync} from '../tool/api-helper';
 
 
-
 export class JobCardSquare extends React.Component {
   constructor(props) {
     super(props);
@@ -18,44 +17,44 @@ export class JobCardSquare extends React.Component {
     this.state = {
       backend: null
     };
-    
+
     this.text = JobCardSquare.i18n[languageHelper()];
   }
-  
+
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/job/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/job/1`)
+        backend: await getAsync(`/jobs/1`)
       });
     }
   }
 
   render() {
-    
+
     const applicationBtnUrl = `job/${this.props.id}`;
-    
+
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
 
       <MDBCard>
-        <MDBCardBody  style={{
+        <MDBCardBody style={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
         }}>
-          
+
           <MDBRow>
             <MDBCol>
-              <p style={{textAlign:'center'}}>
+              <p style={{textAlign: 'center'}}>
                 <MDBAvatar
                   tag="img"
-                  src={this.state.backend.content.organization.avatarUrl}
+                  src={this.state.backend.content.company.avatarUrl}
                   className="z-depth-1 img-fluid"
-                
-                  style={{width:'104px',height:'104px'}}
+
+                  style={{width: '104px', height: '104px'}}
                 />
               </p>
               <p
@@ -70,7 +69,7 @@ export class JobCardSquare extends React.Component {
                   fontSize: '0.8rem'
                 }}
               >
-                {this.state.backend.content.organization.name}
+                {this.state.backend.content.company.name}
                 <br/>
                 {this.state.backend.content.location}
               </p>
@@ -89,12 +88,12 @@ export class JobCardSquare extends React.Component {
                 }
               </p>
               <p>
-                <MDBBtn  block flat href="job/1" className="indigo-text">立即申请</MDBBtn>
+                <MDBBtn block flat href="job/1" className="indigo-text">立即申请</MDBBtn>
               </p>
             </MDBCol>
           </MDBRow>
 
-          
+
         </MDBCardBody>
 
 

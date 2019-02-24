@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   MDBCol,
-  MDBAvatar,
   MDBDropdown,
   MDBDropdownItem,
   MDBDropdownMenu,
@@ -12,7 +11,6 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBRow
 } from 'mdbreact';
 
 import {languageHelper} from '../tool/language-helper';
@@ -163,8 +161,8 @@ export class Header extends React.Component {
                     <p className="h6">Zhicheng</p>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
-                    <MDBDropdownItem href="/people/1">个人主页</MDBDropdownItem>
-                    <MDBDropdownItem href="/myfavorite">我的关注</MDBDropdownItem>
+                    <MDBDropdownItem href="/application/1">个人主页</MDBDropdownItem>
+                    <MDBDropdownItem href="/collection/1">我的关注</MDBDropdownItem>
                     <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>

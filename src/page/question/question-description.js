@@ -107,8 +107,8 @@ export class QuestionDes extends React.Component {
           </MDBCol>
         </MDBRow>
         <MDBRow>
-          <MDBBtn color="primary" style={{padding: '5px 10px', marginLeft: '15px'}}>
-            关注问题
+          <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px'}}>
+            <MDBIcon style={{marginRight: '5px'}} far icon="heart"/>关注问题
           </MDBBtn>
           <MDBBtn onClick={this.handleClick} flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答

@@ -12,6 +12,8 @@ import {
   MDBNavItem,
   MDBNavLink,
   MDBRow,
+  MDBListGroup,
+  MDBListGroupItem
 } from 'mdbreact';
 
 import {Article} from './article';
@@ -23,6 +25,7 @@ import {Review} from './review';
 import {Video} from './video';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+import {getAsync} from '../../tool/api-helper'
 
 export class Discovery extends React.Component {
 
@@ -30,216 +33,215 @@ export class Discovery extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      selectedTab: 1
+      selectedTab: null
     };
     this.text = Discovery.i18n[languageHelper()];
   }
 
+  async componentDidMount() {
+    const result = await getAsync(`/discovery/`)
+    // console.log(result)
+    if (result && result.status && result.status.code === 2000) {
+      let mockData =
+        {
+          status: {
+            code: result.status.code
+          }
+        };
+      this.setState(() => {
+        return {backend: mockData};
+      });
+    } else {
+      let mockData = {
+        status: result.status
+      }
+      this.setState(() => {
+        return {backend: mockData};
+      });
+    }
+  }
+
+
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
-    
+
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
-    
-    return (
+
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <Header/>
-        <div className="classic-tabs">
-          <MDBNav
-            classicTabs
-            className="d-flex justify-content-center"
-            style={{
-              boxShadow: 'none',
-              borderBottom: 'solid #E0E0E0 1px'
-            }}>
-            <MDBNavItem className="ml-0">
-              <MDBNavLink
-                to={`${this.props.match.url}/article`}
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 1});
-                  }
-                }
-                className={this.state.selectedTab === 1 ? 'active font-weight-bold' : ''}
-                style={{
-                  color: '#454F69',
-                  fontSize: '16px'
-                }}>
-                {this.text.article}
-              </MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink
-                to={`${this.props.match.url}/review`}
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 2});
-                  }
-                }
-                className={this.state.selectedTab === 2 ? 'active font-weight-bold' : ''}
-                style={{
-                  color: '#454F69',
-                  fontSize: '16px'
-                }}>
-                {this.text.review}
-              </MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink
-                to={`${this.props.match.url}/question-answer`}
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 3});
-                  }
-                }
-                className={this.state.selectedTab === 3 ? 'active font-weight-bold' : ''}
-                style={{
-                  color: '#454F69',
-                  fontSize: '16px'
-                }}>
-                {this.text.questionAnswer}
-              </MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink
-                to={`${this.props.match.url}/video`}
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 4});
-                  }
-                }
-                className={this.state.selectedTab === 4 ? 'active font-weight-bold' : ''}
-                style={{
-                  color: '#454F69',
-                  fontSize: '16px'
-                }}>
-                {this.text.video}
-              </MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink
-                to={`${this.props.match.url}/connection`}
-                onClick={
-                  () => {
-                    this.setState({selectedTab: 5});
-                  }
-                }
-                className={this.state.selectedTab === 5 ? 'active font-weight-bold' : ''}
-                style={{
-                  color: '#454F69',
-                  fontSize: '16px'
-                }}>
-                {this.text.connection}
-              </MDBNavLink>
-            </MDBNavItem>
-          </MDBNav>
-
-          <div style={{backgroundColor: '#FAFBFD'}}>
-            <MDBContainer>
-              <MDBRow className="mx-0">
-                <MDBCol md="9" lg="9">
-                  <Switch>
-                    <Route
-                      path={`${this.props.match.url}/article`}
-                      component={routeProps => <Article {...routeProps} />}
-                    />
-                    <Route
-                      path={`${this.props.match.url}/review`}
-                      component={routeProps => <Review {...routeProps} />}
-                    />
-                    <Route
-                      path={`${this.props.match.url}/question-answer`}
-                      component={routeProps => <QuestionAnswer {...routeProps} />}
-                    />
-                    <Route
-                      path={`${this.props.match.url}/video`}
-                      component={routeProps => <Video {...routeProps} />}
-                    />
-                    <Route
-                      path={`${this.props.match.url}/connection`}
-                      component={routeProps => <Connection {...routeProps} />}
-                    />
-                    <Redirect to={`${this.props.match.url}/article`}/>
-                  </Switch>
-                </MDBCol>
-
-                <MDBCol className="mt-5" md="3" lg="3">
-                  <MDBCard>
-                    <MDBRow>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-                    </MDBRow>
-
-                    <MDBRow>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                      <MDBCol md="4" lg="4">
-                        <MDBRow center style={{marginTop: '20px'}}>
-                          <MDBIcon icon="shield" size="3x"/>
-                        </MDBRow>
-                        <MDBRow center>
-                          normal
-                        </MDBRow>
-                      </MDBCol>
-
-                    </MDBRow>
-                  </MDBCard>
-
-                </MDBCol>
-              </MDBRow>
-            </MDBContainer>
+        {/*有状态码且为2000时候才渲染*/}
+        {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
+          <div>
+            <Redirect to="/404"></Redirect>
           </div>
-        </div>
-        <Footer/>
+        ) : (
+          <div>
+            <Header/>
+            <div className="classic-tabs">
+              <MDBNav
+                classicTabs
+                className="d-flex justify-content-center"
+                style={{
+                  boxShadow: 'none',
+                  borderBottom: 'solid #E0E0E0 1px'
+                }}>
+                <MDBNavItem className="ml-0">
+                  <MDBNavLink
+                    to={`${this.props.match.url}/article`}
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 1});
+                      }
+                    }
+                    className={this.state.selectedTab === 1 ? 'active font-weight-bold' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}>
+                    {this.text.article}
+                  </MDBNavLink>
+                </MDBNavItem>
+
+                <MDBNavItem>
+                  <MDBNavLink
+                    to={`${this.props.match.url}/review`}
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 2});
+                      }
+                    }
+                    className={this.state.selectedTab === 2 ? 'active font-weight-bold' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}>
+                    {this.text.review}
+                  </MDBNavLink>
+                </MDBNavItem>
+
+                <MDBNavItem>
+                  <MDBNavLink
+                    to={`${this.props.match.url}/question-answer`}
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 3});
+                      }
+                    }
+                    className={this.state.selectedTab === 3 ? 'active font-weight-bold' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}>
+                    {this.text.questionAnswer}
+                  </MDBNavLink>
+                </MDBNavItem>
+
+                <MDBNavItem>
+                  <MDBNavLink
+                    to={`${this.props.match.url}/video`}
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 4});
+                      }
+                    }
+                    className={this.state.selectedTab === 4 ? 'active font-weight-bold' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}>
+                    {this.text.video}
+                  </MDBNavLink>
+                </MDBNavItem>
+
+                <MDBNavItem>
+                  <MDBNavLink
+                    to={`${this.props.match.url}/connection`}
+                    onClick={
+                      () => {
+                        this.setState({selectedTab: 5});
+                      }
+                    }
+                    className={this.state.selectedTab === 5 ? 'active font-weight-bold' : ''}
+                    style={{
+                      color: '#454F69',
+                      fontSize: '16px'
+                    }}>
+                    {this.text.connection}
+                  </MDBNavLink>
+                </MDBNavItem>
+              </MDBNav>
+
+              <div style={{backgroundColor: '#F3F5F7'}}>
+                <MDBContainer>
+                  <MDBRow center className="mx-0">
+                    <MDBCol className="mt-2" md="9" lg="10">
+                      <Switch>
+                        <Route
+                          path={`${this.props.match.url}/article`}
+                          component={routeProps => <Article {...routeProps} />}
+                        />
+                        <Route
+                          path={`${this.props.match.url}/review`}
+                          component={routeProps => <Review {...routeProps} />}
+                        />
+                        <Route
+                          path={`${this.props.match.url}/question-answer`}
+                          component={routeProps => <QuestionAnswer {...routeProps} />}
+                        />
+                        <Route
+                          path={`${this.props.match.url}/video`}
+                          component={routeProps => <Video {...routeProps} />}
+                        />
+                        <Route
+                          path={`${this.props.match.url}/connection`}
+                          component={routeProps => <Connection {...routeProps} />}
+                        />
+                        <Redirect to={`${this.props.match.url}/article`}/>
+                      </Switch>
+                    </MDBCol>
+
+                    <MDBCol className="mt-5" md="3" lg="2">
+
+                      <div>
+                        <MDBListGroup style={{
+                          fontSize: '16px'
+                        }}>
+                          <MDBListGroupItem
+                            hover
+                            href="/article/create"
+                            className="d-flex justify-content-center align-items-center"
+                            style={{color: '#454F69', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0}}>
+                            <MDBIcon fa icon="edit" className="mr-2"/> 写文章
+                          </MDBListGroupItem>
+                          <MDBListGroupItem
+                            hover
+                            href="/question/create"
+                            className="d-flex justify-content-center align-items-center"
+                            style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
+                            <MDBIcon far icon="question-circle" className="mr-2"/> 提问题
+                          </MDBListGroupItem>
+                          <MDBListGroupItem
+                            hover
+                            href="/article/create"
+                            className="d-flex justify-content-center align-items-center"
+                            style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
+                            <MDBIcon fal icon="comments" className="mr-2"/> 写短评
+                          </MDBListGroupItem>
+                        </MDBListGroup>
+                      </div>
+
+                    </MDBCol>
+                  </MDBRow>
+                </MDBContainer>
+              </div>
+            </div>
+            <Footer/>
+          </div>
+        )}
       </div>
-    );
+    ) : null;
   }
 }
 
@@ -256,6 +258,6 @@ Discovery.i18n = [
     connection: 'Connection',
     review: 'Review',
     questionAnswer: 'Question & Answer',
-    video: 'Video',
+    video: 'VideoMobile',
   }
 ];
