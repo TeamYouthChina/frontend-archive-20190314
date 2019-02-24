@@ -21,11 +21,14 @@ import {
   MDBCarouselCaption,
   MDBCarouselInner,
   MDBCarouselItem,
-  MDBIcon
+  MDBIcon,
+  MDBNav
 } from 'mdbreact';
 
 import './public/style.css'
 import {HomeIntro} from "./home-intro";
+import {languageHelper} from "../../tool/language-helper";
+
 
 export class HomeHeader extends React.Component {
   constructor(props) {
@@ -35,6 +38,7 @@ export class HomeHeader extends React.Component {
       isWideEnough: false,
       searchBarClicked: false
     }
+    this.text = HomeHeader.i18n[languageHelper()];
   }
 
   handleTogglerClick = () => {
@@ -53,7 +57,7 @@ export class HomeHeader extends React.Component {
 
 
   render() {
-    const navStyle = {marginTop: "4rem"};
+   
 
     const overlay = (
       <div
@@ -67,7 +71,14 @@ export class HomeHeader extends React.Component {
       <div>
         <Router>
           <div>
-            <MDBNavbar color="homeHeaderBackgroundColor" dark expand="md" fixed="top" scrolling transparent>
+            <MDBNavbar 
+              color="navbarColor" 
+              dark 
+              expand="md" 
+              fixed="top" 
+              scrolling 
+              transparent
+             >
               <MDBCol md="1">
                 <MDBNavbarBrand href="/">
                   <strong>YouthChina</strong>
@@ -80,7 +91,7 @@ export class HomeHeader extends React.Component {
                     <MDBNavItem>
                       <MDBDropdown>
                         <MDBDropdownToggle nav>
-                          <div className="d-none d-md-inline">探 索</div>
+                          <div className="d-none d-md-inline">{this.text.discovery}</div>
                         </MDBDropdownToggle>
                         <MDBDropdownMenu style={{marginTop: '20px'}}>
                           <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
@@ -102,10 +113,15 @@ export class HomeHeader extends React.Component {
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="搜索"
+                      placeholder={this.text.search}
                       aria-label="Search"
                     />
                   </MDBNavLink>
+                </MDBNavbarNav>
+                <MDBNavbarNav right style={{marginRight: '0.5em'}}>
+                  <MDBNavItem className="align-middle">
+                    <MDBIcon icon="bell" className="white-text" />
+                  </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right style={{marginRight: '5em'}}>
                   <MDBNavItem style={{width: '45px', height: '45px'}} className="p-0 mx-2 align-middle">
@@ -121,8 +137,8 @@ export class HomeHeader extends React.Component {
                         <p className="h6">Zhicheng</p>
                       </MDBDropdownToggle>
                       <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop: '20px'}}>
-                        <MDBDropdownItem href="/application/1">个人主页</MDBDropdownItem>
-                        <MDBDropdownItem href="/collection">我的关注</MDBDropdownItem>
+                        <MDBDropdownItem href="/applicant">个人主页</MDBDropdownItem>
+                        <MDBDropdownItem href="/">我的消息</MDBDropdownItem>
                         <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
@@ -201,3 +217,20 @@ export class HomeHeader extends React.Component {
     );
   }
 }
+HomeHeader.i18n = [
+  {
+    discovery: '探 索',
+    search: '搜 索'
+    
+  },
+  {
+    discovery: 'DISCOVERY',
+    search: 'SEARCH',
+    article:'Article',
+    review:'Review',
+    question:'Q & A',
+    video:'Video',
+    people:'People'
+    
+  },
+];
