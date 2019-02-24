@@ -6,14 +6,6 @@ import {
   MDBCardUp, MDBAvatar, MDBCardBody, MDBIcon,MDBProgress
 } from "mdbreact";
 
-// data={
-//   img:'照片URL',
-//   name:'姓名',
-//   description:[称谓1，称谓2],
-//   work:'一个工作',
-//   influence:68,
-// }
-
 export class ResumeTitle extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +17,7 @@ export class ResumeTitle extends React.Component {
       description:['1','2'],
       resumeTitle:{
         id:'123',
-        name:'郭益豪',
+        name:'Alice',
         img:'https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg',
         description:['美国乔治华盛顿大学,','数据科学家'],
         work:'张三技术总监',

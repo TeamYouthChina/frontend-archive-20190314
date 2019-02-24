@@ -36,6 +36,7 @@ export class JobCardSquare extends React.Component {
   render() {
 
     const applicationBtnUrl = `job/${this.props.id}`;
+    console.log(this.state);
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
 
@@ -51,7 +52,7 @@ export class JobCardSquare extends React.Component {
               <p style={{textAlign: 'center'}}>
                 <MDBAvatar
                   tag="img"
-                  src={this.state.backend.content.company.avatarUrl}
+                  src={this.state.backend.content.organization.avatarUrl}
                   className="z-depth-1 img-fluid"
 
                   style={{width: '104px', height: '104px'}}
@@ -69,7 +70,7 @@ export class JobCardSquare extends React.Component {
                   fontSize: '0.8rem'
                 }}
               >
-                {this.state.backend.content.company.name}
+                {this.state.backend.content.organization.name}
                 <br/>
                 {this.state.backend.content.location}
               </p>
