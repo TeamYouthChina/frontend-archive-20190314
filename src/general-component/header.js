@@ -85,8 +85,8 @@ export class Header extends React.Component {
 
                   style={this.state.chosen === 1 || this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
-                  <MDBNavLink to="/">
-                    主 页
+                  <MDBNavLink to="/job-for-you">
+                    招 聘
                   </MDBNavLink>
                 </MDBNavItem>
                 
