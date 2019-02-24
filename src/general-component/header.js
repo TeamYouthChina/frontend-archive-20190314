@@ -37,6 +37,7 @@ export class Header extends React.Component {
   }
   
   render() {
+    
     return (
       <div>
         <div>
@@ -45,7 +46,8 @@ export class Header extends React.Component {
             expand="md"
             fixed="top"
             scrolling
-            color="navbarColor"
+            style={{background:'#31394D'}}
+            
           >
             <MDBCol
               md="1"

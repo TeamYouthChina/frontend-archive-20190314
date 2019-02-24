@@ -72,12 +72,13 @@ export class HomeHeader extends React.Component {
         <Router>
           <div>
             <MDBNavbar 
-              color="navbarColor" 
+              
               dark 
               expand="md" 
               fixed="top" 
               scrolling 
               transparent
+              color="mdb-color"
              >
               <MDBCol md="1">
                 <MDBNavbarBrand href="/">
