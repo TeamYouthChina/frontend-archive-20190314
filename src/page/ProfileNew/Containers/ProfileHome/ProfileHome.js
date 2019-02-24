@@ -37,7 +37,7 @@ class ProfileHome extends Component{
                 img: this.state.requestedData.content.avatarUrl,
                 name: this.state.requestedData.content.name,
                 description: null,
-                work: this.state.requestedData.content.currentCompany.name,
+                work: this.state.requestedData.content.currentCompanyName,
                 influence: null
             };
 
