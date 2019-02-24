@@ -40,14 +40,15 @@ export class Header extends React.Component {
       })
     );
   }
-  login(){
+
+  login() {
     this.setState(
-      this.login=Cookies.get("avatar")
+      this.login = Cookies.get("avatar")
     )
   }
-  
+
   render() {
-    console.log(Cookies.get("avatar"))
+    console.log("123123", Cookies.get("avatar"))
     return (
       <div>
         <div>
@@ -56,8 +57,8 @@ export class Header extends React.Component {
             expand="md"
             fixed="top"
             scrolling
-            style={{background:'#31394D'}}
-            
+            style={{background: '#31394D'}}
+
           >
             <MDBCol
               md="1"
@@ -71,7 +72,7 @@ export class Header extends React.Component {
             </MDBCol>
             <MDBCol md="4">
               <MDBNavbarNav>
-                <MDBNavItem 
+                <MDBNavItem
                   to="#"
                   onClick={
                     () => {
@@ -95,13 +96,13 @@ export class Header extends React.Component {
                     }
                   }
 
-                  style={this.state.chosen === 1 || this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
+                  style={this.state.chosen === 1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBNavLink to="/">
-                    求  职
+                    求 职
                   </MDBNavLink>
                 </MDBNavItem>
-                
+
                 <MDBNavItem
                   onClick={
                     () => {
@@ -122,18 +123,18 @@ export class Header extends React.Component {
                   onMouseLeave={
                     () => {
                       this.setState({
-                        hover:0
+                        hover: 0
                       });
                     }
                   }
 
-                  style={this.state.chosen === 2 ||this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  style={this.state.chosen === 2 || this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
                       <div className="d-none d-md-inline">探 索</div>
                     </MDBDropdownToggle>
-                    <MDBDropdownMenu style={{marginTop:'20px'}}>
+                    <MDBDropdownMenu style={{marginTop: '20px'}}>
                       <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
                       <MDBDropdownItem divider/>
                       <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
@@ -145,15 +146,15 @@ export class Header extends React.Component {
                       <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
 
                     </MDBDropdownMenu>
-                    
-                     
+
+
                   </MDBDropdown>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCol>
 
 
-            <MDBNavbarNav left style={{width:'300px'}}>
+            <MDBNavbarNav left style={{width: '300px'}}>
               <MDBNavLink to="/search/s1">
                 <div className="d-flex flex-row ">
                   <div className="flex-fill align-self-center mx-3">
@@ -173,21 +174,21 @@ export class Header extends React.Component {
             </MDBNavbarNav>
             <div className="d-flex flex-row">
               {
-                typeof Cookies.get('avatar') === 'undefined' ? (
-                  <UnLogin/>
-                ):(
+                Cookies.get('avatar') ? (
                   <Logined/>
+                ) : (
+                  <UnLogin/>
                 )
               }
-              
+
 
             </div>
-           
-            
+
+
           </MDBNavbar>
         </div>
-        <div style={{height:'78px'}}></div>
-        
+        <div style={{height: '78px'}}></div>
+
       </div>
     );
   }

@@ -50,10 +50,10 @@ export class HomeHeader extends React.Component {
       collapsed: !this.state.collapsed
     });
   };
-  
+
 
   render() {
-   
+
 
     const overlay = (
       <div
@@ -67,15 +67,15 @@ export class HomeHeader extends React.Component {
       <div>
         <Router>
           <div>
-            <MDBNavbar 
-              
-              dark 
-              expand="md" 
-              fixed="top" 
-              scrolling 
+            <MDBNavbar
+
+              dark
+              expand="md"
+              fixed="top"
+              scrolling
               transparent
               color="mdb-color"
-             >
+            >
               <MDBCol md="1">
                 <MDBNavbarBrand href="/">
                   <strong>YouthChina</strong>
@@ -87,7 +87,7 @@ export class HomeHeader extends React.Component {
                   <MDBNavbarNav>
                     <MDBNavItem
                       to="#"
-                     
+
                       onMouseEnter={
                         () => {
                           this.setState({
@@ -103,10 +103,10 @@ export class HomeHeader extends React.Component {
                         }
                       }
 
-                      style={this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
+                      style={this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                     >
                       <MDBNavLink to="/#">
-                        求  职
+                        求 职
                       </MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem
@@ -125,7 +125,7 @@ export class HomeHeader extends React.Component {
                         }
                       }
 
-                      style={this.state.hover===2? {borderBottom: '4px solid #FFFFFF'} : null}
+                      style={this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
                     >
                       <MDBDropdown>
                         <MDBDropdownToggle nav>
@@ -146,7 +146,7 @@ export class HomeHeader extends React.Component {
                     </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCol>
-                <MDBNavbarNav left style={{width:'300px'}}>
+                <MDBNavbarNav left style={{width: '300px'}}>
                   <MDBNavLink to="/search/s1">
                     <div className="d-flex flex-row ">
                       <div className="flex-fill align-self-center mx-3">
@@ -166,10 +166,10 @@ export class HomeHeader extends React.Component {
                 </MDBNavbarNav>
                 <div className="d-flex flex-row">
                   {
-                    Cookies.get("avatar") ? (
-                      <UnLogin/>
-                    ):(
+                    Cookies.get('avatar') ? (
                       <Logined/>
+                    ) : (
+                      <UnLogin/>
                     )
                   }
 
@@ -247,20 +247,21 @@ export class HomeHeader extends React.Component {
     );
   }
 }
+
 HomeHeader.i18n = [
   {
     discovery: '探 索',
     search: '搜 索'
-    
+
   },
   {
     discovery: 'DISCOVERY',
     search: 'SEARCH',
-    article:'Article',
-    review:'Review',
-    question:'Q & A',
-    video:'Video',
-    people:'People'
-    
+    article: 'Article',
+    review: 'Review',
+    question: 'Q & A',
+    video: 'Video',
+    people: 'People'
+
   },
 ];
