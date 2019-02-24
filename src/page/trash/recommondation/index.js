@@ -13,7 +13,7 @@ import {
   MDBCol
 } from 'mdbreact';
 import {JobCardSquare} from '../../../general-component/job-card-square';
-import {Header} from '../../../general-component/header';
+import {Header} from '../../../general-component/header/header';
 import {Footer} from '../../../general-component/footer';
 
 

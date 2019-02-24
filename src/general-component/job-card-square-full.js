@@ -9,37 +9,16 @@ import {
 import {getAsync} from '../tool/api-helper';
 
 
-export class JobCardSquare extends React.Component {
+export class JobCardSquareFull extends React.Component {
   constructor(props) {
     super(props);
     /*
     * */
-    this.state = {
-      backend: null
-    };
-
-    this.text = JobCardSquare.i18n[languageHelper()];
-  }
-
-  async componentDidMount() {
-    if (this.props.id) {
-      this.setState({
-        backend: await getAsync(`/jobs/${this.props.id}`)
-      });
-    } else {
-      this.setState({
-        backend: await getAsync(`/jobs/1`)
-      });
-    }
+    this.text = JobCardSquareFull.i18n[languageHelper()];
   }
 
   render() {
-
-    const applicationBtnUrl = `job/${this.props.id}`;
-    console.log(this.state);
-
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-
+    return (this.props.fulltext) ? (
       <MDBCard>
         <MDBCardBody style={{
           display: 'flex',
@@ -52,7 +31,7 @@ export class JobCardSquare extends React.Component {
               <p style={{textAlign: 'center'}}>
                 <MDBAvatar
                   tag="img"
-                  src={this.state.backend.content.organization.avatarUrl}
+                  src={this.props.fulltext.organization.avatarUrl}
                   className="z-depth-1 img-fluid"
 
                   style={{width: '104px', height: '104px'}}
@@ -63,16 +42,16 @@ export class JobCardSquare extends React.Component {
                   fontSize: '1rem'
                 }}
               >
-                {this.state.backend.content.name}
+                {this.props.fulltext.name}
               </p>
               <p
                 style={{
                   fontSize: '0.8rem'
                 }}
               >
-                {this.state.backend.content.organization.name}
+                {this.props.fulltext.organization.name}
                 <br/>
-                {this.state.backend.content.location}
+                {this.props.fulltext.location}
               </p>
               <p
                 style={{
@@ -85,25 +64,23 @@ export class JobCardSquare extends React.Component {
                   ((unixTimeStamp) => {
                     let d = new Date(unixTimeStamp * 1000);
                     return d.toUTCString();
-                  })(this.state.backend.content.deadLine)
+                  })(this.props.fulltext.deadLine)
                 }
               </p>
               <p>
-                <MDBBtn block flat href="job/1" className="indigo-text">立即申请</MDBBtn>
+                <MDBBtn block flat href={`/job/${this.props.fulltext.id}`} className="indigo-text">
+                  立即申请
+                </MDBBtn>
               </p>
             </MDBCol>
           </MDBRow>
-
-
         </MDBCardBody>
-
-
       </MDBCard>
     ) : null;
   }
 }
 
-JobCardSquare.i18n = [
+JobCardSquareFull.i18n = [
   {
     applyBefore: '申请截止'
   },

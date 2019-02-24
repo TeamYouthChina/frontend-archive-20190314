@@ -8,7 +8,7 @@ import {
 } from 'mdbreact';
 import Cookies from 'js-cookie'
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from "../../general-component/header";
+import {Header} from "../../general-component/header/header";
 import {Footer} from "../../general-component/footer";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
@@ -29,6 +29,7 @@ export class Applicant extends React.Component {
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    const navStyle = {marginTop: "4rem"};
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }

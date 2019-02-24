@@ -2,6 +2,8 @@ import React from 'react';
 import {Redirect, withRouter} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import queryString from 'query-string';
+
 import {
   MDBContainer,
   MDBRow,
@@ -17,7 +19,7 @@ import {
   MDBModalFooter
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
@@ -66,10 +68,11 @@ export class Login extends React.Component {
     // Cookies.remove('token');
     if (backend && backend.status && backend.status.code === 2000) {
       Cookies.set('id', backend.content.id, {expires: 1});
+      // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
       Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
       // login success: --> /best-for-you
-      this.props.history.push('/best-for-you');
-
+      const to = queryString.parse(this.props.location.search).to;
+      this.props.history.push(to ? to : '/best-for-you');
       //if login success, set ifRedirect value to be true and re-render the page.
       if (Cookies.get('token')) {
         this.setState({ifRedirect: true});
@@ -109,7 +112,9 @@ export class Login extends React.Component {
     return (
       <div>
         <Header/>
-
+        {this.state.ifRedirect ?
+          <Redirect to="/best-for-you"/> : null
+        }
         <MDBContainer>
           <MDBModal isOpen={this.state.modalDisplay} toggle={this.toggleModal} centered>
             <MDBModalBody>
@@ -179,17 +184,17 @@ export class Login extends React.Component {
                         onChange={this.handleChange}
                         required
                       />
-                        {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
+                      {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
                       {/*</MDBInput>*/}
                       <div style={{position: 'relative'}}>
                         <MDBInput
                           label="密码"
                           name='password'
-                          group type={this.state.type} 
+                          group type={this.state.type}
                           onChange={this.handleChange}
                           required
                         />
-                          {/*<div className="invalid-tooltip">请输入密码</div>*/}
+                        {/*<div className="invalid-tooltip">请输入密码</div>*/}
                         {/*</MDBInput>*/}
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
@@ -217,9 +222,6 @@ export class Login extends React.Component {
                           style={{backgroundColor: '#7C97B8'}}>
                           登录
                         </MDBBtn>
-                        {this.state.ifRedirect ?
-                          <Redirect to="/best-for-you"/> : null
-                        }
                       </div>
                     </form>
                     <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
