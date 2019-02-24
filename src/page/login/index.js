@@ -66,6 +66,7 @@ export class Login extends React.Component {
     // Cookies.remove('token');
     if (backend && backend.status && backend.status.code === 2000) {
       Cookies.set('id', backend.content.id, {expires: 1});
+      // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
       Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
       // login success: --> /best-for-you
       this.props.history.push('/best-for-you');

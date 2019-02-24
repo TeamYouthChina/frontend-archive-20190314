@@ -17,6 +17,7 @@ import {
 } from 'mdbreact';
 
 import {SearchJobCards} from './search-job-cards';
+import {JobCardSquare} from '../../general-component/job-card-square';
 
 export class SearchJobResult extends React.Component {
   constructor(props) {
@@ -38,7 +39,6 @@ export class SearchJobResult extends React.Component {
     let mockData =
       {
         jobList: [
-          {id: 1},
           {id: 1},
           {id: 1},
           {id: 1},
@@ -167,15 +167,17 @@ export class SearchJobResult extends React.Component {
           </MDBContainer>
         </MDBNavbar>
 
-        <MDBRow className="mx-5" center>
-          {this.state.backend.jobList.map((item, index) => {
-            return (
-              <MDBCol className="my-3" md="5" key={index}>
-                <SearchJobCards id={item.id}/>
-              </MDBCol>
-            );
-          })}
-        </MDBRow>
+        {/*<MDBContainer>*/}
+          <MDBRow className="mt-4" center>
+            {this.state.backend.jobList.map((item, index) => {
+              return (
+                <MDBCol className="mx-1 my-3" size="12" md="5" xl="3" key={index}>
+                  <JobCardSquare id={item.id}/>
+                </MDBCol>
+              );
+            })}
+          </MDBRow>
+        {/*</MDBContainer>*/}
       </div>
     ) : null;
   }
