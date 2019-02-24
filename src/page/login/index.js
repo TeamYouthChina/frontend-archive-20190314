@@ -1,5 +1,6 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import {
   MDBContainer,
@@ -10,7 +11,10 @@ import {
   MDBIcon,
   MDBView,
   MDBMask,
-  Animation
+  Animation,
+  MDBModal,
+  MDBModalBody,
+  MDBModalFooter
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header';
@@ -25,7 +29,11 @@ export class Login extends React.Component {
     this.text = Login.i18n[languageHelper()];
     this.state = {
       submitted: false,
-      type: 'password'
+      type: 'password',
+      id: '',
+      password: '',
+      ifRedirect: false, // ifRedirect indicates if the browser should go to the 'best-for-you' page.
+      modalDisplay: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,39 +41,64 @@ export class Login extends React.Component {
   }
 
   async componentDidMount() {
-    // const frontend = await postAsync('/login', {
-    //   id: '1',
-    //   password: '123456'
-    // });
-    // console.log('frontend', frontend);
+    //if token exist, set ifRedirect value to be true and re-render the page.
+    if (Cookies.get('token')) {
+      this.setState({
+        ifRedirect: true
+      });
+    }
   }
 
-  handleLoginSubmit = async (event) => {
-
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-
-    const result = await postAsync('/login', data);
-    console.log('Result', result);
-  };
-
-  handleChange = (event) => {
+  toggleModal = () => {
     this.setState({
-      email: event.target.value
+      modalDisplay: !this.state.modalDisplay
     });
   };
+
+  handleLoginSubmit = async (event) => {
+    event.preventDefault();
+
+    const backend = await postAsync('/login', {
+      id: this.state.id,
+      password: this.state.password
+    });
+    // must clean token, valid token will always cause 200 OK return.
+    // Cookies.remove('token');
+    if (backend && backend.status && backend.status.code === 2000) {
+      Cookies.set('id', backend.content.id, {expires: 1});
+      Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
+      // login success: --> /best-for-you
+      this.props.history.push('/best-for-you');
+
+      //if login success, set ifRedirect value to be true and re-render the page.
+      if (Cookies.get('token')) {
+        this.setState({ifRedirect: true});
+      }
+    } else {
+      // login fail
+      console.log(backend);
+      this.setState({
+        modalDisplay: !this.state.modalDisplay
+      })
+      // alert('用户名或密码无效。');
+    }
+  }
+
+  async handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
   showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
       type: this.state.type === 'text' ? 'password' : 'text'
-    })
-  };
+    });
+  }
 
   render() {
-
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     const btnColor = '#7C97B8';
 
@@ -76,6 +109,20 @@ export class Login extends React.Component {
     return (
       <div>
         <Header/>
+
+        <MDBContainer>
+          <MDBModal isOpen={this.state.modalDisplay} toggle={this.toggleModal} centered>
+            <MDBModalBody>
+              <p className="pt-3 px-3 pb-0">用户名或密码无效，请重新输入。</p>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn
+                color={btnColor} onClick={this.toggleModal}
+                style={{backgroundColor: '#7C97B8'}}>Close</MDBBtn>
+            </MDBModalFooter>
+          </MDBModal>
+        </MDBContainer>
+
         <Animation type="fadeIn" duration="5s">
 
           <MDBRow className="m-0">
@@ -118,29 +165,43 @@ export class Login extends React.Component {
                         </p>
                       </Animation>
                     </div>
-                    <form onSubmit={this.handleLoginSubmit}>
+                    <form
+                      // className="needs-validation"
+                      onSubmit={this.handleLoginSubmit}
+                      // noValidate
+                    >
                       <MDBInput
                         label="邮箱"
-                        // name='email'
+                        name='id'
+                        className="form-control"
                         group type="text"
-                        validate error="wrong" success="right"
+                        error="wrong" success="right"
                         onChange={this.handleChange}
+                        required
                       />
+                        {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
+                      {/*</MDBInput>*/}
                       <div style={{position: 'relative'}}>
                         <MDBInput
                           label="密码"
-                          // name='password'
-                          group type={this.state.type} validate
+                          name='password'
+                          group type={this.state.type} 
+                          onChange={this.handleChange}
+                          required
                         />
+                          {/*<div className="invalid-tooltip">请输入密码</div>*/}
+                        {/*</MDBInput>*/}
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
                           right: '20px',
                           top: '7px',
                           color: '#616161'
                         }}>
-                        {this.state.type === 'text' ?
-                          <MDBIcon icon="eye"/> :
-                          <MDBIcon flip="horizontal" icon="eye-slash"/>}
+                        {
+                          this.state.type === 'text' ?
+                            <MDBIcon icon="eye"/> :
+                            <MDBIcon flip="horizontal" icon="eye-slash"/>
+                        }
                       </span>
                       </div>
                       <p className="font-small blue-text d-flex justify-content-end pb-3">
@@ -156,6 +217,9 @@ export class Login extends React.Component {
                           style={{backgroundColor: '#7C97B8'}}>
                           登录
                         </MDBBtn>
+                        {this.state.ifRedirect ?
+                          <Redirect to="/best-for-you"/> : null
+                        }
                       </div>
                     </form>
                     <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
