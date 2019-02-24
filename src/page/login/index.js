@@ -11,7 +11,10 @@ import {
   MDBIcon,
   MDBView,
   MDBMask,
-  Animation
+  Animation,
+  MDBModal,
+  MDBModalBody,
+  MDBModalFooter
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header';
@@ -27,9 +30,10 @@ export class Login extends React.Component {
     this.state = {
       submitted: false,
       type: 'password',
-      ifRedirect: false, // ifRedirect indicates if the browser should go to the 'best-for-you' page.
       id: '',
-      password: ''
+      password: '',
+      ifRedirect: false, // ifRedirect indicates if the browser should go to the 'best-for-you' page.
+      modalDisplay: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,6 +48,12 @@ export class Login extends React.Component {
       });
     }
   }
+
+  toggleModal = () => {
+    this.setState({
+      modalDisplay: !this.state.modalDisplay
+    });
+  };
 
   handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +77,10 @@ export class Login extends React.Component {
     } else {
       // login fail
       console.log(backend);
-      alert('用户名或密码无效。');
+      this.setState({
+        modalDisplay: !this.state.modalDisplay
+      })
+      // alert('用户名或密码无效。');
     }
   }
 
@@ -77,7 +90,7 @@ export class Login extends React.Component {
     });
   }
 
-  showHidePasswd(event) {
+  showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
     this.setState({
@@ -96,6 +109,20 @@ export class Login extends React.Component {
     return (
       <div>
         <Header/>
+
+        <MDBContainer>
+          <MDBModal isOpen={this.state.modalDisplay} toggle={this.toggleModal} centered>
+            <MDBModalBody>
+              <p className="pt-3 px-3 pb-0">用户名或密码无效，请重新输入。</p>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn
+                color={btnColor} onClick={this.toggleModal}
+                style={{backgroundColor: '#7C97B8'}}>Close</MDBBtn>
+            </MDBModalFooter>
+          </MDBModal>
+        </MDBContainer>
+
         <Animation type="fadeIn" duration="5s">
 
           <MDBRow className="m-0">
@@ -146,26 +173,23 @@ export class Login extends React.Component {
                       <MDBInput
                         label="邮箱"
                         name='id'
-                        className={this.state.id.length > 0 ? "form-control is-valid" : "form-control is-invalid"}
+                        className="form-control"
                         group type="text"
-                        validate error="wrong" success="right"
+                        error="wrong" success="right"
                         onChange={this.handleChange}
                         required
                       />
-                      {/*<div className="valid-feedback">*/}
-                      {/*Please provide a valid email.*/}
-                      {/*</div>*/}
-                      {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
+                        {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
                       {/*</MDBInput>*/}
                       <div style={{position: 'relative'}}>
                         <MDBInput
                           label="密码"
                           name='password'
-                          group type={this.state.type} validate
+                          group type={this.state.type} 
                           onChange={this.handleChange}
                           required
                         />
-                        {/*<div className="invalid-tooltip">请输入密码</div>*/}
+                          {/*<div className="invalid-tooltip">请输入密码</div>*/}
                         {/*</MDBInput>*/}
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
