@@ -48,23 +48,21 @@ export class Register extends React.Component {
 
   handleRegisterSubmit = async (event) => {
     event.preventDefault();
-    // console.log(this.state.userInfo.email);
     
     const backend = await postAsync('/applicants/register', {
-      username: this.state.userInfo.username,
+      username:      this.state.userInfo.username,
       date_of_birth: this.state.userInfo.date_of_birth,
-      password: this.state.userInfo.password,
-      phone_number: this.state.userInfo.phone_number,
-      email: this.state.userInfo.email,
-      nation: this.state.userInfo.nation,
-      gender: this.state.userInfo.gender,
-      age: this.state.userInfo.age
+      password:      this.state.userInfo.password,
+      phone_number:  this.state.userInfo.phone_number,
+      email:         this.state.userInfo.email,
+      nation:        this.state.userInfo.nation,
+      gender:        this.state.userInfo.gender,
+      age:           this.state.userInfo.age
     });
     
     if (backend && backend.status && backend.status.code === 2000) {
-      Cookies.set('id', backend.content.id, {expires: 1});
-      // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
-      Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
+      // Cookies.set('id', backend.content.id, {expires: 1});
+      // Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
       // register success: --> /login
       this.props.history.push('/login');
 
@@ -83,7 +81,8 @@ export class Register extends React.Component {
     });
     
     // test input
-    // console.log(this.state.userInfo[event.target.name]);
+    console.log(this.state.userInfo[event.target.name]);
+    console.log(typeof this.state.userInfo[event.target.name])
   }
   
   showHidePasswd = (event) => {
@@ -165,7 +164,7 @@ export class Register extends React.Component {
                       <MDBInput
                         label="邮箱"
                         group
-                        type="email"
+                        type="text"
                         validate
                         error="wrong"
                         success="right"

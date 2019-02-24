@@ -13,7 +13,9 @@ const generateHeaders = () => {
     Cookies.set('language', language, {expires: 365});
   }
   let headers = new Headers({
-    'x-language': language
+    'x-language': language,
+    'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': '*'
   });
   const token = Cookies.get('token');
   if (token) {
