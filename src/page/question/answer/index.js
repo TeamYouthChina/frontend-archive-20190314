@@ -12,7 +12,7 @@ import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 import {QuestionDes} from '../question-description'
 import {getAsync} from '../../../tool/api-helper'
-import {MDBIcon, QuestionCard} from '../../../general-component/question-card'
+import {QuestionCard} from '../../../general-component/question-card'
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
@@ -34,13 +34,8 @@ export class QuestionAnswerOne extends React.Component {
   }
 
   async componentDidMount() {
-    // const result = await getAsync(`/question/${this.props.match.params.questionId}`)
+    const result = await getAsync(`/questions/${this.props.match.params.questionId}`)
     // console.log(result)
-    const result = {
-      status:{
-        code:2000
-      }
-    }
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
@@ -53,7 +48,7 @@ export class QuestionAnswerOne extends React.Component {
           },
           author: 'title' || result.content.author,
           editTime: 'title' || result.content.editTime,
-          answerList: [1,2,]||result.content.answerList,
+          answerList: result.content.answerList || [{id:1},{id:2}],
           focus: 123 || result.content.focus,
           reading: 123 || result.content.reading,
           status: {
@@ -121,7 +116,10 @@ export class QuestionAnswerOne extends React.Component {
                   </MDBCol>
                 </MDBRow>
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard type={2} key={item} id={item}></QuestionCard>
+                  <QuestionCard 
+                    type={1} 
+                    questionId={item.id} 
+                    key={item.id}></QuestionCard>
                 ))}
                 <MDBRow style={{
                   textAlign:'center',

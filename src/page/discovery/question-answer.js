@@ -3,7 +3,7 @@ import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
 import {QuestionCard} from '../../general-component/question-card';
-import {getAsync} from '../../tool/api-helper';
+// import {getAsync} from '../../tool/api-helper';
 import {Redirect} from "react-router-dom";
 
 export class QuestionAnswer extends React.Component {
@@ -13,23 +13,17 @@ export class QuestionAnswer extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/discovery/question-answer`)
+    // const result = await getAsync(`/discovery/question-answer`)
     // console.log(result)
+    const result = {
+      status:{
+        code:2000
+      }
+    }
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
-          id: result.id,
-          name: 'Summer 2019 Tech Internship',
-          tags: result.content.tags || ['tag1', 'tag2', 'tag3', 'tag4'],
-          content: {
-            title: result.content.title,
-            descrption: result.content.body
-          },
-          author: result.content.author,
-          editTime: result.content.editTime,
-          answerList: [1, 2,] || result.content.answerList,
-          focus: result.content.focus || 123,
-          reading: result.content.reading || 123,
+          questionId:[1,2,3,4],
           status: {
             code: result.status.code
           }
@@ -60,15 +54,11 @@ export class QuestionAnswer extends React.Component {
             fluid
             style={{padding: 0}}
           >
-            <MDBRow style={{margin: '1rem 0rem'}}>
-              <QuestionCard type={1}/>
-            </MDBRow>
-            <MDBRow style={{margin: '1rem 0rem'}}>
-              <QuestionCard type={1}/>
-            </MDBRow>
-            <MDBRow style={{margin: '1rem 0rem'}}>
-              <QuestionCard type={1}/>
-            </MDBRow>
+            {this.state.backend.questionId.map((item)=>(
+              <MDBRow key={item} style={{margin: '1rem 0rem'}}>
+                <QuestionCard questionId={item} type={0}/>
+              </MDBRow>
+            ))}
           </MDBContainer>
         )}
       </div>

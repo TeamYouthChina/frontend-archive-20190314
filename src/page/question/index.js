@@ -34,10 +34,9 @@ export class QuestionAnswer extends React.Component {
       let mockData =
         {
           id: result.content.id,
-          name: 'Summer 2019 Tech Internship',
-          tags: ['tag1', 'tag2', 'tag3', 'tag4'] || result.content.tags  ,
+          tags: ['互联网', '金融', '求职', '大学生'] || result.content.tags  ,
           content: {
-            title: result.content.title,
+            title: result.content.title||'标题',
             descrption: result.content.richTextDTO || '123'
           },
           author: result.content.creator,
@@ -75,7 +74,6 @@ export class QuestionAnswer extends React.Component {
         ) : (
           <div>
             <Header></Header>
-
             <MDBRow style={{marginTop:'10px'}}>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
@@ -94,9 +92,9 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="10">
                 {this.state.backend.answerList.map((item)=>(
                   <QuestionCard 
-                    type={2} 
-                    key={item.id} 
-                    answerData={item} title={this.state.backend.title}>
+                    type={1} 
+                    key={item.id}
+                    questionId={item.id} title={this.state.backend.title}>
                   </QuestionCard>
                 ))}
               </MDBCol>

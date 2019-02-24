@@ -33,18 +33,6 @@ export class AnswerQShort extends React.Component {
   componentWillMount() {
     let mockData =
       {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        // 下面四个从父组件传进来
-        tag: ['tag1', 'tag2', 'tag3', 'tag4'],
-        content: {
-          title: 'this is a title',
-          descrption: 'wen ti de miao shu'
-        },
-        user: '齐昊',
-        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        focus: 123,
-        reading: 123,
         status: {
           code: 2000
         }
