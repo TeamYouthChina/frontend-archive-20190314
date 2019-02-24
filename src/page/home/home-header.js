@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
+import Cookies from 'js-cookie';
 import {
   MDBCol,
   MDBCollapse,
@@ -28,6 +29,8 @@ import {
 import './public/style.css'
 import {HomeIntro} from "./home-intro";
 import {languageHelper} from "../../tool/language-helper";
+import {Logined} from "../../general-component/header/logined";
+import {UnLogin} from "../../general-component/header/unlogin";
 
 
 export class HomeHeader extends React.Component {
@@ -47,14 +50,7 @@ export class HomeHeader extends React.Component {
       collapsed: !this.state.collapsed
     });
   };
-
-  handleSearchBarClick = () => {
-    
-    this.setState({
-      searchBarClicked: true
-    });
-  };
-
+  
 
   render() {
    
@@ -89,7 +85,48 @@ export class HomeHeader extends React.Component {
               <MDBCollapse isOpen={this.state.collapse} navbar>
                 <MDBCol md="4">
                   <MDBNavbarNav>
-                    <MDBNavItem>
+                    <MDBNavItem
+                      to="#"
+                     
+                      onMouseEnter={
+                        () => {
+                          this.setState({
+                            hover: 1
+                          });
+                        }
+                      }
+                      onMouseLeave={
+                        () => {
+                          this.setState({
+                            hover: 0
+                          });
+                        }
+                      }
+
+                      style={this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
+                    >
+                      <MDBNavLink to="/#">
+                        求  职
+                      </MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem
+                      onMouseEnter={
+                        () => {
+                          this.setState({
+                            hover: 2
+                          });
+                        }
+                      }
+                      onMouseLeave={
+                        () => {
+                          this.setState({
+                            hover: 0
+                          });
+                        }
+                      }
+
+                      style={this.state.hover===2? {borderBottom: '4px solid #FFFFFF'} : null}
+                    >
                       <MDBDropdown>
                         <MDBDropdownToggle nav>
                           <div className="d-none d-md-inline">{this.text.discovery}</div>
@@ -109,42 +146,34 @@ export class HomeHeader extends React.Component {
                     </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCol>
-                <MDBNavbarNav>
+                <MDBNavbarNav left style={{width:'300px'}}>
                   <MDBNavLink to="/search/s1">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder={this.text.search}
-                      aria-label="Search"
-                    />
+                    <div className="d-flex flex-row ">
+                      <div className="flex-fill align-self-center mx-3">
+                        <MDBIcon icon="search" size="2x" className="white-text"/>
+                      </div>
+                      <div className="flex-fill">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="搜索"
+                          aria-label="Search"
+                        />
+                      </div>
+                    </div>
+
                   </MDBNavLink>
                 </MDBNavbarNav>
-                <MDBNavbarNav right style={{marginRight: '0.5em'}}>
-                  <MDBNavItem className="align-middle">
-                    <MDBIcon icon="bell" className="white-text" />
-                  </MDBNavItem>
-                </MDBNavbarNav>
-                <MDBNavbarNav right style={{marginRight: '5em'}}>
-                  <MDBNavItem style={{width: '45px', height: '45px'}} className="p-0 mx-2 align-middle">
-                    <img
-                      src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
-                      className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
-                      alt="Sample avatar"
-                    />
-                  </MDBNavItem>
-                  <MDBNavItem style={{marginTop: '5px'}}>
-                    <MDBDropdown>
-                      <MDBDropdownToggle nav>
-                        <p className="h6">Zhicheng</p>
-                      </MDBDropdownToggle>
-                      <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop: '20px'}}>
-                        <MDBDropdownItem href="/applicant">个人主页</MDBDropdownItem>
-                        <MDBDropdownItem href="/">我的消息</MDBDropdownItem>
-                        <MDBDropdownItem href="#!">退出</MDBDropdownItem>
-                      </MDBDropdownMenu>
-                    </MDBDropdown>
-                  </MDBNavItem>
-                </MDBNavbarNav>
+                <div className="d-flex flex-row">
+                  {
+                    Cookies.get("avatar") ? (
+                      <UnLogin/>
+                    ):(
+                      <Logined/>
+                    )
+                  }
+
+                </div>
               </MDBCollapse>
             </MDBNavbar>
             {this.state.collapsed && overlay}

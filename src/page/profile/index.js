@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {languageHelper} from '../../tool/language-helper';
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 
 export class Profile extends React.Component {
