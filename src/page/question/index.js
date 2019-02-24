@@ -27,21 +27,21 @@ export class QuestionAnswer extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/question/${this.props.match.params.questionId}`)
+    const result = await getAsync(`/questions/${this.props.match.params.questionId}`)
     // console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
-          id: result.id,
+          id: result.content.id,
           name: 'Summer 2019 Tech Internship',
           tags: result.content.tags || ['tag1', 'tag2', 'tag3', 'tag4'],
           content: {
             title: result.content.title,
-            descrption: result.content.body
+            descrption: result.content.richTextDTO || '123'
           },
-          author: result.content.author,
+          author: result.content.creator,
           editTime: result.content.editTime,
-          answerList: [1,2,]||result.content.answerList,
+          answerList: result.content.answers,
           focus: result.content.focus || 123,
           reading: result.content.reading || 123,
           status: {
@@ -91,7 +91,11 @@ export class QuestionAnswer extends React.Component {
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard type={2} key={item} id={item}></QuestionCard>
+                  <QuestionCard 
+                    type={2} 
+                    key={item.id} 
+                    answerData={item} title={this.state.backend.title}>
+                  </QuestionCard>
                 ))}
               </MDBCol>
             </MDBRow>

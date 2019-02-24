@@ -31,8 +31,6 @@ export class Job extends React.Component {
     this.text = Job.i18n[languageHelper()];
   }
 
-  
-
   render() {
 
     return  (

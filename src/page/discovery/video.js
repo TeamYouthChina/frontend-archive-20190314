@@ -3,6 +3,8 @@ import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBCol, MDBRow} from 'mdbreact';
 import {VideoCard} from "../../general-component/video-card";
+import {getAsync} from "../../tool/api-helper";
+import {Redirect} from "react-router-dom";
 
 export class Video extends React.Component {
   constructor(props) {
@@ -10,28 +12,60 @@ export class Video extends React.Component {
     this.text = Video.i18n[languageHelper()];
   }
 
+  async componentDidMount() {
+    const result = await getAsync(`/discovery/video`)
+    // console.log(result)
+    if (result && result.status && result.status.code === 2000) {
+      let mockData =
+        {
+          status: {
+            code: result.status.code
+          }
+        };
+      this.setState(() => {
+        return {backend: mockData};
+      });
+    } else {
+      let mockData = {
+        status: result.status
+      }
+      this.setState(() => {
+        return {backend: mockData};
+      });
+    }
+  }
+
   render() {
-    return (
-      <MDBContainer
-        fluid
-        style={{padding: 0}}
-      >
-        <MDBRow>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    );
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+      <div>
+        {/*有状态码且为2000时候才渲染*/}
+        {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
+          <div>
+            <Redirect to="/404"></Redirect>
+          </div>
+        ) : (
+          <MDBContainer
+            fluid
+            style={{padding: 0}}
+          >
+            <MDBRow>
+              <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+                <VideoCard/>
+              </MDBCol>
+              <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+                <VideoCard/>
+              </MDBCol>
+              <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+                <VideoCard/>
+              </MDBCol>
+              <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+                <VideoCard/>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        )}
+      </div>
+    ) : null;
   }
 }
 
