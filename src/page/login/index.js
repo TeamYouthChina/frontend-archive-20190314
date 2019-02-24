@@ -112,7 +112,9 @@ export class Login extends React.Component {
     return (
       <div>
         <Header/>
-
+        {this.state.ifRedirect ?
+          <Redirect to="/best-for-you"/> : null
+        }
         <MDBContainer>
           <MDBModal isOpen={this.state.modalDisplay} toggle={this.toggleModal} centered>
             <MDBModalBody>
@@ -220,9 +222,6 @@ export class Login extends React.Component {
                           style={{backgroundColor: '#7C97B8'}}>
                           登录
                         </MDBBtn>
-                        {this.state.ifRedirect ?
-                          <Redirect to="/best-for-you"/> : null
-                        }
                       </div>
                     </form>
                     <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
