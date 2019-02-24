@@ -2,6 +2,8 @@ import React from 'react';
 import {Redirect, withRouter} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import queryString from 'query-string';
+
 import {
   MDBContainer,
   MDBRow,
@@ -69,8 +71,8 @@ export class Login extends React.Component {
       // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
       Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
       // login success: --> /best-for-you
-      this.props.history.push('/best-for-you');
-
+      const to = queryString.parse(this.props.location.search).to;
+      this.props.history.push(to ? to : '/best-for-you');
       //if login success, set ifRedirect value to be true and re-render the page.
       if (Cookies.get('token')) {
         this.setState({ifRedirect: true});
@@ -180,17 +182,17 @@ export class Login extends React.Component {
                         onChange={this.handleChange}
                         required
                       />
-                        {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
+                      {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
                       {/*</MDBInput>*/}
                       <div style={{position: 'relative'}}>
                         <MDBInput
                           label="密码"
                           name='password'
-                          group type={this.state.type} 
+                          group type={this.state.type}
                           onChange={this.handleChange}
                           required
                         />
-                          {/*<div className="invalid-tooltip">请输入密码</div>*/}
+                        {/*<div className="invalid-tooltip">请输入密码</div>*/}
                         {/*</MDBInput>*/}
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
