@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 import {
   MDBCol,
@@ -85,7 +86,7 @@ export class Header extends React.Component {
                   style={this.state.chosen === 1 || this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBNavLink to="/">
-                    主 页
+                    求  职
                   </MDBNavLink>
                 </MDBNavItem>
                 
@@ -140,12 +141,21 @@ export class Header extends React.Component {
             </MDBCol>
             <MDBNavbarNav>
               <MDBNavLink to="/search/s1">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="搜索"
-                  aria-label="Search"
-                />
+                <div className="d-flex flex-row ">
+                  <div className="flex-fill align-self-center mx-3">
+                    <MDBIcon icon="search" size="2x"/>
+                  </div>
+                  <div className="flex-fill">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="搜索"
+                      aria-label="Search"
+                    />
+                  </div>
+                </div>
+                
+               
               </MDBNavLink>
             </MDBNavbarNav>
             <MDBNavbarNav right style={{marginRight: '0.5em'}}>
@@ -154,18 +164,14 @@ export class Header extends React.Component {
               </MDBNavItem>
             </MDBNavbarNav>
             <MDBNavbarNav right style={{marginRight: '5em'}}>
-              <MDBNavItem style={{width:'45px',height:'45px'}} className="p-0 mx-2 align-middle">
-                
-                <img
-                  src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
-                  className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
-                  alt="Sample avatar"
-                />
-              </MDBNavItem>
-              <MDBNavItem style={{marginTop:'5px'}}>
+              <MDBNavItem style={{width:'60px',height:'60px'}} className="p-0 mx-2 align-middle">
                 <MDBDropdown>
                   <MDBDropdownToggle nav>
-                    <p className="h6">Zhicheng</p>
+                    <img
+                      src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                      className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
+                      alt="Sample avatar"
+                    />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
                     <MDBDropdownItem href="/applicant">个人主页</MDBDropdownItem>
@@ -173,6 +179,7 @@ export class Header extends React.Component {
                     <MDBDropdownItem href="#!">退出</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
+               
               </MDBNavItem>
             </MDBNavbarNav>
           </MDBNavbar>

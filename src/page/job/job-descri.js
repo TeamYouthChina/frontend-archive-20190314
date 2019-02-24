@@ -10,6 +10,7 @@ import {
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {getAsync} from "../../tool/api-helper";
+import {JobCardSquare} from "../../general-component/job-card-square";
 
 export class JobDescri extends React.Component {
   constructor(props) {
@@ -25,16 +26,17 @@ export class JobDescri extends React.Component {
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/job/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/job/1`)
+        backend: await getAsync(`/jobs/1`)
       });
     }
   }
+ 
   render() {
-
+   
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
@@ -43,8 +45,29 @@ export class JobDescri extends React.Component {
             <h4>
               <strong>职位描述</strong>
             </h4>
+            <h6>
+              <strong>
+                岗位职责：
+              </strong>
+            </h6>
             <p>
-              {this.state.backend.content.organization.note}
+              {this.state.backend.content.jobDuty}
+              
+            </p>
+            <h6>
+              <strong>
+                任职要求：
+              </strong>
+            </h6>
+            <p>
+              <ul className="list-unstyled">
+                {
+                  this.state.backend.content.jobReqList.map(
+                    (item) =>
+                      <li key={item}>{item.degreeNum}</li>
+                  )
+                }
+              </ul>
             </p>
           </MDBCol>
         </MDBRow>
