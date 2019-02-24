@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 import {Redirect} from 'react-router-dom';
 
 import {
@@ -25,34 +26,45 @@ export class Login extends React.Component {
     this.text = Login.i18n[languageHelper()];
     this.state = {
       submitted: false,
-      type: 'password'
+      type: 'password',
+      ifRedirect: false, // ifRedirect indicates if the browser should go to the 'best-for-you' page.
+      id: '',
+      password: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   async componentDidMount() {
-    // const frontend = await postAsync('/login', {
-    //   id: '1',
-    //   password: '123456'
-    // });
-    // console.log('frontend', frontend);
+    //if token exist, set ifRedirect value to be true and re-render the page.
+    if (Cookies.get('token')) {
+      this.setState({
+        ifRedirect: true
+      });
+    };
   }
 
   handleLoginSubmit = async (event) => {
 
     event.preventDefault();
-
-    const data = new FormData(event.target);
-
-    const result = await postAsync('/login', data);
+    event.target.className += " was-validated";
+    
+    const result = await postAsync('/login', {
+      id: this.state.id,
+      password: this.state.password
+    });
+    
     console.log('Result', result);
+
+    //if login success, set ifRedirect value to be true and re-render the page.
+    if(Cookies.get('token')) {
+      this.setState({ifRedirect: true});
+    }
   };
 
   handleChange = (event) => {
     this.setState({
-      email: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -118,20 +130,35 @@ export class Login extends React.Component {
                         </p>
                       </Animation>
                     </div>
-                    <form onSubmit={this.handleLoginSubmit}>
+                    <form
+                      // className="needs-validation"
+                      onSubmit={this.handleLoginSubmit}
+                      // noValidate
+                    >
                       <MDBInput
                         label="邮箱"
-                        // name='email'
+                        name='id'
+                        className={this.state.id.length > 0 ? "form-control is-valid" : "form-control is-invalid"}
                         group type="text"
                         validate error="wrong" success="right"
                         onChange={this.handleChange}
+                        required
                       />
+                      {/*<div className="valid-feedback">*/}
+                        {/*Please provide a valid email.*/}
+                      {/*</div>*/}
+                        {/*<div className="invalid-tooltip">请输入邮箱</div>*/}
+                      {/*</MDBInput>*/}
                       <div style={{position: 'relative'}}>
                         <MDBInput
                           label="密码"
-                          // name='password'
+                          name='password'
                           group type={this.state.type} validate
+                          onChange={this.handleChange}
+                          required
                         />
+                          {/*<div className="invalid-tooltip">请输入密码</div>*/}
+                        {/*</MDBInput>*/}
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
                           right: '20px',
@@ -156,6 +183,9 @@ export class Login extends React.Component {
                           style={{backgroundColor: '#7C97B8'}}>
                           登录
                         </MDBBtn>
+                        {this.state.ifRedirect ?
+                          <Redirect to="/best-for-you"/> : null
+                        }
                       </div>
                     </form>
                     <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
