@@ -20,6 +20,7 @@ import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {postAsync} from "../../tool/api-helper";
+import Cookies from "js-cookie";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -27,22 +28,63 @@ export class Register extends React.Component {
 
     this.state = {
       modal: false,
-      type: 'password'
+      type: 'password',
+      userInfo: {
+        username: 'Yorick',
+        date_of_birth: '1994-04-18',
+        password: '',
+        phone_number: '',
+        email: '',
+        nation: 'China',
+        gender: 'male',
+        age: 18
+      },
+      ifRedirect: false
     }
 
     this.text = Register.i18n[languageHelper()];
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleRegisterSubmit = (event) => {
-
+  handleRegisterSubmit = async (event) => {
     event.preventDefault();
+    
+    const backend = await postAsync('/applicants/register', {
+      username:      this.state.userInfo.username,
+      date_of_birth: this.state.userInfo.date_of_birth,
+      password:      this.state.userInfo.password,
+      phone_number:  this.state.userInfo.phone_number,
+      email:         this.state.userInfo.email,
+      nation:        this.state.userInfo.nation,
+      gender:        this.state.userInfo.gender,
+      age:           this.state.userInfo.age
+    });
+    
+    if (backend && backend.status && backend.status.code === 2000) {
+      // Cookies.set('id', backend.content.id, {expires: 1});
+      // Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
+      // register success: --> /login
+      this.props.history.push('/login');
 
-    const data = new FormData(event.target);
-    // console.log('success');
-
-    postAsync('/applicants/register', data).then(json => console.log(json));
+      //if register success, set ifRedirect value to be true and re-render the page.
+        this.setState({ifRedirect: true});
+    } else {
+      // register fail
+      console.log(backend);
+    }
   };
 
+  async handleChange(event) {
+    this.setState({userInfo:{
+        [event.target.name]: event.target.value
+      }
+    });
+    
+    // test input
+    console.log(this.state.userInfo[event.target.name]);
+    console.log(typeof this.state.userInfo[event.target.name])
+  }
+  
   showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -70,6 +112,10 @@ export class Register extends React.Component {
         fluid
         style={{padding: 0}}
       >
+        {/*redirect to the login page*/}
+        {this.state.ifRedirect ?
+          <Redirect to="/login"/> : null
+        }
         <Header/>
         <Animation type="fadeIn" duration="5s">
 
@@ -114,20 +160,24 @@ export class Register extends React.Component {
                         </p>
                       </Animation>
                     </div>
-                    <form>
+                    <form onSubmit={this.handleRegisterSubmit}>
                       <MDBInput
                         label="邮箱"
                         group
-                        type="email"
+                        type="text"
                         validate
                         error="wrong"
                         success="right"
+                        onChange={this.handleChange}
+                        required
                       />
                       <MDBInput
                         label="手机号"
                         group
                         type="text"
                         validate
+                        onChange={this.handleChange}
+                        required
                       />
                       <div style={{position: 'relative'}}>
                         <MDBInput
@@ -135,6 +185,8 @@ export class Register extends React.Component {
                           group
                           type={this.state.type}
                           validate
+                          onChange={this.handleChange}
+                          required
                         />
                         <span onClick={this.showHidePasswd} style={{
                           position: 'absolute',
@@ -150,10 +202,13 @@ export class Register extends React.Component {
                       <div className="text-center mb-3">
                         <MDBBtn
                           className="btn-block z-depth-1a"
+                          type="submit"
                           color={btnColor}
                           style={{
                             backgroundColor: '#7C97B8'
-                          }} onClick={() => (this.toggleUserInfo())}>
+                          }}
+                          // onClick={() => (this.toggleUserInfo())}
+                        >
                           注册
                         </MDBBtn>
                       </div>
