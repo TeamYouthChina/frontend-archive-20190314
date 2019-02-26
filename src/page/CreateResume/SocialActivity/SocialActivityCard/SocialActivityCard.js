@@ -68,41 +68,82 @@ class SocialActivityCard extends Component{
     }
 
     render(){
-        let toShow =
-            <div className={classes.SocialActivityCard}>
-                <img src={socialActivityIcon} alt="no img"></img>
-                <div className={classes.ActivityInfo}>
-                    <input disabled type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
-                    <input disabled type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
-                    <div>
-                        <input disabled type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
-                        <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
+        if(this.props.modal){
+            let toShow =
+                <div className={classes.SocialActivityCard}>
+                    <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
+                    <img src={socialActivityIcon} alt="no img"></img>
+                    <div className={classes.ActivityInfo}>
+                        <input disabled type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
+                        <div>
+                            <input disabled type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
+                            <p> - </p>
+                            <input disabled type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
+                        </div>
+                        <input disabled type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
                     </div>
-                    <input disabled type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
-                </div>
-                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-            </div>;
-        
-        if(this.state.editing){
-            toShow = 
+                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+                </div>;
+            
+            if(this.state.editing){
+                toShow = 
+                    <div className={classes.SocialActivityCard}>
+                        <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>                        
+                        <img src={socialActivityIcon} alt="no img"></img>
+                        <div className={classes.ActivityInfo}>
+                            <input type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
+                            <input type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
+                            <div>
+                                <input type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
+                                <p> - </p>
+                                <input type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
+                            </div>
+                            <input type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
+                        </div>
+                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+                    </div>
+            }
+
+            return (toShow)
+        }
+        else {
+            let toShow =
                 <div className={classes.SocialActivityCard}>
                     <img src={socialActivityIcon} alt="no img"></img>
                     <div className={classes.ActivityInfo}>
-                        <input type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
-                        <input type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
                         <div>
-                            <input type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
+                            <input disabled type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
+                            <input disabled type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
                         </div>
-                        <input type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
+                        <input disabled type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
                     </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                </div>
-        }
+                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+                </div>;
+            
+            if(this.state.editing){
+                toShow = 
+                    <div className={classes.SocialActivityCard}>
+                        <img src={socialActivityIcon} alt="no img"></img>
+                        <div className={classes.ActivityInfo}>
+                            <input type="text" defaultValue={this.state.socialData.name} ref={this.nameRef}/>
+                            <input type="text" defaultValue={this.state.socialData.organization} ref={this.orgRef}/>
+                            <div>
+                                <input type="text" defaultValue={this.state.socialData.duration.begin} ref={this.beginRef}/>
+                                <p> - </p>
+                                <input type="text" defaultValue={this.state.socialData.duration.end} ref={this.endRef}/>
+                            </div>
+                            <input type="text" defaultValue={this.state.socialData.note} ref={this.noteRef}/>
+                        </div>
+                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+                    </div>
+            }
 
-        return (toShow)
+            return (toShow)
+        }
     }
 };
 

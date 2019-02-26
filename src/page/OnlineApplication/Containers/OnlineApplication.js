@@ -4,7 +4,7 @@ import {languageHelper} from '../../../tool/language-helper';
 import TopBar from '../Components/TopBar/topBar';
 import Prompts from '../Components/Prompts/prompts';
 import Resumes from '../Components/Resumes/resumes';
-import {Header} from '../../../general-component/header';
+import {Header} from '../../../general-component/header/header';
 import {Footer} from '../../../general-component/footer';
 import Submit from '../Components/Submit/submit';
 

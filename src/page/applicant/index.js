@@ -6,13 +6,15 @@ import {
   MDBBtn,
 
 } from 'mdbreact';
+import Cookies from 'js-cookie'
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from "../../general-component/header";
+import {Header} from "../../general-component/header/header";
 import {Footer} from "../../general-component/footer";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
 import {AppTable} from "./application/apptable";
 import {Collection} from "./collection";
+import MainBody from '../ProfileNew/Components/MainBody/MainBody'
 
 
 export class Applicant extends React.Component {
@@ -51,10 +53,16 @@ export class Applicant extends React.Component {
                     >我的申请</MDBBtn>
                   </p>
                   <p >
-                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>个人档案库</MDBBtn>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}
+                  
+                  }
+                  href={`${this.props.match.url}/profile` }
+                  flat>个人档案库</MDBBtn>
                   </p>
                   <p>
-                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>我的简历</MDBBtn>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} 
+                    
+                    flat>我的简历</MDBBtn>
                   </p>
                   <p>
                     <MDBBtn
@@ -90,9 +98,9 @@ export class Applicant extends React.Component {
                   />
                   <Route
                     path={`${this.props.match.url}/profile/:id`}
-                    component={routeProps => null}
+                    component={routeProps => <MainBody {...routeProps}/>}
                   />
-                  <Redirect to={`${this.props.match.url}/application`}/>
+                  <Redirect to={`${this.props.match.url}/profile/${Cookies.get('id')}`}/>
                 </Switch>
               </div>
             </div>
