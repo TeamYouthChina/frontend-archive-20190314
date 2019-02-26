@@ -25,51 +25,42 @@ import Cookies from "js-cookie";
 export class Register extends React.Component {
   constructor(props) {
     super(props);
-
+    this.text = Register.i18n[languageHelper()];
     this.state = {
       modal: false,
       type: 'password',
-      userInfo: {
-        username: 'Yorick',
-        date_of_birth: '1994-04-18',
-        password: '',
-        phone_number: '',
-        email: '',
-        nation: 'China',
-        gender: 'male',
-        age: 18
-      },
+      password: '',
+      phone_number: '',
+      email: '',
       ifRedirect: false
-    }
+    };
 
-    this.text = Register.i18n[languageHelper()];
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleRegisterSubmit = async (event) => {
     event.preventDefault();
-    // console.log(this.state.userInfo.email);
     
     const backend = await postAsync('/applicants/register', {
-      username: this.state.userInfo.username,
-      date_of_birth: this.state.userInfo.date_of_birth,
-      password: this.state.userInfo.password,
-      phone_number: this.state.userInfo.phone_number,
-      email: this.state.userInfo.email,
-      nation: this.state.userInfo.nation,
-      gender: this.state.userInfo.gender,
-      age: this.state.userInfo.age
+      //some user info are temporally fixed
+      username: 'Yorick',
+      date_of_birth: '1994-04-18',
+      password: this.state.password,
+      phone_number: this.state.phone_number,
+      email: this.state.email,
+      nation: 'China',
+      gender: 'male',
+      age: 18
     });
-    
+
     if (backend && backend.status && backend.status.code === 2000) {
-      Cookies.set('id', backend.content.id, {expires: 1});
-      // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
-      Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
+      // Cookies.set('id', backend.content.id, {expires: 1});
+      // Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
       // register success: --> /login
-      this.props.history.push('/login');
+      // this.props.history.push('/login');
 
       //if register success, set ifRedirect value to be true and re-render the page.
-        this.setState({ifRedirect: true});
+      this.setState({ifRedirect: true});
     } else {
       // register fail
       console.log(backend);
@@ -77,15 +68,12 @@ export class Register extends React.Component {
   };
 
   async handleChange(event) {
-    this.setState({userInfo:{
-        [event.target.name]: event.target.value
-      }
+    this.setState({
+      [event.target.name]: event.target.value
     });
-    
-    // test input
-    // console.log(this.state.userInfo[event.target.name]);
   }
-  
+
+  //switch password text field between text and password (hidden).
   showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -94,6 +82,7 @@ export class Register extends React.Component {
     })
   };
 
+  //handle whether allows user to fill out information or not
   toggleUserInfo = () => {
     this.setState({
       modal: !this.state.modal
@@ -102,7 +91,7 @@ export class Register extends React.Component {
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
-    const btnColor = '#7C97B8';
+    const btnColor = '#31394D';
 
     if (pathname) {
       return (<Redirect to={pathname}/>);
@@ -113,9 +102,13 @@ export class Register extends React.Component {
         fluid
         style={{padding: 0}}
       >
-        {/*redirect to the login page*/}
+        {/*if register success, redirect to the login page*/}
         {this.state.ifRedirect ?
           <Redirect to="/login"/> : null
+        }
+        {/*if token exist, redirect to the home page*/}
+        {
+          Cookies.get('token') ? <Redirect to="/"/> : null
         }
         <Header/>
         <Animation type="fadeIn" duration="5s">
@@ -165,16 +158,19 @@ export class Register extends React.Component {
                       <MDBInput
                         label="邮箱"
                         group
-                        type="email"
+                        name="email"
+                        type="text"
                         validate
                         error="wrong"
                         success="right"
                         onChange={this.handleChange}
+                        value={this.state.email}
                         required
                       />
                       <MDBInput
                         label="手机号"
                         group
+                        name="phone_number"
                         type="text"
                         validate
                         onChange={this.handleChange}
@@ -184,6 +180,7 @@ export class Register extends React.Component {
                         <MDBInput
                           label="密码"
                           group
+                          name="password"
                           type={this.state.type}
                           validate
                           onChange={this.handleChange}
@@ -198,7 +195,7 @@ export class Register extends React.Component {
                         {this.state.type === 'text' ?
                           <MDBIcon icon="eye"/> :
                           <MDBIcon flip="horizontal" icon="eye-slash"/>}
-                      </span>
+                        </span>
                       </div>
                       <div className="text-center mb-3">
                         <MDBBtn
@@ -206,7 +203,7 @@ export class Register extends React.Component {
                           type="submit"
                           color={btnColor}
                           style={{
-                            backgroundColor: '#7C97B8'
+                            backgroundColor: '#31394D'
                           }}
                           // onClick={() => (this.toggleUserInfo())}
                         >
