@@ -5,6 +5,8 @@ import { MDBBtn } from "mdbreact";
 import CertificationCard from './CertificationCard/CertificationCard';
 import classes from './Certification.module.css';
 import {getAsync} from '../../../tool/api-helper';
+import ModalPage from '../Modal/Modal';
+
 
 
 const MDBButtonStyle = {
@@ -23,6 +25,8 @@ class Certification extends Component{
             cards: Array(), 
             flipper: true,
             requestedData: null,
+            cardShown: Array(),
+            cardsToModal: []
         }
         this.date = null;
     }
@@ -30,8 +34,8 @@ class Certification extends Component{
     // get work data set requestedData and cards in state
     async componentDidMount(){
         let data = await getAsync('/applicants/'+this.props.requestID+'/certificates');
-        this.setState({requestedData: data});
-        let temp = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
+        this.setState({...this.state, requestedData: data});
+        let temp1 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
             ? this.state.requestedData.content.map((e)=>{
                 this.date = new Date();
                 const time = this.date.getTime();
@@ -43,7 +47,25 @@ class Certification extends Component{
                     saveHandler={this.saveHandler}/>
             })
             : Array();
-        this.setState({cards: temp});
+        
+            let temp2 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
+            ? this.state.requestedData.content.map((e)=>{
+                this.date = new Date();
+                const time = this.date.getTime();
+                return <CertificationCard 
+                    key={time} 
+                    id={time} 
+                    data={e} 
+                    deleteHandler={this.deleteHandler}
+                    saveHandler={this.saveHandler}/>
+            })
+            : Array();
+
+            this.setState({
+                ...this.state,
+                cards: temp1,
+                cardsToModal: temp2
+            });
     }
 
     async componentDidUpdate(){
@@ -52,22 +74,28 @@ class Certification extends Component{
     // delte data on server, delete data in state.cards
     deleteHandler = (id) => {
         // TODO: delete data on server according to id
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.forEach((e,i)=>{
-            if(e.key == id){
-                temp.splice(i,1);
-                return;
+        let temp = this.state.cardShown.filter((e,i)=>(
+            e.id == id
+        ));
+
+        let copy;
+        this.state.cards.forEach((e,i)=>{
+            if(e.props.id == id){
+                copy = React.cloneElement(e);
             }
         })
+
+        let temp2 = this.state.cardsToModal.concat(copy);
         this.setState({
-            cards: temp,
+            ...this.state,
+            cardShown: temp,
+            cardsToModal: temp2,
             flipper: !this.state.flipper
         },()=>{
             // prepare the data to be sent back to server
-            let dataToSend = this.state.cards.map((e)=>{
-                return e.props.data;
-            })
+            // let dataToSend = this.state.cards.map((e)=>{
+            //     return e.props.data;
+            // })
         });
     }
 
@@ -78,65 +106,80 @@ class Certification extends Component{
         // timestamp
         this.date = new Date();
         const time = this.date.getTime();
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.forEach((e,i)=>{
-            if(e.key == id){
-                temp.splice(i,1,<CertificationCard
-                    key={time} 
-                    id={time} 
-                    data={newCertification}
-                    deleteHandler={this.deleteHandler}
-                    saveHandler={this.saveHandler}/>);
-                return;
+        let tempCards = this.state.cards.map((e,i)=>{
+            if(e.props.id == id){
+                return (
+                    <CertificationCard 
+                        key={time} 
+                        id={time} 
+                        data={newCertification}
+                        deleteHandler={this.deleteHandler}
+                        saveHandler={this.saveHandler}/>
+                )  
             }
+            return e;
         })
+        let tempCardShown = this.state.cardShown.map((e,i)=>{
+            if(e.props.id == id){
+                return (
+                    <CertificationCard 
+                        key={time} 
+                        id={time} 
+                        data={newCertification}
+                        deleteHandler={this.deleteHandler}
+                        saveHandler={this.saveHandler}/>
+                )  
+            }
+            return e;
+        })
+
         this.setState({
-            cards: temp,
+            cards: tempCards,
+            cardShown: tempCardShown,
             flipper: !this.state.flipper
         },()=>{
             // prepare data to be sent back to server
-            let dataToSend = this.state.cards.map((e)=>{
-                return e.props.data;
-            })
+            // let dataToSend = this.state.cards.map((e)=>{
+            //     return e.props.data;
+            // })
         });
     }
 
     // addhandler only create a empty cards in state.cards
     // update the data in server and local happens in saveHandler
-    addHandler = () => {
-        // timestamp
-        this.date = new Date();
-        const time = this.date.getTime();
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.push(<CertificationCard 
-            key={time} 
-            id={time} 
-            deleteHandler={this.deleteHandler}
-            saveHandler={this.saveHandler}/>)
+    addHandler = (id) => {
+        let copy;
+        this.state.cards.forEach((e,i)=>{
+            if(e.props.id == id){
+                copy = React.cloneElement(e);
+            }
+        })
+        let temp1 = this.state.cardShown.concat(copy);
+
+        let temp2 = this.state.cardsToModal.filter((e,i)=>(
+            e.props.id ==! id
+        ))
         this.setState({
-            cards: temp,
-            flipper: !this.state.flipper});
-        
+            ...this.state,
+            cardShown: temp1,
+            cardsToModal: temp2,
+            flipper: !this.state.flipper
+        },()=>{});
     }
 
     render(){
         let toShow;
-        if(this.state.cards.length == 0){
+        if(this.state.cardShown.length == 0){
             toShow = 
                 <div className={classes.Certification}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Certification</p>
                     </div>
                     <p>no certification</p>
-                    <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Certification
-                    </MDBBtn>
+                    <ModalPage 
+                        requestID={this.props.requestID}
+                        cards={this.state.cardsToModal}
+                        addHandler={this.addHandler}/>
                 </div>;
         }
         else {
@@ -145,14 +188,11 @@ class Certification extends Component{
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Certification</p>
                     </div>
-                    {this.state.cards}
-                    <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Certification
-                    </MDBBtn>
+                    {this.state.cardShown}
+                    <ModalPage 
+                        requestID={this.props.requestID}
+                        cards={this.state.cardsToModal}
+                        addHandler={this.addHandler}/>
                 </div>
         }
         return(toShow);

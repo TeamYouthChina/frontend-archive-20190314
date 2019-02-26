@@ -26,7 +26,7 @@ import {
   MDBIcon
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {SearchJobResult} from "./search-job";
 import {SearchCompanyResult} from './search-company';
