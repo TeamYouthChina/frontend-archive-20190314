@@ -9,7 +9,7 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
 import {QuestionBar} from './question-side-bar'

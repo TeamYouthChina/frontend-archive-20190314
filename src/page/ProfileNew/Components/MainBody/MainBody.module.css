@@ -1,6 +1,6 @@
-git .MainBody {
+.MainBody {
     display: flex;
     flex-direction: column;
     /* background-color: greenyellow; */
-    width: 800px;
+    width: 850px;
 }

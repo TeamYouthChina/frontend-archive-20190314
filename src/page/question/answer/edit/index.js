@@ -8,7 +8,7 @@ import {
 } from 'mdbreact';
 import {AnswerEditInit} from '../answerEditInit';
 // import './public/style.css';
-import {Header} from '../../../../general-component/header';
+import {Header} from '../../../../general-component/header/header';
 import {Footer} from '../../../../general-component/footer';
 import {AnswerQShort} from "../answerQShort";
 const basicFont = {

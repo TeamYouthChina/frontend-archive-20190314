@@ -11,7 +11,8 @@ import {
 import {AnswerEditInit} from '../answerEditInit';
 import {AnswerQShort} from '../answerQShort';
 import {getAsync} from "../../../../tool/api-helper";
-import {Header} from '../../../../general-component/header';
+// import './public/style.css';
+import {Header} from '../../../../general-component/header/header';
 import {Footer} from '../../../../general-component/footer';
 
 const basicFont = {

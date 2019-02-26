@@ -13,7 +13,7 @@ import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import CoDetail from '../company/company-detail';
 import {CareerCard} from '../../general-component/career-card';
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 
 
 

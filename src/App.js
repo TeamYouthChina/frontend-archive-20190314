@@ -40,7 +40,6 @@ import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
 import VideoUploadMobile from './page/mobile/video-upload-mobile';
 
 
-
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
 import {Mypage} from './page/trash/mypage';
@@ -59,6 +58,7 @@ import {MobileTest2} from './page/trash/mobile-test-2';
 import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
 import {Applicant} from "./page/applicant";
+import {Logout} from './logout';
 
 
 export class App extends Component {
@@ -135,6 +135,10 @@ export class App extends Component {
             <Route
               path="/login"
               component={routeProps => <Login {...routeProps} />}
+            />
+            <Route
+              path="/logout"
+              component={routeProps => <Logout {...routeProps} />}
             />
             <Route
               path="/message"
