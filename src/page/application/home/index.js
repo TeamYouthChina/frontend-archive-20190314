@@ -10,7 +10,7 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {Header} from '../../../general-component/header/header';
+import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 import {ResumeTitle} from '../../../general-component/resumeTitle';
 import {getAsync} from '../../../tool/api-helper'

@@ -15,7 +15,7 @@ import {
 
 // import './public/style.css';
 
-import {Header} from '../../../general-component/header/header';
+import {Header} from '../../../general-component/header';
 import {Footer} from '../../../general-component/footer';
 import {CommentsCard} from '../../question/comment-test';
 import {PaginationUse} from '../../question/pagination-test';

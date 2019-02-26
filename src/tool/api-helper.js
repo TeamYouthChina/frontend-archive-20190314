@@ -4,8 +4,7 @@ import fetch from 'isomorphic-fetch';
 const mock = 'http://47.254.46.117:4000';
 const production = 'http://47.254.46.117:8080/api/v1';
 
-// const urlPrefix = production;
-const urlPrefix = mock;
+const urlPrefix = production;
 
 const generateHeaders = () => {
   let language = Cookies.get('language');

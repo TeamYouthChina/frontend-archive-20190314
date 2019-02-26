@@ -7,7 +7,7 @@ import {
 
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import {Footer} from "../../general-component/footer";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";

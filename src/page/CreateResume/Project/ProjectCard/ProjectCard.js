@@ -61,10 +61,8 @@ class projectCard extends Component {
 
     render(){
 
-        if(this.props.modal){
-            let toShow =
-                    <div className={classes.ProjectCard}>
-                        <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>                        
+        let toShow =
+                <div className={classes.ProjectCard}>
                         <input disabled type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
                         <div className={classes.Time}>
                             <input disabled type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
@@ -72,53 +70,23 @@ class projectCard extends Component {
                             <input disabled type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
                         </div>
                         <input disabled type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                    </div>;
-
-            if(this.state.editing){
-            toShow = 
-                <div className={classes.ProjectCard}>
-                    <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
-                    <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
-                    <div className={classes.Time}>
-                        <input type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
-                        <p> - </p>
-                        <input type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
-                    </div>
-                    <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                </div>
-            }
-            return( toShow )
-        }
-        else {
-            let toShow =
-                <div className={classes.ProjectCard}>
-                    <input disabled type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
-                    <div className={classes.Time}>
-                        <input disabled type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
-                        <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
-                    </div>
-                    <input disabled type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
                     <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
                 </div>;
 
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.ProjectCard}>
-                        <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
-                        <div className={classes.Time}>
-                            <input type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
-                            <p> - </p>
-                            <input type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
-                        </div>
-                        <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>
-            }
-            return( toShow )
+        if(this.state.editing){
+        toShow = 
+            <div className={classes.ProjectCard}>
+                <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
+                <div className={classes.Time}>
+                    <input type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
+                    <p> - </p>
+                    <input type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
+                </div>
+                <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
+                <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+            </div>
         }
+        return( toShow )
     }
 }
 

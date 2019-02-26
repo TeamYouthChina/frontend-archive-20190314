@@ -42,52 +42,26 @@ class skillCard extends Component{
 
 
     render(){
-        if(this.props.modal){
-            let toShow =
-                <div className={classes.SkillCard}>
-                    <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
-                    <img src={SkillIcon} alt="no img"></img>
-                    <div className={classes.SkillInfo}>
-                        <input disabled type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                    </div>                
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                </div>;
-            
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.SkillCard}>
-                        <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
-                        <img src={SkillIcon} alt="no img"></img>
-                        <div className={classes.SkillInfo}>
-                            <input type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                        </div>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>;
-            }
-            return(toShow)
-        }else{
-            let toShow =
-                <div className={classes.SkillCard}>
-                    <img src={SkillIcon} alt="no img"></img>
-                    <div className={classes.SkillInfo}>
-                        <input disabled type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                    </div>                
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                </div>;
-            
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.SkillCard}>
-                        <img src={SkillIcon} alt="no img"></img>
-                        <div className={classes.SkillInfo}>
-                            <input type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                        </div>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>;
-            }
-            return(toShow)
-        }
+        let toShow =
+            <div className={classes.SkillCard}>
+                <img src={SkillIcon} alt="no img"></img>
+                <div className={classes.SkillInfo}>
+                    <input disabled type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
+                </div>                
+                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+            </div>;
         
+        if(this.state.editing){
+            toShow = 
+                <div className={classes.SkillCard}>
+                    <img src={SkillIcon} alt="no img"></img>
+                    <div className={classes.SkillInfo}>
+                        <input type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
+                    </div>
+                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+                </div>;
+        }
+        return(toShow)
     }
 };
 

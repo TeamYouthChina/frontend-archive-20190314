@@ -14,7 +14,7 @@ import {
   Animation
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';

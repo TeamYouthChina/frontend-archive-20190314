@@ -13,8 +13,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {HomeHeader} from './home-header';
 import {Footer} from '../../general-component/footer';
 import {New} from './new';
-import {HotTemp} from './hotTemp';
-import {NewTemp} from './newTemp';
+import {Hot} from './hot';
 
 
 export class Home extends React.Component {
@@ -79,11 +78,11 @@ export class Home extends React.Component {
         <Switch>
           <Route
             path={`${this.props.match.url}/hot`}
-            component={routeProps => <HotTemp/>}
+            component={routeProps => <Hot/>}
           />
           <Route
             path={`${this.props.match.url}/new`}
-            component={routeProps => <NewTemp/>}
+            component={routeProps => <New/>}
           />
           <Redirect to={`${this.props.match.url}/hot`}/>
         </Switch>

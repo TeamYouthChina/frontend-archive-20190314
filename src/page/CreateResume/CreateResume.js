@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import MainBody from './MainBody/MainBody'
 import {getAsync} from '../../tool/api-helper';
 import classes from './CreateResume.module.css';
@@ -39,7 +39,6 @@ class CreateResume extends Component {
                     <MainBody requestID={this.state.requestID} data={this.state.requestedData.content}/>
                 </div>;
         }
-        
         return(
             toShow
         );

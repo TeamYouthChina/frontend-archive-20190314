@@ -8,7 +8,7 @@ import {
 } from 'mdbreact';
 import {AnswerEditInit} from '../answerEditInit';
 // import './public/style.css';
-import {Header} from '../../../../general-component/header/header';
+import {Header} from '../../../../general-component/header';
 import {Footer} from '../../../../general-component/footer';
 const basicFont = {
   fontFamily: 'IBM Plex Sans',

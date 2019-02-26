@@ -12,14 +12,10 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBIcon,
-  MDBRow
+  MDBIcon
 } from 'mdbreact';
 
-import {languageHelper} from '../../tool/language-helper';
-import {Logined} from "./logined";
-import {UnLogin} from "./unlogin";
-import {MDBCollapse} from "../../page/home/home-header";
+import {languageHelper} from '../tool/language-helper';
 
 export class Header extends React.Component {
   constructor(props) {
@@ -28,7 +24,6 @@ export class Header extends React.Component {
       collapseID: 'discover',
       chosen: 0,
       hover: 0,
-      login: null
     };
     this.text = Header.i18n[languageHelper()];
   }
@@ -40,15 +35,9 @@ export class Header extends React.Component {
       })
     );
   }
-
-  login() {
-    this.setState(
-      this.login = Cookies.get("avatar")
-    )
-  }
-
+  
   render() {
-    console.log("123123", Cookies.get("avatar"))
+    
     return (
       <div>
         <div>
@@ -57,8 +46,8 @@ export class Header extends React.Component {
             expand="md"
             fixed="top"
             scrolling
-            style={{background: '#31394D'}}
-
+            style={{background:'#31394D'}}
+            
           >
             <MDBCol
               md="1"
@@ -72,7 +61,7 @@ export class Header extends React.Component {
             </MDBCol>
             <MDBCol md="4">
               <MDBNavbarNav>
-                <MDBNavItem
+                <MDBNavItem 
                   to="#"
                   onClick={
                     () => {
@@ -96,13 +85,13 @@ export class Header extends React.Component {
                     }
                   }
 
-                  style={this.state.chosen === 1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  style={this.state.chosen === 1 || this.state.hover===1? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBNavLink to="/">
-                    求 职
+                    求  职
                   </MDBNavLink>
                 </MDBNavItem>
-
+                
                 <MDBNavItem
                   onClick={
                     () => {
@@ -123,18 +112,18 @@ export class Header extends React.Component {
                   onMouseLeave={
                     () => {
                       this.setState({
-                        hover: 0
+                        hover:0
                       });
                     }
                   }
 
-                  style={this.state.chosen === 2 || this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  style={this.state.chosen === 2 ||this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
                       <div className="d-none d-md-inline">探 索</div>
                     </MDBDropdownToggle>
-                    <MDBDropdownMenu style={{marginTop: '20px'}}>
+                    <MDBDropdownMenu style={{marginTop:'20px'}}>
                       <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
                       <MDBDropdownItem divider/>
                       <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
@@ -146,19 +135,17 @@ export class Header extends React.Component {
                       <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
 
                     </MDBDropdownMenu>
-
-
+                    
+                     
                   </MDBDropdown>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCol>
-
-
-            <MDBNavbarNav left style={{width: '300px'}}>
+            <MDBNavbarNav>
               <MDBNavLink to="/search/s1">
                 <div className="d-flex flex-row ">
                   <div className="flex-fill align-self-center mx-3">
-                    <MDBIcon icon="search" size="2x" className="white-text"/>
+                    <MDBIcon icon="search" size="2x"/>
                   </div>
                   <div className="flex-fill">
                     <input
@@ -169,26 +156,38 @@ export class Header extends React.Component {
                     />
                   </div>
                 </div>
-
+                
+               
               </MDBNavLink>
             </MDBNavbarNav>
-            <div className="d-flex flex-row">
-              {
-                Cookies.get('avatar') ? (
-                  <Logined/>
-                ) : (
-                  <UnLogin/>
-                )
-              }
-
-
-            </div>
-
-
+            <MDBNavbarNav right style={{marginRight: '0.5em'}}>
+              <MDBNavItem className="align-middle">
+                <MDBIcon icon="bell" className="white-text" />
+              </MDBNavItem>
+            </MDBNavbarNav>
+            <MDBNavbarNav right style={{marginRight: '5em'}}>
+              <MDBNavItem style={{width:'60px',height:'60px'}} className="p-0 mx-2 align-middle">
+                <MDBDropdown>
+                  <MDBDropdownToggle nav>
+                    <img
+                      src="https://s2.ax1x.com/2019/01/27/kuUMYq.jpg"
+                      className="rounded-circle z-depth-1-half img-fluid p-0 float-right"
+                      alt="Sample avatar"
+                    />
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu color="indigo darken-1" basic left style={{marginTop:'20px'}}>
+                    <MDBDropdownItem href="/applicant">个人主页</MDBDropdownItem>
+                    <MDBDropdownItem href="/">我的消息</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">退出</MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+               
+              </MDBNavItem>
+            </MDBNavbarNav>
           </MDBNavbar>
         </div>
-        <div style={{height: '78px'}}></div>
-
+        <div style={{height:'78px'}}></div>
+        
       </div>
     );
   }

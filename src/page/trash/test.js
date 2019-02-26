@@ -8,7 +8,7 @@ import {
 
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {JobCardBar} from "../../general-component/job-card-bar";
 

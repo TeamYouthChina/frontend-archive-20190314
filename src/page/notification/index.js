@@ -20,7 +20,7 @@ import {
   MDBPopoverHeader,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import {Footer} from '../../general-component/footer';
 import {NotificationItem} from './notification-item';
 import {languageHelper} from '../../tool/language-helper';

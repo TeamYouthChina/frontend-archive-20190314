@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import BraftEditor from 'braft-editor'
 
 
 import classes from './EducationCard.module.css';
@@ -29,8 +28,8 @@ class EducationCard extends Component {
                         end: ''
                     },
                     degree: ''
-                },
-            editorState: BraftEditor.createEditorState(null)
+                }
+            
         } 
         this.uniRef = React.createRef();
         this.beginRef = React.createRef();
@@ -67,86 +66,40 @@ class EducationCard extends Component {
 
 
     render(){
-        if(this.props.modal){
-            let toShow =
+        let toShow =
+            <div className={classes.EducationCard}>
+                <img src={schoolIcon} alt="no img"></img>
+                <div className={classes.SchoolInfo}>
+                    <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
+                    <div>
+                        <input disabled type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
+                        <p> - </p>
+                        <input disabled type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
+                    </div>
+                    <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
+                </div>
+                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+            </div>;
+        
+        if(this.state.editing){
+            toShow =
                 <div className={classes.EducationCard}>
-                    <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
                     <img src={schoolIcon} alt="no img"></img>
                     <div className={classes.SchoolInfo}>
-                        <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
+                        <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
                         <div>
-                            <input disabled type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
+                            <input type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
                             <p> - </p>
-                            <input disabled type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
+                            <input type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
                         </div>
-                        <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
+                        <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                     </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
                 </div>;
-            
-            if(this.state.editing){
-                toShow =
-                    <div className={classes.EducationCard}>
-                        <div onClick={(event)=>(this.props.toggle(this.props.id,event))} style={{position: 'absolute', zIndex: '1', height: '100%', width: '100%'}}></div>
-                        <img src={schoolIcon} alt="no img"></img>
-                        <div className={classes.SchoolInfo}>
-                            <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
-                            <div>
-                                <input type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
-                                <p> - </p>
-                                <input type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
-                            </div>
-                            <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
-                        </div>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>;
-            }
-            return(
-                toShow
-            );
         }
-        else {
-            // let toShow =
-            //     <div className={classes.EducationCard}>
-            //         <img src={schoolIcon} alt="no img"></img>
-            //         <div className={classes.SchoolInfo}>
-            //             <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
-            //             <div>
-            //                 <input disabled type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
-            //                 <p> - </p>
-            //                 <input disabled type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
-            //             </div>
-            //             <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
-            //         </div>
-            //         <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-            //     </div>;
-            
-            // if(this.state.editing){
-            //     toShow =
-            //         <div className={classes.EducationCard}>
-            //             <img src={schoolIcon} alt="no img"></img>
-            //             <div className={classes.SchoolInfo}>
-            //                 <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
-            //                 <div>
-            //                     <input type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
-            //                     <p> - </p>
-            //                     <input type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
-            //                 </div>
-            //                 <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
-            //             </div>
-            //             <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-            //         </div>;
-            // }
-
-            let toShow = 
-                <div>
-
-                </div>
-
-            return(
-                toShow
-            );
-        } 
+        return(
+            toShow
+        );
     }  
 };
 

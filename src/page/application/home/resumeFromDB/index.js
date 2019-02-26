@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../../../tool/language-helper';
 import {MDBRow, MDBCol, MDBInput, MDBBtn} from "mdbreact";
 
-import {Header} from '../../../../general-component/header/header';
+import {Header} from '../../../../general-component/header';
 import {Footer} from '../../../../general-component/footer';
 import TopBar from '../../../OnlineApplication/Components/TopBar/topBar'
 

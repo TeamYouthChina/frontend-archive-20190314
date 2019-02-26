@@ -1,7 +1,7 @@
 .WorkExperienceCard{
     display: flex;
     flex-direction: row;
-    height: auto;
+    height: 110px;
     width: 90%;
     box-sizing: border-box;
     padding: 0px 0px 5px 0px;
@@ -40,20 +40,7 @@
 
 }
 
-.Duration{
+.WorkInfo div{
     display: flex;
     flex-direction: row;
-}
-
-.Editor{
-    box-shadow: 0 15px 40px rgba(0,0,0,.2);
-}
-
-
-.Control {
-}
-
-.Content {
-    height: 200px;
-
 }

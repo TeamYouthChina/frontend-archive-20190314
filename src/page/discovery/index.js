@@ -19,7 +19,7 @@ import {
 import {Article} from './article';
 import {Connection} from './connection';
 import {Footer} from '../../general-component/footer';
-import {Header} from '../../general-component/header/header';
+import {Header} from '../../general-component/header';
 import {QuestionAnswer} from './question-answer';
 import {Review} from './review';
 import {Video} from './video';
