@@ -84,7 +84,8 @@ export class NewTemp extends React.Component {
                   >
                 <span style={{
                   fontSize: '18px',
-                  color: '#454F69'
+                  color: '#454F69',
+                  ...this.props.basicCHNFont,
                 }}
                 >
                   IT / 互联网
@@ -147,6 +148,7 @@ export class NewTemp extends React.Component {
                   color="rgba-grey-strong"
                   href="/job-for-you"
                   style={{
+                    ...this.props.basicCHNFont,
                     boxShadow: 'none',
                     fontSize: '16px',
                     marginTop: '8px',
@@ -179,7 +181,8 @@ export class NewTemp extends React.Component {
                   >
                 <span style={{
                   fontSize: '18px',
-                  color: '#454F69'
+                  color: '#454F69',
+                  ...this.props.basicCHNFont
                 }}
                 >
                   金融
@@ -242,6 +245,7 @@ export class NewTemp extends React.Component {
                   color="rgba-grey-strong"
                   href="/job-for-you"
                   style={{
+                    ...this.props.basicCHNFont,
                     boxShadow: 'none',
                     fontSize: '16px',
                     marginTop: '8px',

@@ -15,7 +15,14 @@ import {Footer} from '../../general-component/footer';
 import {New} from './new';
 import {HotTemp} from './hotTemp';
 import {NewTemp} from './newTemp';
+import './public/style.css';
 
+const basicCHNFont = {
+  fontFamily: 'PingFang SC',  
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  lineHeight: 'normal'
+};
 
 export class Home extends React.Component {
   constructor(props) {
@@ -49,10 +56,11 @@ export class Home extends React.Component {
                 <MDBNavItem className="ml-0">
                   <MDBNavLink
                     to={`${this.props.match.url}/hot`}
-                    className={this.props.location.pathname.indexOf('/hot') > -1 ? 'active font-weight-bold' : ''}
+                    className={this.props.location.pathname.indexOf('/hot') > -1 ? 'active activeTabFontColor font-weight-bold' : ''}
                     style={{
                       color: '#454F69',
-                      fontSize: '16px'
+                      fontSize: '16px',
+                      ...basicCHNFont
                     }}
                   >
                     {this.text.hot}
@@ -63,10 +71,11 @@ export class Home extends React.Component {
                 <MDBNavItem className="ml-0">
                   <MDBNavLink
                     to={`${this.props.match.url}/new`}
-                    className={this.props.location.pathname.indexOf('/new') > -1 ? 'active font-weight-bold' : ''}
+                    className={this.props.location.pathname.indexOf('/new') > -1 ? 'active activeTabFontColor font-weight-bold' : ''}
                     style={{
                       color: '#454F69',
-                      fontSize: '16px'
+                      fontSize: '16px',
+                      ...basicCHNFont
                     }}
                   >
                     {this.text.new}
@@ -79,7 +88,7 @@ export class Home extends React.Component {
         <Switch>
           <Route
             path={`${this.props.match.url}/hot`}
-            component={routeProps => <HotTemp/>}
+            component={routeProps => <HotTemp basicCHNFont={basicCHNFont}/>}
           />
           <Route
             path={`${this.props.match.url}/new`}
