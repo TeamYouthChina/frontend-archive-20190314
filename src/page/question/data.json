@@ -1,0 +1,94 @@
+{
+  "content": {
+    "id": 1,
+    "creator": {
+      "id": 2,
+      "username": "DEF",
+      "email": "123456@456.com",
+      "phonenumber": "9876543210123",
+      "registerDate": "2019-01-01 00:00:00.0",
+      "realName": "DDDEEEFFF",
+      "gender": "Female",
+      "nation": "USA",
+      "avatarUrl": null,
+      "role": 2,
+      "age": 28
+    },
+    "title": "第一个问题",
+    "is_anonymous": true,
+    "create_at": "2019-01-01T00:00:00.000+0000",
+    "modified_at": "2019-01-01T00:00:00.000+0000",
+    "answers": [
+      {
+        "id": 1,
+        "body": null,
+        "is_anonymous": false,
+        "creator": {
+          "id": 3,
+          "username": "GHI",
+          "email": "123456@789.com",
+          "phonenumber": "1112223334445",
+          "registerDate": "2019-01-01 00:00:00.0",
+          "realName": "GGGHHHIII",
+          "gender": "Male",
+          "nation": "CHN",
+          "avatarUrl": null,
+          "role": 2,
+          "age": 26
+        },
+        "modified_at": "2019-01-01 00:00:00.0",
+        "create_at": "2019-01-01 00:00:00.0",
+        "company_id": null
+      },
+      {
+        "id": 2,
+        "body": null,
+        "is_anonymous": false,
+        "creator": {
+          "id": 3,
+          "username": "GHI",
+          "email": "123456@789.com",
+          "phonenumber": "1112223334445",
+          "registerDate": "2019-01-01 00:00:00.0",
+          "realName": "GGGHHHIII",
+          "gender": "Male",
+          "nation": "CHN",
+          "avatarUrl": null,
+          "role": 2,
+          "age": 26
+        },
+        "modified_at": "2019-01-01 00:00:00.0",
+        "create_at": "2019-01-01 00:00:00.0",
+        "company_id": null
+      },
+      {
+        "id": 3,
+        "body": null,
+        "is_anonymous": false,
+        "creator": {
+          "id": 4,
+          "username": "ABC",
+          "email": "123456@123.com",
+          "phonenumber": "1234657890123",
+          "registerDate": "2019-01-01 00:00:00.0",
+          "realName": "AAABBBCCC",
+          "gender": "Male",
+          "nation": "CHN",
+          "avatarUrl": null,
+          "role": 2,
+          "age": 25
+        },
+        "modified_at": "2019-01-01 00:00:00.0",
+        "create_at": "2019-01-01 00:00:00.0",
+        "company_id": null
+      }
+    ],
+    "rela_type": 1,
+    "rela_id": null,
+    "body": null
+  },
+  "status": {
+    "code": 2000,
+    "reason": ""
+  }
+}
