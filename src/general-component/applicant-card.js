@@ -23,14 +23,11 @@ export class ApplicantCard extends React.Component {
     this.text = ApplicantCard.i18n[languageHelper()];
   }
   async componentDidMount() {
-    console.log(this.props.id)
     if (this.props.id !== null) {
-      console.log("id provided")
       this.setState({
         backend: await getAsync(`/applicants/${this.props.id}`)
       });
     } else {
-      console.log("id not provided")
 
       this.setState({
         backend: await getAsync(`/applicants/1`)

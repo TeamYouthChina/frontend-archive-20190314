@@ -14,7 +14,7 @@ export class Review extends React.Component {
 
   async componentDidMount() {
     const result = await getAsync(`/discovery/review`)
-    // console.log(result)
+    console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {

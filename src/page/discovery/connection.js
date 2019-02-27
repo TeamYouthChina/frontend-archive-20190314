@@ -38,9 +38,7 @@ export class Connection extends React.Component {
 
   render() {
     let toShow = <div>No Such Data</div>;
-    console.log(this.state.backend)
     if(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000){
-      console.log(this.state.backend.content.users)
       const cards = this.state.backend.content.users.map((e,i)=>(
         <ApplicantCard id={e.id}/>
       ))
