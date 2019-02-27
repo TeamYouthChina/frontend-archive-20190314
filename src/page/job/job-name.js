@@ -72,7 +72,7 @@ export class JobName extends React.Component {
           <MDBCol md="7">
             <h5 className="font-weight-bold mb-3 p-0">
               <strong>
-                {this.state.backend.content.jobname}
+                {this.state.backend.content.name}
               </strong>
               <MDBIcon
                 icon="bookmark-o"
@@ -90,11 +90,11 @@ export class JobName extends React.Component {
             </h5>
             <br/>
             <Row>
-              <Col>{this.text.type}: {this.state.backend.content.JobDescription}</Col>
-              <Col>{this.text.deadline}: {this.state.backend.content.jobEndTime}</Col>
+              <Col>{this.text.type}: {this.state.backend.content.job_description}</Col>
+              <Col>{this.text.deadline}: {this.state.backend.content.deadLine}</Col>
             </Row>
             <Row>
-              <Col>{this.text.location}: {this.state.backend.content.jobLocationList[0].region_chn}</Col>
+              <Col>{this.text.location}: {this.state.backend.content.organization.location}</Col>
               <Col>
                 <Row bottom>
                   <Col>
