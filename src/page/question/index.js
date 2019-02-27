@@ -14,10 +14,10 @@ import Loading from './loading'
 
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
-import {QuestionDes} from './question-description'
+import {QuestionDes} from './question-description';
+import {ArticleCard} from '../../general-component/article-card'
 // import {QuestionBar} from './question-side-bar'
 import {QuestionCard} from '../../general-component/question-card'
-import fetch from "isomorphic-fetch";
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -193,6 +193,7 @@ export class QuestionAnswer extends React.Component {
         <br/>
         <MDBRow>
           <MDBCol size="1"></MDBCol>
+          <ArticleCard type={1}></ArticleCard>
           {/*<MDBCol size="10">*/}
             {/*{this.state.backend.answerList.map((item) => (*/}
               {/*<QuestionCard*/}

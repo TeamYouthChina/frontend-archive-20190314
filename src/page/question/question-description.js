@@ -67,7 +67,7 @@ export class QuestionDes extends React.Component {
             <br/>
             <p style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.props.content.title}</p>
 
-            <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption}</p>
+            <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption.previewText}</p>
           </MDBCol>
           <MDBCol size="3">
             <MDBRow>
