@@ -4,12 +4,13 @@ import {
   MDBBtn,
   MDBRow,
   MDBCol,
-  MDBIcon, MDBMask, MDBView
+  MDBIcon, MDBMask, MDBView,MDBAvatar
 } from 'mdbreact';
 import {AnswerEditInit} from '../answerEditInit';
 // import './public/style.css';
 import {Header} from '../../../../general-component/header/header';
 import {Footer} from '../../../../general-component/footer';
+import {AnswerQShort} from "../answerQShort";
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
   fontStyle: 'normal',
@@ -28,18 +29,25 @@ export class QuestionAnswerEdit extends React.Component {
     };
     this.text = QuestionAnswerEdit.i18n[languageHelper()];
     this.handleInputClick = this.handleInputClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.getObjectURL = this.getObjectURL.bind(this);
-    this.deletePic = this.deletePic.bind(this);
-    this.handleSetInput = this.handleSetInput.bind(this);
+    
   }
 
   componentWillMount() {
+    let result = {}
     let mockData =
       {
-        id: 0,
+        id: 1 || result.id,
+        content: {
+          title: '如何成为一个合格的天文爱好者？' || result.content.title,
+          descrption: '小的时候有个梦想，长大了要当个天文学家。\n时光荏苒，自己一天天长大，慢慢也淡忘了小时候常做的梦。\n前段时间，偶尔在豆瓣上看到了天文小组，突然记起自己小时候也有，梦想，原来一直未曾忘却。\n虽然也会苦笑自己的幼稚，但心底的热浪不能轻易抹掉。\n所以有了这个苦恼，只是如何成为一个合格的天文爱好者？\n也关注了几个天文论坛，买了本书《大众天文学》，暂时还没有入观星设备。\n但还是很感觉入不了门，一头雾水，希望大家能指点、分享。\n这就是我的故事。' || result.content.body
+        },
+        // user:userInfor.content === null ? '齐昊' : userInfor.content.username,
+        // img:userInfor.content === null ? 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg' : userInfor.content.avatarUrl,
+        user:'齐昊',
+        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         status: {
-          code: 2000
+          // code: result.status.code,
+          code:2000
         }
       };
     this.setState(() => {
@@ -47,53 +55,14 @@ export class QuestionAnswerEdit extends React.Component {
     });
   }
 
-  handleInputChange(e) {
-    // if(e.target.files.length > 1){
-    //   e.target.value = null
-    //   e.target.files.unshift()
-    // }
-    // 利用自带方法制造url
-    let imgSrcI = this.getObjectURL(e.target.files[0]);
-    this.setState({
-      showPic: true
-    })
-    this.imgUrl.src = imgSrcI
-  }
 
   handleInputClick() {
     //todo,通过refs调用的方法
     this.answerText.submitContent();
     // this.refs.answerText.submitContent();
   }
-  deletePic(){
-    this.imgUrl.src = ''
-    // 避免重复照片不能上传
-    this.input.value = null
-    this.setState({
-      showPic: false
-    })
-  }
-
-  getObjectURL(file) {
-    let url = null;
-    if (window.createObjectURL !== undefined) { // basic
-      url = window.createObjectURL(file);
-    } else if (window.URL !== undefined) { // mozilla(firefox)
-      url = window.URL.createObjectURL(file);
-    } else if (window.webkitURL !== undefined) { // webkit or chrome
-      url = window.webkitURL.createObjectURL(file);
-    }
-    return url;
-  }
-
-  handleSetInput(e){
-    let value = e.target.value
-    setTimeout(()=>(
-      this.setState({
-        title:value
-      })
-    ),100)
-  }
+  
+  
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
@@ -114,42 +83,57 @@ export class QuestionAnswerEdit extends React.Component {
                   padding: '10px 34px',
                   margin: '-5px 0px',
                   float: 'right', ...basicFont
-                }}>确认修改
+                }}>发布
                 </MDBBtn>
               </MDBCol>
 
             </MDBRow>
             <MDBRow>
-              <MDBCol md="12">
-                <MDBView hover>
-                  <div style={this.state.showPic === false ? {display:'none'} : null}>
-                    <img ref={(imgInput) => this.imgUrl = imgInput} width="100%" height="auto"
-                         src="https://mdbootstrap.com/img/Others/documentation/forest-sm-mini.jpg"
-                         className="img-fluid"
-                         alt=''
-                    />
-                    <MDBMask overlay="grey-light">
-                      <MDBBtn style={{position:'absolute',right:'0',bottom:'0',padding:'10px'}} flat onClick={this.deletePic}>
-                        <MDBIcon icon="edit" />更换图片</MDBBtn>
-                    </MDBMask>
-                  </div>
-                  <div style={Object.assign({backgroundColor:'#F2F2F2'},this.state.showPic === true ? {display:'none'} : null)}>
-                    <MDBIcon className="flex-center" icon="camera" style={{fontSize:'25px',width:'100%',position:'absolute',zIndex:'0'}} ></MDBIcon>
-                    <input ref={(fileInput)=>this.input=fileInput} style={{width:'80vmax',height:'20vmax',opacity:'0'}} type="file" accept="image/*" onChange={(e) => this.handleInputChange(e)}></input>
-                  </div>
-
-                </MDBView>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow style={{marginTop:'20px'}}>
-              <MDBCol middle>
-                <input onChange={(e)=>this.handleSetInput(e)} className="form-control" placeholder={this.text.title}/>
-              </MDBCol>
+              <AnswerQShort
+                content={this.state.backend.content}>
+              </AnswerQShort>
             </MDBRow>
             <br/>
-            <AnswerEditInit inputData={this.state.title} ref={(answerText) => this.answerText = answerText}></AnswerEditInit>
+            <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
+              <MDBRow>
+                <MDBCol size="1">
+                  <MDBAvatar style={{margin: '20px 5px 0px 20px'}}>
+                    <img
+                      style={{width: '32px', background: '#F4F4F4'}}
+                      src={this.state.backend.img}
+                      alt=""
+                      className="rounded-circle"
+                    />
+                  </MDBAvatar>
+                </MDBCol>
+                <MDBCol size="8" style={{paddingTop:'23px'}}>
+                  <MDBRow style={{paddingLeft:'5px'}}>{this.state.backend.user}</MDBRow>
+                  {/*<MDBRow>*/}
+                  {/*<MDBBtn flat style={{padding: '0px',}}>*/}
+                  {/*<MDBIcon style={{marginRight: '5px'}} far icon="edit"/>添加备用内容*/}
+                  {/*</MDBBtn>*/}
+                  {/*</MDBRow>*/}
+                </MDBCol>
+                <MDBCol size="2"></MDBCol>
+              </MDBRow>
+              <MDBRow style={{height:'100%',margin:'0px'}}>
+                <AnswerEditInit ref={(answerText) => this.answerText = answerText}></AnswerEditInit>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol size="10"></MDBCol>
+                <MDBCol size="2">
+                  <MDBBtn flat style={{float:'right',padding: '5px 10px',zIndex:10}}>
+                    提交回答
+                  </MDBBtn>
+                </MDBCol>
+
+
+              </MDBRow>
+            </div>
           </MDBCol>
-          <MDBCol size="1"></MDBCol>
+          <MDBCol size="1">
+
+          </MDBCol>
         </MDBRow>
         <Footer/>
       </div>
@@ -162,7 +146,7 @@ QuestionAnswerEdit.i18n = [
   {
     title: '用户原来的标题',
     submitBtn: '提交回答',
-    write:'编辑文章'
+    write:'编辑回答'
   },
   {
     title: 'Title',

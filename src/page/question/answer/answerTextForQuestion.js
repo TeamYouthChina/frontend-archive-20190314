@@ -1,7 +1,9 @@
 import React from 'react'
+import Cookies from 'js-cookie';
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 import {getAsync} from "../../../tool/api-helper";
+import {postAsync} from "../../../tool/api-helper";
 import {MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBBtn,MDBIcon} from 'mdbreact'
 
 const myUploadFn = async (param) => {
@@ -64,6 +66,7 @@ export class AnswerTextForQuestion extends React.Component {
       myUploadFn: null,
       previewNow: false
     }
+    this.showData = this.showData.bind(this)
   }
 
   async componentDidMount() {
@@ -76,8 +79,16 @@ export class AnswerTextForQuestion extends React.Component {
     })
   }
 
-  submitContent() {
+  async submitContent() {
     let showNow = this.state.showNow + 1
+    // const result = await postAsync('answers/1/comments',{
+    //   RichText:{
+    //     braftEditorRaw:{},
+    //     previewText:{},
+    //     resourceText:[]
+    //   }
+    // })
+    // console.log(result)
     this.setState({
       showNow
     })
@@ -85,6 +96,16 @@ export class AnswerTextForQuestion extends React.Component {
     // 编辑器内容提交到服务端之前，可直接调用editorState.toHTML()来获取HTML格式的内容
     // const htmlContent = this.state.editorState.toHTML()
     // const result = await saveEditorContent(htmlContent)
+  }
+  async showData(){
+    // let result = await postAsync('answers/1/comments',{
+    //   RichText:{
+    //     braftEditorRaw:{},
+    //     previewText:{},
+    //     resourceText:[]
+    //   }
+    // })
+    const token = Cookies.get('token');
   }
 
   handleEditorChange(editorState) {
@@ -129,7 +150,6 @@ export class AnswerTextForQuestion extends React.Component {
         </div>
         <br/>
         <MDBModal isOpen={this.state.previewNow}>
-          <MDBModalHeader>{this.props.data}</MDBModalHeader>
           
           <MDBModalBody>
             {this.state.editorState !== null ? (
@@ -147,6 +167,8 @@ export class AnswerTextForQuestion extends React.Component {
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
+        <br/><br/><br/><br/><br/><br/>
+        <MDBBtn style={{zIndex:'100'}} onClick={this.showData}></MDBBtn>
         {/*{this.state.showNow === 0 ? null : (*/}
 
         {/*)}*/}

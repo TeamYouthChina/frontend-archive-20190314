@@ -74,16 +74,17 @@ export class QuestionCard extends React.Component {
     }
   }
 
-  componentWillMount() {
-    const answer = this.props.answerData || {}
+  async componentDidMount() {
+    window.addEventListener('scroll', this.orderScroll.bind(this));
+    let questionAll = await getAsync(`/questions/${this.props.questionId}`)
     let mockData =
       {
-        id: answer.id || '0100',
-        title: this.props.title||'YouthChina是怎样的一个公司',
-        short: answer.short||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: answer.body||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-        user: answer.creator.username||'齐昊',
-        img:  answer.creator.avatar || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        id: this.props.questionId || '0100',
+        title: questionAll.content.title||'YouthChina是怎样的一个公司',
+        short: questionAll.content.richTextDTO.short||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: questionAll.content.richTextDTO.long||'关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: questionAll.content.creator.username||'齐昊',
+        img:  questionAll.content.creator.avatarUrl||'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // 缺少个人签名
         description: '莫以为敌消彼长，然乾坤逆之天崩',
         // 缺少评论
@@ -95,17 +96,12 @@ export class QuestionCard extends React.Component {
           code: 2000
         }
       };
+    // console.log(this.props.questionId)
     this.setState(() => {
       return {backend: mockData};
     });
   }
-
-  async componentDidMount() {
-    window.addEventListener('scroll', this.orderScroll.bind(this));
-    // const result = await getAsync(`/questions/${this.props.match.params.questionId}/answer/${this.props.answerData.id}`)
-    // console.log(result)
-    
-  }
+  
 
   orderScroll() {
     setTimeout(() => {
@@ -168,13 +164,13 @@ export class QuestionCard extends React.Component {
     return (
       <div style={{background: '#FFFFFF',padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
            ref={(span) => this.scrollSpan = span}>
-        {this.props.type === 1 ? (
-          <Link to={`/question/${this.state.backend.id}`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
+        {this.props.type === 0 ? (
+          <Link to={`/question/${this.state.backend.id}/answer/1`} style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
         ) : null}
         {this.state.isCollapsed ? (
           <div>
             <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
-            <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>  {this.state.backend.short}</span>
+            <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.state.backend.short}</span>
             <span onClick={this.handleSpanClick}
                   style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
           </div>

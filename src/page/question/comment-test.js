@@ -90,7 +90,7 @@ export class CommentsCard extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
 
 
-      <div style={{padding: '30px 0 30px 30px', marginTop: '20px'}}>
+      <div style={{padding: '0px', marginTop: '20px'}}>
         <div>
           <MDBRow style={{margin: '10px 0px'}}>
             <MDBAvatar style={{marginRight: '5px'}}>

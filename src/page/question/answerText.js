@@ -7,10 +7,10 @@ const myUploadFn = async (param) => {
   // console.log(param)
   const serverURL = 'http://youthchinatest.oss-cn-shanghai.aliyuncs.com/2848699711584473088?Expires=1549472548&OSSAccessKeyId=LTAI0j1nGyLy6XMw&Signature=iKKT0zlXISw1eJXddMRsBSLV%2B2M%3D'
   // 数据传输协议，添加注释，类似json
-  const xhr = new XMLHttpRequest
+  const xhr = new XMLHttpRequest()
   // 构建键值对，给内容加标记
   const fd = new FormData()
-  const  result = await getAsync(serverURL)
+  // const  result = await getAsync(serverURL)
   // console.log(result,'result')
   const successFn = (response) => {
     // 假设服务端直接返回文件上传后的地址
@@ -92,7 +92,7 @@ export class AnswerText extends React.Component {
   handleEditorChange(editorState) {
     
     this.setState({ editorState});
-    let a = JSON.stringify(this.state.editorState.toRAW(true))
+    // let a = JSON.stringify(this.state.editorState.toRAW(true))
     // console.log(Object.assign({blocks:this.state.editorState.toRAW(true)},{id:1}));
   }
   
