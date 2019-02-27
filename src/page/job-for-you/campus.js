@@ -46,7 +46,7 @@ export class Campus extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div>
+      <div style={{backgroundColor: 'F3F5F7'}}>
         <div className="h3 font-weight-light mb-4">{this.text.campus}</div>
         <JobListHome/>
         <JobListHome/>

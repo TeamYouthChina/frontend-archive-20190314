@@ -92,7 +92,7 @@ export class JobListHome extends React.Component {
                 display: 'inline-block',
                 fontWeight: '300',
                 color: '#454F69',
-                background: '#F0F3FA'
+                background: '#E3E9EE'
               }}
             >
               显示全部
