@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
-
+import classes from './header.module.css';
 import {
   MDBCol,
   MDBDropdown,
@@ -19,7 +19,7 @@ import {
 import {languageHelper} from '../../tool/language-helper';
 import {Logined} from "./logined";
 import {UnLogin} from "./unlogin";
-import {MDBCollapse} from "../../page/home/home-header";
+
 
 export class Header extends React.Component {
   constructor(props) {
@@ -48,7 +48,6 @@ export class Header extends React.Component {
   }
 
   render() {
-    console.log("123123", Cookies.get("avatar"))
     return (
       <div>
         <div>
@@ -58,19 +57,16 @@ export class Header extends React.Component {
             fixed="top"
             scrolling
             style={{background: '#31394D'}}
-
           >
-            <MDBCol
-              md="1"
-              className="offset-md-1"
-            >
+            
+            <MDBCol className={classes.yc} md="1">
               <MDBNavbarBrand href="/">
                 <strong>
                   YouthChina
                 </strong>
               </MDBNavbarBrand>
             </MDBCol>
-            <MDBCol md="4">
+            <MDBCol md="2">
               <MDBNavbarNav>
                 <MDBNavItem
                   to="#"
@@ -99,7 +95,7 @@ export class Header extends React.Component {
                   style={this.state.chosen === 1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBNavLink to="/">
-                    求 职
+                   职 位
                   </MDBNavLink>
                 </MDBNavItem>
 

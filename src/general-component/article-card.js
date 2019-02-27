@@ -215,8 +215,11 @@ export class ArticleCard extends React.Component {
               举报
             </MDBBtn>
             {this.state.isCollapsed ? null :
-              <MDBBtn onClick={this.handleSpanClick} flat
-                      style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}>
+              <MDBBtn 
+                onClick={this.handleSpanClick} 
+                flat
+                style={{padding: '5px 10px', color: '#175199', fontSize: '14px', ...basicFont}}
+              >
                 收起
                 <MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>
               </MDBBtn>}

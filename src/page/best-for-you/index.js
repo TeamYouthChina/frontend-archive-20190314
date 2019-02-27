@@ -5,7 +5,7 @@ import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {ApplicantHeader} from './applicant-header';
 import {JobListHome} from '../home/job-list-home';
-import {ApplicantCard} from '../../general-component/applicant-card';
+import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
 
 import {
   MDBRow,

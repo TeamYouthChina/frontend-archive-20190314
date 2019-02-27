@@ -1,10 +1,5 @@
 .card{
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
+  height: 252px;
   background: #FFFFFF;
   border-radius: 2px;
 }
@@ -12,12 +7,19 @@
 .logo{
   position: absolute;
   left: 9.17%;
-  right: 66.36%;
+  right: 50.36%;
   top: 7.94%;
   bottom: 60.32%;
+  height: 80px;
+}
+.more{
+  position: absolute;
+  left: 86.24%;
+  right: 12.61%;
+  top: 11.9%;
+  bottom: 86.6%;
 
-  background: url(http://47.254.46.117:5000/tencent/logo.png);
-
+  color: #8D9AAF;
 }
 .title{
   /* logo */
@@ -64,13 +66,15 @@
 
   position: absolute;
   left: 9.17%;
-  right: 9.79%;
-  top: 43.65%;
-  bottom: 48.02%;
+  right: 71.56%;
+  top: 84.52%;
+  bottom: 7.94%;
 
   font-family: PingFang SC;
   line-height: normal;
-  font-size: 18px;
+  font-size: 12px;
 
-  color: #454F69;
+  color: #8D9AAF;
+
+
 }

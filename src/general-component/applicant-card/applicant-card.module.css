@@ -1,0 +1,103 @@
+.card{
+  height: 341px;
+  background: #FFFFFF;
+  border-radius: 2px;
+
+}
+.avatar{
+  position: absolute;
+  left: 34.25%;
+  right: 33.94%;
+  top: 8.8%;
+  bottom: 60.7%;
+}
+.name{
+  /* logo */
+
+  position: absolute;
+  left: 33.94%;
+  right: 33.94%;
+  top: 45.16%;
+  bottom: 47.21%;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 18px;
+  text-align: center;
+
+  color: #454F69;
+}
+.position{
+
+  position: absolute;
+  left: 9.17%;
+  right: 9.17%;
+  top: 54.25%;
+  bottom: 39%;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 16px;
+  text-align: center;
+
+  color: #454F69;
+}
+.diploma{
+  position: absolute;
+  left: 9.17%;
+  right: 9.17%;
+  top: 62.46%;
+  bottom: 27.86%;
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #8D9AAF;
+
+}
+.friend{
+  position: absolute;
+  left: 24.77%;
+  right: 24.77%;
+  top: 73.61%;
+  bottom: 20.53%;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #8D9AAF;
+
+}
+.btn{
+  position: absolute;
+  left: 34.86%;
+  right: 34.56%;
+  top: 82.4%;
+  bottom: 8.8%;
+ 
+  
+}
+.btn_flat{
+  
+  width: 100px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #4F65E1;
+  
+  padding: 0px 0px 0px 0px;
+
+  
+
+}
+.btn_font{
+  font-family: PingFang SC;
+  font-size: 15px;
+  text-align: center;
+  color: #4F65E1;
+}
