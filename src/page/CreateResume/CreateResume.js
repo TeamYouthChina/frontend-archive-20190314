@@ -39,6 +39,7 @@ class CreateResume extends Component {
                     <MainBody requestID={this.state.requestID} data={this.state.requestedData.content}/>
                 </div>;
         }
+        
         return(
             toShow
         );

@@ -5,6 +5,7 @@ import { MDBBtn } from "mdbreact";
 import SocialActivityCard from './SocialActivityCard/SocialActivityCard';
 import classes from './SocialActivity.module.css';
 import {getAsync} from '../../../tool/api-helper';
+import ModalPage from '../Modal/Modal';
 
 
 const MDBButtonStyle = {
@@ -23,6 +24,8 @@ class SocialActivity extends Component {
             cards: Array(), 
             flipper: true,
             requestedData: null,
+            cardShown: Array(),
+            cardsToModal: []
         }
         this.date = null;
     }
@@ -31,7 +34,7 @@ class SocialActivity extends Component {
     async componentDidMount(){
         let data = await getAsync('/applicants/'+this.props.requestID+'/extracurriculars');
         this.setState({requestedData: data});
-        let temp = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
+        let temp1 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
             ? this.state.requestedData.content.map((e)=>{
                 this.date = new Date();
                 const time = this.date.getTime();
@@ -43,7 +46,25 @@ class SocialActivity extends Component {
                     saveHandler={this.saveHandler}/>
             })
             : Array();
-        this.setState({cards: temp});
+
+        let temp2 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
+            ? this.state.requestedData.content.map((e)=>{
+                this.date = new Date();
+                const time = this.date.getTime();
+                return <SocialActivityCard 
+                    key={time} 
+                    id={time} 
+                    data={e} 
+                    deleteHandler={this.deleteHandler}
+                    saveHandler={this.saveHandler}/>
+            })
+            : Array();
+
+        this.setState({
+            ...this.state,
+            cards: temp1,
+            cardsToModal: temp2
+        });
     }
 
     async componentDidUpdate(){
@@ -52,22 +73,28 @@ class SocialActivity extends Component {
     // delte data on server, delete data in state.cards
     deleteHandler = (id) => {
         // TODO: delete data on server according to id
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.forEach((e,i)=>{
-            if(e.key == id){
-                temp.splice(i,1);
-                return;
+        let temp = this.state.cardShown.filter((e,i)=>(
+            e.id == id
+        ));
+
+        let copy;
+        this.state.cards.forEach((e,i)=>{
+            if(e.props.id == id){
+                copy = React.cloneElement(e);
             }
         })
+
+        let temp2 = this.state.cardsToModal.concat(copy);
         this.setState({
-            cards: temp,
+            ...this.state,
+            cardShown: temp,
+            cardsToModal: temp2,
             flipper: !this.state.flipper
         },()=>{
             // prepare the data to be sent back to server
-            let dataToSend = this.state.cards.map((e)=>{
-                return e.props.data;
-            })
+            // let dataToSend = this.state.cards.map((e)=>{
+            //     return e.props.data;
+            // })
         });
     }
 
@@ -75,68 +102,85 @@ class SocialActivity extends Component {
     saveHandler = (newCertification,id) =>{
         // TODO: update server with new saved cards
         // PUT {...this.state.requestedData, newEducation}
+        
         // timestamp
         this.date = new Date();
         const time = this.date.getTime();
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.forEach((e,i)=>{
-            if(e.key == id){
-                temp.splice(i,1,<SocialActivityCard
-                    key={time} 
-                    id={time} 
-                    data={newCertification}
-                    deleteHandler={this.deleteHandler}
-                    saveHandler={this.saveHandler}/>);
-                return;
+        let tempCards = this.state.cards.map((e,i)=>{
+            if(e.props.id == id){
+                return (
+                    <SocialActivityCard 
+                        key={time} 
+                        id={time} 
+                        data={newCertification}
+                        deleteHandler={this.deleteHandler}
+                        saveHandler={this.saveHandler}/>
+                )  
             }
+            return e;
         })
+        let tempCardShown = this.state.cardShown.map((e,i)=>{
+            if(e.props.id == id){
+                return (
+                    <SocialActivityCard 
+                        key={time} 
+                        id={time} 
+                        data={newCertification}
+                        deleteHandler={this.deleteHandler}
+                        saveHandler={this.saveHandler}/>
+                )  
+            }
+            return e;
+        })
+
         this.setState({
-            cards: temp,
+            cards: tempCards,
+            cardShown: tempCardShown,
             flipper: !this.state.flipper
         },()=>{
             // prepare data to be sent back to server
-            let dataToSend = this.state.cards.map((e)=>{
-                return e.props.data;
-            })
+            // let dataToSend = this.state.cards.map((e)=>{
+            //     return e.props.data;
+            // })
         });
     }
 
     // addhandler only create a empty cards in state.cards
     // update the data in server and local happens in saveHandler
-    addHandler = () => {
-        // timestamp
-        this.date = new Date();
-        const time = this.date.getTime();
-        // make a hard copy
-        let temp = this.state.cards.splice(0);
-        temp.push(<SocialActivityCard 
-            key={time} 
-            id={time} 
-            deleteHandler={this.deleteHandler}
-            saveHandler={this.saveHandler}/>)
+    addHandler = (id) => {
+        let copy;
+        this.state.cards.forEach((e,i)=>{
+            if(e.props.id == id){
+                copy = React.cloneElement(e);
+            }
+        })
+        let temp1 = this.state.cardShown.concat(copy);
+
+        let temp2 = this.state.cardsToModal.filter((e,i)=>(
+            e.props.id ==! id
+        ))
         this.setState({
-            cards: temp,
-            flipper: !this.state.flipper});
+            ...this.state,
+            cardShown: temp1,
+            cardsToModal: temp2,
+            flipper: !this.state.flipper
+        },()=>{});
         
     }
 
     render(){
         let toShow; 
-        if(this.state.cards.length == 0){
+        if(this.state.cardShown.length == 0){
             toShow = 
                 <div className={classes.SocialActivity}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Social Activity</p>
                     </div>
                     <p>no social activity</p>
-                    <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Social Activity
-                    </MDBBtn>
+                    <ModalPage 
+                        requestID={this.props.requestID}
+                        cards={this.state.cardsToModal}
+                        addHandler={this.addHandler}/>
                 </div>
         }
         else {
@@ -146,13 +190,10 @@ class SocialActivity extends Component {
                         <p className={classes.SectionName}>Social Activity</p>
                     </div>
                     {this.state.cards}
-                    <MDBBtn 
-                        flat 
-                        className={classes.MDBButton}
-                        style={MDBButtonStyle}
-                        onClick={this.addHandler}>
-                            + Add Social Activity
-                    </MDBBtn>
+                    <ModalPage 
+                        requestID={this.props.requestID}
+                        cards={this.state.cardsToModal}
+                        addHandler={this.addHandler}/>
                 </div>
         }
         return(
