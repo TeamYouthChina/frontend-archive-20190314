@@ -129,7 +129,8 @@ class skill extends Component {
                         value={this.state.editorState}
                         onChange={this.handleEditorChange}/>
                     <div>
-                    <ModalPage 
+                    <ModalPage
+                        buttonName="+ Add Skill" 
                         requestID={this.props.requestID}
                         cards={this.state.cardsToModal}
                         addHandler={this.addHandler}/>
@@ -149,7 +150,8 @@ class skill extends Component {
                         {text} 
                     </div>
                     <div>
-                        <ModalPage 
+                        <ModalPage
+                            buttonName="+ Add Skill" 
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>

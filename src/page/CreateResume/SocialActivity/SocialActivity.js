@@ -130,7 +130,8 @@ class SocialActivity extends Component {
                         value={this.state.editorState}
                         onChange={this.handleEditorChange}/>
                     <div>
-                        <ModalPage 
+                        <ModalPage
+                            buttonName="+ Add Activity" 
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/> 
@@ -150,6 +151,7 @@ class SocialActivity extends Component {
                     </div>
                     <div>
                         <ModalPage 
+                            buttonName="+ Add Activity"
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>

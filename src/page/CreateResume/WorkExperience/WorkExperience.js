@@ -132,7 +132,8 @@ class WorkExperience extends Component {
                         value={this.state.editorState}
                         onChange={this.handleEditorChange}/>
                     <div>
-                        <ModalPage 
+                        <ModalPage
+                            buttonName="+ Add Work" 
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>
@@ -152,7 +153,8 @@ class WorkExperience extends Component {
                     <div style={{width: '90%'}}>
                         {text} 
                     </div>
-                    <ModalPage 
+                    <ModalPage
+                        buttonName="+ Add Work" 
                         requestID={this.props.requestID}
                         cards={this.state.cardsToModal}
                         addHandler={this.addHandler}/>

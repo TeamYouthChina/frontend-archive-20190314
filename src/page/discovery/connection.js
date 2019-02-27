@@ -13,11 +13,12 @@ export class Connection extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/discovery/connection`)
-    // console.log(result)
+    const result = await getAsync(`/discovery/users`)
+    console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
+          content: result.content,
           status: {
             code: result.status.code
           }
@@ -36,13 +37,22 @@ export class Connection extends React.Component {
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBContainer fluid>
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <ApplicantCard/>
-        </MDBRow>
-      </MDBContainer>
-    ) : null;
+    let toShow = <div>No Such Data</div>;
+    console.log(this.state.backend)
+    if(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000){
+      console.log(this.state.backend.content.users)
+      const cards = this.state.backend.content.users.map((e,i)=>(
+        <ApplicantCard id={e.id}/>
+      ))
+      toShow = 
+        <MDBContainer fluid>
+          <MDBRow style={{margin: '1rem 0rem'}}>
+            {cards}
+          </MDBRow>
+        </MDBContainer>
+    }
+    
+    return toShow;
   }
 }
 

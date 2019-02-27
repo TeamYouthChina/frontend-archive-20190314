@@ -130,7 +130,8 @@ class Project extends Component{
                         value={this.state.editorState}
                         onChange={this.handleEditorChange}/>
                     <div>
-                        <ModalPage 
+                        <ModalPage
+                            buttonName="+ Add Project" 
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>
@@ -150,7 +151,8 @@ class Project extends Component{
                         {text} 
                     </div>
                     <div>
-                        <ModalPage 
+                        <ModalPage
+                            buttonName="+ Add Project" 
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>

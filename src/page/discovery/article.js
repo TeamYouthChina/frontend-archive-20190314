@@ -13,8 +13,8 @@ export class Article extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/discovery/article/`)
-    // console.log(result)
+    const result = await getAsync(`/disconvery/articles`)
+    console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
@@ -42,6 +42,8 @@ export class Article extends React.Component {
   }
 
   render() {
+    let articles = [];
+    // map data to articles
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <MDBContainer
         fluid

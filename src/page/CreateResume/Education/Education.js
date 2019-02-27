@@ -136,6 +136,7 @@ class Education extends Component {
                         onChange={this.handleEditorChange}/>
                     <div>
                         <ModalPage 
+                            buttonName="+ Add Education"
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>
@@ -156,6 +157,7 @@ class Education extends Component {
                     </div>
                     <div>
                         <ModalPage 
+                            buttonName="+ Add Education"
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>
