@@ -3,10 +3,9 @@ import {languageHelper} from '../../tool/language-helper';
 import classes from './job-card-square.module.css';
 import {MDBIcon,MDBCard,MDBAvatar} from 'mdbreact';
 import {getAsync} from '../../tool/api-helper';
+import {withRouter} from 'react-router-dom';
 
-
-
-export class JobCardSquare extends React.Component {
+export class JobCardSquare1 extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -15,7 +14,7 @@ export class JobCardSquare extends React.Component {
       backend: null
     };
 
-    this.text = JobCardSquare.i18n[languageHelper()];
+    this.text = JobCardSquare1.i18n[languageHelper()];
   }
 
   async componentDidMount() {
@@ -34,7 +33,9 @@ export class JobCardSquare extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
 
       <div>
-        <MDBCard className={classes.card}>
+        <MDBCard className={classes.card} onClick={()=>{
+          this.props.history.push(`/job/${this.state.backend.content.id}`);
+        }}>
           
           <div className={classes.logo}>
             <MDBAvatar
@@ -56,7 +57,7 @@ export class JobCardSquare extends React.Component {
   }
 }
 
-JobCardSquare.i18n = [
+JobCardSquare1.i18n = [
   {
     applyBefore: '申请截止'
   },
@@ -64,3 +65,5 @@ JobCardSquare.i18n = [
     applyBefore: 'Apply Before'
   },
 ];
+
+export const JobCardSquare = withRouter(JobCardSquare1)
