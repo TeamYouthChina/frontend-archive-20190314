@@ -7,8 +7,8 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {env} from './api-test/api-test'
-import {getAsync} from './api-test/api-test'
+import {env,urlPrefix,generateHeaders,getAsync} from './api-test/api-test'
+
 import Loading from './loading'
 // import {getAsync} from '../../tool/api-helper'
 
@@ -17,6 +17,7 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description'
 // import {QuestionBar} from './question-side-bar'
 import {QuestionCard} from '../../general-component/question-card'
+import fetch from "isomorphic-fetch";
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -64,7 +65,52 @@ export class QuestionAnswer extends React.Component {
           })
         } else {
           // console.log(result.status.code)
-          this.props.history.push('/404')
+          // this.props.history.push('/404')
+          let mockData =
+            {
+              id: '1',
+              tags: ['互联网', '金融', '求职', '大学生'],
+              content: {
+                title: '标题',
+                descrption: '123'
+              },
+              creator: {
+                user: '齐昊',
+                avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+              },
+              create_at: '2019-1-1',
+              modified_at: '2019-1-2',
+              answerList: [{
+                id: 1,
+                body: '123',
+                creator: {
+                  user: '齐昊',
+                  avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+                },
+                modified_at: '2019-01-01 00:00:00.0',
+                create_at: '2019-01-01 00:00:00.0',
+              }, {
+                id: 2,
+                body: '123',
+                creator: {
+                  user: '齐昊',
+                  avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+                },
+                modified_at: '2019-01-01 00:00:00.0',
+                create_at: '2019-01-01 00:00:00.0',
+              }],
+              focus: 123,
+              reading: 123,
+              status: {
+                // code: result.status.code,
+                code: 2000
+              }
+            };
+          this.setState(() => {
+            return {
+              backend: mockData,
+            };
+          });
         }
       } catch (e) {
         // todo,出错，先用loading代替，之后改成报错图片

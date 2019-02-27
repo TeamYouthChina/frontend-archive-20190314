@@ -6,9 +6,9 @@ const production = 'http://47.254.46.117:8080/api/v1';
 
 export const env = 'production';
 
-const urlPrefix = env === 'production' ? production : mock;
+export const urlPrefix = env === 'production' ? production : mock;
 
-const generateHeaders = () => {
+export const generateHeaders = () => {
   let language = Cookies.get('language');
   if (!language) {
     language = 'zh_CN';
