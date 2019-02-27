@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import Cookies from 'js-cookie';
+import classes from './home-header.module.css';
 import {
   MDBCol,
   MDBCollapse,
@@ -75,14 +76,14 @@ export class HomeHeader extends React.Component {
               transparent
               color="mdb-color"
             >
-              <MDBCol md="1">
+              <MDBCol className={classes.yc} md="1">
                 <MDBNavbarBrand href="/">
                   <strong>YouthChina</strong>
                 </MDBNavbarBrand>
               </MDBCol>
               {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.handleTogglerClick}/>}
               <MDBCollapse isOpen={this.state.collapse} navbar>
-                <MDBCol md="4">
+                <MDBCol md="2">
                   <MDBNavbarNav>
                     <MDBNavItem
                       to="#"
@@ -105,7 +106,7 @@ export class HomeHeader extends React.Component {
                       style={this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                     >
                       <MDBNavLink to="/#">
-                        求 职
+                        职 位
                       </MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem

@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
-import {ApplicantCard} from '../../general-component/applicant-card';
+import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
 import {getAsync} from "../../tool/api-helper";
 
 export class Connection extends React.Component {
