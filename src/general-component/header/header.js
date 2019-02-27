@@ -62,7 +62,7 @@ export class Header extends React.Component {
             <MDBCol className={classes.yc} md="1">
               <MDBNavbarBrand href="/">
                 <strong>
-                  YouthChina
+                  WeYouth
                 </strong>
               </MDBNavbarBrand>
             </MDBCol>

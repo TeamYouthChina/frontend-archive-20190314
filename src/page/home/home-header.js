@@ -78,7 +78,7 @@ export class HomeHeader extends React.Component {
             >
               <MDBCol className={classes.yc} md="1">
                 <MDBNavbarBrand href="/">
-                  <strong>YouthChina</strong>
+                  <strong>WeYouth</strong>
                 </MDBNavbarBrand>
               </MDBCol>
               {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.handleTogglerClick}/>}

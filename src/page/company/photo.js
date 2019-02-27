@@ -3,7 +3,7 @@ import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer,MDBRow, MDBCol} from 'mdbreact';
 import Lightbox from "react-image-lightbox";
-import "./photo.css"
+import "./photo.css";
 
 const images = [
   "https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",

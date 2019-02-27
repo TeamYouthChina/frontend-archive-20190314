@@ -118,7 +118,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
             </p>
-            <MDBCard className="px-3 pb-3 mb-4">
+            <MDBCard className="p-3 pb-3 mb-4">
 
               <MDBCardBody>
                 <Photo/>
