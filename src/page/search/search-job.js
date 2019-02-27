@@ -17,7 +17,7 @@ import {
 } from 'mdbreact';
 
 import {SearchJobCards} from './search-job-cards';
-import {JobCardSquare} from '../../general-component/job-card-square';
+import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 
 export class SearchJobResult extends React.Component {
   constructor(props) {

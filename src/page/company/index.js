@@ -13,7 +13,7 @@ import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import {CoDetail} from "./company-detail";
-import {JobCardSquare} from "../../general-component/job-card-square";
+import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 import {Photo} from "./photo";
 import {ApplicantCard} from "../../general-component/applicant-card";
 import {ReviewCard} from "../../general-component/review-card";
@@ -138,16 +138,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
               <MDBRow className="px-3 pb-3 mb-4">
-                <p>
-                  <QuestionCard type={1}/>
-                </p>
-                <p>
-                  <QuestionCard type={1}/>
-                </p>
-                <p>
-                  <QuestionCard type={1}/>
-                </p>
-
+               
 
               </MDBRow>
             </p>

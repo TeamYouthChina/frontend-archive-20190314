@@ -65,7 +65,6 @@ export class HomeHeader extends React.Component {
     return (
 
       <div>
-        <Router>
           <div>
             <MDBNavbar
 
@@ -178,7 +177,6 @@ export class HomeHeader extends React.Component {
             </MDBNavbar>
             {this.state.collapsed && overlay}
           </div>
-        </Router>
         <MDBCarousel activeItem={1} length={4} showControls={true} showIndicators={true} className="z-depth-1">
           <MDBCarouselInner>
             <MDBCarouselItem itemId="1">

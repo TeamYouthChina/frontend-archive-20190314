@@ -17,7 +17,7 @@ import {JobName} from './job-name';
 import {JobDescri} from "./job-descri";
 import {JobApp} from "./job-app-progress";
 import {QuestionCard} from "../../general-component/question-card";
-import {JobCardSquare} from "../../general-component/job-card-square";
+import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 import {ReviewCard} from "../../general-component/review-card";
 
 
@@ -149,16 +149,7 @@ export class Job extends React.Component {
                 </strong>
               </h4>
               <MDBRow className="px-3 pb-3 mb-4">
-                <p>
-                  <QuestionCard/>
-                </p>
-
-                <p>
-                  <QuestionCard/>
-                </p> 
-                <p>
-                  <QuestionCard/>
-                </p>
+                
                 <MDBBtn flat block> See More</MDBBtn>
                 
               </MDBRow>
