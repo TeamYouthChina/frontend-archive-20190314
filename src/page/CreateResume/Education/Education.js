@@ -5,9 +5,9 @@ import EducationCard from './EducationCard/EducationCard';
 import classes from './Education.module.css';
 import {getAsync} from '../../../tool/api-helper';
 import ModalPage from '../Modal/Modal';
-import BraftEditor, {EditorState, SelectionState, ContentState, Modifier} from 'braft-editor'
+import BraftEditor from 'braft-editor'
 import Dropdown from '../Dropdown/Dropdown';
-import { ContentUtils } from 'braft-utils'
+import { ContentUtils } from 'braft-utils';
 
 
 
@@ -64,14 +64,7 @@ class Education extends Component {
     }
 
 
-    // delte data on server, delete data in state.cards
-    deleteHandler = (id) => {
-        // ContentUtils.clear(this.state.editorState);
-        // this.setState({
-        //     ...this.state,
-        //     showEditor: false
-        // })
-
+    deleteHandler = () => {
         this.setState({
             ...this.state,
             showEditor: false,
@@ -81,7 +74,7 @@ class Education extends Component {
 
     
     // save data locally and send back to server
-    saveHandler = (newEducation,id) =>{
+    saveHandler = () =>{
         this.setState({
             ...this.state,
             showEditor: false
@@ -93,12 +86,8 @@ class Education extends Component {
             ...this.state,
             showEditor: true
         })
-
-
     }
 
-    
-    // add a card
     addHandler = (id) => {
         let copy;
         this.state.cards.forEach((e,i)=>{
@@ -106,7 +95,7 @@ class Education extends Component {
                 copy = e
             }
         })
-        const plainText = JSON.stringify(copy.props.data);
+        // const plainText = JSON.stringify(copy.props.data);
         const u = copy.props.data.university;
         const m = copy.props.data.major;
         const d = copy.props.data.degree;
@@ -116,9 +105,9 @@ class Education extends Component {
         const n = copy.props.data.note;
         const manullyParsed = u + ' ' + m + '\n' + d + '\n' + b + ' ' + e + '\n' + l + '\n' + n + '\n';
 
-        const parsed = plainText.replace(/{/g, '\b').replace(/}/g, '').replace(/"/g, ' ').replace(/,/g, '\n');
-        console.log(manullyParsed);
-        console.log(plainText)
+        // const parsed = plainText.replace(/{/g, '\b').replace(/}/g, '').replace(/"/g, ' ').replace(/,/g, '\n');
+        // console.log(manullyParsed);
+        // console.log(plainText)
         const newState = ContentUtils.insertText(this.state.editorState, manullyParsed);
         this.setState({
             ...this.state,
@@ -130,8 +119,6 @@ class Education extends Component {
     handleEditorChange = (editorState) => {
         this.setState({ editorState })
     }
-
-    
     
     render(){
         let toShow; 
@@ -157,7 +144,7 @@ class Education extends Component {
         } else {
             const plainText = this.state.editorState.toHTML();
             const text = <div dangerouslySetInnerHTML={{__html: plainText}} />;
-            console.log(plainText);
+            // console.log(plainText);
             toShow =
                 <div className={classes.Education}>
                     <div className={classes.row}>

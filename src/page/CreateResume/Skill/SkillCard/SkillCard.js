@@ -66,25 +66,7 @@ class skillCard extends Component{
             }
             return(toShow)
         }else{
-            let toShow =
-                <div className={classes.SkillCard}>
-                    <img src={SkillIcon} alt="no img"></img>
-                    <div className={classes.SkillInfo}>
-                        <input disabled type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                    </div>                
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                </div>;
-            
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.SkillCard}>
-                        <img src={SkillIcon} alt="no img"></img>
-                        <div className={classes.SkillInfo}>
-                            <input type="text" defaultValue={this.state.skillData.name} ref={this.nameRef}/>
-                        </div>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>;
-            }
+            let toShow = <div></div>
             return(toShow)
         }
         

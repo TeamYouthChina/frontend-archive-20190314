@@ -106,46 +106,8 @@ class EducationCard extends Component {
             );
         }
         else {
-            // let toShow =
-            //     <div className={classes.EducationCard}>
-            //         <img src={schoolIcon} alt="no img"></img>
-            //         <div className={classes.SchoolInfo}>
-            //             <input disabled type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
-            //             <div>
-            //                 <input disabled type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
-            //                 <p> - </p>
-            //                 <input disabled type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
-            //             </div>
-            //             <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
-            //         </div>
-            //         <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-            //     </div>;
-            
-            // if(this.state.editing){
-            //     toShow =
-            //         <div className={classes.EducationCard}>
-            //             <img src={schoolIcon} alt="no img"></img>
-            //             <div className={classes.SchoolInfo}>
-            //                 <input type="text" defaultValue={this.state.educationData.university} ref={this.uniRef}/>
-            //                 <div>
-            //                     <input type="text" defaultValue={this.state.educationData.duration.begin} ref={this.beginRef}/>
-            //                     <p> - </p>
-            //                     <input type="text" defaultValue={this.state.educationData.duration.end} ref={this.endRef}/>
-            //                 </div>
-            //                 <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
-            //             </div>
-            //             <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-            //         </div>;
-            // }
-
-            let toShow = 
-                <div>
-
-                </div>
-
-            return(
-                toShow
-            );
+            let toShow = <div></div>
+            return(toShow);
         } 
     }  
 };

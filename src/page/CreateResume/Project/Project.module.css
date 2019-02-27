@@ -63,3 +63,11 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.editor {
+    width: 90%;
+}
+
+.editorContent {
+    height: 300px
+}
