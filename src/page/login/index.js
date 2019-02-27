@@ -103,7 +103,7 @@ export class Login extends React.Component {
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
-    const btnColor = '#7C97B8';
+    const btnColor = '#31394D';
 
     if (pathname) {
       return (<Redirect to={pathname}/>);
@@ -219,7 +219,7 @@ export class Login extends React.Component {
                           // href="/best-for-you"
                           className="btn-block z-depth-1a"
                           type="submit" color={btnColor}
-                          style={{backgroundColor: '#7C97B8'}}>
+                          style={{backgroundColor: '#31394D'}}>
                           登录
                         </MDBBtn>
                       </div>
@@ -239,7 +239,7 @@ export class Login extends React.Component {
                           className="text-center"
                           color={btnColor}
                           size="2x"
-                          style={{color: '#7C97B8'}}
+                          style={{color: '#31394D'}}
                         />
                       </a>
                       <a
@@ -252,7 +252,7 @@ export class Login extends React.Component {
                           icon="twitter"
                           color={btnColor}
                           size="2x"
-                          style={{color: '#7C97B8'}}/>
+                          style={{color: '#31394D'}}/>
                       </a>
                       <a
                         type="button"
@@ -264,7 +264,7 @@ export class Login extends React.Component {
                           icon="google-plus"
                           color={btnColor}
                           size="2x"
-                          style={{color: '#7C97B8'}}/>
+                          style={{color: '#31394D'}}/>
                       </a>
                     </div>
                     <p className="my-3 font-small grey-text d-flex justify-content-end">
