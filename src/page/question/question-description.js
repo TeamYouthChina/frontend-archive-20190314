@@ -1,15 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import {AnswerText} from './answerText'
+import {Link} from 'react-router-dom';
+import {AnswerText} from './answerText';
 import {languageHelper} from '../../tool/language-helper';
 import {
-  MDBBadge,
   MDBBtn,
   MDBCol,
   MDBRow,
   MDBIcon,
   MDBAvatar,
 } from 'mdbreact';
+
+import Loading from './loading'
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
@@ -25,68 +26,48 @@ export class QuestionDes extends React.Component {
     * */
     this.state = {
       backend: null,
+      // testNum:true,
       selectType: 1,
-      showText:false,
+      hiddenAns: false,
+      showText: false,
     }
     this.handleClick = this.handleClick.bind(this)
     this.text = QuestionDes.i18n[languageHelper()];
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        // 下面四个从父组件传进来
-        tag: ['tag1', 'tag2', 'tag3', 'tag4'],
-        content: {
-          title: 'this is a title',
-          descrption: 'wen ti de miao shu'
-        },
-        user: '齐昊',
-        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        focus: 123,
-        reading: 123,
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
-  }
-  handleClick(){
+  handleClick() {
     const showText = !this.state.showText
     this.setState({
       showText
-    })
+    });
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    console.log(this.props.loading)
+    return (
       <div style={{width: '100%'}}>
-        <MDBRow>
+        {this.props.loading ? (
+          <Loading></Loading>
+        ) : (<MDBRow>
           <MDBCol size="9">
-            <MDBRow>
+            {/*tag的样式*/}
+            <MDBRow style={{display: 'none'}}>
               {/*展现标签*/}
               {/*todo,超过一定数量就不显示*/}
               {this.props.tags.map((item) => {
                 return (
                   <MDBCol key={item} size="1">
-                    <MDBBadge key={item} color="light-blue lighten-2"
-                              text="white"
-                              style={{borderRadius: '100px', padding: '5px 10px'}}>
+                    <MDBBtn rounded outline color="info" key={item} style={{padding: '5px 10px', marginLeft: '15px'}}>
                       {item}
-                    </MDBBadge>
+                    </MDBBtn>
                   </MDBCol>
-
                 );
               })}
             </MDBRow>
             <br/>
             <p style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.props.content.title}</p>
 
-            <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption}</p>
+            <p style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.props.content.descrption.previewText}</p>
           </MDBCol>
           <MDBCol size="3">
             <MDBRow>
@@ -105,31 +86,29 @@ export class QuestionDes extends React.Component {
               </MDBCol>
             </MDBRow>
           </MDBCol>
-        </MDBRow>
+        </MDBRow>)}
         <MDBRow>
           <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px'}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="heart"/>关注问题
+            <MDBIcon style={{marginRight: '5px'}} far icon="heart"/>{this.text.toFocus}
           </MDBBtn>
           <MDBBtn onClick={this.handleClick} flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
-          </MDBBtn>
-         
-          <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
+            <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>
+            <Link to={`/question/${this.props.questionId}/answer/create`} style={{color: '#3E4850'}}>写回答</Link>
           </MDBBtn>
           <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>评论
+            <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>{this.text.toInvite}
           </MDBBtn>
           <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+            <MDBIcon style={{marginRight: '5px'}} icon="share"/>{this.text.share}
           </MDBBtn>
           <MDBBtn flat style={{padding: '5px 10px',}}>
             <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-            举报
+            {this.text.juBao}
           </MDBBtn>
         </MDBRow>
-        {this.state.showText ? (
-          <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
+        {/*取消点击回复，变成跳转回复*/}
+        {this.state.hiddenAns ? (
+          <div style={{height: '100%', margin: '20px 0px 0px 0px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
             <MDBRow>
               <MDBCol size="1">
                 <MDBAvatar style={{margin: '20px 5px 0px 20px'}}>
@@ -141,8 +120,8 @@ export class QuestionDes extends React.Component {
                   />
                 </MDBAvatar>
               </MDBCol>
-              <MDBCol size="8" style={{paddingTop:'10px'}}>
-                <MDBRow style={{paddingLeft:'5px'}}>{this.state.backend.user}</MDBRow>
+              <MDBCol size="8" style={{paddingTop: '10px'}}>
+                <MDBRow style={{paddingLeft: '5px'}}>{this.state.backend.user}</MDBRow>
                 <MDBRow>
                   <MDBBtn flat style={{padding: '0px',}}>
                     <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>添加备用内容
@@ -151,25 +130,26 @@ export class QuestionDes extends React.Component {
               </MDBCol>
               <MDBCol size="2"></MDBCol>
             </MDBRow>
-            <MDBRow style={{height:'100%',margin:'20px 0px 0px 0px'}}>
+            <MDBRow style={{height: '100%', margin: '20px 0px 0px 0px'}}>
               <AnswerText></AnswerText>
             </MDBRow>
             <MDBRow>
               <MDBCol size="10"></MDBCol>
               <MDBCol size="2">
-                <MDBBtn flat style={{float:'right',padding: '5px 10px',zIndex:10}}>
+                <MDBBtn flat style={{float: 'right', padding: '5px 10px', zIndex: 10}}>
                   提交回答
                 </MDBBtn>
               </MDBCol>
-                
-              
+
+
             </MDBRow>
           </div>
-          
-        ): null}
-        
+
+        ) : null}
+
       </div>
-    ) : null;
+    );
+    
   }
 }
 
@@ -177,9 +157,17 @@ QuestionDes.i18n = [
   {
     focusNum: '关注者',
     readingNum: '浏览次数',
+    toFocus: '关注问题',
+    toInvite: '邀请回答',
+    share: '分享',
+    juBao: '举报'
   },
   {
     focusNum: 'focus number',
-    readingNum: 'reading number'
+    readingNum: 'reading number',
+    toFocus: 'focus answer',
+    toInvite: 'invite others',
+    share: 'share',
+    juBao: 'ju bao'
   },
 ];
