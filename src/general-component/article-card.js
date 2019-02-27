@@ -289,18 +289,44 @@ export class ArticleCard extends React.Component {
           ) : null}
         </div>
         {this.state.showComments ? (
-          <div style={{marginTop:'15px',background: '#FFFFFF', padding: '19px 32px', borderRadius: '2px'}}>
-            <MDBRow style={{margin:'0px 0px 11px 0px',fontSize:'16px',color:'#8D9AAF',...basicFont}}>{this.state.backend.commentLists.length+1}条评论</MDBRow>
-            <MDBRow>
-              <MDBCol size="10" center>
-                <input ref={(input) => (this.input = input)} className="form-control" placeholder="发表你的评论..."/>
-              </MDBCol>
-              <MDBCol style={{paddingLeft: '0px'}}>
-                <MDBBtn onClick={(e) => this.addComments(e)} flat
-                        style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
-                  发布
-                </MDBBtn>
-              </MDBCol>
+          <div style={{marginTop: '15px', background: '#FFFFFF', padding: '19px 32px', borderRadius: '2px'}}>
+            <MDBRow style={{
+              margin: '0px 0px 11px 0px',
+              fontSize: '16px',
+              color: '#8D9AAF', ...basicFont
+            }}>{this.state.backend.commentLists.length + 1}条评论</MDBRow>
+            <MDBRow style={{margin: '0px', display: 'flex'}}>
+              <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
+                <img
+                  style={{width: '32px', background: '#F4F4F4'}}
+                  src={this.state.backend.img}
+                  alt=""
+                  className="rounded-circle"
+                />
+              </MDBAvatar>
+
+              <input style={{
+                flexGrow: '1',
+                background: '#FFFFFF',
+                border: '1px solid #DBE5F7',
+                boxSizing: 'border-box',
+                borderRadius: '2px',
+                padding:'8px 0px 8px 20px'
+              }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+
+
+              <MDBBtn onClick={(e) => this.addComments(e)} flat
+                      style={{
+                        flexGrow: '0',
+                        background: '#C4C4C4',
+                        padding: '10px 20px',
+                        color: '#FFFFFF', ...basicFont,
+                        margin:'0px',
+                        marginLeft:'8px'
+                      }}>
+                发布
+              </MDBBtn>
+
             </MDBRow>
             {this.state.backend.commentLists.map((item) => (
               <CommentsCard key={item} message={item}></CommentsCard>
