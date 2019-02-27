@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
-import {QuestionCard} from '../../general-component/question-card';
+import {QuestionCard} from '../question/question-card';
 // import {getAsync} from '../../tool/api-helper';
 import {Redirect} from "react-router-dom";
 

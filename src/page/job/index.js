@@ -16,9 +16,9 @@ import {CoDetail} from "../company/company-detail";
 import {JobName} from './job-name';
 import {JobDescri} from "./job-descri";
 import {JobApp} from "./job-app-progress";
-import {QuestionCard} from "../../general-component/question-card";
+import {QuestionCard} from "../question/question-card";
 import {JobCardSquare} from "../../general-component/job-card-square";
-import {ReviewCard} from "../../general-component/review-card";
+import {ReviewCard} from "../question/review-card";
 
 
 export class Job extends React.Component {

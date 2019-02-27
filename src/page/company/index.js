@@ -16,8 +16,8 @@ import {CoDetail} from "./company-detail";
 import {JobCardSquare} from "../../general-component/job-card-square";
 import {Photo} from "./photo";
 import {ApplicantCard} from "../../general-component/applicant-card";
-import {ReviewCard} from "../../general-component/review-card";
-import {QuestionCard} from "../../general-component/question-card";
+import {ReviewCard} from "../question/review-card";
+import {QuestionCard} from "../question/question-card";
 
 export class Company extends React.Component {
   constructor(props) {
