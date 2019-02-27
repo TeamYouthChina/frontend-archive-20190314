@@ -31,9 +31,13 @@ import {Footer} from '../../general-component/footer';
 import {SearchJobResult} from "./search-job";
 import {SearchCompanyResult} from './search-company';
 import {SearchCommunityResult} from "./search-community";
+import {SearchVideoResult} from "./search-video";
+import {JobNavbarItem} from './navbar-items/job-navbarItem';
+import {CompanyNavbarItem} from './navbar-items/company-navbarItem';
+import {CommunityNavbarItem} from './navbar-items/community-navbarItem';
+import {VideoNavbarItem} from './navbar-items/video-navbarItem';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {SearchVideoResult} from "./search-video";
 import {HotTemp} from '../home/hotTemp';
 import {NewTemp} from '../home/newTemp';
 
@@ -124,98 +128,121 @@ export class Search extends React.Component {
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                       <MDBDropdownItem
-                        className={this.props.location.pathname.includes('/search-job-result') ? 'active p-0' : 'p-0'}>
+                        className={`p-0${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-job-result`}
                         >
-                          <MDBIcon icon="user-circle"/> 职位
+                          <MDBIcon style={{width: '20px'}} icon="user-circle"/> 职位
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={this.props.location.pathname.includes('/search-company-result') ? 'active p-0' : 'p-0'}>
+                        className={`p-0${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-company-result`}>
-                          <MDBIcon icon="building"/> 公司
+                          <MDBIcon style={{width: '20px'}} icon="building"/> 公司
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={this.props.location.pathname.includes('/search-community-result') ? 'active p-0' : 'p-0'}>
+                        className={`p-0${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-community-result`}>
-                          <MDBIcon icon="bullhorn"/> 社区
+                          <MDBIcon style={{width: '20px'}} icon="bullhorn"/> 社区
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={this.props.location.pathname.includes('/search-video-result') ? 'active p-0' : 'p-0'}>
+                        className={`p-0${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-video-result`}>
-                          <MDBIcon fab icon="play-circle"/> 视频
+                          <MDBIcon style={{width: '20px'}} fab icon="play-circle"/> 视频
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={this.props.location.pathname.includes('/search-connect-result') ? 'active p-0' : 'p-0'}>
+                        className={`p-0${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-connect-result`}>
-                          <MDBIcon icon="users"/> 人脉
+                          <MDBIcon style={{width: '20px'}} icon="users"/> 人脉
                         </MDBNavLink>
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
                 
-                <MDBNavItem className="mx-2">
-                  <MDBDropdown>
-                    <MDBDropdownToggle nav>
-                      <div className="d-md-inline" 
-                           style={{...basicCHNFont, color: '#31394D'}}>发贴时间
-                        <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
-                      </div>
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                      <MDBDropdownItem 
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">最近发布</MDBDropdownItem>
-                      <MDBDropdownItem
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">最近一周</MDBDropdownItem>
-                      <MDBDropdownItem
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">最近一个月</MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavItem>
+                <Switch>
+                  <Route
+                    path={`${this.props.match.url}/search-job-result`}
+                    component={routeProps => <JobNavbarItem basicCHNFont={basicCHNFont}/>}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/search-company-result`}
+                    component={routeProps => <CompanyNavbarItem basicCHNFont={basicCHNFont}/>}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/search-community-result`}
+                    component={routeProps => <CommunityNavbarItem basicCHNFont={basicCHNFont}/>}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/search-video-result`}
+                    component={routeProps => <VideoNavbarItem basicCHNFont={basicCHNFont}/>}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/search-connect-result`}
+                    component={routeProps => <JobNavbarItem basicCHNFont={basicCHNFont}/>}
+                  />
+                  <Redirect to={`${this.props.match.url}/search-job-result`}/>
+                </Switch>
+                {/*<MDBNavItem className="mx-2">*/}
+                  {/*<MDBDropdown>*/}
+                    {/*<MDBDropdownToggle nav>*/}
+                      {/*<div className="d-md-inline" */}
+                           {/*style={{...basicCHNFont, color: '#31394D'}}>发贴时间*/}
+                        {/*<MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>*/}
+                      {/*</div>*/}
+                    {/*</MDBDropdownToggle>*/}
+                    {/*<MDBDropdownMenu>*/}
+                      {/*<MDBDropdownItem */}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">最近发布</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem*/}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">最近一周</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem*/}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">最近一个月</MDBDropdownItem>*/}
+                    {/*</MDBDropdownMenu>*/}
+                  {/*</MDBDropdown>*/}
+                {/*</MDBNavItem>*/}
                 
-                <MDBNavItem className="mx-2">
-                  <MDBDropdown>
-                    <MDBDropdownToggle nav>
-                      <div className="d-md-inline" 
-                           style={{...basicCHNFont, color: '#31394D'}}>帖子类型
-                        <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
-                      </div>
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                      <MDBDropdownItem
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">吐槽</MDBDropdownItem>
-                      <MDBDropdownItem
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">科普</MDBDropdownItem>
-                      <MDBDropdownItem
-                        style={{...basicCHNFont, color: '#31394D'}}
-                        href="#!">生活</MDBDropdownItem>
-                    </MDBDropdownMenu>
-                  </MDBDropdown>
-                </MDBNavItem>
+                {/*<MDBNavItem className="mx-2">*/}
+                  {/*<MDBDropdown>*/}
+                    {/*<MDBDropdownToggle nav>*/}
+                      {/*<div className="d-md-inline" */}
+                           {/*style={{...basicCHNFont, color: '#31394D'}}>帖子类型*/}
+                        {/*<MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>*/}
+                      {/*</div>*/}
+                    {/*</MDBDropdownToggle>*/}
+                    {/*<MDBDropdownMenu>*/}
+                      {/*<MDBDropdownItem*/}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">吐槽</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem*/}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">科普</MDBDropdownItem>*/}
+                      {/*<MDBDropdownItem*/}
+                        {/*style={{...basicCHNFont, color: '#31394D'}}*/}
+                        {/*href="#!">生活</MDBDropdownItem>*/}
+                    {/*</MDBDropdownMenu>*/}
+                  {/*</MDBDropdown>*/}
+                {/*</MDBNavItem>*/}
                 
               </MDBNavbarNav>
             </MDBCollapse>
@@ -229,19 +256,19 @@ export class Search extends React.Component {
           />
           <Route
             path={`${this.props.match.url}/search-company-result`}
-            component={routeProps => <SearchCompanyResult/>}
+            component={routeProps => <SearchCompanyResult basicCHNFont={basicCHNFont}/>}
           />
           <Route
             path={`${this.props.match.url}/search-community-result`}
-            component={routeProps => <SearchCommunityResult/>}
+            component={routeProps => <SearchCommunityResult basicCHNFont={basicCHNFont}/>}
           />
           <Route
             path={`${this.props.match.url}/search-video-result`}
-            component={routeProps => <SearchVideoResult/>}
+            component={routeProps => <SearchVideoResult basicCHNFont={basicCHNFont}/>}
           />
           <Route
             path={`${this.props.match.url}/search-connect-result`}
-            component={routeProps => <SearchJobResult/>}
+            component={routeProps => <SearchJobResult basicCHNFont={basicCHNFont}/>}
           />
           <Redirect to={`${this.props.match.url}/search-job-result`}/>
         </Switch>
