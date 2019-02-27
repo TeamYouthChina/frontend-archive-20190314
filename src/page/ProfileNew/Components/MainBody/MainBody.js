@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react'
 
 import classes from './MainBody.module.css';
 import ResumeButtons from '../ResumeButtons/ResumeButtons';
@@ -9,31 +9,58 @@ import Certifications from '../Certification/Certification';
 import SocialActivicies from '../SocialActivity/SocialActivity';
 import Projects from '../Project/Project';
 import Skills from '../Skill/Skill';
+import {getAsync} from '../../../../tool/api-helper';
 
 
-const mainBody = (props) => {
-    // console.log(props.data);
+class mainBody extends Component {
+
+  state = {
+      requestID: null,
+      requestedData: null
+  }
+
+  componentWillMount(){
+      this.setState({requestID: this.props.match.params.id});
+  }
+
+  async componentDidMount(){
+      // ideally only get /applicants/id/basicinfo
+      let data = await getAsync('/applicants/'+this.state.requestID);
+      this.setState({requestedData: data});
+  }
+
+  render(){
+    let toShow = 
+      <div>
+          <p>no such data</p>
+      </div>;
     
-    let dataForBasicInfo = {
-        name: props.data.name ? props.data.name : "no name given",
-        DOB: props.data.DOB ? props.data.DOB : "no DOB given",
-        gender: props.data.gender ? props.data.gender : "no gender given",
-        email: props.data.contacts.email ? props.data.contacts.email : "no email given",
-        phone: props.data.contacts.phonenumbers ? props.data.contacts.phonenumbers : "no phone given"
-    };
-
-    return(
-        <div className={classes.MainBody}>
-            <ResumeButtons/>
-            <BasicInfo data={dataForBasicInfo}/>
-            <Education requestID={props.requestID} />
-            <WorkExperience requestID={props.requestID}/>
-            <Certifications requestID={props.requestID}/>
-            <SocialActivicies requestID={props.requestID}/>
-            <Projects requestID={props.requestID}/>
-            <Skills requestID={props.requestID}/>
+    let dataForBasicInfo;
+    if(this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000){
+      dataForBasicInfo = {
+        name: this.state.requestedData.content.name ? this.state.requestedData.content.name : "no name given",
+        DOB: this.state.requestedData.content.DOB ? this.state.requestedData.content.DOB : "no DOB given",
+        gender: this.state.requestedData.content.gender ? this.state.requestedData.content.gender : "no gender given",
+        email: this.state.requestedData.content.contacts.email ? this.state.requestedData.content.contacts.email : "no email given",
+        phone: this.state.requestedData.content.contacts.phonenumbers ? this.state.requestedData.content.contacts.phonenumbers : "no phone given"
+      };
+      
+      toShow = <div className={classes.MainBody}>
+          {/* <ResumeButtons/> */}
+          <BasicInfo data={dataForBasicInfo}/>
+          <Education requestID={this.state.requestID} />
+          <WorkExperience requestID={this.state.requestID}/>
+          <Certifications requestID={this.state.requestID}/>
+          <SocialActivicies requestID={this.state.requestID}/>
+          <Projects requestID={this.state.requestID}/>
+          <Skills requestID={this.state.requestID}/>
         </div>
+    };
+  
+    return(
+      toShow
     );
+  }
 };
 
 export default mainBody;

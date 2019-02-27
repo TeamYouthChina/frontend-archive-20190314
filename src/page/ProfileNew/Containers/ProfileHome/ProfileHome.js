@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Header} from '../../../../general-component/header';
+import {Header} from '../../../../general-component/header/header';
 import {ResumeTitle} from '../../../../general-component/resumeTitle';
 import MainBody from '../../Components/MainBody/MainBody';
 import classes from './ProfileHome.module.css';
@@ -37,11 +37,12 @@ class ProfileHome extends Component{
                 img: this.state.requestedData.content.avatarUrl,
                 name: this.state.requestedData.content.name,
                 description: null,
-                work: this.state.requestedData.content.currentCompany.name,
+                work: this.state.requestedData.content.currentCompanyName,
                 influence: null
             };
 
             toShow = 
+              
                 <div className={classes.ProfileHome}>
                     <Header/>
                     <ResumeTitle data={dataForResumeTitle}/>

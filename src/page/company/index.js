@@ -9,7 +9,7 @@ import {
   Mask,
   View
 } from 'mdbreact';
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card';
 import {CoDetail} from "./company-detail";

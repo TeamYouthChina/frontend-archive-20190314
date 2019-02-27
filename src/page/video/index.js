@@ -10,7 +10,7 @@ import {
   MDBContainer, Iframe
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CommentsCard} from "../question/comment-test";
 import {PaginationUse} from "../question/pagination-test";

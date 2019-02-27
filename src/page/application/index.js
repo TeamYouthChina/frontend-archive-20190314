@@ -1,89 +1,36 @@
 import React from 'react';
-
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {
   MDBCol,
   MDBRow,
-  MDBCard,
-  MDBCardBody,
-  MDBDataTable,
+  MDBBtn,
 
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from "../../general-component/footer";
-import {JobApp} from "../job/job-app-progress";
-import {getAsync, get} from "../../tool/api-helper";
 import {ResumeTitle} from "../../general-component/resumeTitle";
-import {UserMenu} from "./menu";
-
+import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
+import {AppTable} from "./apptable";
+import {Collection} from "../collection";
 
 export class Application extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isOpen: false,
-      data: {
-        columns: [
-          {
-            label: '职位名称',
-            field: 'jobname',
-            sort: 'asc',
-            width: 150
-          },
-          {
-            label: '公司名称',
-            field: 'companyname',
-            sort: 'asc',
-            width: 250
-          },
-          {
-            label: '工作类型',
-            field: 'type',
-            sort: 'asc',
-            width: 200
-          },
-
-          {
-            label: '状态',
-            field: 'status',
-            sort: 'asc',
-            width: 100
-          }
-        ],
-        rows: []
-      }
+      hover: 0,
     };
     this.text = Application.i18n[languageHelper()];
     this.pip = 0;
   }
-
-
-  async componentDidMount() {
-    let backend = null;
-    if (this.props.id) {
-      backend = await getAsync(`/applicants/${this.props.id}/applications`);
-    } else {
-      backend = await getAsync('/applicants/1/applications');
-    }
-    if (backend && backend.status && backend.status.code === 2000) {
-      let data = this.state.data;
-      data.rows = [];
-      for (let i = 0; i < backend.content.length; i++) {
-        data.rows.push({
-          jobname: backend.content[i].position.name,
-          companyname: backend.content[i].position.organization.name,
-          type: backend.content[i].position.organization.location,
-          status: backend.content[i].status
-        });
-      }
-      this.setState({
-        tabledata: data
-      });
-    }
-  }
+  
 
   render() {
-
+    const pathname = removeUrlSlashSuffix(this.props.location.pathname);
+    if (pathname) {
+      return (<Redirect to={pathname}/>);
+    }
     return (
       <div>
         <Header/>
@@ -92,21 +39,50 @@ export class Application extends React.Component {
           <MDBCol md="10" className="offset-md-1 my-5 p-0">
 
             <div className="d-flex flex-row">
-              <div><UserMenu/></div>
+              <div>
+                <p style={{textAlign:'left'}}>
+                  
+                  <p>
+                    <MDBBtn
+                      
+                      style={this.props.location.pathname.indexOf('/application') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}} 
+                      flat 
+                      href={`${this.props.match.url}/application` } 
+                    >我的申请</MDBBtn>
+                  </p>
+                  <p >
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>个人档案库</MDBBtn>
+                  </p>
+                  <p>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>我的简历</MDBBtn>
+                  </p>
+                  <p>
+                    <MDBBtn
+                     
+                      style={this.props.location.pathname.indexOf('/collection/company')>-1||this.props.location.pathname.indexOf('/collection/job') > -1 ? {fontWeight:'450',borderLeft: '4px solid #7C97B8',fontSize:'16px',background:'#F2F2F2'}:{fontWeight:'300',fontSize:'16px'}}
+                      flat href={`${this.props.match.url}/collection`}>收 藏</MDBBtn>
+                  </p>
+                  <p>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>好友列表</MDBBtn>
+                  </p>
+                  <p>
+                    <MDBBtn style={{fontWeight:'300',fontSize:'16px'}} flat>消 息</MDBBtn>
+                  </p>
+                </p>
+              </div>
               <div className="flex-fill">
-                <MDBCard className="px-5 pb-3 mx-5">
-                  <br/>
-                  <MDBCardBody>
-                    <JobApp/>
-                    <MDBDataTable
-                      striped
-                      hover
-                      big
-                      data={this.state.tabledata}
-                      style={{fontSize: 'large', fontStyle: 'Helvetica Neue'}}
-                    />
-                  </MDBCardBody>
-                </MDBCard>
+                <Switch>
+                  <Route
+                    path={`${this.props.match.url}/application`}
+                    component={routeProps => <AppTable {...routeProps} />}
+                  />
+                  <Route
+                    path={`${this.props.match.url}/collection`}
+                    component={routeProps => <Collection {...routeProps} />}
+                  />
+                  <Redirect to={`${this.props.match.url}/application`}/>
+                </Switch>
+               
               </div>
             </div>
           </MDBCol>

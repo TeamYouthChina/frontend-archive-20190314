@@ -8,38 +8,45 @@ import {getAsync} from '../../../tool/api-helper';
 
 
 class ModalPage extends Component {
-    state = {
-        modal: false,
-        editorState: BraftEditor.createEditorState(null),
-        cards: Array()
+    constructor(props){
+        super(props);
+        this.state = {
+            modal: false,
+            editorState: BraftEditor.createEditorState(null),
+            newCards : [],
+            selected: -1
+        }
     }
 
-    // get educations data set requestedData and cards in state
-    async componentDidMount(){
-        let data = await getAsync('/applicants/'+this.props.requestID+'/educations');
-        let temp = data && data.content && data.status.code === 2000
-            ? data.content.map((e)=>{
-                const date = new Date();
-                const time = date.getTime();
-                return <EducationCard 
-                    key={time} 
-                    id={time} 
-                    data={e} 
-                    deleteHandler={this.deleteHandler}
-                    saveHandler={this.saveHandler}/>
-            })
-            : Array();
-        this.setState({cards: temp});
-    }
-
-    toggle = () => {
-        this.setState({
-            modal: !this.state.modal
+    componentDidMount(){
+        // this changed cards in education
+        let temp = this.props.cards.map((e,i)=>(
+            React.cloneElement(e,{toggle: this.toggle})
+        ))
+        this.setState({...this.state, newCards: temp},()=>{
         });
     }
 
-    render() {
-        console.log(this.state.cards)
+    componentDidUpdate(){
+        
+    }
+
+    toggle = (id,event) => {
+        this.setState({
+            modal: !this.state.modal,
+            selected: id}, ()=>{
+                if(!isNaN(id)){
+                    this.props.addHandler(id);
+                }
+            });
+    }
+
+
+    
+    render(){
+        let temp = this.props.cards.map((e,i)=>(
+            React.cloneElement(e,{toggle: this.toggle, modal: true})
+        ))
         return (
             <MDBContainer>
                 <MDBRow center>
@@ -47,16 +54,15 @@ class ModalPage extends Component {
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle} size="lg">
                         <MDBModalHeader toggle={this.toggle}>Choose To Add In Your Resume</MDBModalHeader>
                         <MDBModalBody>
-                            {this.state.cards}
+                            {temp}
                         </MDBModalBody>
                         <MDBModalFooter>
-                        <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
-                        <MDBBtn color="primary">Save changes</MDBBtn>
+                        <MDBBtn color="secondary" onClick={this.toggle}>Cancel</MDBBtn>
                         </MDBModalFooter>
                     </MDBModal>
                 </MDBRow>
             </MDBContainer>
-            );
+        );
     }
 }
 

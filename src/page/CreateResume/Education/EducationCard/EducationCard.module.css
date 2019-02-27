@@ -1,4 +1,5 @@
 .EducationCard{
+    position: relative;
     display: flex;
     flex-direction: row;
     height: 96px;

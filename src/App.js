@@ -35,6 +35,9 @@ import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
+import {QuestionAnswerMobile} from './page/mobile/question-answer-mobile';
+import VideoUploadMobile from './page/mobile/video-upload-mobile';
+
 
 // Trash
 import {DiscoveryBackup} from './page/trash/discovery-backup';
@@ -48,10 +51,13 @@ import {SearchS2} from './page/trash/s2';
 import {Search} from './page/search';
 import {HR} from './page/hr';
 import {Employerhome} from './page/hr/employerhome';
-import {Recruit} from "./page/hr/recruit";
+import {Recruit} from './page/hr/recruit';
 import {MobileTest1} from './page/trash/mobile-test-1';
 import {MobileTest2} from './page/trash/mobile-test-2';
-import {SearchResume} from "./page/hr/searchresume";
+import {SearchResume} from './page/hr/searchresume';
+import {Mobile} from './page/mobile';
+import {Applicant} from "./page/applicant";
+import {Logout} from './logout';
 
 
 export class App extends Component {
@@ -64,6 +70,10 @@ export class App extends Component {
               path="/"
               exact
               component={() => <Redirect to="/home"/>}
+            />
+            <Route
+              path="/applicant/"
+              component={routeProps => <Applicant {...routeProps} />}
             />
             <Route
               path="/application/"
@@ -114,10 +124,6 @@ export class App extends Component {
               component={routeProps => <Home {...routeProps} />}
             />
             <Route
-              path="/hr"
-              component={routeProps => <HR {...routeProps} />}
-            />
-            <Route
               path="/job-for-you"
               component={routeProps => <JobForYou {...routeProps} />}
             />
@@ -130,8 +136,16 @@ export class App extends Component {
               component={routeProps => <Login {...routeProps} />}
             />
             <Route
+              path="/logout"
+              component={routeProps => <Logout {...routeProps} />}
+            />
+            <Route
               path="/message"
               component={routeProps => <Message {...routeProps} />}
+            />
+            <Route
+              path="/mobile"
+              component={routeProps => <Mobile {...routeProps} />}
             />
             <Route
               path="/notification"
@@ -168,6 +182,10 @@ export class App extends Component {
             <Route
               path="/question/:questionId/answer/:answerId/edit"
               component={routeProps => <QuestionAnswerEdit {...routeProps} />}
+            />
+            <Route
+              path="/question/:questionId/answer/:answerId"
+              component={routeProps => <QuestionAnswer {...routeProps} />}
             />
             <Route
               path="/question/:questionId"
@@ -245,6 +263,10 @@ export class App extends Component {
             <Route
               path="/mobile-test-2"
               component={routeProps => <MobileTest2 {...routeProps} />}
+            />
+            <Route
+              path="/hr"
+              component={routeProps => <HR {...routeProps} />}
             />
             {/* ====== Trash End ====== */}
             <Redirect to="/page-no-found"/>

@@ -10,7 +10,7 @@ import {
   Mask,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {Header} from '../../general-component/header';
+import {Header} from '../../general-component/header/header';
 import {Footer} from "../../general-component/footer";
 import {CoDetail} from "../company/company-detail";
 import {JobName} from './job-name';
@@ -30,8 +30,6 @@ export class Job extends React.Component {
     };
     this.text = Job.i18n[languageHelper()];
   }
-
-  
 
   render() {
 
