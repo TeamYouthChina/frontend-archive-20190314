@@ -63,7 +63,7 @@ export class Login extends React.Component {
     const backend = await postAsync('/login', {
       id: this.state.id,
       password: this.state.password
-    });
+    }, true);
     // must clean token, valid token will always cause 200 OK return.
     // Cookies.remove('token');
     if (backend && backend.status && backend.status.code === 2000) {
