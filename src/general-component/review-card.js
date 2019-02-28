@@ -226,8 +226,6 @@ export class ReviewCard extends React.Component {
             <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
           </div>
           {this.state.showBottom || this.state.isCollapsed ? (
-
-
             <MDBRow style={this.state.stickyRow}>
               <MDBCol size="12" md="3" middle>
               <span style={{color: '#8D9AAF', fontSize: '14px', ...basicFont}}>
