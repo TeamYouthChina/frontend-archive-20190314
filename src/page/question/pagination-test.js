@@ -3,10 +3,14 @@ import {languageHelper} from '../../tool/language-helper';
 import {MDBPagination, MDBPageItem, MDBPageNav, MDBCol, MDBRow} from "mdbreact";
 
 const basicFont = {
-  fontFamily: 'IBM Plex Sans',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  lineHeight: 'normal',
+  fontFamily: 'PingFang SC',
+  lineHeight: 'normal'
+}
+const basicPage = {
+  border: '1px solid #333B4F',
+  boxSizing: 'border-box',
+  boxShadow: '0px 1px 20px rgba(141, 154, 175, 0.15)',
+  borderradius: '2px',
 }
 
 export class PaginationUse extends React.Component {
@@ -29,8 +33,7 @@ export class PaginationUse extends React.Component {
     pages.push(
       <MDBPageItem className={currentPage === 1 ? 'disabled' : null} onClick={this.prePageHandeler.bind(this)} key={0}>
         <MDBPageNav className="page-link" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span className="sr-only">Previous</span>
+          <span style={{fontSize:'14px',color:'#8D9AAF',...basicFont}}>上一页</span>
         </MDBPageNav>
       </MDBPageItem>
     )
@@ -104,8 +107,7 @@ export class PaginationUse extends React.Component {
     pages.push(
       <MDBPageItem className={currentPage === totalPage ? 'disabled' : null} onClick={this.nextPageHandeler.bind(this)} key={totalPage + 1}>
         <MDBPageNav className="page-link" aria-label="Previous">
-          <span aria-hidden="true">&raquo;</span>
-          <span className="sr-only">next</span>
+          <span style={{fontSize:'14px',color:'#8D9AAF',...basicFont}}>下一页</span>
         </MDBPageNav>
       </MDBPageItem>
       )
