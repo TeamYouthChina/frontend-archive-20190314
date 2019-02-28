@@ -1,8 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
+import {Link} from 'react-router-dom';
 import {CommentsCard} from './comment-test'
 import {PaginationUse} from './pagination-test'
-import {Link} from 'react-router-dom';
 import {
   MDBBtn,
   MDBRow,
@@ -10,6 +10,8 @@ import {
   MDBIcon,
   MDBAvatar
 } from 'mdbreact';
+// import {getAsync} from "../../tool/api-helper";
+import {getAsync} from './api-test/api-test';
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
@@ -17,6 +19,11 @@ const basicFont = {
   fontWeight: '600',
   lineHeight: 'normal',
 }
+
+// type={
+//   1:'discovery里面',
+//   2:'question里面'
+// }
 
 export class QuestionCard extends React.Component {
   constructor(props) {
@@ -47,6 +54,7 @@ export class QuestionCard extends React.Component {
   }
 
   handleSpanClick() {
+    // console.log(this.props.type,1)
     let isCollapsed = !this.state.isCollapsed
     if (isCollapsed) {
       // this.divNow.style.height='100px'
@@ -67,55 +75,62 @@ export class QuestionCard extends React.Component {
     }
   }
 
-  componentWillMount() {
+  async componentDidMount() {
+    window.addEventListener('scroll', this.orderScroll.bind(this));
+    let questionAll = await getAsync(`/questions/${this.props.questionId}`)
     let mockData =
       {
-        id: '0100',
-        title: 'YouthChina是怎样的一个公司',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-        user: '齐昊',
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        id: this.props.questionId || '0100',
+        title: questionAll.content.title || 'YouthChina是怎样的一个公司',
+        short: questionAll.content.body || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: questionAll.content.body || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: questionAll.content.creator.username || '齐昊',
+        img: questionAll.content.creator.avatarUrl || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        // 缺少个人签名
         description: '莫以为敌消彼长，然乾坤逆之天崩',
+        // 缺少评论
         commentLists: [1, 2],
+        // 缺少赞同和反对
         agree: '',
         disagree: '',
         status: {
           code: 2000
         }
       };
+    // console.log(this.props.questionId)
     this.setState(() => {
       return {backend: mockData};
     });
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.orderScroll);
-  }
 
   orderScroll() {
     setTimeout(() => {
       if (!this.state.isCollapsed) {
-        // 浏览器窗口减去元素的高度
-        let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
-        // console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
-        // 手动给的250
-        if (discount < 250) {
-          this.setState({
-            showBottom: false
-          })
+        if (this.scrollSpan) {
+          // 浏览器窗口减去元素的高度
+          let discount = document.documentElement.clientHeight - this.scrollSpan.getBoundingClientRect().top
+          // console.log(document.documentElement.clientHeight,this.scrollSpan.getBoundingClientRect().top,discount)
+          // 手动给的250
+          if (discount < 250) {
+            this.setState({
+              showBottom: false
+            })
 
-        } else if (discount > 260) {
-          this.setState({
-            showBottom: true
-          })
+          } else if (discount > 260) {
+            this.setState({
+              showBottom: true
+            })
+          }
         }
+
 
       }
     }, 100)
   }
 
   showComments() {
+
     let commontsText = this.state.commontsText === '评论' ? '收起评论' : '评论'
     let showComments = !this.state.showComments
     this.setState({
@@ -123,38 +138,47 @@ export class QuestionCard extends React.Component {
       commontsText
     })
   }
-  
-  addComments(e){
+
+  addComments(e) {
     let {commentLists = []} = this.state.backend
     commentLists.unshift(this.input.value)
     // console.log(commentLists,this.props.id)
     this.setState({
-      backend:{
+      backend: {
         commentLists,
         ...this.state.backend
       }
     })
     e.stopPropagation();
   }
+
   // todo,拿到点击好的页吗
   getCurrentPage(currentPage) {
 
   }
 
   componentWillUnmount() {
-    window.removeListener('scroll', this.orderScroll);
+    window.removeEventListener('scroll', this.orderScroll.bind(this));
   }
 
   render() {
-    return (
-      <div style={{padding: '30px', boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)', marginTop: '20px'}}
-           ref={(span) => this.scrollSpan = span}>
-        <h4  style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</h4>
 
+    return (this.state.backend !== null) ? (
+      <div style={{
+        background: '#FFFFFF',
+        padding: '30px',
+        boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)',
+        marginTop: '20px'
+      }}
+           ref={(span) => this.scrollSpan = span}>
+        {this.props.type === 0 ? (
+          <Link to={`/question/${this.state.backend.id}/answer/1`}
+                style={{color: '#3E4850', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</Link>
+        ) : null}
         {this.state.isCollapsed ? (
           <div>
             <span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:
-            <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>  {this.state.backend.short}</span>
+            <span style={{color: '#62686C', fontSize: '14px', ...basicFont}}>{this.state.backend.short}</span>
             <span onClick={this.handleSpanClick}
                   style={{color: '#175199', fontSize: '14px', ...basicFont}}>阅读全文</span><MDBIcon icon="angle-down"/>
           </div>
@@ -189,10 +213,6 @@ export class QuestionCard extends React.Component {
             <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
               <MDBIcon style={{marginRight: '5px'}} far icon="star"/>关注问题
             </MDBBtn>
-
-            <MDBBtn flat style={{padding: '5px 10px',}}>
-              <MDBIcon style={{marginRight: '5px'}} far icon="edit"/>写回答
-            </MDBBtn>
             <MDBBtn flat style={{padding: '5px 10px',}}>
               <MDBIcon style={{marginRight: '5px'}} icon="user-plus"/>邀请回答
             </MDBBtn>
@@ -222,17 +242,18 @@ export class QuestionCard extends React.Component {
               height: '1px'
             }}>
             </div>
-            {this.state.backend.commentLists.map((item)=>(
+            {this.state.backend.commentLists.map((item) => (
               <CommentsCard key={item} message={item}></CommentsCard>
 
             ))}
-            
+
             <MDBRow>
               <MDBCol size="10" center>
-                <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
+                <input ref={(input) => (this.input = input)} className="form-control" placeholder="你的回复"/>
               </MDBCol>
               <MDBCol style={{paddingLeft: '0px'}}>
-                <MDBBtn onClick={(e)=>this.addComments(e)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
+                <MDBBtn onClick={(e) => this.addComments(e)} flat
+                        style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
                   发布
                 </MDBBtn>
               </MDBCol>
@@ -245,7 +266,8 @@ export class QuestionCard extends React.Component {
 
         ) : null}
       </div>
-    );
+    ) : null
+    
   }
 }
 

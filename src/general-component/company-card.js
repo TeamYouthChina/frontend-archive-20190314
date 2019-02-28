@@ -11,9 +11,11 @@ import {
 } from 'mdbreact';
 import {getAsync} from "../tool/api-helper";
 import {MDBBtn, Row} from "./job-card-bar";
+import {withRouter} from 'react-router-dom';
+import {JobCardSquareFull1} from './job-card-square-full';
 
 
-export class CompanyCard extends React.Component {
+export class CompanyCard1 extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +23,7 @@ export class CompanyCard extends React.Component {
       backend: null,
       collect: false,
     };
-    this.text = CompanyCard.i18n[languageHelper()];
+    this.text = CompanyCard1.i18n[languageHelper()];
   }
 
   async componentDidMount() {
@@ -42,6 +44,9 @@ export class CompanyCard extends React.Component {
       <MDBCard
         className="px-3 py-4"
         style={{borderRadius: '0px'}}
+        onClick={() => {
+          this.props.history.push(`/company/${this.state.backend.content.id}`);
+        }}
       >
         <MDBCardBody
           style={{
@@ -99,7 +104,7 @@ export class CompanyCard extends React.Component {
                     <span>{this.state.backend.content.location.region_num}</span>
                   </MDBCardText>
                 </MDBCol>
-                <MDBCol 
+                <MDBCol
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +143,7 @@ export class CompanyCard extends React.Component {
   }
 }
 
-CompanyCard.i18n = [
+CompanyCard1.i18n = [
   {
     type: '类型',
     location: '工作地点',
@@ -148,3 +153,5 @@ CompanyCard.i18n = [
     location: 'Location',
   },
 ];
+
+export const CompanyCard = withRouter(CompanyCard1)

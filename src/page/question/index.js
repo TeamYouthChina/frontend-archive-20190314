@@ -15,7 +15,7 @@ import Loading from './loading'
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description';
-import {ArticleCard} from '../../general-component/article-card'
+import {ArticleCard} from '../article/article-card'
 // import {QuestionBar} from './question-side-bar'
 import {QuestionCard} from '../../general-component/question-card'
 

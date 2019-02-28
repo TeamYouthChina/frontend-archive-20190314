@@ -105,7 +105,7 @@ export class HomeHeader extends React.Component {
 
                       style={this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                     >
-                      <MDBNavLink to="/#">
+                      <MDBNavLink to="/job-for-you">
                         职 位
                       </MDBNavLink>
                     </MDBNavItem>

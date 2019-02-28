@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
-import {ArticleCard} from '../../general-component/article-card';
+import {ArticleCard} from '../article/article-card';
 import {getAsync} from '../../tool/api-helper';
 
 export class Article extends React.Component {
