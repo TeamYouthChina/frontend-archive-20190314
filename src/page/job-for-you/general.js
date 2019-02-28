@@ -47,7 +47,6 @@ export class General extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <div className="h3 font-weight-light mb-4">{this.text.general}</div>
         <JobListHome/>
         <JobListHome/>
         <JobListHome/>

@@ -10,8 +10,7 @@ import {
   MDBBtn,
   MDBSpinner
 } from 'mdbreact';
-import {JobListHome} from '../home/job-list-home';
-import {JobCardSquareFull} from '../../general-component/job-card-square-full';
+import {JobCardSquareFull} from '../../general-component/job-card-square-full/job-card-square-full';
 import {languageHelper} from '../../tool/language-helper';
 import {getAsync} from '../../tool/api-helper';
 
@@ -59,7 +58,6 @@ export class Campus extends React.Component {
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div style={{backgroundColor: '#F3F5F7'}}>
-        <div className="h3 font-weight-light mb-4">{this.text.campus}</div>
         <MDBContainer>
           <MDBRow center>
             {this.state.updatedList.map((item) => {
