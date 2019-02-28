@@ -10,7 +10,7 @@ import {
   MDBAvatar
 } from 'mdbreact';
 import {getAsync} from "../tool/api-helper";
-import {MDBBtn, Row} from "./job-card-bar";
+import {MDBBtn, Row} from "./job-card-bar/job-card-bar";
 import {withRouter} from 'react-router-dom';
 
 

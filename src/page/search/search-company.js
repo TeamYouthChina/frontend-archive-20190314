@@ -16,7 +16,7 @@ import {
   MDBNavbarToggler
 } from 'mdbreact';
 
-import {CompanyCard} from '../../general-component/company-card';
+import {CompanyCard} from '../../general-component/company-card/company-card';
 
 export class SearchCompanyResult extends React.Component {
   constructor(props) {

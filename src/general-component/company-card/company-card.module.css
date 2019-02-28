@@ -1,0 +1,74 @@
+.card{
+  
+  height: 172px;
+
+  background: #FFFFFF;
+  
+}
+.title{
+  position: absolute;
+  height: 34px;
+  left: 25.55%;
+  right: 63.51%;
+  top: 53px;
+  
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 24px;
+
+  color: #454F69;
+}
+.font{
+  position: absolute;
+  height: 20px;
+  left: 36.35%;
+  right: 14.13%;
+  height: 10px;
+  top: 63px;
+  
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #8D9AAF;
+
+}
+.website{
+  position: absolute;
+  height: 23px;
+  left: 25.55%;
+  
+  top: 88px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 16px;
+
+  color: #454F69;
+
+}
+
+.logo{
+  max-width: 132px;
+  max-height: 132px;
+  left: 40px;
+  top: 20px;
+  vertical-align: middle;
+}
+
+.btn{
+  position: absolute;
+  height: 23px;
+  left: 88.91%;
+  right: 0.99%;
+  top: 90px;
+  ont-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #8D9AAF;
+
+
+
+}
