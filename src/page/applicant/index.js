@@ -115,7 +115,7 @@ export class Applicant extends React.Component {
                 </MDBRow>
                 <MDBRow>
                   <MDBBtn
-                    style={this.props.location.pathname.indexOf('/messafe') > -1 ? this.selectedStyle : this.unselectedStyle}
+                    style={this.props.location.pathname.indexOf('/message') > -1 ? this.selectedStyle : this.unselectedStyle}
                     flat
                     onClick={
                       () => {

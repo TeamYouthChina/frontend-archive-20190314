@@ -55,7 +55,7 @@ import {MobileTest2} from './page/trash/mobile-test-2';
 import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
 import {Applicant} from "./page/applicant";
-import {Logout} from './logout';
+import {Logout} from './page/logout';
 
 
 export class App extends Component {

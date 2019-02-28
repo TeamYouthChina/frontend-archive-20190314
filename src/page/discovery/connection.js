@@ -1,9 +1,10 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer, MDBRow} from 'mdbreact';
+import {MDBContainer, MDBRow, MDBCol} from 'mdbreact';
 import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
 import {getAsync} from "../../tool/api-helper";
+import {ArticleCard} from '../article/article-card';
 
 export class Connection extends React.Component {
   constructor(props) {
@@ -38,19 +39,34 @@ export class Connection extends React.Component {
 
   render() {
     let toShow = <div>No Such Data</div>;
-    if(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000){
-      const cards = this.state.backend.content.users.map((e,i)=>(
+    if (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) {
+      const cards = this.state.backend.content.users.map((e, i) => (
         <ApplicantCard id={e.id}/>
       ))
-      toShow = 
+      toShow =
         <MDBContainer fluid>
           <MDBRow style={{margin: '1rem 0rem'}}>
             {cards}
           </MDBRow>
         </MDBContainer>
     }
-    
-    return toShow;
+
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+      <MDBContainer
+        fluid
+        style={{padding: 0}}
+      >
+        <MDBRow left>
+          {
+            this.state.backend.content.users.map((e, i) => (
+              <MDBCol size={4} key={i} style={{marginTop: 20, marginBottom: 20}}>
+                <ApplicantCard id={e.id}/>
+              </MDBCol>
+            ))
+          }
+        </MDBRow>
+      </MDBContainer>
+    ) : null;
   }
 }
 

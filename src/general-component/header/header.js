@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import classes from './header.module.css';
 import {
@@ -20,8 +21,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {Logined} from "./logined";
 import {UnLogin} from "./unlogin";
 
-
-export class Header extends React.Component {
+class Header1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ export class Header extends React.Component {
       hover: 0,
       login: null
     };
-    this.text = Header.i18n[languageHelper()];
+    this.text = Header1.i18n[languageHelper()];
   }
 
   toggleCollapse(collapseID) {
@@ -58,7 +58,6 @@ export class Header extends React.Component {
             scrolling
             style={{background: '#31394D'}}
           >
-            
             <MDBCol className={classes.yc} md="1">
               <MDBNavbarBrand href="/">
                 <strong>
@@ -69,14 +68,6 @@ export class Header extends React.Component {
             <MDBCol md="2">
               <MDBNavbarNav>
                 <MDBNavItem
-                  to="#"
-                  onClick={
-                    () => {
-                      this.setState({
-                        chosen: 1
-                      });
-                    }
-                  }
                   onMouseEnter={
                     () => {
                       this.setState({
@@ -91,14 +82,34 @@ export class Header extends React.Component {
                       });
                     }
                   }
-
-                  style={this.state.chosen === 1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  style={this.props.location.pathname.indexOf('/job-for-you') > -1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
                   <MDBNavLink to="/job-for-you">
-                   职 位
+                    职 位
                   </MDBNavLink>
                 </MDBNavItem>
-
+                <MDBNavItem
+                  onMouseEnter={
+                    () => {
+                      this.setState({
+                        hover: 2
+                      });
+                    }
+                  }
+                  onMouseLeave={
+                    () => {
+                      this.setState({
+                        hover: 0
+                      });
+                    }
+                  }
+                  style={this.props.location.pathname.indexOf('/discovery') > -1 || this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                >
+                  <MDBNavLink to="/discovery">
+                    探 索
+                  </MDBNavLink>
+                </MDBNavItem>
+                {/*
                 <MDBNavItem
                   onClick={
                     () => {
@@ -146,6 +157,7 @@ export class Header extends React.Component {
 
                   </MDBDropdown>
                 </MDBNavItem>
+                */}
               </MDBNavbarNav>
             </MDBCol>
 
@@ -190,7 +202,9 @@ export class Header extends React.Component {
   }
 }
 
-Header.i18n = [
+Header1.i18n = [
   {},
   {}
 ];
+
+export const Header = withRouter(Header1)
