@@ -29,7 +29,7 @@ export class Campus extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`)
+      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
     });
 
     this.handleReadMore();
@@ -57,7 +57,7 @@ export class Campus extends React.Component {
     console.log('render()');
 
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{backgroundColor: '#F3F5F7'}}>
+      <div className="pt-4" style={{backgroundColor: '#F3F5F7'}}>
         <MDBContainer>
           <MDBRow center>
             {this.state.updatedList.map((item) => {
@@ -72,6 +72,7 @@ export class Campus extends React.Component {
           <div className="text-center pb-5">
             <MDBBtn
               rounded
+              size="sm"
               color="rgba-grey-strong"
               onClick={() => this.handleReadMore()}
               style={{
