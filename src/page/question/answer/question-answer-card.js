@@ -6,8 +6,8 @@ import {
 
 } from 'mdbreact';
 
-import {languageHelper} from '../tool/language-helper';
-import {getAsync} from "../tool/api-helper";
+import {languageHelper} from '../../../tool/language-helper';
+import {getAsync} from "../../../tool/api-helper";
 
 export class QuestionAnswerCard extends React.Component {
   constructor(props) {

@@ -17,7 +17,7 @@ import {
   MDBNavbarToggler
 } from 'mdbreact';
 
-import {ArticleCard} from '../../general-component/article-card';
+import {ArticleCard} from '../article/article-card';
 
 export class SearchCommunityResult extends React.Component {
   constructor(props) {

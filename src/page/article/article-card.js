@@ -1,8 +1,8 @@
 import React from 'react';
-import {languageHelper} from '../tool/language-helper';
+import {languageHelper} from '../../tool/language-helper';
 import {Link} from 'react-router-dom';
-import {CommentsCard} from '../page/question/comment-test'
-import {PaginationUse} from '../page/question/pagination-test'
+import {CommentsCard} from '../question/comment-test'
+import {PaginationUse} from '../question/pagination-test'
 import {
   MDBBtn,
   MDBRow,
@@ -260,7 +260,7 @@ export class ArticleCard extends React.Component {
               </MDBCol>
               <MDBCol size="9">
                 <div style={{float: 'right'}}>
-                  <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+                  <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px'}}>
                     <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>点赞
                   </MDBBtn>
                   <MDBBtn flat style={{padding: '5px 10px',}}>
@@ -296,7 +296,7 @@ export class ArticleCard extends React.Component {
               margin: '0px 0px 11px 0px',
               fontSize: '16px',
               color: '#8D9AAF', ...basicFont
-            }}>{this.state.backend.commentLists.length + 1}条评论</MDBRow>
+            }}>{this.state.backend.commentLists.length}条评论</MDBRow>
             <MDBRow style={{margin: '0px', display: 'flex'}}>
               <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
                 <img
@@ -335,7 +335,7 @@ export class ArticleCard extends React.Component {
 
             ))}
             <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
           </div>
 
