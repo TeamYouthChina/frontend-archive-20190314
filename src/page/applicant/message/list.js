@@ -1,21 +1,22 @@
 import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 import {
-MDBCard,
-MDBCardBody,
-MDBRow,
-MDBCol,
-MDBListGroup,
-MDBListGroupItem,
-MDBAvatar,
-MDBBadge,
-MDBIcon,
-MDBBtn, 
-MDBScrollbar,
-MDBScrollspyBox,
-MDBScrollspyText,
+  MDBCard,
+  MDBCardBody,
+  MDBRow,
+  MDBCol,
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBAvatar,
+  MDBBadge,
+  MDBIcon,
+  MDBBtn,
+  MDBScrollbar,
+  MDBScrollspyBox,
+  MDBScrollspyText,
 } from 'mdbreact';
 import '../notification/chat-room.css';
+
 export class Listview extends React.Component {
   constructor(props) {
     super(props);
@@ -163,29 +164,28 @@ export class Listview extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-<MDBCard className="grey lighten-3 chat-room">
+      <MDBCard className="grey lighten-3 chat-room">
         <MDBCardBody>
           <MDBRow className="px-lg-2 px-2">
             <MDBCol md="6" xl="4" className="px-0 mb-4 mb-md-0 scrollable-friends-list">
               <h6 className="font-weight-bold mb-3 text-lg-left">Member</h6>
-            
+
               <MDBScrollbar>
-                <div  className="white z-depth-1 p-3">
+                <div className="white z-depth-1 p-3">
                   <MDBListGroup className="friend-list">
                     {this.state.friends.map(friend => (
-                      <Friend key={friend.name} friend={friend} />
+                      <Friend key={friend.name} friend={friend}/>
                     ))}
                   </MDBListGroup>
                 </div>
               </MDBScrollbar>
- 
-              
-      
+
+
             </MDBCol>
             <MDBCol md="6" xl="8" className="pl-md-3 mt-4 mt-md-0 px-lg-auto">
-            
+
               <div className="scrollable-chat">
-                <MDBScrollbar >
+                <MDBScrollbar>
                   <MDBListGroup className="list-unstyled pl-3 pr-3">
                     {this.state.messages.map(message => (
                       <ChatMessage
@@ -196,7 +196,7 @@ export class Listview extends React.Component {
                   </MDBListGroup>
                 </MDBScrollbar>
               </div>
-         
+
               <div className="form-group basic-textarea">
                 <textarea
                   className="form-control pl-2 my-0"
@@ -220,74 +220,71 @@ export class Listview extends React.Component {
     ) : null;
   }
 }
+
 const Friend = ({
-    friend: { name, avatar, message, when, toRespond, seen, active }
-  }) => (
-    <MDBListGroupItem
-      href="#!"
-      className="d-flex justify-content-between p-2 border-light"
-      style={{ backgroundColor: active ? "#eeeeee" : "" }}
-    >
-      <MDBAvatar
-        tag="img"
-        src={avatar}
-        alt="avatar"
-        circle
-        className="mr-2 z-depth-1"
-      />
-      <div style={{ fontSize: "0.95rem" }}>
-        <strong>{name}</strong>
-        <p className="text-muted">{message}</p>
-      </div>
-      <div>
-        <p className="text-muted mb-0" style={{ fontSize: "0.75rem" }}>
-          {when}
-        </p>
-        {seen ? (
-          <span className="text-muted float-right">
-            <MDBIcon className="fa-check" aria-hidden="true" />
+                  friend: {name, avatar, message, when, toRespond, seen, active}
+                }) => (
+  <MDBListGroupItem
+    href="#!"
+    className="d-flex justify-content-between p-2 border-light"
+    style={{backgroundColor: active ? "#eeeeee" : ""}}
+  >
+    <MDBAvatar
+      tag="img"
+      src={avatar}
+      alt="avatar"
+      circle
+      className="mr-2 z-depth-1"
+    />
+    <div style={{fontSize: "0.95rem"}}>
+      <strong>{name}</strong>
+      <p className="text-muted">{message}</p>
+    </div>
+    <div>
+      <p className="text-muted mb-0" style={{fontSize: "0.75rem"}}>
+        {when}
+      </p>
+      {seen ? (
+        <span className="text-muted float-right">
+            <MDBIcon className="fa-check" aria-hidden="true"/>
           </span>
-        ) : toRespond ? (
-          <MDBBadge color="danger" className="float-right">
-            {toRespond}
-          </MDBBadge>
-        ) : (
-          <span className="text-muted float-right">
-            <MDBIcon icon="reply" aria-hidden="true" />
+      ) : toRespond ? (
+        <MDBBadge color="danger" className="float-right">
+          {toRespond}
+        </MDBBadge>
+      ) : (
+        <span className="text-muted float-right">
+            <MDBIcon icon="reply" aria-hidden="true"/>
           </span>
-        )}
-      </div>
-    </MDBListGroupItem>
-  );
-  
-  const ChatMessage = ({ message: { author, avatar, when, message } }) => (
-    <li className="chat-message d-flex justify-content-between mb-4">
-      <MDBAvatar
-        tag="img"
-        src={avatar}
-        alt="avatar"
-        circle
-        className="mx-2 z-depth-1"
-      />
-      <MDBCard>
-        <MDBCardBody>
-          <div>
-            <strong className="primary-font">{author}</strong>
-            <small className="pull-right text-muted">
-              <i className="far fa-clock" /> {when}
-            </small>
-          </div>
-          <hr />
-          <p className="mb-0">{message}</p>
-        </MDBCardBody>
-      </MDBCard>
-    </li>
-  );
-  Listview.i18n = [
-  {
+      )}
+    </div>
+  </MDBListGroupItem>
+);
 
-  },
-  {
-
-  },
+const ChatMessage = ({message: {author, avatar, when, message}}) => (
+  <li className="chat-message d-flex justify-content-between mb-4">
+    <MDBAvatar
+      tag="img"
+      src={avatar}
+      alt="avatar"
+      circle
+      className="mx-2 z-depth-1"
+    />
+    <MDBCard>
+      <MDBCardBody>
+        <div>
+          <strong className="primary-font">{author}</strong>
+          <small className="pull-right text-muted">
+            <i className="far fa-clock"/> {when}
+          </small>
+        </div>
+        <hr/>
+        <p className="mb-0">{message}</p>
+      </MDBCardBody>
+    </MDBCard>
+  </li>
+);
+Listview.i18n = [
+  {},
+  {},
 ];
