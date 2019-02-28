@@ -78,7 +78,7 @@ class EducationCard extends Component {
                     </div>
                     <input disabled type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                 </div>
-                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
+                <Dropdown className={classes.Dropdown} delete={this.deleteHandler} edit={this.editHandler}/>
             </div>;
         
         if(this.state.editing){
@@ -94,7 +94,7 @@ class EducationCard extends Component {
                         </div>
                         <input type="text" defaultValue={this.state.educationData.degree} ref={this.degreeRef}/>
                     </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
+                    <Dropdown className={classes.Dropdown}  delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
                 </div>;
         }
         return(

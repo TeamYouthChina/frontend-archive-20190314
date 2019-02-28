@@ -10,6 +10,18 @@
     margin-bottom: 10px;
 }
 
+.resumeInApplicant {
+    position: relative;
+    box-sizing: border-box;
+    width: 398px;
+    height: 140px;
+    float: left;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.08);
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
 .selectedResume {
     position: relative;
     box-sizing: border-box;
@@ -27,7 +39,7 @@
     position: relative;
     box-sizing: border-box;
     height: 90px;
-    width: 412px;
+    width: 90%;
     margin: 25px;
     display: flex;
 }
@@ -50,7 +62,6 @@
 .textBoxStyle {
     padding-left: 20px;
     height: 100%;
-    width: 242px;
 }
 
 

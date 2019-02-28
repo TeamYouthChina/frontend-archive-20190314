@@ -18,6 +18,7 @@ import MainBody from '../ProfileNew/Components/MainBody/MainBody'
 import {Notification} from './notification';
 import {Setting} from './setting';
 import {Message} from './message';
+import Resumes from '../OnlineApplication/Components/Resumes/resumes'
 
 
 export class Applicant extends React.Component {
@@ -192,7 +193,7 @@ export class Applicant extends React.Component {
                     />
                     <Route
                       path={`${this.props.match.url}/resume`}
-                      component={routeProps => null}
+                      component={routeProps => <Resumes inApplicant {...routeProps}/>}
                     />
                     <Route
                       path={`${this.props.match.url}/setting/`}

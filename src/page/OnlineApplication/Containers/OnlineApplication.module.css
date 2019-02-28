@@ -4,5 +4,13 @@
     height: 100%;
 }
 
+.ResumesDiv {
+    box-sizing: border-box;
+    padding-top: 31px;
+    padding-left: 77px;
+    width: 100%;
+    height: auto;
+}
+
 
 

@@ -34,46 +34,11 @@ const translation = [
   },
 ];
 
-// dummy resumes, should get resumes through api in reality
-const dummyResumes = [
-  {
-    name: "my first resume",
-    icon: resumeIcon,
-    language: "English",
-    lastEdit: "2019-02-06 16:45",
-  },
-  {
-    name: "my first resume",
-    icon: resumeIcon,
-    language: "English",
-    lastEdit: "2019-02-06 16:45",
-  },
-  {
-    name: "my first resume",
-    icon: resumeIcon,
-    language: "English",
-    lastEdit: "2019-02-06 16:45",
-  },
-  {
-    name: "my first resume",
-    icon: resumeIcon,
-    language: "English",
-    lastEdit: "2019-02-06 16:45",
-  },
-  {
-    name: "my first resume",
-    icon: resumeIcon,
-    language: "English",
-    lastEdit: "2019-02-06 16:45",
-  },
-];
-
 class OnlineApplication extends Component {
   constructor(props) {
     super(props);
     this.text = translation[languageHelper()];
     this.state = {
-      resumes: dummyResumes,
       selected: -1, // record which resume is selected
       addingResume: false, // if adding a resume?
     };
@@ -132,18 +97,21 @@ class OnlineApplication extends Component {
         <Header />
         <TopBar trans={this.text} />
         <Prompts trans={this.text} />
-        <Resumes
-          trans={this.text}
-          exportClicked={this.exportHandler}
-          deleteClicked={this.deleteHandler}
-          addResumeClicked={this.addResumeHandler}
-          resumes={this.state.resumes}
-          selectHandler={this.selectHandler}
-          selected={this.state.selected}
-          addingResume={this.state.addingResume}
-          typeResumeHander={this.typeResumeHander}
-          uploadResuemHandler={this.uploadResuemHandler}
-        />
+        <div
+          className={classes.ResumesDiv}
+        >
+          <Resumes
+            trans={this.text}
+            exportClicked={this.exportHandler}
+            deleteClicked={this.deleteHandler}
+            addResumeClicked={this.addResumeHandler}
+            selectHandler={this.selectHandler}
+            selected={this.state.selected}
+            addingResume={this.state.addingResume}
+            typeResumeHander={this.typeResumeHander}
+            uploadResuemHandler={this.uploadResuemHandler}
+          />
+        </div>
         <Submit active={active} clicked={this.submitHandler} />
         <Footer />
       </div>
