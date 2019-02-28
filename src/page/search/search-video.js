@@ -19,6 +19,7 @@ import {
 } from 'mdbreact';
 
 import {VideoCard} from '../../general-component/video-card';
+import {VideoCardSearch} from "../../general-component/video-card-search";
 
 export class SearchVideoResult extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ export class SearchVideoResult extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
+        <VideoCardSearch/>
         <div className="mt-5">
           <MDBRow className="ml-0 p-0">
             <MDBCol className="d-flex align-items-center justify-content-end ml-2" size="2">
@@ -77,6 +79,10 @@ export class SearchVideoResult extends React.Component {
           </MDBRow>
         </div>
 
+        <MDBRow>
+          <VideoCardSearch/>
+        </MDBRow>
+        
         <MDBRow className="mt-2" center>
           {this.state.backend.videoList.map((item, index) => {
             return (
