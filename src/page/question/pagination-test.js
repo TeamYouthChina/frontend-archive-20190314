@@ -1,64 +1,46 @@
-import React from 'react';
-import {languageHelper} from '../../tool/language-helper';
-import {MDBPagination, MDBPageItem, MDBPageNav, MDBCol, MDBRow} from "mdbreact";
+import React, {Component} from 'react'
+import './Pagecomponent.css'
 
-const basicFont = {
-  fontFamily: 'PingFang SC',
-  lineHeight: 'normal'
-}
-const basicPage = {
-  border: '1px solid #333B4F',
-  boxSizing: 'border-box',
-  boxShadow: '0px 1px 20px rgba(141, 154, 175, 0.15)',
-  borderradius: '2px',
-}
-
-export class PaginationUse extends React.Component {
+export class PaginationUse extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       currentPage: 1, //当前页码
       groupCount: 5, //页码分组，显示7个页码，其余用省略号显示
       startPage: 1,  //分组开始页码
-      totalPage: 1 //总页数
+      totalPage:1 //总页数
     }
-    this.text = PaginationUse.i18n[languageHelper()];
+    this.createPage = this.createPage.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({
+      totalPage: this.props.pageConfig.totalPage
+    })
+    this.props.pageCallbackFn(this.state.currentPage)
   }
 
   createPage() {
-    const {currentPage, groupCount, startPage} = this.state;
-    const totalPage = this.props.pageConfig.totalPage
+    //const {totalPage} = this.props.pageConfig;
+    const {currentPage, groupCount, startPage,totalPage} = this.state;
     let pages = []
     //上一页
-    pages.push(
-      <MDBPageItem className={currentPage === 1 ? 'disabled' : null} onClick={this.prePageHandeler.bind(this)} key={0}>
-        <MDBPageNav className="page-link" aria-label="Previous">
-          <span style={{fontSize:'14px',color:'#8D9AAF',...basicFont}}>上一页</span>
-        </MDBPageNav>
-      </MDBPageItem>
-    )
+    pages.push(<li className={currentPage === 1 ? "nomore" : null} onClick={this.prePageHandeler.bind(this)}
+                   key={0}>
+      上一页</li>)
 
     if (totalPage <= 10) {
       /*总页码小于等于10时，全部显示出来*/
       for (let i = 1; i <= totalPage; i++) {
-        pages.push(
-          <MDBPageItem key={i} className={currentPage === i ? "active" : null} onClick={this.pageClick.bind(this, i)}>
-            <MDBPageNav className="page-link">
-              {i} <span className="sr-only">(current)</span>
-            </MDBPageNav>
-          </MDBPageItem>
-        )
+        pages.push(<li key={i} onClick={this.pageClick.bind(this, i)}
+                       className={currentPage === i ? "activePage" : null}>{i}</li>)
       }
     } else {
       /*总页码大于10时，部分显示*/
 
       //第一页
-      pages.push(
-        <MDBPageItem key={1} className={currentPage === 1 ? "active" : null} onClick={this.pageClick.bind(this, 1)}>
-          <MDBPageNav className="page-link">
-            1 <span className="sr-only">(current)</span>
-          </MDBPageNav>
-        </MDBPageItem>)
+      pages.push(<li className={currentPage === 1 ? "activePage" : null} key={1}
+                     onClick={this.pageClick.bind(this, 1)}>1</li>)
 
       let pageLength = 0;
       if (groupCount + startPage > totalPage) {
@@ -68,53 +50,32 @@ export class PaginationUse extends React.Component {
       }
       //前面省略号(当当前页码比分组的页码大时显示省略号)
       if (currentPage >= groupCount) {
-        pages.push(
-          <MDBPageItem key={-1} >
-            <MDBPageNav className="page-link">
-              ··· <span className="sr-only">(current)</span>
-            </MDBPageNav>
-          </MDBPageItem>)
+        pages.push(<li className="" key={-1}>···</li>)
       }
       //非第一页和最后一页显示
       for (let i = startPage; i < pageLength; i++) {
         if (i <= totalPage - 1 && i > 1) {
-          pages.push(
-            <MDBPageItem key={i} className={currentPage === i ? "active" : null} onClick={this.pageClick.bind(this, i)}>
-              <MDBPageNav className="page-link">
-                {i} <span className="sr-only">(current)</span>
-              </MDBPageNav>
-            </MDBPageItem>)
+          pages.push(<li className={currentPage === i ? "activePage" : null} key={i}
+                         onClick={this.pageClick.bind(this, i)}>{i}</li>)
         }
       }
       //后面省略号
       if (totalPage - startPage >= groupCount + 1) {
-        pages.push(<MDBPageItem key={-2} >
-          <MDBPageNav className="page-link">
-            ··· <span className="sr-only">(current)</span>
-          </MDBPageNav>
-        </MDBPageItem>)
+        pages.push(<li className="" key={-2}>···</li>)
       }
       //最后一页
-      pages.push(
-        <MDBPageItem key={totalPage} className={currentPage === totalPage ? "active" : null} onClick={this.pageClick.bind(this, totalPage)}>
-          <MDBPageNav className="page-link">
-            {totalPage} <span className="sr-only">(current)</span>
-          </MDBPageNav>
-        </MDBPageItem>
-      )
+      pages.push(<li className={currentPage === totalPage ? "activePage" : null} key={totalPage}
+                     onClick={this.pageClick.bind(this, totalPage)}>{totalPage}</li>)
     }
     //下一页
-    pages.push(
-      <MDBPageItem className={currentPage === totalPage ? 'disabled' : null} onClick={this.nextPageHandeler.bind(this)} key={totalPage + 1}>
-        <MDBPageNav className="page-link" aria-label="Previous">
-          <span style={{fontSize:'14px',color:'#8D9AAF',...basicFont}}>下一页</span>
-        </MDBPageNav>
-      </MDBPageItem>
-      )
+    pages.push(<li className={currentPage === totalPage ? "nomore" : null}
+                   onClick={this.nextPageHandeler.bind(this)}
+                   key={totalPage + 1}>下一页</li>)
     return pages;
 
   }
 
+  //页码点击
   pageClick(currentPage) {
     const {groupCount} = this.state
     const getCurrentPage = this.props.pageCallbackFn;
@@ -142,6 +103,7 @@ export class PaginationUse extends React.Component {
     getCurrentPage(currentPage)
   }
 
+  //上一页事件
   prePageHandeler() {
     let {currentPage} = this.state
     if (--currentPage === 0) {
@@ -152,29 +114,19 @@ export class PaginationUse extends React.Component {
 
   //下一页事件
   nextPageHandeler() {
-    let {currentPage} = this.state
-    const {totalPage} = this.props.pageConfig;
+    let {currentPage,totalPage} = this.state
+    // const {totalPage} = this.props.pageConfig;
     if (++currentPage > totalPage) {
       return false
     }
     this.pageClick(currentPage)
   }
-
   render() {
     const pageList = this.createPage();
     return (
-      <MDBPagination circle>
+      <ul className="page-container">
         {pageList}
-      </MDBPagination>
+      </ul>
     )
   }
 }
-
-PaginationUse.i18n = [
-  {
-    related: '类似职位推荐',
-  },
-  {
-    related: 'Related Work',
-  },
-];
