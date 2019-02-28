@@ -14,18 +14,20 @@ import {
   MDBBtn
 } from 'mdbreact';
 
-import {JobCardSquareFull} from '../../general-component/job-card-square-full';
+import {JobCardSquareFull} from '../../general-component/job-card-square-full/job-card-square-full';
 import {getAsync} from '../../tool/api-helper';
 
 export class HotTemp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      backend: null
+    };
   }
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/hot`)
+      backend: await getAsync(`/home/hot`, true)
     });
   }
 
@@ -70,7 +72,7 @@ export class HotTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -163,8 +165,8 @@ export class HotTemp extends React.Component {
               </div>
               */}
                 </MDBContainer>
-              </div> :
-              null
+              </div> : <p className="text-center">loading</p>
+              // null
           }
           {
             (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
@@ -260,8 +262,8 @@ export class HotTemp extends React.Component {
               </div>
               */}
                 </MDBContainer>
-              </div> :
-              null
+              </div> : <p className="text-center">loading</p>
+              // null
           }
         </div>
       </div>

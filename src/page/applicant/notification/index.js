@@ -20,10 +20,10 @@ import {
   MDBPopoverHeader,
 } from 'mdbreact';
 
-import {Header} from '../../general-component/header/header';
-import {Footer} from '../../general-component/footer';
+import {Header} from '../../../general-component/header/header';
+import {Footer} from '../../../general-component/footer';
 import {NotificationItem} from './notification-item';
-import {languageHelper} from '../../tool/language-helper';
+import {languageHelper} from '../../../tool/language-helper';
 
 import './chat-room.css';
 
@@ -56,7 +56,7 @@ export class Notification extends React.Component {
           when: "一周前"
         },
       ],
-      
+
       readNotifications: [
         {
           //type = 1: 系统推送; type = 2: 文章的赞; type = 3: 评论的赞;
@@ -103,12 +103,9 @@ export class Notification extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div>
-        <Header/>
-
         <MDBRow className="mt-5">
-          <MDBCol className="offset-2" size='8'>
-            
+          <MDBCol className="" size='8'>
+
             <MDBRow>
               <MDBCol size="10"><p className="mb-3" style={{
                 fontSize: '24px',
@@ -116,7 +113,7 @@ export class Notification extends React.Component {
                 color: '#454F69'
               }}>通知</p></MDBCol>
             </MDBRow>
-            
+
             <MDBRow>
               <MDBCol size="10"><p className="mb-3" style={{
                 fontSize: '18px',
@@ -161,9 +158,6 @@ export class Notification extends React.Component {
 
           </MDBCol>
         </MDBRow>
-
-        <Footer/>
-      </div>
     ) : null;
   }
 }

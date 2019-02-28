@@ -56,7 +56,7 @@ export class JobCardBar extends React.Component {
                 <MDBCol size='10'>
                   <MDBAvatar
                     tag="img"
-                    src={this.state.backend.content.company.avatarUrl}
+                    src={this.state.backend.content.organization.avatarUrl}
                     className="rounded z-depth-1-half img-fluid"
                     alt="Sample avatar"
                   />

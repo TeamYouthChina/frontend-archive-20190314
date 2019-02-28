@@ -30,16 +30,15 @@ export class Login extends React.Component {
     super(props);
     this.text = Login.i18n[languageHelper()];
     this.state = {
-      submitted: false,
-      type: 'password',
-      id: '',
-      password: '',
-      ifRedirect: false, // ifRedirect indicates if the browser should go to the 'best-for-you' page.
-      modalDisplay: false
+      submitted: false,   
+      type: 'password',   // default type of password input filed
+      id: '',             // Stroe user id input
+      password: '',       // store user password input
+      ifRedirect: false,  // ifRedirect indicates if the browser should go to the 'best-for-you' page.
+      modalDisplay: false // modalDisplay indicates if a user successfully loged in.
     };
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -63,7 +62,7 @@ export class Login extends React.Component {
     const backend = await postAsync('/login', {
       id: this.state.id,
       password: this.state.password
-    });
+    }, true);
     // must clean token, valid token will always cause 200 OK return.
     // Cookies.remove('token');
     if (backend && backend.status && backend.status.code === 2000) {
@@ -83,16 +82,16 @@ export class Login extends React.Component {
       this.setState({
         modalDisplay: !this.state.modalDisplay
       })
-      // alert('用户名或密码无效。');
     }
   }
-
+  
   async handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
+  // show and hide password input
   showHidePasswd = (event) => {
     event.preventDefault();
     event.stopPropagation();
