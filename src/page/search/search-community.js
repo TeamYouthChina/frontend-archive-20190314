@@ -73,7 +73,7 @@ export class SearchCommunityResult extends React.Component {
 
             <MDBCol className="order-first order-md-last my-3" md="4" lg="3">
               <MDBCard style={{
-                // boxShadow: 'none'
+                boxShadow: 'none'
               }}>
                 <MDBRow around>
                   <MDBCol size="5">

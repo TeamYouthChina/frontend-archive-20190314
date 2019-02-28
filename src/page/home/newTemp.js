@@ -20,17 +20,19 @@ import {getAsync} from '../../tool/api-helper';
 export class NewTemp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      backend: null
+    };
   }
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`)
+      backend: await getAsync(`/home/new`, true)
     });
   }
 
   render() {
-    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000)) {
+    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 200)) {
       console.log('API error: this.state=', this.state);
     }
     return (
@@ -70,7 +72,7 @@ export class NewTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -163,8 +165,8 @@ export class NewTemp extends React.Component {
               </div>
               */}
                 </MDBContainer>
-              </div> :
-              null
+              </div> : <p>loading</p>
+              // null
           }
           {
             (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
@@ -260,8 +262,8 @@ export class NewTemp extends React.Component {
               </div>
               */}
                 </MDBContainer>
-              </div> :
-              null
+              </div> : <p>loading</p>
+              // null
           }
         </div>
       </div>
