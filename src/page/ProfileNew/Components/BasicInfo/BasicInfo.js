@@ -49,11 +49,11 @@ class BasicInfo extends Component {
                     <p className={classes.SectionName}>
                         Basic Info
                     </p>
-                    <button 
+                    {/* <button 
                         className={classes.CornerButton}
                         onClick={this.editHandler}>
                         edit
-                    </button>
+                    </button> */}
                 </div>
                 <div className={classes.row}>
                     <p className={classes.AttributeName}>
