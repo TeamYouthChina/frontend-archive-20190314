@@ -27,12 +27,12 @@ export class NewTemp extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`, true)
+      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
     });
   }
 
   render() {
-    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 200)) {
+    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000)) {
       console.log('API error: this.state=', this.state);
     }
     return (
@@ -72,7 +72,7 @@ export class NewTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -143,30 +143,30 @@ export class NewTemp extends React.Component {
                       <JobCardSquareFull fulltext={this.state.backend.content.jobList[5]}/>
                     </MDBCol>
                   </MDBRow>
-                  {/*
-              <div className="text-center">
-                <MDBBtn
-                  rounded
-                  color="rgba-grey-strong"
-                  href="/job-for-you"
-                  style={{
-                    ...this.props.basicCHNFont,
-                    boxShadow: 'none',
-                    fontSize: '16px',
-                    marginTop: '8px',
-                    display: 'inline-block',
-                    fontWeight: '300',
-                    color: '#454F69',
-                    background: '#F0F3FA'
-                  }}
-                >
-                  显示全部
-                </MDBBtn>
-              </div>
-              */}
+                  
+                  <div className="text-center">
+                    <MDBBtn
+                      rounded
+                      size="sm"
+                      color="rgba-grey-strong"
+                      href="/job-for-you"
+                      style={{
+                        ...this.props.basicCHNFont,
+                        boxShadow: 'none',
+                        fontSize: '16px',
+                        marginTop: '8px',
+                        display: 'inline-block',
+                        fontWeight: '300',
+                        color: '#454F69',
+                        background: '#F0F3FA'
+                      }}
+                    >
+                      显示全部
+                    </MDBBtn>
+                  </div>
                 </MDBContainer>
               </div> : <p>loading</p>
-              // null
+            // null
           }
           {
             (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
@@ -263,7 +263,7 @@ export class NewTemp extends React.Component {
               */}
                 </MDBContainer>
               </div> : <p>loading</p>
-              // null
+            // null
           }
         </div>
       </div>

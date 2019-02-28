@@ -41,9 +41,9 @@ export class JobApp extends React.Component {
       <div>
         <MDBRow>
           <MDBCol>
-
             <h4>
-              <strong>申请进度</strong>
+              <strong style={{...this.props.basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}>
+                申请进度</strong>
             </h4>
             <br/>
             <MDBStepper form>
@@ -53,7 +53,7 @@ export class JobApp extends React.Component {
                     color="mdb-color" circle>
                   </MDBBtn>
                 </a>
-                <p className="h6" style={{color:'#7C97B8'}}>已投递</p>
+                <p className="h6" style={{...this.props.basicCHNFont, color:'#7C97B8'}}>已投递</p>
               </MDBStep>
               <MDBStep form>
                 <a >

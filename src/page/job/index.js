@@ -8,20 +8,26 @@ import {
   MDBRow,
   View,
   Mask,
+  MDBContainer
 } from 'mdbreact';
-import {languageHelper} from "../../tool/language-helper";
+import {languageHelper} from '../../tool/language-helper';
 import {Header} from '../../general-component/header/header';
-import {Footer} from "../../general-component/footer";
-import {CoDetail} from "../company/company-detail";
+import {Footer} from '../../general-component/footer';
+import {CoDetail} from './company-detail';
 import {JobName} from './job-name';
-import {JobDescri} from "./job-descri";
-import {JobApp} from "./job-app-progress";
+import {JobDescri} from './job-descri';
+import {JobApp} from './job-app-progress';
+import {QuestionCard} from '../question/question-card-test';
+import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+import {ReviewCard} from '../../general-component/review-card';
+import {QuestionAnswerCard} from "../question/answer/question-answer-card";
 
-import {QuestionCard} from "../../general-component/question-card";
-import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
-import {ReviewCard} from "../../general-component/review-card";
-
-
+const basicCHNFont = {
+  fontFamily: 'PingFang SC',
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  lineHeight: 'normal'
+};
 
 export class Job extends React.Component {
   constructor(props) {
@@ -35,7 +41,7 @@ export class Job extends React.Component {
 
   render() {
 
-    return  (
+    return (
       <div>
         <Header/>
 
@@ -51,113 +57,114 @@ export class Job extends React.Component {
 
         </div>
 
-        <MDBRow top>
-          <MDBCol 
-            md="1" 
-            className="offset-md-1 p-0"
-          >
-           
-            <MDBCard
-              classNmae="p-0"
-              style={{
-                boxShadow: 'none',
-                marginTop:'180px',
-              }}
-            >
-              <MDBCardBody className="px-0">
-                <h6
-                  style={{borderLeft: '4px solid #7C97B8'}}
-                  className="px-2 pt-2 mx-2"
-                >职位详情</h6>
-                <h6 className="px-2 pt-2 mx-2">公司详情</h6>
-                <h6 className="px-2 pt-2 mx-2">相似职位</h6>
-                <h6 className="px-2 pt-2 mx-2">评价</h6>
-                <h6 className="px-2 pt-2 mx-2">问答</h6>
+        <MDBRow style={{backgroundColor: '#F3F5F7'}} center top>
+          {/*<MDBCol */}
+          {/*md="1" */}
+          {/*className="offset-md-1 p-0"*/}
+          {/*>*/}
 
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol md="9">
+          {/*<MDBCard*/}
+          {/*classNmae="p-0"*/}
+          {/*style={{*/}
+          {/*boxShadow: 'none',*/}
+          {/*marginTop:'180px',*/}
+          {/*}}*/}
+          {/*>*/}
+          {/*<MDBCardBody className="px-0">*/}
+          {/*<h6*/}
+          {/*style={{borderLeft: '4px solid #7C97B8'}}*/}
+          {/*className="px-2 pt-2 mx-2"*/}
+          {/*>职位详情</h6>*/}
+          {/*<h6 className="px-2 pt-2 mx-2">公司详情</h6>*/}
+          {/*<h6 className="px-2 pt-2 mx-2">相似职位</h6>*/}
+          {/*<h6 className="px-2 pt-2 mx-2">评价</h6>*/}
+          {/*<h6 className="px-2 pt-2 mx-2">问答</h6>*/}
+
+          {/*</MDBCardBody>*/}
+          {/*</MDBCard>*/}
+          {/*</MDBCol>*/}
+          <MDBCol size="10" md="8">
             <p>
-              <MDBCard className="my-5 px-3 pb-3">
-                <br/>
+              <MDBCard className="px-3 pb-3">
                 <MDBCardBody>
                   <JobName/>
                   <br/>
-                  <JobApp/>
-                  <JobDescri/>
+                  <JobApp basicCHNFont={basicCHNFont}/>
+                  <JobDescri basicCHNFont={basicCHNFont}/>
                 </MDBCardBody>
               </MDBCard>
             </p>
+            
             <p>
               <MDBCard className="my-5 px-3 pb-3">
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-                      <CoDetail></CoDetail>
+                      <CoDetail basicCHNFont={basicCHNFont}/>
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>
             </p>
+            
             <p id="job">
-              <h4 className="font-weight-bold mb-1 px-3">
-                <strong>
+              <MDBCard className="my-5 px-3 py-3">
+                <p style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}
+                   className="mb-1 px-3">
                   相似职位
-                </strong>
-              </h4>
+                </p>
+                <MDBContainer className="mt-2">
+                  <MDBRow between>
+                    <MDBCol>
+                      <JobCardSquare style={{boxShadow: 'none'}}/>
+                    </MDBCol>
+                    <MDBCol>
+                      <JobCardSquare/>
+                    </MDBCol>
+                    <MDBCol>
+                      <JobCardSquare/>
+                    </MDBCol>
+                    <MDBCol>
+                      <JobCardSquare/>
+                    </MDBCol>
+                  </MDBRow>
+                  <MDBRow center className="mt-2">
+                    <MDBBtn flat block><p 
+                      style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '16px'}}>
+                      查看更多相似职位</p></MDBBtn>
+                  </MDBRow>
+                </MDBContainer>
+              </MDBCard>
             </p>
-            <p>
-              <MDBRow between>
-                <MDBCol>
-                  <JobCardSquare/>
-                </MDBCol>
-                <MDBCol>
-                  <JobCardSquare/>
-                </MDBCol>
-                <MDBCol>
-                  <JobCardSquare/>
-                </MDBCol>
-                <MDBCol>
-                  <JobCardSquare/>
-                </MDBCol>
-              </MDBRow>
-              <MDBRow center className="mt-2">
-                <MDBBtn flat block>查看全部相似职位</MDBBtn>
-              </MDBRow>
-            </p>
+
             <p id="comment">
-              <h4 className="font-weight-bold mb-3 px-3">
-                <strong>
-                  评论
-                </strong>
-              </h4>
+              <MDBCard className="mt-5 px-3 py-3">
+                <p style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}} 
+                  className="mb-1 px-3">评论</p>
+                <ReviewCard/>
+                <ReviewCard/>
+              </MDBCard>
               <MDBRow className="px-3 pb-3 mb-4">
-                <p>
-                  <ReviewCard/>
-                </p>
-                <p>
-                  <ReviewCard/>
-                </p>
-                <p>
-                  <ReviewCard/>
-                </p>
               </MDBRow>
             </p>
+            
+            
             <p id="questionanswer">
-              <h4 className="font-weight-bold mb-3 px-3">
-                <strong>
+              <MDBCard className="mt-5 px-3 py-3">
+                <p style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}} 
+                  className="mb-1 px-3">
                   问答
-                </strong>
-              </h4>
-              <MDBRow className="px-3 pb-3 mb-4">
-                
-                <MDBBtn flat block> See More</MDBBtn>
-                
-              </MDBRow>
+                </p>
+                <QuestionCard/>
+                <MDBRow center className="mt-2">
+                  <MDBBtn flat block><p
+                    style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '16px'}}>
+                    查看更多问答</p></MDBBtn>
+                </MDBRow>
+              </MDBCard>
             </p>
           </MDBCol>
-          
+
         </MDBRow>
 
         <Footer/>

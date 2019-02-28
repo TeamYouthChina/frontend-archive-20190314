@@ -27,7 +27,7 @@ export class HotTemp extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/hot`, true)
+      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
     });
   }
 
@@ -72,7 +72,7 @@ export class HotTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -166,7 +166,7 @@ export class HotTemp extends React.Component {
               */}
                 </MDBContainer>
               </div> : <p className="text-center">loading</p>
-              // null
+            // null
           }
           {
             (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
@@ -263,7 +263,7 @@ export class HotTemp extends React.Component {
               */}
                 </MDBContainer>
               </div> : <p className="text-center">loading</p>
-              // null
+            // null
           }
         </div>
       </div>

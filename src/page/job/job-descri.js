@@ -8,8 +8,8 @@ import {
   MDBView,
   Row,
 } from 'mdbreact';
-import {languageHelper} from "../../tool/language-helper";
-import {getAsync} from "../../tool/api-helper";
+import {languageHelper} from '../../tool/language-helper';
+import {getAsync} from '../../tool/api-helper';
 import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 
 export class JobDescri extends React.Component {
@@ -17,7 +17,7 @@ export class JobDescri extends React.Component {
     super(props)
     this.state = {
       backend: null,
-      modal15:false
+      modal15: false
     };
     this.text = JobDescri.i18n[languageHelper()];
   }
@@ -34,42 +34,35 @@ export class JobDescri extends React.Component {
       });
     }
   }
- 
+
   render() {
-   
+
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
           <MDBCol>
 
-            <h4>
-              <strong>职位描述</strong>
-            </h4>
-            <h6>
-              <strong>
-                岗位职责：
-              </strong>
-            </h6>
-            <p>
-              {this.state.backend.content.job_duty}
-              
-            </p>
-            <h6>
-              <strong>
-                任职要求：
-              </strong>
-            </h6>
-            <p>
-              {this.state.backend.content.job_description}
+            <p style={{...this.props.basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}>
+              职位描述
+              {/*overwritten style*/}
+              <p className="mt-3" style={{fontSize: '14px', fontWeight: 'normal'}}>
+                岗位职责:<br/>
+                {this.state.backend.content.job_description}
+              </p>
+              <p style={{fontSize: '14px', fontWeight: 'normal'}}>
+                任职要求:<br/>
+                {this.state.backend.content.job_duty}
+              </p>
             </p>
           </MDBCol>
         </MDBRow>
       </div>
-    ): null;
+    ) : null;
 
 
   }
 }
+
 JobDescri.i18n = [
   {
     description: '职位描述',
