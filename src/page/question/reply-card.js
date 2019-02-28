@@ -9,9 +9,7 @@ import {
 } from 'mdbreact';
 
 const basicFont = {
-  fontFamily: 'IBM Plex Sans',
-  fontStyle: 'normal',
-  fontWeight: '600',
+  fontFamily: 'PingFang SC',
   lineHeight: 'normal',
 }
 
@@ -64,9 +62,9 @@ export class ReplyCard extends React.Component {
   }
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <div style={{padding: '30px 0px 30px 30px', marginTop: '20px'}}>
+      <div style={{width:'100%',paddingTop: '10px', marginTop: '20px'}}>
         <div>
-          <MDBRow style={{margin: '10px 0px'}}>
+          <MDBRow style={{margin: '10px 0px',display:'flex'}}>
             <MDBAvatar style={{marginRight: '5px'}}>
               <img
                 style={{width: '32px', background: '#F4F4F4'}}
@@ -75,31 +73,33 @@ export class ReplyCard extends React.Component {
                 className="rounded-circle"
               />
             </MDBAvatar>
-            <span style={{
-              marginRight: '5px',
-              padding: '5px 0px',
-              color: '#212529',
-              fontSize: '14px', ...basicFont
-            }}>{this.state.backend.user}</span>
-            <span style={{
-              marginRight: '5px',
-              padding: '5px 0px',
-              color: '#3E4850',
-              fontSize: '14px', ...basicFont
-            }}>回复</span>
-            <span style={{
-              marginRight: '5px',
-              padding: '5px 0px',
-              color: '#212529',
-              fontSize: '14px', ...basicFont
-            }}>{this.state.backend.to}</span>
-            <MDBCol right>
+            <div style={{flexGrow:'1',paddingTop:'4px'}}>
               <span style={{
-                float: 'right',
-                color: '#3E4850',
+                marginRight: '5px',
+                padding: '5px 0px',
+                color: '#31394D',
                 fontSize: '14px', ...basicFont
-              }}>{this.state.backend.time}个月前回复</span>
-            </MDBCol>
+              }}>{this.state.backend.user}</span>
+              <span style={{
+                marginRight: '5px',
+                padding: '5px 0px',
+                color: '#8D9AAF',
+                fontSize: '14px', ...basicFont
+              }}>回复</span>
+              <span style={{
+                marginRight: '5px',
+                padding: '5px 0px',
+                color: '#31394D',
+                fontSize: '14px', ...basicFont
+              }}>{this.state.backend.to}</span>
+            </div>
+            
+            <div style={{marginTop:'5px'}}>
+              <div style={{transform:'rotate(90deg)',width:'3.75px',height:'3.75px',borderRadius:'50%'}}>...</div>
+              {/*<div style={{background:'#8D9AAF',width:'3.75px',height:'3.75px',marginTop:'1.87px',borderRadius:'50%'}}></div>*/}
+              {/*<div style={{background:'#8D9AAF',width:'3.75px',height:'3.75px',marginTop:'1.87px',borderRadius:'50%'}}></div>*/}
+              
+            </div>
 
           </MDBRow>
 
@@ -108,36 +108,52 @@ export class ReplyCard extends React.Component {
         </div>
 
         <MDBRow style={this.state.stickyRow}>
-          <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
+          <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px',fontSize: '14px',
+            color: '#8D9AAF', ...basicFont}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>支持
           </MDBBtn>
 
-          <MDBBtn flat style={{padding: '5px 10px',}}>
+          <MDBBtn flat style={{padding: '5px 10px',fontSize: '14px',
+            color: '#8D9AAF', ...basicFont}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-down"/>反对
           </MDBBtn>
-          <MDBBtn onClick={this.showReplys} flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.commontsText}
-          </MDBBtn>
-          <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
-          </MDBBtn>
-          <MDBBtn flat style={{padding: '5px 10px',}}>
-            <MDBIcon style={{marginRight: '5px'}} icon="ban"/>
-            举报
+          <MDBBtn onClick={this.showReplys} flat
+                  style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
+            <MDBIcon style={{marginRight: '5px'}} icon="reply"/>
+            {this.state.commontsText}
           </MDBBtn>
         </MDBRow>
         {this.state.showReplys ? (
 
 
-          <MDBRow>
-            <MDBCol size="10" center>
-              <input ref={(input)=>this.input=input} type="email" className="form-control" placeholder="回复"/>
-            </MDBCol>
-            <MDBCol style={{paddingLeft: '0px'}}>
-              <MDBBtn onClick={(e)=>this.props.addComments(e,this.input)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
-                发布
-              </MDBBtn>
-            </MDBCol>
+          <MDBRow style={{margin: '0px', display: 'flex'}}>
+            <div style={{marginTop:'5px',flexGrow: '1',}}>
+              <input style={{
+                width:'100%',
+                background: '#FFFFFF',
+                border: '1px solid #DBE5F7',
+                boxSizing: 'border-box',
+                borderRadius: '2px',
+                padding:'8px 0px 8px 20px',
+                fontSize:'14px',
+                color:'#B3C1DB',
+                height:'37px',
+                ...basicFont,
+              }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+
+            </div>
+
+
+            <MDBBtn onClick={(e) => this.addComments(e,this.input)} flat
+                    style={{
+                      flexGrow: '0',
+                      background: '#C4C4C4',
+                      padding: '8px 20px',
+                      color: '#FFFFFF', ...basicFont,
+                      margin:'6px 6px 5px 6px',
+                    }}>
+              发布
+            </MDBBtn>
 
           </MDBRow>
           
