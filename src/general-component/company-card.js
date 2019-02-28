@@ -12,7 +12,6 @@ import {
 import {getAsync} from "../tool/api-helper";
 import {MDBBtn, Row} from "./job-card-bar";
 import {withRouter} from 'react-router-dom';
-import {JobCardSquareFull1} from './job-card-square-full';
 
 
 export class CompanyCard1 extends React.Component {

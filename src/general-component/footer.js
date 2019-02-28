@@ -4,11 +4,11 @@ import {MDBCol, MDBContainer, MDBRow, MDBFooter} from 'mdbreact';
 export class Footer extends React.Component {
   render() {
     return (
-      <MDBFooter 
-        
-        className="font-small pt-4 mt-4"
-        style={{background:'#31394D'}}
-       
+      <footer
+        className="page-footer font-small pt-4"
+        style={{
+          background: '#31394D',
+        }}
       >
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
@@ -43,7 +43,7 @@ export class Footer extends React.Component {
             <a href=""> YouthChina.com </a>
           </MDBContainer>
         </div>
-      </MDBFooter>
+      </footer>
     );
   }
 }
