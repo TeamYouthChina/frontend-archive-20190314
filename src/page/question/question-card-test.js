@@ -345,7 +345,7 @@ export class QuestionCard extends React.Component {
 
             ))}
             <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length+10}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
           </div>
 
