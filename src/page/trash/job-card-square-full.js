@@ -1,14 +1,14 @@
 import React from 'react';
-import {languageHelper} from '../tool/language-helper';
+import {languageHelper} from '../../tool/language-helper';
 import {
   MDBCard,
   MDBCardBody,
   MDBBtn,
   MDBAvatar, MDBCol, MDBRow
 } from 'mdbreact';
-import {getAsync} from '../tool/api-helper';
+import {getAsync} from '../../tool/api-helper';
 import {withRouter} from 'react-router-dom';
-import {JobCardSquare1} from './job-card-square/job-card-square';
+import {JobCardSquare1} from '../../general-component/job-card-square/job-card-square';
 
 export class JobCardSquareFull1 extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export class JobCardSquareFull1 extends React.Component {
   render() {
     return (this.props.fulltext) ? (
       <MDBCard
-        onClick={()=>{
+        onClick={() => {
           this.props.history.push(`/job/${this.state.backend.content.id}`);
         }}
       >

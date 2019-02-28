@@ -14,7 +14,7 @@ import {
   MDBBtn
 } from 'mdbreact';
 
-import {JobCardSquareFull} from '../../general-component/job-card-square-full';
+import {JobCardSquareFull} from '../../general-component/job-card-square-full/job-card-square-full';
 import {getAsync} from '../../tool/api-helper';
 
 export class HotTemp extends React.Component {
