@@ -3,7 +3,8 @@ import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
 
-import {QuestionCard} from '../../general-component/question-card';
+// import {QuestionCard} from '../../general-component/question-card';
+import {QuestionCard} from '../question/question-card-test';
 import {getAsync} from '../../tool/api-helper';
 
 // import {getAsync} from '../../tool/api-helper';
@@ -52,13 +53,13 @@ export class QuestionAnswer extends React.Component {
         style={{padding: 0}}
       >
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1}/>
+          <QuestionCard type={1} questionId={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1}/>
+          <QuestionCard type={1} questionId={1}/>
         </MDBRow>
         <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1}/>
+          <QuestionCard type={1} questionId={1}/>
         </MDBRow>
       </MDBContainer>
     ) : null;
