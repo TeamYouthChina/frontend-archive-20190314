@@ -2,22 +2,23 @@ import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
 import {MDBContainer, MDBRow} from 'mdbreact';
-import {ApplicantCard} from '../../general-component/applicant-card';
-import {Redirect} from "react-router-dom";
+import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
 import {getAsync} from "../../tool/api-helper";
 
 export class Connection extends React.Component {
   constructor(props) {
     super(props);
     this.text = Connection.i18n[languageHelper()];
+    this.state = {};
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/discovery/connection`)
-    // console.log(result)
+    const result = await getAsync(`/discovery/users`)
+    console.log(result)
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {
+          content: result.content,
           status: {
             code: result.status.code
           }
@@ -36,22 +37,20 @@ export class Connection extends React.Component {
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status) ? (
-      <div>
-        {/*有状态码且为2000时候才渲染*/}
-        {this.state.backend.status.code && this.state.backend.status.code !== 2000 ? (
-          <div>
-            <Redirect to="/404"></Redirect>
-          </div>
-        ) : (
-          <MDBContainer fluid>
-            <MDBRow style={{margin: '1rem 0rem'}}>
-              <ApplicantCard/>
-            </MDBRow>
-          </MDBContainer>
-        )}
-      </div>
-    ) : null;
+    let toShow = <div>No Such Data</div>;
+    if(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000){
+      const cards = this.state.backend.content.users.map((e,i)=>(
+        <ApplicantCard id={e.id}/>
+      ))
+      toShow = 
+        <MDBContainer fluid>
+          <MDBRow style={{margin: '1rem 0rem'}}>
+            {cards}
+          </MDBRow>
+        </MDBContainer>
+    }
+    
+    return toShow;
   }
 }
 

@@ -7,7 +7,7 @@ import {
   MDBBtn
 } from 'mdbreact';
 
-import {JobCardSquare} from '../../general-component/job-card-square';
+import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 
 export class JobListHome extends React.Component {
 
@@ -92,7 +92,7 @@ export class JobListHome extends React.Component {
                 display: 'inline-block',
                 fontWeight: '300',
                 color: '#454F69',
-                background: '#F0F3FA'
+                background: '#E3E9EE'
               }}
             >
               显示全部

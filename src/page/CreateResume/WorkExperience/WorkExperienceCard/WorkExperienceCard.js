@@ -71,28 +71,6 @@ class WorkExperienceCard extends Component{
 
     }
 
-    braftSave=()=>{
-        this.setState({
-            editing: false,
-            workData: {
-                position: this.posRef.current.value,
-                employer: this.employerRef.current.value,
-                duration: {
-                    begin: this.beginRef.current.value,
-                    end: this.endRef.current.value,
-                },
-                note: this.state.editorState.toHTML().replace(/<\/?[^>]+>/ig, "")
-
-            },
-        }, ()=>{
-            this.props.saveHandler(this.state.workData, this.props.id);     
-        });
-    }
-
-    handleEditorChange = (editorState) => {
-        this.setState({ editorState })
-    }
-
     render(){
         if(this.props.modal){
             let toShow =
@@ -134,48 +112,8 @@ class WorkExperienceCard extends Component{
             return(toShow);
         }
         else {
-            let toShow =
-                <div className={classes.WorkExperienceCard}>
-                    <img src={workIcon} alt="no img"></img>
-                    <div className={classes.WorkInfo}>
-                        <input disabled type="text" defaultValue={this.state.workData.position} ref={this.posRef}/>
-                        <input disabled type="text" defaultValue={this.state.workData.employer} ref={this.employerRef}/>
-                        <div className={classes.Duration}>
-                            <input disabled type="text" defaultValue={this.state.workData.duration.begin} ref={this.beginRef}/>
-                            <p> - </p>
-                            <input disabled type="text" defaultValue={this.state.workData.duration.end} ref={this.endRef}/>
-                        </div>
-                        <input disabled type="text" defaultValue={this.state.workData.note} ref={this.noteRef}/>
-                    </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                </div>;
-        
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.WorkExperienceCard}>
-                        <img src={workIcon} alt="no img"></img>
-                        <div className={classes.WorkInfo}>
-                            <input type="text" defaultValue={this.state.workData.position} ref={this.posRef}/>
-                            <input type="text" defaultValue={this.state.workData.employer} ref={this.employerRef}/>
-                            <div className={classes.Duration}>
-                                <input type="text" defaultValue={this.state.workData.duration.begin} ref={this.beginRef}/>
-                                <p> - </p>
-                                <input type="text" defaultValue={this.state.workData.duration.end} ref={this.endRef}/>
-                            </div>
-                            <div>
-                                <BraftEditor
-                                    value={this.state.editorState}
-                                    className={classes.Editor}
-                                    controlBarClassName={classes.Control}
-                                    contentClassName={classes.Content}
-                                    onChange={this.handleEditorChange}/>
-                            </div>
-                        </div>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.braftSave}/>
-                    </div>
-            }
-        
-        return(toShow);
+            let toShow = <div></div>
+            return(toShow);
         }
     }
 };

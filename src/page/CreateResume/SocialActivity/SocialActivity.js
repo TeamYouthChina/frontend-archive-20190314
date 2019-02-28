@@ -6,15 +6,10 @@ import SocialActivityCard from './SocialActivityCard/SocialActivityCard';
 import classes from './SocialActivity.module.css';
 import {getAsync} from '../../../tool/api-helper';
 import ModalPage from '../Modal/Modal';
+import BraftEditor from 'braft-editor'
+import Dropdown from '../Dropdown/Dropdown';
+import { ContentUtils } from 'braft-utils';
 
-
-const MDBButtonStyle = {
-    font_family: "IBM Plex Sans",
-    font_style: "normal",
-    font_weight: "600",
-    line_height: "normal",
-    font_size: "18px",
-    text_align: "center"};
 
 class SocialActivity extends Component {
 
@@ -22,10 +17,10 @@ class SocialActivity extends Component {
         super(props)        
         this.state = {
             cards: Array(), 
-            flipper: true,
             requestedData: null,
-            cardShown: Array(),
-            cardsToModal: []
+            cardsToModal: [],
+            editorState: BraftEditor.createEditorState(),
+            showEditor: false
         }
         this.date = null;
     }
@@ -34,10 +29,10 @@ class SocialActivity extends Component {
     async componentDidMount(){
         let data = await getAsync('/applicants/'+this.props.requestID+'/extracurriculars');
         this.setState({requestedData: data});
+        this.date = new Date();
+        const time = this.date.getTime();
         let temp1 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
             ? this.state.requestedData.content.map((e)=>{
-                this.date = new Date();
-                const time = this.date.getTime();
                 return <SocialActivityCard 
                     key={time} 
                     id={time} 
@@ -49,8 +44,6 @@ class SocialActivity extends Component {
 
         let temp2 = this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000
             ? this.state.requestedData.content.map((e)=>{
-                this.date = new Date();
-                const time = this.date.getTime();
                 return <SocialActivityCard 
                     key={time} 
                     id={time} 
@@ -70,130 +63,99 @@ class SocialActivity extends Component {
     async componentDidUpdate(){
     }
 
-    // delte data on server, delete data in state.cards
-    deleteHandler = (id) => {
-        // TODO: delete data on server according to id
-        let temp = this.state.cardShown.filter((e,i)=>(
-            e.id == id
-        ));
-
-        let copy;
-        this.state.cards.forEach((e,i)=>{
-            if(e.props.id == id){
-                copy = React.cloneElement(e);
-            }
-        })
-
-        let temp2 = this.state.cardsToModal.concat(copy);
+    deleteHandler = () => {
         this.setState({
             ...this.state,
-            cardShown: temp,
-            cardsToModal: temp2,
-            flipper: !this.state.flipper
-        },()=>{
-            // prepare the data to be sent back to server
-            // let dataToSend = this.state.cards.map((e)=>{
-            //     return e.props.data;
-            // })
-        });
+            showEditor: false,
+            editorState: ContentUtils.clear(this.state.editorState)
+          })
     }
 
-    // save data locally and send back to server
-    saveHandler = (newCertification,id) =>{
-        // TODO: update server with new saved cards
-        // PUT {...this.state.requestedData, newEducation}
-        
-        // timestamp
-        this.date = new Date();
-        const time = this.date.getTime();
-        let tempCards = this.state.cards.map((e,i)=>{
-            if(e.props.id == id){
-                return (
-                    <SocialActivityCard 
-                        key={time} 
-                        id={time} 
-                        data={newCertification}
-                        deleteHandler={this.deleteHandler}
-                        saveHandler={this.saveHandler}/>
-                )  
-            }
-            return e;
-        })
-        let tempCardShown = this.state.cardShown.map((e,i)=>{
-            if(e.props.id == id){
-                return (
-                    <SocialActivityCard 
-                        key={time} 
-                        id={time} 
-                        data={newCertification}
-                        deleteHandler={this.deleteHandler}
-                        saveHandler={this.saveHandler}/>
-                )  
-            }
-            return e;
-        })
-
+    saveHandler = () =>{
         this.setState({
-            cards: tempCards,
-            cardShown: tempCardShown,
-            flipper: !this.state.flipper
-        },()=>{
-            // prepare data to be sent back to server
-            // let dataToSend = this.state.cards.map((e)=>{
-            //     return e.props.data;
-            // })
-        });
+            ...this.state,
+            showEditor: false
+        })
     }
 
-    // addhandler only create a empty cards in state.cards
-    // update the data in server and local happens in saveHandler
+    editHandler = ()=>{
+        this.setState({
+            ...this.state,
+            showEditor: true
+        })
+    }
+
     addHandler = (id) => {
         let copy;
         this.state.cards.forEach((e,i)=>{
             if(e.props.id == id){
-                copy = React.cloneElement(e);
+                copy = e
             }
         })
-        let temp1 = this.state.cardShown.concat(copy);
+        // const plainText = JSON.stringify(copy.props.data);
+        const name = copy.props.data.name;
+        const o = copy.props.data.organization;
+        const b = copy.props.data.duration.begin;
+        const e = copy.props.data.duration.end;
+        const n = copy.props.data.note;
+        const manullyParsed = name + '\n' + o + '\n' + b + ' ' + e + '\n' + n + '\n';
 
-        let temp2 = this.state.cardsToModal.filter((e,i)=>(
-            e.props.id ==! id
-        ))
+        // const parsed = plainText.replace(/{/g, '\b').replace(/}/g, '').replace(/"/g, ' ').replace(/,/g, '\n');
+        // console.log(manullyParsed);
+        // console.log(plainText)
+        const newState = ContentUtils.insertText(this.state.editorState, manullyParsed);
         this.setState({
             ...this.state,
-            cardShown: temp1,
-            cardsToModal: temp2,
-            flipper: !this.state.flipper
-        },()=>{});
-        
+            showEditor: true,
+            editorState: newState
+        })
+    }
+
+    handleEditorChange = (editorState) => {
+        this.setState({ editorState })
     }
 
     render(){
         let toShow; 
-        if(this.state.cardShown.length == 0){
+        if(this.state.showEditor){
             toShow = 
                 <div className={classes.SocialActivity}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Social Activity</p>
+                        <Dropdown save={this.saveHandler} delete={this.deleteHandler} editing />
                     </div>
-                    <p>no social activity</p>
-                    <ModalPage 
-                        requestID={this.props.requestID}
-                        cards={this.state.cardsToModal}
-                        addHandler={this.addHandler}/>
+                    <BraftEditor
+                        contentClassName={classes.editorContent}
+                        className={classes.editor} 
+                        value={this.state.editorState}
+                        onChange={this.handleEditorChange}/>
+                    <div>
+                        <ModalPage
+                            buttonName="+ Add Activity" 
+                            requestID={this.props.requestID}
+                            cards={this.state.cardsToModal}
+                            addHandler={this.addHandler}/> 
+                    </div>
                 </div>
-        }
-        else {
+        } else {
+            const plainText = this.state.editorState.toHTML();
+            const text = <div dangerouslySetInnerHTML={{__html: plainText}} />;
             toShow = 
                 <div className={classes.SocialActivity}>
                     <div className={classes.row}>
                         <p className={classes.SectionName}>Social Activity</p>
+                        <Dropdown edit={this.editHandler} delete={this.deleteHandler}/>
                     </div>
-                    {this.state.cards}
-                    <ModalPage 
-                        requestID={this.props.requestID}
-                        cards={this.state.cardsToModal}
-                        addHandler={this.addHandler}/>
+                    <div style={{width: '90%'}}>
+                        {text} 
+                    </div>
+                    <div>
+                        <ModalPage 
+                            buttonName="+ Add Activity"
+                            requestID={this.props.requestID}
+                            cards={this.state.cardsToModal}
+                            addHandler={this.addHandler}/>
+                    </div>
                 </div>
         }
         return(

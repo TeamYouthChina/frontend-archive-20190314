@@ -170,6 +170,7 @@ export class ArticleCard extends React.Component {
 
   render() {
     return (
+
       <div>
         <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
              ref={(span) => this.scrollSpan = span}>
@@ -195,6 +196,7 @@ export class ArticleCard extends React.Component {
                   展开更多<MDBIcon style={{marginLeft: '5px'}} icon="arrow-down"/>
                 </li>
               </ul>
+
             </div>
           ) : (
             <div>

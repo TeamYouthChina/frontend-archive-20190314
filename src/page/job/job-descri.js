@@ -10,7 +10,7 @@ import {
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
 import {getAsync} from "../../tool/api-helper";
-import {JobCardSquare} from "../../general-component/job-card-square";
+import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 
 export class JobDescri extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ export class JobDescri extends React.Component {
               </strong>
             </h6>
             <p>
-              {this.state.backend.content.jobDuty}
+              {this.state.backend.content.job_duty}
               
             </p>
             <h6>
@@ -60,14 +60,7 @@ export class JobDescri extends React.Component {
               </strong>
             </h6>
             <p>
-              <ul className="list-unstyled">
-                {
-                  this.state.backend.content.jobReqList.map(
-                    (item) =>
-                      <li key={item}>{item.degreeNum}</li>
-                  )
-                }
-              </ul>
+              {this.state.backend.content.job_description}
             </p>
           </MDBCol>
         </MDBRow>

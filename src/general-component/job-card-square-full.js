@@ -7,19 +7,24 @@ import {
   MDBAvatar, MDBCol, MDBRow
 } from 'mdbreact';
 import {getAsync} from '../tool/api-helper';
+import {withRouter} from 'react-router-dom';
+import {JobCardSquare1} from './job-card-square/job-card-square';
 
-
-export class JobCardSquareFull extends React.Component {
+export class JobCardSquareFull1 extends React.Component {
   constructor(props) {
     super(props);
     /*
     * */
-    this.text = JobCardSquareFull.i18n[languageHelper()];
+    this.text = JobCardSquareFull1.i18n[languageHelper()];
   }
 
   render() {
     return (this.props.fulltext) ? (
-      <MDBCard>
+      <MDBCard
+        onClick={()=>{
+          this.props.history.push(`/job/${this.state.backend.content.id}`);
+        }}
+      >
         <MDBCardBody style={{
           display: 'flex',
           flexDirection: 'column',
@@ -80,7 +85,7 @@ export class JobCardSquareFull extends React.Component {
   }
 }
 
-JobCardSquareFull.i18n = [
+JobCardSquareFull1.i18n = [
   {
     applyBefore: '申请截止'
   },
@@ -88,3 +93,5 @@ JobCardSquareFull.i18n = [
     applyBefore: 'Apply Before'
   },
 ];
+
+export const JobCardSquareFull = withRouter(JobCardSquareFull1)

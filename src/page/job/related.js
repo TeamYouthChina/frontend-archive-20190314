@@ -5,7 +5,7 @@ import {
   MDBRow,
   MDBCol,
 } from 'mdbreact';
-import {JobCardSquare} from '../../general-component/job-card-square';
+import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 
 class RelatedPosition extends React.Component {
   constructor(props) {

@@ -76,3 +76,11 @@
 .MDBButton{
     width: 90%;
 }
+
+.editor {
+    width: 90%;
+}
+
+.editorContent {
+    height: 300px
+}

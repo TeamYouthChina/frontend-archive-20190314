@@ -92,31 +92,7 @@ class projectCard extends Component {
             return( toShow )
         }
         else {
-            let toShow =
-                <div className={classes.ProjectCard}>
-                    <input disabled type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
-                    <div className={classes.Time}>
-                        <input disabled type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
-                        <p> - </p>
-                        <input disabled type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
-                    </div>
-                    <input disabled type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-                </div>;
-
-            if(this.state.editing){
-                toShow = 
-                    <div className={classes.ProjectCard}>
-                        <input type="text" defaultValue={this.state.proData.name} ref={this.nameRef}/>
-                        <div className={classes.Time}>
-                            <input type="text" defaultValue={this.state.proData.duration.begin} ref={this.beginRef}/>
-                            <p> - </p>
-                            <input type="text" defaultValue={this.state.proData.duration.end} ref={this.endRef}/>
-                        </div>
-                        <input type="text" defaultValue={this.state.proData.note} ref={this.noteRef}/>
-                        <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                    </div>
-            }
+            let toShow = <div></div>
             return( toShow )
         }
     }

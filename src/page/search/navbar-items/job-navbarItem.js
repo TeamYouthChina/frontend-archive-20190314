@@ -76,7 +76,7 @@ export class JobNavbarItem extends React.Component {
             <MDBDropdownMenu>
               <MDBDropdownItem
                 style={{...this.props.basicCHNFont, color: '#31394D'}}
-                href="#!">5000一下</MDBDropdownItem>
+                href="#!">5000以下</MDBDropdownItem>
               <MDBDropdownItem
                 style={{...this.props.basicCHNFont, color: '#31394D'}}
                 href="#!">5001-10000</MDBDropdownItem>

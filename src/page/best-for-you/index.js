@@ -5,7 +5,7 @@ import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {ApplicantHeader} from './applicant-header';
 import {JobListHome} from '../home/job-list-home';
-import {ApplicantCard} from '../../general-component/applicant-card';
+import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
 
 import {
   MDBRow,
@@ -40,8 +40,8 @@ export class BestForYou extends React.Component{
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-      }}
-      >
+        backgroundColor: '#F3F5F7'
+      }}>
         <Header/>
         <MDBContainer className="mt-5 mb-4">
           <ApplicantHeader/>

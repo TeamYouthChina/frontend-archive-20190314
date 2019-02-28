@@ -92,7 +92,7 @@ export class Home extends React.Component {
           />
           <Route
             path={`${this.props.match.url}/new`}
-            component={routeProps => <NewTemp/>}
+            component={routeProps => <NewTemp basicCHNFont={basicCHNFont}/>}
           />
           <Redirect to={`${this.props.match.url}/hot`}/>
         </Switch>

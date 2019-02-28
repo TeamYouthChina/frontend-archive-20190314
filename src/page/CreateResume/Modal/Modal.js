@@ -50,7 +50,7 @@ class ModalPage extends Component {
         return (
             <MDBContainer>
                 <MDBRow center>
-                    <MDBBtn flat onClick={this.toggle}>+ Add Education</MDBBtn>
+                    <MDBBtn flat onClick={this.toggle}>{this.props.buttonName}</MDBBtn>
                     <MDBModal isOpen={this.state.modal} toggle={this.toggle} size="lg">
                         <MDBModalHeader toggle={this.toggle}>Choose To Add In Your Resume</MDBModalHeader>
                         <MDBModalBody>

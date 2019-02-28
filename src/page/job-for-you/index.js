@@ -1,9 +1,6 @@
 import React from 'react';
-
-import {Header} from '../../general-component/header/header';
-import {Footer} from '../../general-component/footer';
-
-import {languageHelper} from '../../tool/language-helper';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import './public/style.css';
 
 import {
   MDBRow,
@@ -13,7 +10,21 @@ import {
   MDBNavLink,
   MDBJumbotron
 } from 'mdbreact';
+
+import {Header} from '../../general-component/header/header';
+import {Footer} from '../../general-component/footer';
 import {JobListHome} from '../home/job-list-home';
+import {Campus} from './campus';
+import {General} from './general';
+import {Intern} from './intern';
+import {languageHelper} from '../../tool/language-helper';
+
+const basicCHNFont = {
+  fontFamily: 'PingFang SC',
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  lineHeight: 'normal'
+};
 
 export class JobForYou extends React.Component {
   constructor(props) {
@@ -30,9 +41,9 @@ export class JobForYou extends React.Component {
   componentWillMount() {
     let mockData = {
       jobType: [
-        {id: 1, name: '实习'},
-        {id: 2, name: '校园招聘'},
-        {id: 3, name: '社会招聘'}
+        {id: 1, name: '校园招聘', url: 'campus'},
+        {id: 2, name: '社会招聘', url: 'general'},
+        {id: 3, name: '实习', url: 'intern'}
       ],
       status: {
         code: 2000
@@ -50,7 +61,7 @@ export class JobForYou extends React.Component {
         <Header/>
         <MDBJumbotron className="d-none d-md-block m-0 pt-5" style={{
           height: '300px',
-          backgroundColor: '#555555',
+          backgroundColor: '#4F65E1',
           color: 'white'
         }}>
           <MDBRow className="text-center">
@@ -58,7 +69,7 @@ export class JobForYou extends React.Component {
               <br/>
               <br/>
               <br/>
-              <h1>发现合适你的职位和公司</h1>
+              <p style={{...basicCHNFont, fontSize: '36px', fontWeight: '600'}}>发现合适你的职位和公司</p>
             </MDBCol>
           </MDBRow>
         </MDBJumbotron>
@@ -80,15 +91,11 @@ export class JobForYou extends React.Component {
                     <MDBNavItem
                       className="ml-0 text-center p-0">
                       <MDBNavLink
-                        onClick={
-                          () => {
-                            this.setState({selectedTab: item.id});
-                          }
-                        }
-                        className={this.state.selectedTab === item.id ? 'active font-weight-bold' : ''}
-                        to="#"
+                        className={this.props.location.pathname.includes(item.url) ? 'active activeTabFontColor font-weight-bold' : ''}
+                        to={`${this.props.match.url}/${item.url}`}
                         style={{
-                          color: '#454F69',
+                          ...basicCHNFont,
+                          color: '#31394D',
                           fontSize: '16px',
                         }}
                       >
@@ -100,50 +107,67 @@ export class JobForYou extends React.Component {
               })}
             </MDBRow>
           </MDBNav>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            backgroundColor: '#FAFBFD'
-          }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: 1224
-            }}>
-              {
-                (
-                  () => {
-                    let tag;
-                    if (this.state.selectedTab === 1) {
-                      return (
-                        <div>
-                          <JobListHome/>
-                          <JobListHome/>
-                          <JobListHome/>
-                        </div>
-                      );
-                    } else if (this.state.selectedTab === 2) {
-                      return (
-                        <div>
-                          <JobListHome/>
-                          <JobListHome/>
-                          <JobListHome/>
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div>
-                          <JobListHome/>
-                          <JobListHome/>
-                          <JobListHome/>
-                        </div>
-                      );
-                    }
-                  }
-                )()
-              }
-            </div>
-          </div>
+
+          <Switch>
+            <Route
+              path={`${this.props.match.url}/campus`}
+              component={routeProps => <Campus basicCHNFont={basicCHNFont}/>}
+            />
+            <Route
+              path={`${this.props.match.url}/general`}
+              component={routeProps => <General basicCHNFont={basicCHNFont}/>}
+            />
+            <Route
+              path={`${this.props.match.url}/intern`}
+              component={routeProps => <Intern basicCHNFont={basicCHNFont}/>}
+            />
+            <Redirect to={`${this.props.match.url}/campus`}/>
+          </Switch>
+
+          {/*<div style={{*/}
+          {/*display: 'flex',*/}
+          {/*justifyContent: 'center',*/}
+          {/*backgroundColor: '#FAFBFD'*/}
+          {/*}}>*/}
+          {/*<div style={{*/}
+          {/*display: 'flex',*/}
+          {/*flexDirection: 'column',*/}
+          {/*width: 1224*/}
+          {/*}}>*/}
+          {/*{*/}
+          {/*(*/}
+          {/*() => {*/}
+          {/*let tag;*/}
+          {/*if (this.state.selectedTab === 1) {*/}
+          {/*return (*/}
+          {/*<div>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*</div>*/}
+          {/*);*/}
+          {/*} else if (this.state.selectedTab === 2) {*/}
+          {/*return (*/}
+          {/*<div>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*</div>*/}
+          {/*);*/}
+          {/*} else {*/}
+          {/*return (*/}
+          {/*<div>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*<JobListHome/>*/}
+          {/*</div>*/}
+          {/*);*/}
+          {/*}*/}
+          {/*}*/}
+          {/*)()*/}
+          {/*}*/}
+          {/*</div>*/}
+          {/*</div>*/}
         </div>
 
         <Footer/>

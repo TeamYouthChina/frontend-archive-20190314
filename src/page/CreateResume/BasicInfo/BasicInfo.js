@@ -8,7 +8,6 @@ class BasicInfo extends Component {
     constructor(props){
         super(props)
         this.state = {
-            editing: false,
             personalInfo: {
                 name: this.props.data.name,
                 DOB: this.props.data.DOB,
@@ -25,12 +24,11 @@ class BasicInfo extends Component {
     }
 
     editHandler = (e) => {
-        this.setState({editing: true});
     }
 
     saveHandler = () => {
         this.setState({
-            editing: false,
+            ...this.state,
             personalInfo: {
                 name: this.nameRef.current.value,
                 DOB: this.DOBRef.current.value,
@@ -49,11 +47,6 @@ class BasicInfo extends Component {
                     <p className={classes.SectionName}>
                         Basic Info
                     </p>
-                    <button 
-                        className={classes.CornerButton}
-                        onClick={this.editHandler}>
-                        edit
-                    </button>
                 </div>
                 <div className={classes.row}>
                     <p className={classes.AttributeName}>
@@ -86,52 +79,6 @@ class BasicInfo extends Component {
                     <input disabled type="text" defaultValue={this.props.data.phone} ref={this.phoneRef}/>
                 </div>  
             </div>
-
-        if(this.state.editing == true) {
-            toShow = 
-                <div className={classes.BasicInfo}>
-                    <div className={classes.Headline}>
-                            <p className={classes.SectionName}>
-                                Basic Info
-                            </p>
-                            <button 
-                                className={classes.CornerButton}
-                                onClick={this.saveHandler}>
-                                save
-                            </button>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Name
-                            </p>
-                            <input type="text" defaultValue={this.props.data.name} ref={this.nameRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Date of Birth
-                            </p>
-                            <input type="text" defaultValue={this.props.data.DOB} ref={this.DOBRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Gender
-                            </p>
-                            <input type="text" defaultValue={this.props.data.gender} ref={this.genderRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Email
-                            </p>
-                            <input type="text" defaultValue={this.props.data.email} ref={this.emailRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Phone Number
-                            </p>
-                            <input type="text" defaultValue={this.props.data.phone} ref={this.phoneRef}/>
-                        </div>  
-                </div>
-        }
         return (
             toShow
         );
