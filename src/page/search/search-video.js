@@ -61,33 +61,29 @@ export class SearchVideoResult extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        <VideoCardSearch/>
-        <div className="mt-5">
-          <MDBRow className="ml-0 p-0">
-            <MDBCol className="d-flex align-items-center justify-content-end ml-2" size="2">
-              <p className="m-0" style={{...this.props.basicCHNFont, color: '#8D9AAF', fontSize: '14px'}}>
-                {this.state.backend.videoList.length}个结果
-              </p>
-            </MDBCol>
-            <MDBCol className="ml-md-auto mr-4" size="3">
-              <MDBBtn color="white" href="/video/create" className="py-3 px-5" style={{boxShadow: 'none'}}>
-                <p className="m-0" style={{...this.props.basicCHNFont, color: '#4F65E1', fontSize: '14px'}}>
-                  <MDBIcon icon="cloud-upload"/> 上传视频
-                </p>
-              </MDBBtn>
-            </MDBCol>
-          </MDBRow>
-        </div>
-
-        <MDBRow>
-          <VideoCardSearch/>
-        </MDBRow>
+        {/*郭亦豪说删掉*/}
+        {/*<div className="mt-5">*/}
+          {/*<MDBRow className="ml-0 p-0">*/}
+            {/*<MDBCol className="d-flex align-items-center justify-content-end ml-2" size="2">*/}
+              {/*<p className="m-0" style={{...this.props.basicCHNFont, color: '#8D9AAF', fontSize: '14px'}}>*/}
+                {/*{this.state.backend.videoList.length}个结果*/}
+              {/*</p>*/}
+            {/*</MDBCol>*/}
+            {/*<MDBCol className="ml-md-auto mr-4" size="3">*/}
+              {/*<MDBBtn color="white" href="/video/create" className="py-3 px-5" style={{boxShadow: 'none'}}>*/}
+                {/*<p className="m-0" style={{...this.props.basicCHNFont, color: '#4F65E1', fontSize: '14px'}}>*/}
+                  {/*<MDBIcon icon="cloud-upload"/> 上传视频*/}
+                {/*</p>*/}
+              {/*</MDBBtn>*/}
+            {/*</MDBCol>*/}
+          {/*</MDBRow>*/}
+        {/*</div>*/}
         
-        <MDBRow className="mt-2" center>
+        <MDBRow className="mt-2 mb-4" center>
           {this.state.backend.videoList.map((item, index) => {
             return (
-              <MDBCol className="mx-1 my-3" size="12" md="5" xl="3" key={index}>
-                <VideoCard/>
+              <MDBCol className="mx-1 my-3 pt-3" size="11" key={index}>
+                <VideoCardSearch basicCHNFont={this.props.basicCHNFont}/>
               </MDBCol>
             );
           })}
