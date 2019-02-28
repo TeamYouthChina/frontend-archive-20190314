@@ -13,7 +13,7 @@ export class Footer extends React.Component {
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow>
             <MDBCol md="6">
-              <h5 className="title">YouthChina</h5>
+              <h5 className="title">WeYouth</h5>
               <p>
                 快速一站式服务
               </p>

@@ -12,7 +12,7 @@ import {
 } from 'mdbreact';
 
 
-import {JobCardBar} from "../../general-component/job-card-bar";
+import {JobCardBar} from "../../general-component/job-card-bar/job-card-bar";
 
 export class CollectionJob extends React.Component {
   constructor(props) {

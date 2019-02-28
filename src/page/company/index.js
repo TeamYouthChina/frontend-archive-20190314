@@ -11,7 +11,7 @@ import {
 } from 'mdbreact';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
-import {CompanyCard} from '../../general-component/company-card';
+import {CompanyCard} from '../../general-component/company-card/company-card';
 import {CoDetail} from "./company-detail";
 import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 import {Photo} from "./photo";
@@ -120,7 +120,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
             </p>
-            <MDBCard className="px-3 pb-3 mb-4">
+            <MDBCard className="p-3 pb-3 mb-4">
 
               <MDBCardBody>
                 <Photo/>

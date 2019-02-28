@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import {languageHelper} from "../../tool/language-helper";
 import {Header} from "../../general-component/header/header";
 import {Footer} from "../../general-component/footer";
+import {AppTitle} from "./appTitle/apptiitle";
 import {ResumeTitle} from "../../general-component/resumeTitle";
 import {removeUrlSlashSuffix} from "../../tool/remove-url-slash-suffix";
 import {AppTable} from "./application/apptable";
@@ -36,7 +37,7 @@ export class Applicant extends React.Component {
     this.selectedStyle = {
       ...this.commonStyle,
       fontWeight: '450',
-      borderLeft: '4px solid #7C97B8',
+      borderLeft: '4px solid #31394D',
       fontSize: '16px',
       background: '#F2F2F2'
     };
@@ -56,9 +57,9 @@ export class Applicant extends React.Component {
     return (
       <div>
         <Header/>
-        <ResumeTitle/>
+        <AppTitle/>
         <MDBRow center>
-          <MDBCol md="10" className="">
+          <MDBCol md="11" className="">
             <MDBRow>
               <MDBCol md="2">
                 <MDBRow>

@@ -1,0 +1,24 @@
+.title{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 24px;
+  margin-top: 5px;
+
+  color: #454F69;
+
+}
+.date{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #8D9AAF;
+
+}
+.text{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #454F69;
+}

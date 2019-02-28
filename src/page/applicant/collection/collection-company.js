@@ -3,7 +3,7 @@ import {
   MDBCol,
   MDBRow,
 } from 'mdbreact';
-import {CompanyCard} from "../../../general-component/company-card";
+import {CompanyCard} from "../../../general-component/company-card/company-card";
 import {languageHelper} from "../../../tool/language-helper";
 export class CollectionCompany extends React.Component {
   constructor(props) {
