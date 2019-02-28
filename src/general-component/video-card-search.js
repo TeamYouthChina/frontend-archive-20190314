@@ -58,35 +58,36 @@ export class VideoCardSearch extends React.Component {
 
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
-      <MDBCard news className="my-5" style={{boxShadow: 'none'}}>
-        <MDBRow center>
+      <MDBCard news style={{boxShadow: 'none'}}>
+        <MDBRow between>
+          
           <MDBCol md="3">
             <div className="embed-responsive embed-responsive-16by9" style={{width: "400px"}}>
-              <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
-                      allowFullScreen></iframe>
-
+              <iframe 
+                className="embed-responsive-item" src="https://www.youtube.com/embed/tvTRZJ-4EyI"
+                allowFullScreen>
+              </iframe>
             </div>
           </MDBCol>
-          <MDBCol size="6" style={{marginLeft: "4rem"}}>
+          
+          <MDBCol size="8" className="mx-3 my-3">
             <MDBCardBody>
               <div className="social-meta">
-                <p className="font-weight-light" style={{fontSize: "1.5rem"}}>
+                <p style={{...this.props.basicCHNFont, fontWeight: '500',fontSize: '18px'}}>
                   Heading is just a seven-letter word, a seven-letter word. I'm just filling the blank.
                 </p>
-                <p style={{fontSize: "15px"}}>
+                <p style={{...this.props.basicCHNFont, fontSize: '14px'}}>
                   999 views
                   &middot;
                   1 hour ago
                 </p>
-                <p style={{fontSize: "15px"}}>
+                <p style={{...this.props.basicCHNFont, fontSize: '14px'}}>
                   According to Cedric, Tracy now spends his days eating caviar on Ritz Crackers and driving his Bugatti around the block.
                 </p>
-               
-                
-
               </div>
             </MDBCardBody>
           </MDBCol>
+          
         </MDBRow>
       </MDBCard>
     ) : null;
