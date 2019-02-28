@@ -66,49 +66,68 @@ export class HomeHeader extends React.Component {
     return (
 
       <div>
-          <div>
-            <MDBNavbar
+        <div>
+          <MDBNavbar
 
-              dark
-              expand="md"
-              fixed="top"
-              scrolling
-              transparent
-              color="mdb-color"
-            >
-              <MDBCol className={classes.yc} md="1">
-                <MDBNavbarBrand href="/">
-                  <strong>WeYouth</strong>
-                </MDBNavbarBrand>
-              </MDBCol>
-              {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.handleTogglerClick}/>}
-              <MDBCollapse isOpen={this.state.collapse} navbar>
-                <MDBCol md="2">
-                  <MDBNavbarNav>
-                    <MDBNavItem
-                      to="#"
-
-                      onMouseEnter={
-                        () => {
-                          this.setState({
-                            hover: 1
-                          });
-                        }
+            dark
+            expand="md"
+            fixed="top"
+            scrolling
+            transparent
+            color="mdb-color"
+          >
+            <MDBCol className={classes.yc} md="1">
+              <MDBNavbarBrand href="/">
+                <strong>WeYouth</strong>
+              </MDBNavbarBrand>
+            </MDBCol>
+            {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.handleTogglerClick}/>}
+            <MDBCollapse isOpen={this.state.collapse} navbar>
+              <MDBCol md="2">
+                <MDBNavbarNav>
+                  <MDBNavItem
+                    onMouseEnter={
+                      () => {
+                        this.setState({
+                          hover: 1
+                        });
                       }
-                      onMouseLeave={
-                        () => {
-                          this.setState({
-                            hover: 0
-                          });
-                        }
+                    }
+                    onMouseLeave={
+                      () => {
+                        this.setState({
+                          hover: 0
+                        });
                       }
-
-                      style={this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
-                    >
-                      <MDBNavLink to="/job-for-you">
-                        职 位
-                      </MDBNavLink>
-                    </MDBNavItem>
+                    }
+                    style={this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  >
+                    <MDBNavLink to="/job-for-you">
+                      职 位
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem
+                    onMouseEnter={
+                      () => {
+                        this.setState({
+                          hover: 2
+                        });
+                      }
+                    }
+                    onMouseLeave={
+                      () => {
+                        this.setState({
+                          hover: 0
+                        });
+                      }
+                    }
+                    style={this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
+                  >
+                    <MDBNavLink to="/discovery">
+                      探 索
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  {/*
                     <MDBNavItem
                       onMouseEnter={
                         () => {
@@ -144,40 +163,41 @@ export class HomeHeader extends React.Component {
                         </MDBDropdownMenu>
                       </MDBDropdown>
                     </MDBNavItem>
-                  </MDBNavbarNav>
-                </MDBCol>
-                <MDBNavbarNav left style={{width: '300px'}}>
-                  <MDBNavLink to="/search/s1">
-                    <div className="d-flex flex-row ">
-                      <div className="flex-fill align-self-center mx-3">
-                        <MDBIcon icon="search" size="2x" className="white-text"/>
-                      </div>
-                      <div className="flex-fill">
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="搜索"
-                          aria-label="Search"
-                        />
-                      </div>
-                    </div>
-
-                  </MDBNavLink>
+                    */}
                 </MDBNavbarNav>
-                <div className="d-flex flex-row">
-                  {
-                    Cookies.get('avatar') ? (
-                      <Logined/>
-                    ) : (
-                      <UnLogin/>
-                    )
-                  }
+              </MDBCol>
+              <MDBNavbarNav left style={{width: '300px'}}>
+                <MDBNavLink to="/search/s1">
+                  <div className="d-flex flex-row ">
+                    <div className="flex-fill align-self-center mx-3">
+                      <MDBIcon icon="search" size="2x" className="white-text"/>
+                    </div>
+                    <div className="flex-fill">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="搜索"
+                        aria-label="Search"
+                      />
+                    </div>
+                  </div>
 
-                </div>
-              </MDBCollapse>
-            </MDBNavbar>
-            {this.state.collapsed && overlay}
-          </div>
+                </MDBNavLink>
+              </MDBNavbarNav>
+              <div className="d-flex flex-row">
+                {
+                  Cookies.get('avatar') ? (
+                    <Logined/>
+                  ) : (
+                    <UnLogin/>
+                  )
+                }
+
+              </div>
+            </MDBCollapse>
+          </MDBNavbar>
+          {this.state.collapsed && overlay}
+        </div>
         <MDBCarousel activeItem={1} length={4} showControls={true} showIndicators={true} className="z-depth-1">
           <MDBCarouselInner>
             <MDBCarouselItem itemId="1">
