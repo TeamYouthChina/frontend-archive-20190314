@@ -37,6 +37,7 @@
     justify-content: flex-start;
     height: 90%;
     width: 590px;
+    flex-grow: 1;
 }
 
 .SchoolInfo h1{

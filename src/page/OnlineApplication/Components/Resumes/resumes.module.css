@@ -1,8 +1,6 @@
 .resumes {
     box-sizing: border-box;
-    margin-left: 77px;
-    margin-top: 31px;
-    width: 1000px;
+    width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
