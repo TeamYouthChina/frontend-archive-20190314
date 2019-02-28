@@ -2,7 +2,7 @@ import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
 
 import {MDBContainer, MDBRow, MDBCol} from 'mdbreact';
-import {QuestionCard} from '../../question/question-card';
+import {QuestionCard} from '../../../general-component/question-card';
 
 export class QuestionAnswerMobile extends React.Component {
   constructor(props) {

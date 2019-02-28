@@ -17,7 +17,7 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description';
 import {ArticleCard} from '../article/article-card'
 // import {QuestionBar} from './question-side-bar'
-import {QuestionCard} from './question-card'
+import {QuestionCard} from '../../general-component/question-card'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {

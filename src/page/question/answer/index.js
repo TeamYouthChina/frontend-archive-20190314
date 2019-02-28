@@ -12,7 +12,7 @@ import {Header} from '../../../general-component/header/header';
 import {Footer} from '../../../general-component/footer';
 import {QuestionDes} from '../question-description'
 import {getAsync} from '../../../tool/api-helper'
-import {QuestionCard} from '../question-card'
+import {QuestionCard} from '../../../general-component/question-card'
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
