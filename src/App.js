@@ -27,12 +27,9 @@ import {VideoEdit} from './page/video/edit';
 import {PageNoFound} from './page/page-no-found';
 import {Register} from './page/register';
 import {Help} from './page/help';
-import {Setting} from './page/setting';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {Application} from './page/application';
-import {Message} from './page/message';
-import {Notification} from './page/notification';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
@@ -141,16 +138,8 @@ export class App extends Component {
               component={routeProps => <Logout {...routeProps} />}
             />
             <Route
-              path="/message"
-              component={routeProps => <Message {...routeProps} />}
-            />
-            <Route
               path="/mobile"
               component={routeProps => <Mobile {...routeProps} />}
-            />
-            <Route
-              path="/notification"
-              component={routeProps => <Notification {...routeProps} />}
             />
             <Route
               path="/OnlineApplication"
@@ -207,10 +196,6 @@ export class App extends Component {
             <Route
               path="/searchresume"
               component={routeProps => <SearchResume {...routeProps} />}
-            />
-            <Route
-              path="/setting"
-              component={routeProps => <Setting {...routeProps} />}
             />
             <Route
               path="/video/create"
