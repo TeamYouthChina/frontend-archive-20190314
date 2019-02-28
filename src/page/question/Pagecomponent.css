@@ -1,0 +1,56 @@
+.page-container:after {
+  content: '.';
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.page-container {
+  zoom: 1
+}
+
+.page-container li {
+  list-style: none;
+  float: left;
+  padding: 0px 8px;
+  cursor: pointer;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 8px;
+  border: 1px solid #DBE5F7;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 20px rgba(141, 154, 175, 0.15);
+  border-radius: 2px;
+}
+
+.page-container li:last-child {
+  margin-right: 0px;
+}
+
+/*当前页样式*/
+.activePage {
+  border: 1px solid #333B4F;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 20px rgba(141, 154, 175, 0.15);
+  border-radius: 2px;
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #31394D;
+}
+
+/*没有上一页和下一页时样式*/
+.nomore {
+  border: 1px solid #DBE5F7;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 20px rgba(141, 154, 175, 0.15);
+  border-radius: 2px;
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #8D9AAF;
+}

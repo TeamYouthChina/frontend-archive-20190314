@@ -39,7 +39,7 @@ export class ArticleCard extends React.Component {
       isCollapsed: true,
       showBottom: true,
       showComments: false,
-      commontsText: '评论',
+      commontsText: '89条评论',
       pageConfig: {
         totalPage: 14 //总页码
       },
@@ -86,7 +86,7 @@ export class ArticleCard extends React.Component {
       {
         id: '0100',
         title: 'IBM工作方法论',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
         long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
         user: '齐昊',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
@@ -138,7 +138,7 @@ export class ArticleCard extends React.Component {
 
   showComments() {
 
-    let commontsText = this.state.commontsText === '评论' ? '收起评论' : '评论'
+    let commontsText = this.state.commontsText === '89条评论' ? '收起评论' : '89条评论'
     let showComments = !this.state.showComments
     this.setState({
       showComments,
@@ -178,77 +178,82 @@ export class ArticleCard extends React.Component {
             <Link to={`/article/${this.state.backend.id}`}><strong
               style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
           ) : null}
-          {this.state.isCollapsed ? (
-            <div>
-              {/*<span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:*/}
-              <ul style={ulBasicNoLine}>
-                <li style={{color: '#8D9AAF', fontSize: '14px', ...liBasicNoLine, margin: '10px 0px'}}>
-                  预计阅读时间: {this.state.backend.readingTime}分钟
-                </li>
-                <li style={{color: '#31394D', fontSize: '14px', ...liBasicNoLine, ...basicFont}}>
-                  {this.state.backend.short}
-                </li>
-                <li onClick={this.handleSpanClick} style={{
-                  color: '#4F65E1',
-                  fontSize: '14px', ...liBasicNoLine, ...basicFont,
-                  margin: '10px 0px 0px 0px'
-                }}>
-                  展开更多<MDBIcon style={{marginLeft: '5px'}} icon="arrow-down"/>
-                </li>
-              </ul>
-
-            </div>
-          ) : (
-            <div>
-              <MDBRow style={{margin: '10px 0px'}}>
-                <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px'}}>
-                  <img
-                    style={{width: '32px', background: '#F4F4F4'}}
-                    src={this.state.backend.img}
-                    alt=""
-                    className="rounded-circle"
-                  />
-                </MDBAvatar>
-                <ul style={{
+          <div>
+            <MDBRow style={{margin: '10px 0px'}}>
+              <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px'}}>
+                <img
+                  style={{width: '32px', background: '#F4F4F4'}}
+                  src={this.state.backend.img}
+                  alt=""
+                  className="rounded-circle"
+                />
+              </MDBAvatar>
+              <ul style={{
+                listStyle: 'none',
+                padding: '0px',
+                margin: '0px'
+              }}>
+                <li style={{
                   listStyle: 'none',
-                  padding: '0px',
-                  margin: '0px'
+                  color: '#31394D',
+                  fontSize: '16px',
+                  ...basicFont
                 }}>
-                  <li style={{
-                    listStyle: 'none',
-                    color: '#31394D',
-                    fontSize: '16px',
-                    ...basicFont
+                  {this.state.backend.user}
+                </li>
+                <li style={{
+                  listStyle: 'none',
+                  color: '#8D9AAF',
+                  fontSize: '14px',
+                  ...basicFont
+                }}>
+                  {this.state.backend.description}
+                  <MDBBtn disabled flat style={{
+                    background: '#F0F3FA',
+                    borderRadius: '8px',
+                    padding: '0px',
+                    margin: '0px',
+                    marginLeft: '15px',
+                    marginTop: '-4px',
+                    textAlign: 'center',
                   }}>
-                    {this.state.backend.user}
-                  </li>
-                  <li style={{
-                    listStyle: 'none',
-                    color: '#8D9AAF',
-                    fontSize: '14px',
-                    ...basicFont
-                  }}>
-                    {this.state.backend.description}
-                    <MDBBtn disabled flat style={{
-                      background: '#F0F3FA',
-                      borderRadius: '8px',
-                      padding: '0px',
-                      margin: '0px',
-                      marginLeft: '15px',
-                      textAlign: 'center',
-                    }}>
                     <span style={{
                       margin: '1px 14px',
                       fontSize: '12px',
                       color: '#4F65E1', ...basicFont
                     }}>{this.state.backend.score}分</span>
-                    </MDBBtn>
+                  </MDBBtn>
+                </li>
+              </ul>
+            </MDBRow>
+
+            {this.state.isCollapsed ? (
+              <div>
+                {/*<span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:*/}
+                <ul style={ulBasicNoLine}>
+                  <li style={{color: '#8D9AAF', fontSize: '14px', ...liBasicNoLine, margin: '10px 0px'}}>
+                    预计阅读时间: {this.state.backend.readingTime}分钟
+                  </li>
+                  <li style={{color: '#31394D', fontSize: '14px', ...liBasicNoLine, ...basicFont}}>
+                    {this.state.backend.short}
+                  </li>
+                  <li onClick={this.handleSpanClick} style={{
+                    color: '#4F65E1',
+                    fontSize: '14px', ...liBasicNoLine, ...basicFont,
+                    margin: '10px 0px 0px 0px'
+                  }}>
+                    展开更多<MDBIcon style={{marginLeft: '5px'}} icon="arrow-down"/>
                   </li>
                 </ul>
-              </MDBRow>
+
+              </div>
+            ) : (
+
+
               <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
-            </div>
-          )}
+
+            )}
+          </div>
           {this.state.showBottom || this.state.isCollapsed ? (
 
 
@@ -260,16 +265,22 @@ export class ArticleCard extends React.Component {
               </MDBCol>
               <MDBCol size="9">
                 <div style={{float: 'right'}}>
-                  <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px'}}>
+                  <MDBBtn flat style={{
+                    padding: '5px 10px',
+                    marginLeft: '15px',
+                    fontSize: '14px',
+                    color: '#8D9AAF', ...basicFont
+                  }}>
                     <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>点赞
                   </MDBBtn>
-                  <MDBBtn flat style={{padding: '5px 10px',}}>
+                  <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                     <MDBIcon style={{marginRight: '5px'}} icon="heart"/>收藏
                   </MDBBtn>
-                  <MDBBtn onClick={this.showComments} flat style={{padding: '5px 10px',}}>
+                  <MDBBtn onClick={this.showComments} flat
+                          style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                     <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.commontsText}
                   </MDBBtn>
-                  <MDBBtn flat style={{padding: '5px 10px',}}>
+                  <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                     <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
                   </MDBBtn>
                   {/*<MDBBtn flat style={{padding: '5px 10px',}}>*/}
@@ -306,25 +317,30 @@ export class ArticleCard extends React.Component {
                   className="rounded-circle"
                 />
               </MDBAvatar>
+              <div style={{marginTop:'5px',flexGrow: '1',}}>
+                <input style={{
+                  width:'100%',
+                  background: '#FFFFFF',
+                  border: '1px solid #DBE5F7',
+                  boxSizing: 'border-box',
+                  borderRadius: '2px',
+                  padding:'8px 0px 8px 20px',
+                  fontSize:'14px',
+                  color:'#B3C1DB',
+                  height:'37px',
+                  ...basicFont,
+                }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
 
-              <input style={{
-                flexGrow: '1',
-                background: '#FFFFFF',
-                border: '1px solid #DBE5F7',
-                boxSizing: 'border-box',
-                borderRadius: '2px',
-                padding:'8px 0px 8px 20px'
-              }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+              </div>
 
 
               <MDBBtn onClick={(e) => this.addComments(e)} flat
                       style={{
                         flexGrow: '0',
                         background: '#C4C4C4',
-                        padding: '10px 20px',
+                        padding: '8px 20px',
                         color: '#FFFFFF', ...basicFont,
-                        margin:'0px',
-                        marginLeft:'8px'
+                        margin:'6px 6px 5px 6px',
                       }}>
                 发布
               </MDBBtn>
@@ -335,7 +351,8 @@ export class ArticleCard extends React.Component {
 
             ))}
             <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}}
+                             pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
           </div>
 

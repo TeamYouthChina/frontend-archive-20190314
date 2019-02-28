@@ -5,7 +5,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {MDBContainer, MDBRow, MDBCol} from 'mdbreact';
 
 import {getAsync} from "../../tool/api-helper";
-import {VideoCard} from '../../general-component/video-card';
+import {ReviewCard} from '../../general-component/review-card';
 
 export class Review extends React.Component {
   constructor(props) {
@@ -15,26 +15,34 @@ export class Review extends React.Component {
   }
 
   async componentDidMount() {
-    const result = await getAsync(`/discovery/review`)
-    console.log(result)
-    if (result && result.status && result.status.code === 2000) {
-      let mockData =
-        {
-          status: {
-            code: result.status.code
-          }
-        };
-      this.setState(() => {
-        return {backend: mockData};
-      });
-    } else {
-      let mockData = {
-        status: result.status
+    // const result = await getAsync(`/discovery/review`)
+    // console.log(result)
+    // if (result && result.status && result.status.code === 2000) {
+    //   let mockData =
+    //     {
+    //       status: {
+    //         code: result.status.code
+    //       }
+    //     };
+    //   this.setState(() => {
+    //     return {backend: mockData};
+    //   });
+    // } else {
+    //   let mockData = {
+    //     status: result.status
+    //   }
+    //   this.setState(() => {
+    //     return {backend: mockData};
+    //   });
+    // }
+    let mockdata = {
+      status:{
+        code:2000
       }
-      this.setState(() => {
-        return {backend: mockData};
-      });
     }
+    this.setState({
+      backend:mockdata
+    })
   }
 
   render() {
@@ -43,20 +51,19 @@ export class Review extends React.Component {
         fluid
         style={{padding: 0}}
       >
-        <MDBRow>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
-          <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-            <VideoCard/>
-          </MDBCol>
+        <MDBRow style={{margin:'1rem 0rem'}}>
+            <ReviewCard/>
         </MDBRow>
+        <MDBRow style={{margin:'1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
+        <MDBRow style={{margin:'1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
+        <MDBRow style={{margin:'1rem 0rem'}}>
+          <ReviewCard/>
+        </MDBRow>
+        
       </MDBContainer>
     ) : null;
   }
