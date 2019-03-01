@@ -42,45 +42,105 @@ export class CompanyCard1 extends React.Component {
           style={{
             borderRadius: '0px',
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            height: '10.75rem',
+            background: '#FFFFFF',
           }}
           onClick={() => {
             this.props.history.push(`/company/${this.state.backend.content.id}`);
           }}
-          className={classes.card}
+          
         >
           <div
-            className={classes.logo}
             style={{
-              flexGrow: 1
+              alignItems:'center',
+              marginLeft: '2.5rem',
+              marginTop: '1.25rem',
+              width:'8.25rem',
+              height:'auto',
             }}
           >
+
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
               className="img-fluid"
-              alt="Sample avatar"
+              style={{
+                alignItems:'center',
+                width:'8.25rem',
+                height:'auto',
+
+              }}
             />
+
           </div>
           <div
             style={{
-              flexGrow: 4
+              flexGrow: 4,
+              marginLeft:'1.875rem',
+              marginTop:'3.125rem',
             }}>
-            <div className={classes.title}>
-              {this.state.backend.content.name}
+            <div
+              style={{
+                flexDirection: 'row',
+                display: 'flex',
+                alignItems:'flex-end',
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: 'PingFang SC',
+                  lineHeight: 'normal',
+                  fontSize: '1.5rem',
+                  color: '#454F69'
+                }}
+              >
+                {this.state.backend.content.name}
+              </div>
+              <div
+                style={{
+                  fontFamily: 'PingFang SC',
+                  lineHeight: 'normal',
+                  fontSize: '0.875rem',
+                  marginLeft:'0.625rem',
+                  color: '#8D9AAF'
+                }}
+              > {this.state.backend.content.location} | 2000人 | 计算机/网络</div>
             </div>
-            <div className={classes.font}> {this.state.backend.content.location} | 2000人 | 计算机/网络</div>
-            <div className={classes.website}>
-              <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
+            <div
+              style={{
+                flexDirection: 'row',
+                display: 'flex',
+                alignItems:'flex-end',
+                marginTop:'0.5rem'
+              }}
+            >
+              <div
+                style={{
+                  flexGrow: 3,
+                  fontFamily: 'PingFang SC',
+                  lineHeight: 'normal',
+                  fontSize: '1rem',
+                  color: '#454F69',
+                 
+                }}
+              >
+                <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
+              </div>
+              <div
+                style={{
+                  flexGrow: 1,
+                  fontFamily: 'PingFang SC',
+                  lineHeight: 'normal',
+                  fontSize: '0.875rem',
+                  color: '#8D9AAF',
+                }}
+              >
+                <MDBIcon far icon="heart" className="mr-2"/>
+                收藏
+              </div>
             </div>
-          </div>
-          <div className={classes.btn}
-               style={{
-                 flexGrow: 1
-               }}
-          >
-            <MDBIcon far icon="heart" className="mr-2"/>
-            收藏
+           
           </div>
         </MDBCard>
       </div>
