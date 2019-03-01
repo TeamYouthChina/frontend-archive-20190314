@@ -15,7 +15,7 @@ import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CompanyCard} from '../../general-component/company-card/company-card';
 import {CoDetail} from "../company/company-detail";
-import RelatedPosition from '../job/related';
+import RelatedPosition from '../job/component/related';
 
 import '../job/public/style.css';
 

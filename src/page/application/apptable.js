@@ -6,7 +6,7 @@ import {
   MDBDataTable,
 } from 'mdbreact';
 import {languageHelper} from "../../tool/language-helper";
-import {JobApp} from "../job/job-app-progress";
+import {JobApp} from "../job/component/job-app-progress";
 import {getAsync} from "../../tool/api-helper";
 export class AppTable extends React.Component {
   constructor(props) {
