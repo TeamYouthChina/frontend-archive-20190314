@@ -354,6 +354,11 @@ export class ArticleCard extends React.Component {
               <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}}
                              pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
+            <MDBRow center style={{marginTop:'9px'}}>
+              <MDBBtn onClick={this.showComments} flat style={{margin:'0px',padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+                收起评论<MDBIcon style={{marginLeft: '5px'}} icon="arrow-up"/>
+              </MDBBtn>
+            </MDBRow>
           </div>
 
         ) : null}
