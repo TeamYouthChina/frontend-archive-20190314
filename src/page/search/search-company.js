@@ -62,7 +62,7 @@ export class SearchCompanyResult extends React.Component {
           return (
             
             <MDBRow className="mx-5" center key={index}>
-              <MDBCol className="my-3">
+              <MDBCol className="my-3" size="11" md="9">
                 <CompanyCard id={item.id}/>
               </MDBCol>
             </MDBRow>

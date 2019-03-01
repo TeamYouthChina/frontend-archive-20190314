@@ -79,10 +79,10 @@ export class SearchVideoResult extends React.Component {
           {/*</MDBRow>*/}
         {/*</div>*/}
         
-        <MDBRow className="mt-2 mb-4" center>
+        <MDBRow className="mb-3" center>
           {this.state.backend.videoList.map((item, index) => {
             return (
-              <MDBCol className="mx-1 my-3 pt-3" size="11" key={index}>
+              <MDBCol className="mx-1 mt-3 mb-2" size="9" key={index}>
                 <VideoCardSearch basicCHNFont={this.props.basicCHNFont}/>
               </MDBCol>
             );
