@@ -121,7 +121,7 @@ export class AnswerTextForArticle extends React.Component {
 
     return (
       <div className="myAnswerText">
-        <div className="editor-wrapper" style={{height: '100%'}}>
+        <div className="editor-wrapper" style={{height: '100%',minHeight:'400px'}}>
           <BraftEditor media={{uploadFn: myUploadFn}}
                        value={editorState} contentStyle={{height: '100%'}}
                        onChange={(editorState) => this.handleEditorChange(editorState)} extendControls={extendControls}
