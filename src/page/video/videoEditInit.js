@@ -15,7 +15,7 @@ export class VideoEditInit extends React.Component {
 
   render () {
     return (
-      <div style={{height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
+      <div style={{minHeight:'400px',height:'100%',margin:'20px 0px 0px 0px',boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)'}}>
         <MDBRow style={{height:'100%',margin:'20px 0px 0px 0px'}}>
           <AnswerTextForVideo data={this.props.inputData}></AnswerTextForVideo>
         </MDBRow>
