@@ -35,7 +35,8 @@ export class Choice extends React.Component {
           className="row justify-content-center"
           style={{
             backgroundColor: 'rgb(49, 57, 77)',
-            padding: '2rem 0rem'
+            padding: '4rem 0rem',
+            margin: '-2rem 0rem'
           }}
         >
           <div className="col-md-12 col-lg-10 col-xl-8">
@@ -63,6 +64,12 @@ export class Choice extends React.Component {
               <h2>根据专业为你选择的工作</h2>
             </div>
             <div className="row">
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
@@ -139,6 +146,220 @@ export class Choice extends React.Component {
                 style={{marginBottom: '1rem'}}
               >
                 <JobCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+            </div>
+            <div>
+              <h6><a href="/search">查看更多 -></a></h6>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row justify-content-center"
+          style={{
+            backgroundColor: '#f7f7f7',
+            padding: '1rem 0rem'
+          }}
+        >
+          <div className="col-md-12 col-lg-10 col-xl-8">
+            <div style={{marginBottom: '1rem'}}>
+              <h2>这几家企业非常热门</h2>
+            </div>
+            <div className="row">
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <JobCardSquare/>
+              </div>
+            </div>
+            <div>
+              <h6><a href="/search">查看更多 -></a></h6>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row justify-content-center"
+          style={{
+            padding: '1rem 0rem'
+          }}
+        >
+          <div className="col-md-12 col-lg-10 col-xl-8">
+            <div style={{marginBottom: '1rem'}}>
+              <h2>为你精选的文章</h2>
+            </div>
+            <div className="row">
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="1"/>
+              </div>
+            </div>
+            <div>
+              <h6><a href="/search">查看更多 -></a></h6>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row justify-content-center"
+          style={{
+            backgroundColor: '#f7f7f7',
+            padding: '1rem 0rem'
+          }}
+        >
+          <div className="col-md-12 col-lg-10 col-xl-8">
+            <div style={{marginBottom: '1rem'}}>
+              <h2>为你精选的问题</h2>
+            </div>
+            <div className="row">
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <QuestionCardSquareFull fulltext="1"/>
+              </div>
+            </div>
+            <div>
+              <h6><a href="/search">查看更多 -></a></h6>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row justify-content-center"
+          style={{
+            padding: '1rem 0rem'
+          }}
+        >
+          <div className="col-md-12 col-lg-10 col-xl-8">
+            <div style={{marginBottom: '1rem'}}>
+              <h2>为你精选的短则</h2>
+            </div>
+            <div className="row">
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ReviewCardSquareFull fulltext="1"/>
               </div>
             </div>
             <div>

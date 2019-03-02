@@ -69,9 +69,9 @@ export class Login extends React.Component {
       Cookies.set('id', backend.content.id, {expires: 1});
       // Cookies.set('username', backend.content.username, {expires: 1}); //store username onto the local storage
       Cookies.set('avatar', backend.content.avatarUrl ? backend.content.avatarUrl : 'https://s2.ax1x.com/2019/01/27/kuUMYq.jpg', {expires: 1});
-      // login success: --> /best-for-you /home
+      // login success: --> /best-for-you /home /choice
       const to = queryString.parse(this.props.location.search).to;
-      this.props.history.push(to ? to : '/home');
+      this.props.history.push(to ? to : '/choice');
       //if login success, set ifRedirect value to be true and re-render the page.
       if (Cookies.get('token')) {
         this.setState({ifRedirect: true});
@@ -112,7 +112,7 @@ export class Login extends React.Component {
       <div>
         <Header/>
         {this.state.ifRedirect ?
-          <Redirect to="/home"/> : null
+          <Redirect to="/choice"/> : null
         }
         <MDBContainer>
           <MDBModal isOpen={this.state.modalDisplay} toggle={this.toggleModal} centered>
