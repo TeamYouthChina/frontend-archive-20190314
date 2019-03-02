@@ -8,7 +8,8 @@ import {
   MDBNav,
   MDBNavItem,
   MDBNavLink,
-  MDBJumbotron
+  MDBJumbotron,
+  MDBContainer
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header/header';
@@ -68,20 +69,22 @@ export class JobForYou2 extends React.Component {
         {/*<MDBCol>*/}
         {/*<br/>*/}
         {/*<br/>*/}
-        {/*<br/>*/} 
+        {/*<br/>*/}
         {/*<p style={{...basicCHNFont, fontSize: '36px', fontWeight: '600'}}>发现合适你的职位和公司</p>*/}
         {/*</MDBCol>*/}
         {/*</MDBRow>*/}
         {/*</MDBJumbotron>*/}
 
         <div className="classic-tabs">
+          {/*<MDBContainer>*/}
           <MDBNav
             classicTabs
             expand="md"
-            className="d-flex justify-content-center"
+            className="d-flex justify-content-left"
             style={{
               boxShadow: 'none',
-              borderBottom: 'solid #E0E0E0 1px'
+              borderBottom: 'solid #E0E0E0 1px',
+              marginLeft: '156px'
             }}
           >
             <MDBRow>
@@ -107,6 +110,7 @@ export class JobForYou2 extends React.Component {
               })}
             </MDBRow>
           </MDBNav>
+          {/*</MDBContainer>*/}
 
           <Switch>
             <Route

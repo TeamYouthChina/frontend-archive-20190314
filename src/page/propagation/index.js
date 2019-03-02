@@ -54,10 +54,9 @@ export class Propagation extends React.Component {
           <MDBRow className="m-0 p-0">
             <MDBCol className="p-0">
               <MDBView>
-                <img src={img1} style={{
-                  height: '700px',
-                  width: '1440px'
-                }} className="img-fluid" alt=""/>
+                <img src={img1}
+                  // style={{height: '700px', width: '1440px'}} 
+                     className="img-fluid w-100" alt=""/>
                 <MDBMask className="d-flex align-items-center">
                   <MDBRow className="w-100">
                     <MDBCol size="5" className="mx-5">
@@ -93,9 +92,10 @@ export class Propagation extends React.Component {
           <MDBRow className="m-0 p-0">
             <MDBCol className="p-0">
               <MDBView>
-                <div style={{height: '615px', width: '1440px'}}>
-                  <img src={img2} style={{position: 'absolute', left: '0', top: '0'}} className="img-fluid"
-                       alt=""/></div>
+                <div style={{height: '615px'}}>
+                  <img src={img2}
+                       style={{position: 'absolute', left: '0', top: '0'}}
+                       className="img-fluid w-50" alt=""/></div>
                 <MDBMask className="d-flex align-items-center">
                   <MDBRow className="w-100">
                     <MDBCol size="5" className="offset-md-7">
@@ -128,8 +128,8 @@ export class Propagation extends React.Component {
           <MDBRow className="m-0 p-0">
             <MDBCol className="p-0">
               <MDBView>
-                <div style={{height: '700px', width: '1440px', backgroundColor: '#F0F3FA'}}>
-                  <img src={img3} style={{position: 'absolute', left: '700px', top: '140px'}} className="img-fluid"
+                <div style={{height: '665px', backgroundColor: '#F0F3FA'}}>
+                  <img src={img3} style={{position: 'absolute', left: '700px', top: '130px'}} className="img-fluid"
                        alt=""/></div>
                 <MDBMask className="d-flex align-items-center">
                   <MDBRow className="w-100">
@@ -163,7 +163,7 @@ export class Propagation extends React.Component {
           <MDBRow className="m-0 p-0">
             <MDBCol className="p-0">
               <MDBView>
-                <div style={{height: '700px', width: '1440px'}}>
+                <div style={{height: '665px'}}>
                   <img src={img4} style={{position: 'absolute', left: '129px', top: '65px'}} className="img-fluid"
                        alt=""/></div>
                 <MDBMask className="d-flex align-items-center">
