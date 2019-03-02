@@ -11,9 +11,11 @@ import {
 
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -29,6 +31,7 @@ export class Choice extends React.Component {
       return (<Redirect to={pathname}/>);
     }
     return (
+
       <div>
         <Header/>
         <div
@@ -368,6 +371,7 @@ export class Choice extends React.Component {
           </div>
         </div>
         <Footer/>
+
       </div>
     );
   }

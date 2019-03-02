@@ -2,6 +2,8 @@
   height: 252px;
   background: #FFFFFF;
   border-radius: 2px;
+  box-shadow: none;
+  
 }
 
 .logo{
