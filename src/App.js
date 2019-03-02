@@ -31,6 +31,8 @@ import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
 import {JobForYou2} from './page/job-for-you2';
 import {Application} from './page/application';
+import {ReviewCreate} from './page/review/create';
+import {ReviewEdit} from './page/review/edit';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
@@ -198,6 +200,14 @@ export class App extends Component {
             <Route
               path="/register"
               component={routeProps => <Register {...routeProps} />}
+            />
+            <Route
+              path="/review/create"
+              component={routeProps => <ReviewCreate {...routeProps} />}
+            />
+            <Route
+              path="/review/:id/edit"
+              component={routeProps => <ReviewEdit {...routeProps} />}
             />
             <Route
               path="/search"
