@@ -35,20 +35,20 @@ class ReviewCardSquareFull1 extends React.Component {
   render() {
     return (this.props.fulltext) ? (
 
-      <div>
+      <div style={{width:'327px',height:'252px'}}>
         <MDBCard>
 
           <ul style={{...ulBasicNoLine,padding:'30px'}}>
             <li style={{display:'flex',justifyContent: 'space-between',...liBasicNoLine}}>
-              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>how do i break into a journalism</span>
+              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>这是一个长评的题目</span>
               <MDBIcon style={{justifyContent: 'flex-end'}} icon="ellipsis-h"/>
             </li>
-            <li style={{liBasicNoLine,marginTop:'29px',basicFont,color:'#454F69',fontSize:'14px'}}>
-              长评小卡片的内容和描述
-            </li>
-            <li style={{liBasicNoLine,fontSize:'14px',color:'#8D9AAF',marginTop:'20px',basicFont}}>
-              1天前
-            </li>
+            {/*<li style={{liBasicNoLine,marginTop:'29px',basicFont,color:'#454F69',fontSize:'14px'}}>*/}
+              {/*长评小卡片的内容和描述*/}
+            {/*</li>*/}
+            {/*<li style={{liBasicNoLine,fontSize:'14px',color:'#8D9AAF',marginTop:'20px',basicFont}}>*/}
+              {/*1天前*/}
+            {/*</li>*/}
             <li style={{liBasicNoLine,marginTop:'15px'}}>
               <span style={{
 
@@ -73,22 +73,22 @@ class ReviewCardSquareFull1 extends React.Component {
                   className="rounded-circle"
                 />
               </MDBAvatar>
-              <MDBAvatar style={{height: '100%',display:'inline',marginLeft:'-14px'}}>
-                <img
-                  style={{width: '32px', background: '#F4F4F4'}}
-                  src={this.state.backend.img}
-                  alt=""
-                  className="rounded-circle"
-                />
-              </MDBAvatar>
-              <MDBAvatar style={{height: '100%',display:'inline',marginLeft:'-14px'}}>
-                <img
-                  style={{width: '32px', background: '#F4F4F4'}}
-                  src={this.state.backend.img}
-                  alt=""
-                  className="rounded-circle"
-                />
-              </MDBAvatar>
+              {/*<MDBAvatar style={{height: '100%',display:'inline',marginLeft:'-14px'}}>*/}
+                {/*<img*/}
+                  {/*style={{width: '32px', background: '#F4F4F4'}}*/}
+                  {/*src={this.state.backend.img}*/}
+                  {/*alt=""*/}
+                  {/*className="rounded-circle"*/}
+                {/*/>*/}
+              {/*</MDBAvatar>*/}
+              {/*<MDBAvatar style={{height: '100%',display:'inline',marginLeft:'-14px'}}>*/}
+                {/*<img*/}
+                  {/*style={{width: '32px', background: '#F4F4F4'}}*/}
+                  {/*src={this.state.backend.img}*/}
+                  {/*alt=""*/}
+                  {/*className="rounded-circle"*/}
+                {/*/>*/}
+              {/*</MDBAvatar>*/}
               <span style={{marginLeft:'15px',fontSize:'14px',color:'#8D9AAF',basicFont}}>3个回答</span>
             </li>
           </ul>
