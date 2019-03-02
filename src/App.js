@@ -29,6 +29,7 @@ import {Register} from './page/register';
 import {Help} from './page/help';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
+import {JobForYou2} from './page/job-for-you2';
 import {Application} from './page/application';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
@@ -124,6 +125,10 @@ export class App extends Component {
             <Route
               path="/job-for-you"
               component={routeProps => <JobForYou {...routeProps} />}
+            />
+            <Route
+              path="/job-for-you2"
+              component={routeProps => <JobForYou2 {...routeProps} />}
             />
             <Route
               path="/job/:id"
