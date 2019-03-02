@@ -122,19 +122,19 @@ export class QuestionAnswerCreate extends React.Component {
                 </MDBCol>
                 <MDBCol size="2"></MDBCol>
               </MDBRow>
-              <MDBRow style={{height:'100%',margin:'0px'}}>
+              <MDBRow style={{height:'100%',margin:'0px',minHeight:'400px'}}>
                 <AnswerEditInit ref={(answerText) => this.answerText = answerText}></AnswerEditInit>
               </MDBRow>
-              <MDBRow>
-                <MDBCol size="10"></MDBCol>
-                <MDBCol size="2">
-                  <MDBBtn flat style={{float:'right',padding: '5px 10px',zIndex:10}}>
-                    提交回答
-                  </MDBBtn>
-                </MDBCol>
-
-
-              </MDBRow>
+              {/*<MDBRow>*/}
+                {/*<MDBCol size="10"></MDBCol>*/}
+                {/*<MDBCol size="2">*/}
+                  {/*<MDBBtn flat style={{float:'right',padding: '5px 10px',zIndex:10}}>*/}
+                    {/*提交回答*/}
+                  {/*</MDBBtn>*/}
+                {/*</MDBCol>*/}
+              
+              
+              {/*</MDBRow>*/}
             </div>
            </MDBCol>
           <MDBCol size="1">

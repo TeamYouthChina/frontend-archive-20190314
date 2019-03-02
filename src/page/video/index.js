@@ -1,8 +1,7 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import {
-  MDBNavLink, MDBCardBody,
-  MDBCard,
+  MDBAvatar,
   MDBBtn,
   MDBIcon,
   MDBCol,
@@ -53,6 +52,7 @@ export class Video extends React.Component {
           descrption: 'wen ti de miao shu'
         },
         time:8,
+        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         commentLists: [1, 2, 3],
         allReplys: [1, 2],
         focus: 123,
@@ -154,23 +154,48 @@ export class Video extends React.Component {
                 {ifShown && (
                   <div>
                     <div>
+                      <MDBRow style={{margin: '0px', display: 'flex'}}>
+                        <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
+                          <img
+                            style={{width: '32px', background: '#F4F4F4'}}
+                            src={this.state.backend.img}
+                            alt=""
+                            className="rounded-circle"
+                          />
+                        </MDBAvatar>
+                        <div style={{marginTop:'5px',flexGrow: '1',}}>
+                          <input style={{
+                            width:'100%',
+                            background: '#FFFFFF',
+                            border: '1px solid #DBE5F7',
+                            boxSizing: 'border-box',
+                            borderRadius: '2px',
+                            padding:'8px 0px 8px 20px',
+                            fontSize:'14px',
+                            color:'#B3C1DB',
+                            height:'37px',
+                            ...basicFont,
+                          }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+
+                        </div>
+
+
+                        <MDBBtn onClick={(e) => this.addComments(e)} flat
+                                style={{
+                                  flexGrow: '0',
+                                  background: '#C4C4C4',
+                                  padding: '8px 20px',
+                                  color: '#FFFFFF', ...basicFont,
+                                  margin:'6px 6px 5px 6px',
+                                }}>
+                          发布
+                        </MDBBtn>
+
+                      </MDBRow>
                       {this.state.backend.commentLists.map((item) => (
                         <CommentsCard key={item} message={item}></CommentsCard>
 
                       ))}
-
-                      <MDBRow>
-                        <MDBCol size="10" center>
-                          <input ref={(input) => (this.input = input)} className="form-control" placeholder="你的回复"/>
-                        </MDBCol>
-                        <MDBCol style={{paddingLeft: '0px'}}>
-                          <MDBBtn onClick={(e) => this.addComments(e, this.input)} flat
-                                  style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
-                            发布
-                          </MDBBtn>
-                        </MDBCol>
-
-                      </MDBRow>
                       <MDBRow center style={{marginTop: '10px'}}>
                         <PaginationUse pageConfig={this.state.pageConfig}
                                        pageCallbackFn={this.getCurrentPage}></PaginationUse>
@@ -188,7 +213,7 @@ export class Video extends React.Component {
 
           </MDBCol>
         </MDBRow>
-
+        <br/>
         <Footer></Footer>
       </div>
     ) : null;
