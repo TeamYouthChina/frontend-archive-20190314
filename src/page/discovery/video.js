@@ -1,8 +1,13 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer, MDBCol, MDBRow} from 'mdbreact';
+import {
+  MDBContainer, 
+  MDBCol, 
+  MDBRow
+} from 'mdbreact';
 import {VideoCard} from "../../general-component/video-card";
+import {VideoCardSearch} from '../../general-component/video-card-search';
 import {getAsync} from "../../tool/api-helper";
 
 export class Video extends React.Component {
@@ -44,16 +49,16 @@ export class Video extends React.Component {
         >
           <MDBRow>
             <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-              <VideoCard/>
+              <VideoCardSearch/>
             </MDBCol>
             <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-              <VideoCard/>
+              <VideoCardSearch/>
             </MDBCol>
             <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-              <VideoCard/>
+              <VideoCardSearch/>
             </MDBCol>
             <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
-              <VideoCard/>
+              <VideoCardSearch/>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
