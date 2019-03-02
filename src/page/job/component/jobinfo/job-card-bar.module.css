@@ -34,4 +34,14 @@
 
 
 }
+.btn{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 16px;
+  text-align: center;
+  margin: 0px 0px;
+  padding: 9px 16px;
+  color: #FFFFFF;
+  align-items: flex-end;
+}
 
