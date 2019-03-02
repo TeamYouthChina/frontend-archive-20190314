@@ -56,6 +56,7 @@ import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
 import {Applicant} from "./page/applicant";
 import {Logout} from './page/logout';
+import {Choice} from './page/choice';
 
 
 export class App extends Component {
@@ -92,6 +93,10 @@ export class App extends Component {
             <Route
               path="/best-for-you"
               component={routeProps => <BestForYou {...routeProps} />}
+            />
+            <Route
+              path="/choice"
+              component={routeProps => <Choice {...routeProps} />}
             />
             <Route
               path="/create-resume/:id"
