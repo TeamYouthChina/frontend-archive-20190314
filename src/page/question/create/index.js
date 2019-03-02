@@ -115,7 +115,7 @@ export class QuestionCreate extends React.Component {
                 border: '1px solid #DBE5F7',
                 boxSizing: 'border-box',
                 borderRadius: '2px'}}>
-                <AnswerText ref={(answerText) => this.answerText = answerText}></AnswerText>
+                <AnswerText richText={0} ref={(answerText) => this.answerText = answerText}></AnswerText>
               </MDBRow>
               {/*居中和水平对齐的方式*/}
               <div style={{

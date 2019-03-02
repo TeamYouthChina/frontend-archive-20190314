@@ -78,10 +78,13 @@ export class AnswerText extends React.Component {
   async componentDidMount() {
     // 假设此处从服务端获取html格式的编辑器内容
     // const htmlContent = await fetchEditorContent()
-    const htmlContent = ''
-    // 使用BraftEditor.createEditorState将html字符串转换为编辑器需要的editorState数据
+    
+    const htmlContent = this.props.richText === 1 ? '<p>123123123123123132</p>' : ''
+    const showInit = this.props.richText !== 1
+      // 使用BraftEditor.createEditorState将html字符串转换为编辑器需要的editorState数据
     this.setState({
-      editorState: BraftEditor.createEditorState(htmlContent)
+      editorState: BraftEditor.createEditorState(htmlContent),
+      showInit
     })
   }
 
