@@ -53,7 +53,7 @@ export class Job extends React.Component {
       <div>
         <Header/>
 
-        <div style={{marginBottom: '-180px', marginTop: '-7px'}}>
+        <div style={{marginBottom: '-120px', marginTop: '-7px'}}>
           <View>
             <img
               className="d-block w-100 card-background"
@@ -76,6 +76,14 @@ export class Job extends React.Component {
                   <MDBRow>
                     <JobCardBar/>
                   </MDBRow>
+                  
+                </MDBCardBody>
+              </MDBCard>
+            </p>
+            <p>
+              <MDBCard style={{boxShadow: 'none'}} className="px-3">
+                <MDBCardBody>
+               
                   <JobApp basicCHNFont={basicCHNFont}/>
                   <JobDescri basicCHNFont={basicCHNFont}/>
                 </MDBCardBody>
