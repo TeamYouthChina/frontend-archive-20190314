@@ -3,6 +3,8 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+//import {ComCardSquare} from "../../general-component/company-card-square/company-card-square";
+import {JobCardBar} from "../../general-component/job-card-bar/job-card-bar";
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -18,8 +20,14 @@ export class Choice extends React.Component {
       return (<Redirect to={pathname}/>);
     }
     return (
-      <div>
-        
+      <div
+        style={{
+          background:'#F2F2F2',
+          width:'100rem',
+          height:'100rem'
+        }}
+      >
+        <JobCardBar/>
       </div>
     );
   }
