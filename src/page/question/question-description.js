@@ -88,7 +88,7 @@ export class QuestionDes extends React.Component {
           </MDBCol>
         </MDBRow>)}
         <MDBRow>
-          <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px'}}>
+          <MDBBtn flat style={{padding: '5px 10px', marginLeft: '5px'}}>
             <MDBIcon style={{marginRight: '5px'}} far icon="heart"/>{this.text.toFocus}
           </MDBBtn>
           <MDBBtn onClick={this.handleClick} flat style={{padding: '5px 10px',}}>

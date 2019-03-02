@@ -12,7 +12,7 @@ import {Header} from '../../../general-component/header/header';
 import {Footer} from '../../../general-component/footer';
 import {QuestionDes} from '../question-description'
 import {getAsync} from '../../../tool/api-helper'
-import {QuestionCard} from '../../../general-component/question-card'
+import {QuestionCard} from '../question-card-test'
 
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
@@ -80,7 +80,7 @@ export class QuestionAnswerOne extends React.Component {
             <Redirect to="/404"></Redirect>
           </div>
         ) : (
-          <div>
+          <div style={{backgroundColor:'#F2F2F2'}}>
             <Header></Header>
 
             <MDBRow style={{marginTop:'10px'}}>
@@ -116,10 +116,12 @@ export class QuestionAnswerOne extends React.Component {
                   </MDBCol>
                 </MDBRow>
                 {this.state.backend.answerList.map((item)=>(
-                  <QuestionCard 
-                    type={1} 
-                    questionId={item.id} 
-                    key={item.id}></QuestionCard>
+                  <div key={item.id} style={{marginBottom:'20px'}}>
+                    <QuestionCard
+                      type={1}
+                      questionId={item.id}
+                      ></QuestionCard>
+                  </div>
                 ))}
                 <MDBRow style={{
                   textAlign:'center',
