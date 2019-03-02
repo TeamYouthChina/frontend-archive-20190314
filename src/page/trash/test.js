@@ -29,10 +29,9 @@ export class Test extends React.Component {
         fluid
         style={{padding: 0}}
       >
-        {/*<Header/>*/}
+        <Header/>
 
-        <Propagation/>
-        {/*<Footer/>*/}
+        <Footer/>
       </div>
     );
   }
