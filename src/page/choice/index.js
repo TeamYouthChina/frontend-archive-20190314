@@ -16,6 +16,7 @@ import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 
+import classes from './index.module.css';
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -110,7 +111,7 @@ export class Choice extends React.Component {
           </div>
         </div>
         <div
-          className="row justify-content-center"
+          className={`row justify-content-center ${classes.a1}`}
           style={{
             padding: '1rem 0rem'
           }}
@@ -213,6 +214,7 @@ export class Choice extends React.Component {
         <div
           className="row justify-content-center"
           style={{
+            backgroundImage: 'url(http://47.254.46.117:5000/choice/yellow.png)',
             padding: '1rem 0rem'
           }}
         >
@@ -320,6 +322,7 @@ export class Choice extends React.Component {
         <div
           className="row justify-content-center"
           style={{
+            backgroundImage: 'url(http://47.254.46.117:5000/choice/purple.png)',
             padding: '1rem 0rem'
           }}
         >

@@ -50,7 +50,12 @@ export class Propagation extends React.Component {
         <Header/>
 
         {/*section 1 */}
-        <div className="d-md-block m-0 p-0">
+        <div
+          className="d-md-block p-0"
+          style={{
+            marginTop: '-2rem'
+          }}
+        >
           <MDBRow className="m-0 p-0">
             <MDBCol className="p-0">
               <MDBView>
@@ -65,7 +70,10 @@ export class Propagation extends React.Component {
                           <MDBCol size="12" style={{...basicCHNFont, fontSize: '28px', fontWeight: '500'}}>
                             <MDBIcon icon="quote-left" size="1x" pull="left"/>来到到来,</MDBCol>
                           <MDBCol size="6" className="offset-md-3"
-                                  style={{...basicCHNFont, fontSize: '28px', fontWeight: '500'}}>
+                                  style={{...basicCHNFont, fontSize: '28px', fontWeight: '500'}}
+                                  onClick={() => {
+                                    this.props.history.push("/login");
+                                  }}>
                             职场未来 <MDBIcon icon="quote-right" size="1x"/>
                           </MDBCol>
                         </MDBCol>
@@ -78,7 +86,12 @@ export class Propagation extends React.Component {
                           <p style={{...basicCHNFont, fontSize: '18px'}}>精准定制的全栈式智慧招聘平台</p>
                           <p style={{fontSize: '16px', textAlign: 'start'}}>
                             <MDBBtn rounded className="py-2 px-4" color={btnColor}
-                                    style={{backgroundColor: '#4F65E1'}}>开启求职之旅</MDBBtn></p>
+                                    style={{backgroundColor: '#4F65E1'}}
+                                    onClick={() => {
+                                      this.props.history.push("/login");
+                                    }}
+                            >开启求职之旅
+                            </MDBBtn></p>
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -114,7 +127,10 @@ export class Propagation extends React.Component {
                           <br/>
                           <p style={{fontSize: '16px', textAlign: 'start'}}>
                             <MDBBtn rounded className="py-2 px-4" color={btnColor}
-                                    style={{backgroundColor: '#4F65E1'}}>下载App客户端</MDBBtn></p>
+                                    style={{backgroundColor: '#4F65E1'}}
+                                    onClick={() => {
+                                      this.props.history.push("/login");
+                                    }}>下载App客户端</MDBBtn></p>
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -149,7 +165,10 @@ export class Propagation extends React.Component {
                           <br/>
                           <p style={{fontSize: '16px', textAlign: 'start'}}>
                             <MDBBtn rounded className="py-2 px-4" color={btnColor}
-                                    style={{backgroundColor: '#4F65E1'}}>企业入口</MDBBtn></p>
+                                    style={{backgroundColor: '#4F65E1'}}
+                                    onClick={() => {
+                                      this.props.history.push("/login");
+                                    }}>企业入口</MDBBtn></p>
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
@@ -184,7 +203,10 @@ export class Propagation extends React.Component {
                           <br/>
                           <p style={{fontSize: '16px', textAlign: 'start'}}>
                             <MDBBtn rounded className="py-2 px-4" color={btnColor}
-                                    style={{backgroundColor: '#4F65E1'}}>个人入口</MDBBtn></p>
+                                    style={{backgroundColor: '#4F65E1'}}
+                                    onClick={() => {
+                                      this.props.history.push("/login");
+                                    }}>个人入口</MDBBtn></p>
                         </MDBCol>
                       </MDBRow>
                     </MDBCol>
