@@ -1,0 +1,37 @@
+.card{
+  height: 10.125rem;
+  width: 57.3125rem;
+}
+.title{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+  color: #454F69;
+}
+.company{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 1rem;
+
+  color: #454F69;
+
+}
+.text{
+  ont-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #454F69;
+
+}
+.date{
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+  color: #8D9AAF;
+
+
+}
+
