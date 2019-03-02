@@ -15,6 +15,7 @@ import {
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header/header';
+//
 import {Footer} from '../../general-component/footer';
 import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';
@@ -223,7 +224,18 @@ export class Register extends React.Component {
             </MDBCol>
           </MDBRow>
         </Animation>
-        <Footer/>
+        <footer
+          className="page-footer font-small py-2"
+          style={{
+            background: '#31394D',
+          }}
+        >
+          <div style={{backgroundColor: '#31394D'}}
+               className="footer-copyright text-center py-3">
+            &copy; {new Date().getFullYear()} Copyright:{' '}
+            <a href=""> YouthChina.com </a>
+          </div>
+        </footer>
       </MDBContainer>
     );
   }

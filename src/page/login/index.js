@@ -20,7 +20,6 @@ import {
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header/header';
-import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {postAsync} from '../../tool/api-helper';
@@ -30,7 +29,7 @@ export class Login extends React.Component {
     super(props);
     this.text = Login.i18n[languageHelper()];
     this.state = {
-      submitted: false,   
+      submitted: false,
       type: 'password',   // default type of password input filed
       id: '',             // Stroe user id input
       password: '',       // store user password input
@@ -84,7 +83,7 @@ export class Login extends React.Component {
       })
     }
   }
-  
+
   async handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -278,9 +277,19 @@ export class Login extends React.Component {
 
           </MDBRow>
         </Animation>
-        <Footer/>
+        <footer
+          className="page-footer font-small py-2"
+          style={{
+            background: '#31394D',
+          }}
+        >
+          <div style={{backgroundColor: '#31394D'}}
+               className="footer-copyright text-center py-3">
+            &copy; {new Date().getFullYear()} Copyright:{' '}
+            <a href=""> YouthChina.com </a>
+          </div>
+        </footer>
       </div>
-
     );
   }
 }
