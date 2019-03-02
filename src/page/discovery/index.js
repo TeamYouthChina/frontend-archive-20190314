@@ -50,10 +50,11 @@ export class Discovery extends React.Component {
           <div className="classic-tabs">
             <MDBNav
               classicTabs
-              className="d-flex justify-content-center"
+              className="d-flex justify-content-left"
               style={{
                 boxShadow: 'none',
-                borderBottom: 'solid #E0E0E0 1px'
+                borderBottom: 'solid #E0E0E0 1px',
+                marginLeft: '159px'
               }}>
               <MDBNavItem className="ml-0">
                 <MDBNavLink
