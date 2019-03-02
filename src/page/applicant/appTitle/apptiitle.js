@@ -95,7 +95,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.875rem',
-                color: ' #B8C2F7'
+                color: '#FFFFFF'
               }}
             >
               {work}
@@ -105,7 +105,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.875rem',
-                color: ' #B8C2F7'
+                color: '#FFFFFF'
               }}
             >
               <MDBIcon icon="map-marker" className="mr-1"/>
@@ -168,7 +168,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.75rem',
-                color: '#B8C2F7',
+                color: '#FFFFFF',
                 marginTop:'0.85rem'
               }}
             >
