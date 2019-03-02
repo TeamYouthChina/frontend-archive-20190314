@@ -1,10 +1,9 @@
 .SocialActivityCard{
     display: flex;
     flex-direction: row;
-    height: 110px;
     width: 90%;
     box-sizing: border-box;
-    padding: 0px 0px 5px 0px;
+    padding: 5px 0;
     align-items: center;
     border-bottom: 1px solid grey
 }
@@ -22,13 +21,26 @@
     font-size: 14px;
     color: #62686C;
     margin: 0%;
-    padding-left: 4px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid #e7e7e7
 }
 
 .SocialActivityCard input:disabled {
-    border: 2px solid white;
-    padding-left: 4px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white;
 }
+
+.twoP {
+    padding: 1px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white
+  }
 
 .ActivityInfo {
     margin-left: 20px;
@@ -38,6 +50,17 @@
     flex-direction: column;
     justify-content: flex-start;
     flex-grow: 1;
+}
+
+.ActivityInfo p{
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+
+    color: #62686C;
+    margin: 0%;
 }
 
 .ActivityInfo div{

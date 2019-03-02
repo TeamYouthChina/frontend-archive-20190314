@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 50px;
     width: 90%;
     box-sizing: border-box;
-    padding: 0%;
+    padding: 5px 0;
 }
 
 .SkillCard input {
@@ -16,13 +15,26 @@
     font-size: 14px;
     color: #62686C;
     margin: 0%;
-    padding-left: 4px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid #e7e7e7
 }
 
 .SkillCard input:disabled {
-    border: 2px solid white;
-    padding-left: 4px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white
 }
+
+.oneP {
+    padding: 1px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white
+  }
 
 .SkillCard img {
     height: 30px;
@@ -37,4 +49,15 @@
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
+}
+
+.SkillInfo p{
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 14px;
+
+    color: #62686C;
+    margin: 0%;
 }

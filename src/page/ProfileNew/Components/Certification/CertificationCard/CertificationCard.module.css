@@ -1,69 +1,92 @@
-.CertificationCard{
-    display: flex;
-    flex-direction: row;
-    height: 110px;
-    width: 90%;
-    box-sizing: border-box;
-    padding: 0px 0px 5px 0px;
-    align-items: center;
-    border-bottom: 1px solid grey
+.CertificationCard {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  box-sizing: border-box;
+  padding: 5px 0;
+  align-items: center;
+  border-bottom: 1px solid grey;
 }
 
 .CertificationCard input {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 14px;
-    color: #62686C;
-    margin: 0%;
-    padding-left: 4px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
+  color: #62686c;
+  margin: 0%;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: 1px solid #e7e7e7;
 }
 
 .CertificationCard input:disabled {
-    border: 2px solid white;
-    padding-left: 4px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: 1px solid white;
+}
+
+.twoP {
+  padding: 1px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: 1px solid white
 }
 
 .CertificationCard img {
-    height: 65px;
-    width: 65;
+  height: 65px;
+  width: 65;
 }
 
 .certifiInfo {
-    margin-left: 20px;
-    height: 90%;
-    width: 590px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  margin-left: 20px;
+  height: 90%;
+  width: 590px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.certifiInfo p {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #62686c;
+  margin: 0%;
 }
 
 .Title {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    font-size: 16px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 16px;
 
-    color: #62686C;
-    margin-right: 5px;
-    margin-bottom: 0%;
+  color: #62686c;
+  margin-right: 5px;
+  margin-bottom: 0%;
 }
 
+.Institute,
+.Description {
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
 
-.Institute, .Description {
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 14px;
-    
-    color: #62686C;
-    margin: 0%;
+  color: #62686c;
+  margin: 0%;
 }
 
-.certifiInfo div{
-    display: flex;
-    flex-direction: row;
+.certifiInfo div {
+  display: flex;
+  flex-direction: row;
 }
