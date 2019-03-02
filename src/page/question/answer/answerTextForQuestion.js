@@ -142,7 +142,7 @@ export class AnswerTextForQuestion extends React.Component {
 
     return (
       <div className="myAnswerText">
-        <div className="editor-wrapper" style={{height: '100%'}}>
+        <div className="editor-wrapper" style={{height: '100%',minHeight:'400px'}}>
           <BraftEditor media={{uploadFn: myUploadFn}}
                        value={editorState} contentStyle={{height: '100%'}}
                        onChange={(editorState) => this.handleEditorChange(editorState)} extendControls={extendControls}
@@ -167,11 +167,8 @@ export class AnswerTextForQuestion extends React.Component {
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
-        <br/><br/><br/><br/><br/><br/>
-        <MDBBtn style={{zIndex:'100'}} onClick={this.showData}></MDBBtn>
-        {/*{this.state.showNow === 0 ? null : (*/}
-
-        {/*)}*/}
+        {/*<br/><br/><br/><br/><br/><br/>*/}
+        {/*<MDBBtn style={{zIndex:'100'}} onClick={this.showData}></MDBBtn>*/}
       </div>
     )
 

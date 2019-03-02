@@ -16,7 +16,7 @@ import {ResumeTitle} from '../../../general-component/resumeTitle';
 import {getAsync} from '../../../tool/api-helper'
 
 import './home.css';
-import {JobApp} from "../../job/job-app-progress";
+import {JobApp} from "../../job/component/job-app-progress";
 
 const data = {
   columns: [

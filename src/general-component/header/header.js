@@ -84,7 +84,7 @@ class Header1 extends React.Component {
                   }
                   style={this.props.location.pathname.indexOf('/job-for-you') > -1 || this.state.hover === 1 ? {borderBottom: '4px solid #FFFFFF'} : null}
                 >
-                  <MDBNavLink to="/job-for-you">
+                  <MDBNavLink to="/job-for-you2">
                     职 位
                   </MDBNavLink>
                 </MDBNavItem>

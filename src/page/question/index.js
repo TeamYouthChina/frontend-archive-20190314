@@ -17,7 +17,7 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description';
 import {ArticleCard} from '../article/article-card'
 // import {QuestionBar} from './question-side-bar'
-import {QuestionCard} from '../../general-component/question-card'
+import {QuestionCard} from './question-card-test'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
@@ -175,9 +175,9 @@ export class QuestionAnswer extends React.Component {
 
   render() {
     return this.state.backend && (
-      <div>
+      <div style={{backgroundColor:'#F2F2F2'}}>
         <Header></Header>
-        <MDBRow style={{marginTop: '10px'}}>
+        <MDBRow style={{marginTop: '10px',backgroundColor:'#F2F2F2'}}>
           <MDBCol size="1"></MDBCol>
           <MDBCol size="10">
             <QuestionDes
@@ -191,18 +191,17 @@ export class QuestionAnswer extends React.Component {
           </MDBCol>
         </MDBRow>
         <br/>
-        <MDBRow>
+        <MDBRow style={{backgroundColor:'#F2F2F2'}}>
           <MDBCol size="1"></MDBCol>
-          <ArticleCard type={1}></ArticleCard>
-          {/*<MDBCol size="10">*/}
-            {/*{this.state.backend.answerList.map((item) => (*/}
-              {/*<QuestionCard*/}
-                {/*type={1}*/}
-                {/*key={item.id}*/}
-                {/*questionId={item.id} title={this.state.backend.title}>*/}
-              {/*</QuestionCard>*/}
-            {/*))}*/}
-          {/*</MDBCol>*/}
+          <MDBCol size="10" middle>
+            {this.state.backend.answerList.map((item) => (
+              <QuestionCard
+                type={1}
+                key={item.id}
+                questionId={item.id} title={this.state.backend.title}>
+              </QuestionCard>
+            ))}
+          </MDBCol>
         </MDBRow>
         <Footer></Footer>
       </div>

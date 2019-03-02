@@ -11,14 +11,15 @@ import {
 } from 'mdbreact';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
-import {CompanyCard} from '../../general-component/company-card';
+import {CompanyCard} from "./companyinfo/company-card";
 import {CoDetail} from "./company-detail";
 import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
 import {Photo} from "./photo";
 
 import {ApplicantCard} from "../../general-component/applicant-card/applicant-card";
 import {ReviewCard} from "../../general-component/review-card";
-import {QuestionCard} from "../../general-component/question-card";
+import {QuestionCard} from "../question/question-card-test";
+import {ReplyCard} from "../question/reply-card";
 
 
 export class Company extends React.Component {
@@ -39,7 +40,7 @@ export class Company extends React.Component {
     return (
       <div style={{background: ' #F2F2F2'}}>
         <Header/>
-        <div style={{marginBottom: '-180px', marginTop: '-7px'}}>
+        <div style={{marginBottom: '-86px', marginTop: '-7px'}}>
           <View>
             <img
               className="d-block w-100 card-background"
@@ -54,7 +55,10 @@ export class Company extends React.Component {
             md="10"
           >
             <CompanyCard/>
-            <MDBCard className="my-2 px-3 pb-3">
+            <MDBCard 
+              className="px-3 pb-3 white my-4"
+              style={{boxShadow:'none', borderRadius:'0px'}}
+            >
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol>
@@ -108,10 +112,10 @@ export class Company extends React.Component {
                   问答
                 </strong>
               </h4>
-              <MDBRow className="px-3 pb-3 mb-4">
-
-
-              </MDBRow>
+              <QuestionCard/>
+              <QuestionCard/>
+              <QuestionCard/>
+              
             </p>
             <p id="photo">
               <h4 className="font-weight-bold mb-3 px-3">
@@ -120,7 +124,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
             </p>
-            <MDBCard className="px-3 pb-3 mb-4">
+            <MDBCard className="p-3 pb-3 mb-4" style={{boxShadow:'none'}}>
 
               <MDBCardBody>
                 <Photo/>

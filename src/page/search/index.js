@@ -32,6 +32,7 @@ import {SearchJobResult} from "./search-job";
 import {SearchCompanyResult} from './search-company';
 import {SearchCommunityResult} from "./search-community";
 import {SearchVideoResult} from "./search-video";
+import {SearchConnectionResult} from './search-connection';
 import {JobNavbarItem} from './navbar-items/job-navbarItem';
 import {CompanyNavbarItem} from './navbar-items/company-navbarItem';
 import {CommunityNavbarItem} from './navbar-items/community-navbarItem';
@@ -225,7 +226,7 @@ export class Search extends React.Component {
           />
           <Route
             path={`${this.props.match.url}/search-connect-result`}
-            component={routeProps => <SearchJobResult basicCHNFont={basicCHNFont}/>}
+            component={routeProps => <SearchConnectionResult basicCHNFont={basicCHNFont}/>}
           />
           <Redirect to={`${this.props.match.url}/search-job-result`}/>
         </Switch>

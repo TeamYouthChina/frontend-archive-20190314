@@ -4,7 +4,7 @@ import {
   MDBRow,
 } from 'mdbreact';
 
-import {JobCardBar} from "../../../general-component/job-card-bar";
+import {JobCardBar} from "../../../general-component/job-card-bar/job-card-bar";
 import {languageHelper} from "../../../tool/language-helper";
 
 export class CollectionJob extends React.Component {

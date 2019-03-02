@@ -12,6 +12,7 @@ import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
 import {Profile} from './page/profile';
+import {Propagation} from './page/propagation';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {QuestionAnswerOne} from './page/question/answer';
@@ -29,7 +30,10 @@ import {Register} from './page/register';
 import {Help} from './page/help';
 import {BestForYou} from './page/best-for-you';
 import {JobForYou} from './page/job-for-you';
+import {JobForYou2} from './page/job-for-you2';
 import {Application} from './page/application';
+import {ReviewCreate} from './page/review/create';
+import {ReviewEdit} from './page/review/edit';
 import OnlineApplication from './page/OnlineApplication/Containers/OnlineApplication';
 import ProfileNew from './page/ProfileNew/Containers/ProfileHome/ProfileHome';
 import CreateResume from './page/CreateResume/CreateResume';
@@ -56,6 +60,7 @@ import {SearchResume} from './page/hr/searchresume';
 import {Mobile} from './page/mobile';
 import {Applicant} from "./page/applicant";
 import {Logout} from './page/logout';
+import {Choice} from './page/choice';
 
 
 export class App extends Component {
@@ -94,6 +99,10 @@ export class App extends Component {
               component={routeProps => <BestForYou {...routeProps} />}
             />
             <Route
+              path="/choice"
+              component={routeProps => <Choice {...routeProps} />}
+            />
+            <Route
               path="/create-resume/:id"
               component={routeProps => <CreateResume {...routeProps} />}
             />
@@ -124,6 +133,10 @@ export class App extends Component {
             <Route
               path="/job-for-you"
               component={routeProps => <JobForYou {...routeProps} />}
+            />
+            <Route
+              path="/job-for-you2"
+              component={routeProps => <JobForYou2 {...routeProps} />}
             />
             <Route
               path="/job/:id"
@@ -158,6 +171,10 @@ export class App extends Component {
               component={routeProps => <ProfileNew {...routeProps} />}
             />
             <Route
+              path="/propagation"
+              component={routeProps => <Propagation {...routeProps} />}
+            />
+            <Route
               path="/question/create"
               component={routeProps => <QuestionCreate {...routeProps} />}
             />
@@ -188,6 +205,14 @@ export class App extends Component {
             <Route
               path="/register"
               component={routeProps => <Register {...routeProps} />}
+            />
+            <Route
+              path="/review/create"
+              component={routeProps => <ReviewCreate {...routeProps} />}
+            />
+            <Route
+              path="/review/:id/edit"
+              component={routeProps => <ReviewEdit {...routeProps} />}
             />
             <Route
               path="/search"

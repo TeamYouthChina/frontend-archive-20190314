@@ -15,8 +15,8 @@ import {
   MDBModal,
   MDBModalBody,
 } from 'mdbreact';
-import {languageHelper} from "../../tool/language-helper";
-import {getAsync} from "../../tool/api-helper";
+import {languageHelper} from "../../../tool/language-helper";
+import {getAsync} from "../../../tool/api-helper";
 
 
 export class JobName extends React.Component {

@@ -61,13 +61,11 @@ export class SearchCommunityResult extends React.Component {
           <MDBRow>
             <MDBCol className="my-3" md="8" lg="9">
               <MDBRow>
-                {this.state.backend.jobList.map((item, index) => {
-                  return (
-                    <MDBCol size="12" className="mb-4" key={index}>
-                      <ArticleCard type={1}/>
-                    </MDBCol>
-                  );
-                })}
+                {this.state.backend.jobList.map((item, index) => (
+                  <MDBCol size="12" className="mb-4" key={index}>
+                    <ArticleCard type={1}/>
+                  </MDBCol>
+                ))}
               </MDBRow>
             </MDBCol>
 
@@ -79,7 +77,8 @@ export class SearchCommunityResult extends React.Component {
                   <MDBCol size="5">
                     <div className="ml-3 mb-3">
                       <a href="/question/create" style={{
-                        color: 'black'
+                        ...this.props.basicCHNFont,
+                        color: '#454F69'
                       }}>
                         <MDBRow center style={{marginTop: '20px'}}>
                           <MDBIcon icon="question" size="2x"/>
@@ -94,7 +93,8 @@ export class SearchCommunityResult extends React.Component {
                   <MDBCol size="5">
                     <div className="mr-3 mb-3">
                       <a href="/article/create" style={{
-                        color: 'black'
+                        ...this.props.basicCHNFont,
+                        color: '#454F69'
                       }}>
                         <MDBRow center style={{marginTop: '20px'}}>
                           <MDBIcon icon="edit" size="2x"/>

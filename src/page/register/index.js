@@ -15,6 +15,7 @@ import {
 } from 'mdbreact';
 
 import {Header} from '../../general-component/header/header';
+//
 import {Footer} from '../../general-component/footer';
 import {UserInfo} from './user-info';
 import {languageHelper} from '../../tool/language-helper';

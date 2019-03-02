@@ -1,0 +1,128 @@
+.card{
+  height: 194px;
+  left: 0px;
+  top: 0px;
+  
+  background: #4F65E1;
+
+}
+.people{
+  
+  width: 361px;
+  height: 134px;
+  left: 96px;
+  top: 30px;
+
+  background: #5A70E2;
+  border-radius: 2px;
+}
+.avatar{
+  position: absolute;
+  height: 100px;
+  left: 9.46%;
+  right: 82.43%;
+  top: 50px;
+}
+.name{
+  position: absolute;
+  height: 31px;
+  left: 18.75%;
+  right: 70.55%;
+  top: 50px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 24px;
+
+  color: #FFFFFF;
+
+}
+.position{
+  position: absolute;
+  height: 20px;
+  left: 18.75%;
+  right: 69.22%;
+  top: 87px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #B8C2F7;
+}
+.icon{
+  position: absolute;
+  height: 17.14px;
+  left: 18.75%;
+  right: 67.31%;
+  top: 114px;
+  
+}
+.location_font{
+  position: absolute;
+  height: 20px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 14px;
+
+  color: #B8C2F7;
+}
+.rank{
+  position: absolute;
+  width: 687px;
+  height: 134px;
+  left: 468px;
+  top: 30px;
+
+  background: #5A70E2;
+  border-radius: 2px;
+}
+.influence{
+  position: absolute;
+  height: 26px;
+  left: 40.91%;
+  right: 43.05%;
+  top: 50px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 18px;
+
+  color: #FFFFFF;
+}
+.level{
+  position: absolute;
+  width: 51px;
+  height: 20px;
+  left: 621px;
+  top: 53px;
+
+  background: #687EEE;
+  border-radius: 7.5px;
+
+}
+.level_font{
+
+  position: absolute;
+  height: 16px;
+  left: 1.14%;
+  right: 1.14%;
+  top: 2px;
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 12px;
+  text-align: center;
+
+  color: #FAFBFD;
+}
+.bar{
+  position: absolute;
+  width: 617px;
+  height: 15px;
+  left: 498px;
+  top: 113px;
+  background: #FAFBFD;
+  border-radius: 7.5px;
+}

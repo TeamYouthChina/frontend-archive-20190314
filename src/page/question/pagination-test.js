@@ -25,7 +25,7 @@ export class PaginationUse extends Component {
     const {currentPage, groupCount, startPage,totalPage} = this.state;
     let pages = []
     //上一页
-    pages.push(<li className={currentPage === 1 ? "nomore" : null} onClick={this.prePageHandeler.bind(this)}
+    pages.push(<li className={currentPage === 1 ? "Pagenomore" : "changePage"} onClick={this.prePageHandeler.bind(this)}
                    key={0}>
       上一页</li>)
 
@@ -68,7 +68,7 @@ export class PaginationUse extends Component {
                      onClick={this.pageClick.bind(this, totalPage)}>{totalPage}</li>)
     }
     //下一页
-    pages.push(<li className={currentPage === totalPage ? "nomore" : null}
+    pages.push(<li className={currentPage === totalPage ? "Pagenomore" : "changePage"}
                    onClick={this.nextPageHandeler.bind(this)}
                    key={totalPage + 1}>下一页</li>)
     return pages;

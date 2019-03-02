@@ -8,9 +8,9 @@ import {
   MDBView,
   Row,
 } from 'mdbreact';
-import {languageHelper} from '../../tool/language-helper';
-import {getAsync} from '../../tool/api-helper';
-import {JobCardSquare} from "../../general-component/job-card-square/job-card-square";
+import {languageHelper} from '../../../tool/language-helper';
+import {getAsync} from '../../../tool/api-helper';
+import {JobCardSquare} from "../../../general-component/job-card-square/job-card-square";
 
 export class JobDescri extends React.Component {
   constructor(props) {
@@ -45,11 +45,11 @@ export class JobDescri extends React.Component {
             <p style={{...this.props.basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}>
               职位描述
               {/*overwritten style*/}
-              <p className="mt-3" style={{fontSize: '14px', fontWeight: 'normal'}}>
+              <p className="mt-3" style={{fontSize: '14px', fontWeight: 'normal', lineHeight: '1.5rem'}}>
                 岗位职责:<br/>
                 {this.state.backend.content.job_description}
               </p>
-              <p style={{fontSize: '14px', fontWeight: 'normal'}}>
+              <p style={{fontSize: '14px', fontWeight: 'normal', lineHeight: '1.5rem'}}>
                 任职要求:<br/>
                 {this.state.backend.content.job_duty}
               </p>
