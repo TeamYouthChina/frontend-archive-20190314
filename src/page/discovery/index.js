@@ -192,7 +192,7 @@ export class Discovery extends React.Component {
                         </MDBListGroupItem>
                         <MDBListGroupItem
                           hover
-                          href="/article/create"
+                          href="/review/create"
                           className="d-flex justify-content-center align-items-center"
                           style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
                           <MDBIcon fal icon="comments" className="mr-2"/> 写短评
