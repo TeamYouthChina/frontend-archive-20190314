@@ -35,14 +35,14 @@ class QuestionCardSquareFull1 extends React.Component {
   render() {
     return (this.props.fulltext) ? (
 
-      <div style={{width:'327px',height:'252px'}} >
+      <div >
         <MDBCard onClick={() => {
           this.props.history.push(`/question/${this.props.fulltext.id}`);
         }}>
 
           <ul style={{...ulBasicNoLine,padding:'30px'}}>
             <li style={{display:'flex',justifyContent: 'space-between',...liBasicNoLine}}>
-              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>这是一个问题的题目</span>
+              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>如何在求职季"高人一等"</span>
               <MDBIcon style={{justifyContent: 'flex-end'}} icon="ellipsis-h"/>
             </li>
             {/*<li style={{liBasicNoLine,marginTop:'29px',basicFont,color:'#454F69',fontSize:'14px'}}>*/}
