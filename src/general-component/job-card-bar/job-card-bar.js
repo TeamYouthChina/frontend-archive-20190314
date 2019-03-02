@@ -87,8 +87,8 @@ export class JobCardBar extends React.Component {
             <div>
             <MDBBtn
               color="indigo accent-3"
-              className="m-0"
-              style={{borderRadius: '5px'}}
+              className={classes.btn}
+              style={{borderRadius: '2px'}}
               onClick={this.toggle(15)}
             >
               {this.text.applicate}
@@ -121,14 +121,14 @@ export class JobCardBar extends React.Component {
                 <hr/>
                 <MDBRow center>
                   <MDBBtn outline color="mdb-color" size="lg"
-                          style={{borderRadius: '5px', width: '250px'}}>上传简历文件</MDBBtn>
+                          style={{borderRadius: '2px', width: '250px'}}>上传简历文件</MDBBtn>
                 </MDBRow>
                 <MDBRow center>
-                  <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '5px', width: '250px'}}>从 YouthChina
+                  <MDBBtn color="blue-grey" size="lg" style={{borderRadius: '2px', width: '250px'}}>从 YouthChina
                     导入</MDBBtn>
                 </MDBRow>
                 <MDBRow center>
-                  <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '5px', width: '250px'}}>从 LinkedIn
+                  <MDBBtn color="mdb-color" size="lg" style={{borderRadius: '2px', width: '250px'}}>从 LinkedIn
                     导入</MDBBtn>
                 </MDBRow>
               </MDBModalBody>
@@ -149,7 +149,7 @@ JobCardBar.i18n = [
     deadline: '申请截止',
     location: '地点',
     match: '匹配度',
-    applicate: '申 请',
+    applicate: '立即申请',
     applied: '已申请',
 
   },
