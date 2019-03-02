@@ -12,6 +12,7 @@ import {Discovery} from './page/discovery';
 import {Job} from './page/job';
 import {Company} from './page/company';
 import {Profile} from './page/profile';
+import {Propagation} from './page/propagation';
 import {Collection} from './page/collection';
 import {QuestionAnswer} from './page/question';
 import {QuestionAnswerOne} from './page/question/answer';
@@ -166,6 +167,10 @@ export class App extends Component {
             <Route
               path="/ProfileNew/:id"
               component={routeProps => <ProfileNew {...routeProps} />}
+            />
+            <Route
+              path="/propagation"
+              component={routeProps => <Propagation {...routeProps} />}
             />
             <Route
               path="/question/create"

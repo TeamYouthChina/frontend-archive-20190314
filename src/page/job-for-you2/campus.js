@@ -10,7 +10,6 @@ import {
   MDBBtn,
   MDBSpinner
 } from 'mdbreact';
-import {JobCardSquareFull} from '../../general-component/job-card-square-full/job-card-square-full';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 import {languageHelper} from '../../tool/language-helper';
 import {getAsync} from '../../tool/api-helper';
@@ -63,8 +62,8 @@ export class Campus extends React.Component {
             <MDBRow center>
               {this.state.updatedList.map((item) => {
                 return (
-                  <MDBCol key={item.id} className="my-3 px-4 py-1" size="12" md="6" xl="4">
-                    <JobCardSquareFull fulltext={item}/>
+                  <MDBCol key={item.id} className="my-3 px-4 py-1" size="11">
+                    <JobCardSquare fulltext={item}/>
                   </MDBCol>
                 );
               })}
