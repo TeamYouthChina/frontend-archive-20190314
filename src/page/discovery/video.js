@@ -4,7 +4,8 @@ import {languageHelper} from '../../tool/language-helper';
 import {
   MDBContainer, 
   MDBCol, 
-  MDBRow
+  MDBRow,
+  MDBSpinner
 } from 'mdbreact';
 import {VideoCard} from "../../general-component/video-card";
 import {VideoCardSearch} from '../../general-component/video-card-search';
@@ -63,7 +64,11 @@ export class Video extends React.Component {
           </MDBRow>
         </MDBContainer>
       </div>
-    ) : null;
+    ) :
+      // a spinner displayed when data is loading
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>;
   }
 }
 

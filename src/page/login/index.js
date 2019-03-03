@@ -41,6 +41,10 @@ export class Login extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillMount() {
+    window.scrollTo(0, 0);//回到页面顶部
+  }
+
   async componentDidMount() {
     //if token exist, set ifRedirect value to be true and re-render the page.
     if (Cookies.get('token')) {

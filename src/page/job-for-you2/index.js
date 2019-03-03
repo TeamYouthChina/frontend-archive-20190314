@@ -84,7 +84,8 @@ export class JobForYou2 extends React.Component {
             style={{
               boxShadow: 'none',
               borderBottom: 'solid #E0E0E0 1px',
-              marginLeft: '156px'
+              // marginLeft: '156px',
+              left: '10.5%'
             }}
           >
             <MDBRow>

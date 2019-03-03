@@ -39,6 +39,10 @@ export class Register extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillMount() {
+    window.scrollTo(0, 0);//回到页面顶部
+  }
+  
   handleRegisterSubmit = async (event) => {
     event.preventDefault();
     

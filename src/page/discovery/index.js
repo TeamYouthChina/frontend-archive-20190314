@@ -54,7 +54,8 @@ export class Discovery extends React.Component {
               style={{
                 boxShadow: 'none',
                 borderBottom: 'solid #E0E0E0 1px',
-                marginLeft: '159px'
+                // marginLeft: '159px'
+                left: '11%'
               }}>
               <MDBNavItem className="ml-0">
                 <MDBNavLink
