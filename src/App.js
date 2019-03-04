@@ -72,7 +72,7 @@ export class App extends Component {
             <Route
               path="/"
               exact
-              component={() => <Redirect to="/home"/>}
+              component={() => <Redirect to="/propagation"/>}
             />
             <Route
               path="/applicant/"
