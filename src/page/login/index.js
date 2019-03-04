@@ -131,12 +131,12 @@ export class Login extends React.Component {
           </MDBModal>
         </MDBContainer>
 
-        <Animation type="fadeIn" duration="5s">
+        {/*<Animation type="fadeIn" duration="5s">*/}
 
           <MDBRow className="m-0">
 
             <MDBCol className="p-0" md="7">
-              <Animation type="fadeInLeft" duration="2s">
+              {/*<Animation type="fadeInLeft" duration="2s">*/}
                 <MDBView hover>
                   <img className="img-fluid"
                        src="https://images.unsplash.com/photo-1522152302542-71a8e5172aa1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3010&q=80"/>
@@ -144,25 +144,25 @@ export class Login extends React.Component {
                     <p className="h1 white-text">海外留学生找工作快捷通道</p>
                   </MDBMask>
                 </MDBView>
-              </Animation>
+              {/*</Animation>*/}
             </MDBCol>
 
             <MDBCol md="5">
-              <Animation type="fadeInRight" duration="2s" delay="1s">
+              {/*<Animation type="fadeInRight" duration="2s" delay="1s">*/}
                 <MDBRow className="mt-4">
                   <MDBCol className="mt-5 offset-2" size="8">
                     <div className="text-center">
-                      <Animation type="fadeInRight" duration="3s">
+                      {/*<Animation type="fadeInRight" duration="3s">*/}
                         <p className="mb-1" style={{
                           color: '#757575',
                           fontSize: '1.5rem'
                         }}>
                           开启智能求职之旅吧！
                         </p>
-                      </Animation>
+                      {/*</Animation>*/}
                       <br/>
                       <br/>
-                      <Animation type="fadeInRight" duration="2.5s">
+                      {/*<Animation type="fadeInRight" duration="2.5s">*/}
                         <p style={{
                           color: '#757575',
                           fontSize: '2.25rem',
@@ -171,7 +171,7 @@ export class Login extends React.Component {
                           <MDBIcon className="mr-3" color="grey" icon="circle"/>
                           Youth China
                         </p>
-                      </Animation>
+                      {/*</Animation>*/}
                     </div>
                     <form
                       // className="needs-validation"
@@ -277,11 +277,11 @@ export class Login extends React.Component {
                     </p>
                   </MDBCol>
                 </MDBRow>
-              </Animation>
+              {/*</Animation>*/}
             </MDBCol>
 
           </MDBRow>
-        </Animation>
+        {/*</Animation>*/}
         <Footer/>
       </div>
     );

@@ -33,7 +33,7 @@ export class Video extends React.Component {
       });
     } else {
       let mockData = {
-        status: result.status
+        status: {code: 2000}
       }
       this.setState(() => {
         return {backend: mockData};
@@ -48,17 +48,17 @@ export class Video extends React.Component {
           fluid
           style={{padding: 0}}
         >
-          <MDBRow>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+          <MDBRow center>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
           </MDBRow>
