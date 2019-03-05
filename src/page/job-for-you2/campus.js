@@ -29,7 +29,7 @@ export class Campus extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/job-for-you/campus`, true) //todo, 暂时全部按照主页API来
     });
 
     this.handleReadMore();
@@ -56,7 +56,7 @@ export class Campus extends React.Component {
   render() {
     console.log('render()');
 
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
         <div className="pt-4" style={{backgroundColor: '#F3F5F7'}}>
           <MDBContainer>
             <MDBRow center>
