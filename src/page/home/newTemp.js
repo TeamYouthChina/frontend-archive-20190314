@@ -21,18 +21,30 @@ export class NewTemp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backend: null
+      backend: null,
+      updatedList: [],
+      page: null
     };
   }
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/home/new`, true) //todo, 暂时全部按照主页API来
     });
+
+    this.handleReadMore();
   }
 
+  handleReadMore = () => {
+    const newPage = this.state.page + 6;
+    this.setState({
+      page: newPage,
+      updatedList: this.state.backend.content.jobList.slice(0, newPage)
+    });
+  };
+  
   render() {
-    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000)) {
+    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 200)) {
       console.log('API error: this.state=', this.state);
     }
     return (
@@ -72,7 +84,7 @@ export class NewTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -93,7 +105,7 @@ export class NewTemp extends React.Component {
                   IT / 互联网
                 </span>
                   </div>
-                  <MDBRow center>
+                  <MDBRow left>
                     <MDBCol
                       className="my-3 px-4 py-1"
                       size="12"
@@ -142,6 +154,13 @@ export class NewTemp extends React.Component {
                     >
                       <JobCardSquareFull fulltext={this.state.backend.content.jobList[5]}/>
                     </MDBCol>
+                    {this.state.updatedList.map((item) => {
+                      return (
+                        <MDBCol key={item.id} className="my-3 px-4 py-1" size="12" md="6" xl="4">
+                          <JobCardSquareFull fulltext={item}/>
+                        </MDBCol>
+                      );
+                    })}
                   </MDBRow>
                   
                   <div className="text-center">
@@ -149,7 +168,7 @@ export class NewTemp extends React.Component {
                       rounded
                       size="sm"
                       color="rgba-grey-strong"
-                      href="/job-for-you"
+                      onClick={() => this.handleReadMore()}
                       style={{
                         ...this.props.basicCHNFont,
                         boxShadow: 'none',
@@ -169,7 +188,7 @@ export class NewTemp extends React.Component {
             // null
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -240,12 +259,12 @@ export class NewTemp extends React.Component {
                       <JobCardSquareFull fulltext={this.state.backend.content.jobList[11]}/>
                     </MDBCol>
                   </MDBRow>
-                  {/*
+                  {/*/!**/}
               <div className="text-center">
                 <MDBBtn
                   rounded
                   color="rgba-grey-strong"
-                  href="/job-for-you"
+                  onClick={() => this.handleReadMore()}
                   style={{
                     ...this.props.basicCHNFont,
                     boxShadow: 'none',
@@ -260,7 +279,7 @@ export class NewTemp extends React.Component {
                   显示全部
                 </MDBBtn>
               </div>
-              */}
+              // */}
                 </MDBContainer>
               </div> : <p>loading</p>
             // null
