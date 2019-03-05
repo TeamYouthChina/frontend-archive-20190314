@@ -11,9 +11,13 @@ import {
 
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
+
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+
+import classes from './index.module.css';
+import {ComCardSquare} from '../../general-component/company-card-square/company-card-square';
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -29,6 +33,7 @@ export class Choice extends React.Component {
       return (<Redirect to={pathname}/>);
     }
     return (
+
       <div>
         <Header/>
         <div
@@ -107,7 +112,7 @@ export class Choice extends React.Component {
           </div>
         </div>
         <div
-          className="row justify-content-center"
+          className={`row justify-content-center ${classes.a1}`}
           style={{
             padding: '1rem 0rem'
           }}
@@ -175,31 +180,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ComCardSquare/>
               </div>
             </div>
             <div>
@@ -210,6 +221,7 @@ export class Choice extends React.Component {
         <div
           className="row justify-content-center"
           style={{
+            backgroundImage: 'url(http://47.254.46.117:5000/choice/yellow.png)',
             padding: '1rem 0rem'
           }}
         >
@@ -317,6 +329,7 @@ export class Choice extends React.Component {
         <div
           className="row justify-content-center"
           style={{
+            backgroundImage: 'url(http://47.254.46.117:5000/choice/purple.png)',
             padding: '1rem 0rem'
           }}
         >

@@ -45,7 +45,7 @@ export class AppTitle extends React.Component {
           display: 'flex',
           flexDirection: 'row',
           height: '12.125rem',
-          background: '#4F65E1',
+          background: '#31394D',
           alignItems:'center'
         }}
       >
@@ -56,7 +56,7 @@ export class AppTitle extends React.Component {
             flexDirection: 'row',
             boxShadow: 'none',
             height:'8.375rem',
-            background: '#5A70E2',
+            background: '#31394D',
             borderRadius: '2px',
             marginLeft:'6rem',
             alignItems:'center',
@@ -95,7 +95,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.875rem',
-                color: ' #B8C2F7'
+                color: '#FFFFFF'
               }}
             >
               {work}
@@ -105,7 +105,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.875rem',
-                color: ' #B8C2F7'
+                color: '#FFFFFF'
               }}
             >
               <MDBIcon icon="map-marker" className="mr-1"/>
@@ -120,7 +120,7 @@ export class AppTitle extends React.Component {
             flexDirection: 'row',
             boxShadow: 'none',
             height:'8.375rem',
-            background: '#5A70E2',
+            background: '#31394D',
             borderRadius: '2px',
             marginLeft:'1rem',
             marginRight:'6rem',
@@ -149,7 +149,7 @@ export class AppTitle extends React.Component {
                   width: '3.1875rem',
                   height: '1.25rem',
                   marginLeft: '1.25rem',
-                  background: '#687EEE',
+                  background: '#929fba ',
                   borderRadius: '7.5px',
                   alignItems:'center',
                   justifyContent:'center',
@@ -168,7 +168,7 @@ export class AppTitle extends React.Component {
                 fontFamily: 'PingFang SC',
                 lineHeight:' normal',
                 fontSize: '0.75rem',
-                color: '#B8C2F7',
+                color: '#FFFFFF',
                 marginTop:'0.85rem'
               }}
             >
@@ -176,16 +176,24 @@ export class AppTitle extends React.Component {
               <div>2400</div>
 
             </div>
-            <div
-              style={{
-                width:'38.5625rem',
-                height:'1rem',
 
-                borderRadius: '7.5px'
-              }}
-            >
-              <MDBProgress value={50} />
+            <div className="progress md-progress white" style={{
+              width:'38.5625rem',
+              height:'1rem',
+              borderRadius: '7.5px'
+            }}>
+              <div
+                className="progress-bar mdb-color lighten-3 " role="progressbar"
+                style={{
+                  width:'25%',
+                  height:'1rem',
+                  borderRadius: '7.5px'
+                  
+                }}
+                aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+
           </div>
         </MDBCard>
       </MDBCard>

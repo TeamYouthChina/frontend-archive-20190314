@@ -1,7 +1,11 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer, MDBRow} from 'mdbreact';
+import {
+  MDBContainer, 
+  MDBRow,
+  MDBSpinner
+} from 'mdbreact';
 
 // import {QuestionCard} from '../../general-component/question-card';
 import {QuestionCard} from '../question/question-card-test';
@@ -62,7 +66,11 @@ export class QuestionAnswer extends React.Component {
           <QuestionCard type={1} questionId={1}/>
         </MDBRow>
       </MDBContainer>
-    ) : null;
+    ) :
+      // a spinner displayed when data is loading
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>;
   }
 }
 

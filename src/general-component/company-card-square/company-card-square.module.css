@@ -1,0 +1,37 @@
+.card{
+  height: 200px;
+  background: #FFFFFF;
+  border-radius: 2px;
+ 
+  
+}
+
+.logo{
+  height: 5rem;
+}
+
+.title{
+  /* logo */
+  
+
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 1.25rem;
+
+  color: #454F69;
+}
+.website{
+  
+  font-family: PingFang SC;
+  line-height: normal;
+  font-size: 1.125rem;
+  color: #454F69;
+}
+ .location{
+
+   font-family: PingFang SC;
+   line-height: normal;
+   font-size: 1rem;
+
+   color: #454F69;
+ }

@@ -25,7 +25,7 @@ class JobCardSquareFull1 extends React.Component {
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
-              className="rounded z-depth-1-half img-fluid"
+              className="img-fluid"
               alt="Sample avatar"
             /></div>
           <div className={classes.more}><MDBIcon icon="ellipsis-h"/></div>

@@ -1,141 +1,124 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import classes from './BasicInfo.module.css';
-import {getAsync} from '../../../../tool/api-helper';
+import classes from "./BasicInfo.module.css";
+import { getAsync } from "../../../../tool/api-helper";
+import { languageHelper } from "../../../../tool/language-helper";
+
+const translation = [
+  {
+    basicInfo: "基本信息",
+    name: "姓名",
+    dob: "生日",
+    gender: "性别",
+    email: "邮箱",
+    phone: "电话",
+  },
+  {
+    basicInfo: "Basic Info",
+    name: "Name",
+    dob: "Date of Birth",
+    gender: "Gender",
+    email: "Email",
+    phone: "Phone Number",
+  },
+];
+
+const text = translation[languageHelper()];
 
 // this section have no seperate api
 class BasicInfo extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            editing: false,
-            personalInfo: {
-                name: this.props.data.name,
-                DOB: this.props.data.DOB,
-                gender: this.props.data.gender,
-                email: this.props.data.email,
-                phone: this.props.data.phone
-            }
-        } 
-        this.nameRef = React.createRef();
-        this.DOBRef = React.createRef();
-        this.genderRef = React.createRef();
-        this.emailRef = React.createRef();
-        this.phoneRef = React.createRef();
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false,
+      personalInfo: {
+        name: this.props.data.name,
+        DOB: this.props.data.DOB,
+        gender: this.props.data.gender,
+        email: this.props.data.email,
+        phone: this.props.data.phone,
+      },
+    };
+    this.nameRef = React.createRef();
+    this.DOBRef = React.createRef();
+    this.genderRef = React.createRef();
+    this.emailRef = React.createRef();
+    this.phoneRef = React.createRef();
+  }
 
-    editHandler = (e) => {
-        this.setState({editing: true});
-    }
+  editHandler = e => {
+    this.setState({ editing: true });
+  };
 
-    saveHandler = () => {
-        this.setState({
-            editing: false,
-            personalInfo: {
-                name: this.nameRef.current.value,
-                DOB: this.DOBRef.current.value,
-                gender: this.genderRef.current.value,
-                email: this.emailRef.current.value,
-                phone: this.phoneRef.current.value
-            }
-        });
-    }
+  saveHandler = () => {
+    this.setState({
+      editing: false,
+      personalInfo: {
+        name: this.nameRef.current.value,
+        DOB: this.DOBRef.current.value,
+        gender: this.genderRef.current.value,
+        email: this.emailRef.current.value,
+        phone: this.phoneRef.current.value,
+      },
+    });
+  };
 
+  render() {
+    let toShow = (
+      <div className={classes.BasicInfo}>
+        <div className={classes.Headline}>
+          <p className={classes.SectionName}>{text.basicInfo}</p>
+        </div>
+        <div className={classes.row}>
+          <p className={classes.AttributeName}>{text.name}</p>
+          <input
+            disabled
+            type="text"
+            defaultValue={this.props.data.name}
+            ref={this.nameRef}
+          />
+        </div>
+        <div className={classes.row}>
+          <p className={classes.AttributeName}>{text.dob}</p>
+          <input
+            disabled
+            type="text"
+            defaultValue={this.props.data.DOB}
+            ref={this.DOBRef}
+          />
+        </div>
+        <div className={classes.row}>
+          <p className={classes.AttributeName}>{text.gender}</p>
+          <input
+            disabled
+            type="text"
+            defaultValue={this.props.data.gender}
+            ref={this.genderRef}
+          />
+        </div>
+        <div className={classes.row}>
+          <p className={classes.AttributeName}>{text.email}</p>
+          <input
+            disabled
+            type="text"
+            defaultValue={this.props.data.email}
+            ref={this.emailRef}
+          />
+        </div>
+        <div className={classes.row}>
+          <p className={classes.AttributeName}>{text.phone}</p>
+          <input
+            disabled
+            type="text"
+            defaultValue={this.props.data.phone}
+            ref={this.phoneRef}
+          />
+        </div>
+      </div>
+    );
 
-    render() {
-        let toShow = 
-            <div className={classes.BasicInfo}>
-                <div className={classes.Headline}>
-                    <p className={classes.SectionName}>
-                        Basic Info
-                    </p>
-                    {/* <button 
-                        className={classes.CornerButton}
-                        onClick={this.editHandler}>
-                        edit
-                    </button> */}
-                </div>
-                <div className={classes.row}>
-                    <p className={classes.AttributeName}>
-                        Name
-                    </p>
-                    <input disabled type="text" defaultValue={this.props.data.name} ref={this.nameRef}/>
-                </div>
-                <div className={classes.row}>
-                    <p className={classes.AttributeName}>
-                        Date of Birth
-                    </p>
-                    <input disabled type="text" defaultValue={this.props.data.DOB} ref={this.DOBRef}/>
-                </div>
-                <div className={classes.row}>
-                    <p className={classes.AttributeName}>
-                        Gender
-                    </p>
-                    <input disabled type="text" defaultValue={this.props.data.gender} ref={this.genderRef}/>
-                </div>
-                <div className={classes.row}>
-                    <p className={classes.AttributeName}>
-                        Email
-                    </p>
-                    <input disabled type="text" defaultValue={this.props.data.email} ref={this.emailRef}/>
-                </div>
-                <div className={classes.row}>
-                    <p className={classes.AttributeName}>
-                        Phone Number
-                    </p>
-                    <input disabled type="text" defaultValue={this.props.data.phone} ref={this.phoneRef}/>
-                </div>  
-            </div>
-
-        if(this.state.editing == true) {
-            toShow = 
-                <div className={classes.BasicInfo}>
-                    <div className={classes.Headline}>
-                            <p className={classes.SectionName}>
-                                Basic Info
-                            </p>
-                            <button 
-                                className={classes.CornerButton}
-                                onClick={this.saveHandler}>
-                                save
-                            </button>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Name
-                            </p>
-                            <input type="text" defaultValue={this.props.data.name} ref={this.nameRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Date of Birth
-                            </p>
-                            <input type="text" defaultValue={this.props.data.DOB} ref={this.DOBRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Gender
-                            </p>
-                            <input type="text" defaultValue={this.props.data.gender} ref={this.genderRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Email
-                            </p>
-                            <input type="text" defaultValue={this.props.data.email} ref={this.emailRef}/>
-                        </div>
-                        <div className={classes.row}>
-                            <p className={classes.AttributeName}>
-                                Phone Number
-                            </p>
-                            <input type="text" defaultValue={this.props.data.phone} ref={this.phoneRef}/>
-                        </div>  
-                </div>
-        }
-        return (
-            toShow
-        );
-    }
+    return toShow;
+  }
 }
 
 export default BasicInfo;

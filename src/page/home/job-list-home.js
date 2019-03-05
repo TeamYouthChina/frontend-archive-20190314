@@ -31,8 +31,21 @@ export class JobListHome extends React.Component {
             '5',
             '6',
           ],
-          searchRequestBody: null
-
+          searchRequestBody: null,
+          url:[
+            'http://47.254.46.117:5000/logo/1200px-Ofo_Logo.svg.png',
+            'http://47.254.46.117:5000/logo/15165886089623274.jpg',
+            'http://47.254.46.117:5000/logo/800px-Tencent_Logo.svg.png',
+            'http://47.254.46.117:5000/logo/bd_logo1.png',
+            'http://47.254.46.117:5000/logo/download.png',
+            'http://47.254.46.117:5000/logo/png.png',
+          ],
+          url1:'http://47.254.46.117:5000/logo/1200px-Ofo_Logo.svg.png',
+          url2:'http://47.254.46.117:5000/logo/15165886089623274.jpg',
+          url3:'http://47.254.46.117:5000/logo/800px-Tencent_Logo.svg.png',
+          url4:'http://47.254.46.117:5000/logo/bd_logo1.png',
+          url5:'http://47.254.46.117:5000/logo/download.png',
+          url6:'http://47.254.46.117:5000/logo/png.png',
         },
         status: {
           code: 2000
@@ -44,7 +57,9 @@ export class JobListHome extends React.Component {
   }
 
   render() {
+   
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+      
       <div
         style={{
           padding: '24px 16px'
@@ -66,8 +81,9 @@ export class JobListHome extends React.Component {
 
           <MDBRow center>
             {
-              this.state.backend.content.jobIdList.map(
+              this.state.backend.content.url.map(
                 (item, index) =>
+                  
                   <MDBCol
                     key={index}
                     className="my-3 px-4 py-1"
@@ -75,8 +91,10 @@ export class JobListHome extends React.Component {
                     md="6"
                     xl="4"
                   >
-                    <JobCardSquare id={null}/>
+                    <JobCardSquare url={item}/>
+                    
                   </MDBCol>
+                
               )
             }
           </MDBRow>

@@ -1,7 +1,11 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer, MDBRow} from 'mdbreact';
+import {
+  MDBContainer, 
+  MDBRow,
+  MDBSpinner
+} from 'mdbreact';
 import {ArticleCard} from '../article/article-card';
 import {getAsync} from '../../tool/api-helper';
 
@@ -59,7 +63,11 @@ export class Article extends React.Component {
           <ArticleCard type={1}/>
         </MDBRow>
       </MDBContainer>
-    ) : null;
+    ) :
+      // a spinner displayed when data is loading
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>;
   }
 }
 

@@ -14,7 +14,7 @@ import {
   MDBBtn,
   MDBSpinner
 } from 'mdbreact';
-import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+import {JobCardBar} from '../../general-component/job-card-bar/job-card-bar';
 import {getAsync} from '../../tool/api-helper';
 
 export class Intern extends React.Component {
@@ -66,7 +66,7 @@ export class Intern extends React.Component {
               {this.state.updatedList.map((item) => {
                 return (
                   <MDBCol key={item.id} className="my-3 px-4 py-1" size="11">
-                    <JobCardSquare fulltext={item}/>
+                    <JobCardBar fulltext={item}/>
                   </MDBCol>
                 );
               })}

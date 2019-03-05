@@ -1,110 +1,183 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import classes from './CertificationCard.module.css';
-import certificationIcon from '../../../../assets/coursera.png';
-import Dropdown from '../../Dropdown/Dropdown';
+import classes from "./CertificationCard.module.css";
+import certificationIcon from "../../../../assets/coursera.png";
+import Dropdown from "../../Dropdown/Dropdown";
+import { languageHelper } from "../../../../../tool/language-helper";
 
-class CertificationCard extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            editing: this.props.data
-                ? false
-                : true,
-            certiData: this.props.data
-                ? {
-                    name: this.props.data.name,
-                    auth: this.props.data.authority,
-                    duration: {
-                        begin: this.props.data.duration.begin,
-                        end: this.props.data.duration.end
-                    },
-                    note: this.props.data.note
-                }
-                : {
-                    name: '',
-                    auth: '',
-                    duration: {
-                        begin: '',
-                        end: ''   
-                    },
-                    note: ''
-                }
-        } 
-        this.nameRef = React.createRef();
-        this.authRef = React.createRef();
-        this.beginRef = React.createRef();
-        this.endRef = React.createRef();
-        this.noteRef = React.createRef();
+const translation = [
+  {
+    name: "名称",
+    auth: "机构",
+    begin: "开始日期",
+    end: "结束日期",
+    note: "说明",
+  },
+  {
+    name: "Name",
+    auth: "Organization",
+    begin: "Begin",
+    end: "End",
+    note: "Note",
+  },
+];
+const text = translation[languageHelper()];
+class CertificationCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: this.props.data ? false : true,
+      certiData: this.props.data
+        ? {
+            name: this.props.data.name,
+            authority: this.props.data.authority,
+            duration: {
+              begin: this.props.data.duration.begin,
+              end: this.props.data.duration.end,
+            },
+            note: this.props.data.note,
+          }
+        : {
+            name: "",
+            authority: "",
+            duration: {
+              begin: "",
+              end: "",
+            },
+            note: "",
+          },
+    };
+    this.nameRef = React.createRef();
+    this.authRef = React.createRef();
+    this.beginRef = React.createRef();
+    this.endRef = React.createRef();
+    this.noteRef = React.createRef();
+  }
+
+  // this method only toggle 'editing'
+  editHandler = () => {
+    this.setState({ editing: true });
+  };
+
+  // tell parent the id of the current card
+  deleteHandler = () => {
+    this.props.deleteHandler(this.props.id);
+  };
+
+  saveHandler = () => {
+    this.setState({
+      ...this.state,
+      editing: false,
+    });
+    this.props.saveHandler(this.state.certiData, this.props.id);
+  };
+
+  inputOnChange = () => {
+    this.setState({
+      ...this.state,
+      certiData: {
+        name: this.nameRef.current.value,
+        authority: this.authRef.current.value,
+        duration: {
+          begin: this.beginRef.current.value,
+          end: this.endRef.current.value,
+        },
+        note: this.noteRef.current.value,
+      },
+    });
+  };
+
+  render() {
+    let toShow = (
+      <div className={classes.CertificationCard}>
+        <img src={certificationIcon} alt="no img" />
+        <div className={classes.certifiInfo}>
+          <input
+            style={{ margin: "3px 0px" }}
+            disabled
+            type="text"
+            value={this.state.certiData.name}
+          />
+          <input
+            style={{ margin: "3px 0px" }}
+            disabled
+            type="text"
+            value={this.state.certiData.authority}
+          />
+          <div style={{ margin: "3px 0px" }} className={classes.twoP}>
+            <p>
+              {this.state.certiData.duration.begin} -{" "}
+              {this.state.certiData.duration.end}
+            </p>
+          </div>
+          <input
+            style={{ margin: "15px 0px 3px 0px" }}
+            disabled
+            type="text"
+            value={this.state.certiData.note}
+          />
+        </div>
+        <Dropdown delete={this.deleteHandler} edit={this.editHandler} />
+      </div>
+    );
+
+    if (this.state.editing) {
+      toShow = (
+        <div className={classes.CertificationCard}>
+          <img src={certificationIcon} alt="no img" />
+          <div className={classes.certifiInfo}>
+            <input
+              style={{ margin: "3px 0px" }}
+              type="text"
+              value={this.state.certiData.name}
+              ref={this.nameRef}
+              placeholder={text.name}
+              onChange={this.inputOnChange}
+            />
+            <input
+              style={{ margin: "3px 0px" }}
+              type="text"
+              value={this.state.certiData.authority}
+              ref={this.authRef}
+              placeholder={text.authority}
+              onChange={this.inputOnChange}
+            />
+            <input
+              style={{ margin: "3px 0px" }}
+              type="text"
+              value={this.state.certiData.duration.begin}
+              ref={this.beginRef}
+              placeholder={text.begin}
+              onChange={this.inputOnChange}
+            />
+            <input
+              style={{ margin: "3px 0px" }}
+              type="text"
+              value={this.state.certiData.duration.end}
+              ref={this.endRef}
+              placeholder={text.end}
+              onChange={this.inputOnChange}
+            />
+            <input
+              style={{ margin: "3px 0px" }}
+              type="text"
+              value={this.state.certiData.note}
+              ref={this.noteRef}
+              placeholder={text.note}
+              onChange={this.inputOnChange}
+            />
+          </div>
+          <Dropdown
+            delete={this.deleteHandler}
+            edit={this.editHandler}
+            editing
+            save={this.saveHandler}
+          />
+        </div>
+      );
     }
-
-    // this method only toggle 'editing'
-    editHandler=()=>{
-        this.setState({editing: true});
-    }
-
-    // tell parent the id of the current card
-    deleteHandler=()=>{
-        this.props.deleteHandler(this.props.id);
-    }
-
-    saveHandler=()=>{
-        this.setState({
-            editing: false,
-            certiData: {
-                name: this.nameRef.current.value,
-                auth: this.authRef.current.value,
-                duration: {
-                    begin: this.beginRef.current.value,
-                    end: this.endRef.current.value,
-                },
-                note: this.noteRef.current.value
-            }
-        }, ()=>{
-            this.props.saveHandler(this.state.certiData, this.props.id);     
-        });
-
-    }
-
-    render(){
-        let toShow =
-            <div className={classes.CertificationCard}>
-                <img src={certificationIcon} alt="no img"></img>
-                <div className={classes.certifiInfo}>
-                    <input disabled type="text" defaultValue={this.state.certiData.name} ref={this.nameRef}/>
-                    <input disabled type="text" defaultValue={this.state.certiData.auth} ref={this.authRef}/>
-                    <div>
-                        <input disabled type="text" defaultValue={this.state.certiData.duration.begin} ref={this.beginRef}/>
-                        <p>-</p>
-                        <input disabled type="text" defaultValue={this.state.certiData.duration.end} ref={this.endRef}/>
-                    </div>
-                    <input disabled type="text" defaultValue={this.state.certiData.note} ref={this.noteRef}/>
-                </div>
-                <Dropdown delete={this.deleteHandler} edit={this.editHandler}/>
-            </div>
-
-        if(this.state.editing){
-            toShow = 
-                <div className={classes.CertificationCard}>
-                    <img src={certificationIcon} alt="no img"></img>
-                    <div className={classes.certifiInfo}>
-                        <input type="text" defaultValue={this.state.certiData.name} ref={this.nameRef}/>
-                        <input type="text" defaultValue={this.state.certiData.auth} ref={this.authRef}/>
-                        <div>
-                            <input type="text" defaultValue={this.state.certiData.duration.begin} ref={this.beginRef}/>
-                            <p>-</p>
-                            <input type="text" defaultValue={this.state.certiData.duration.end} ref={this.endRef}/>
-                        </div>
-                        <input type="text" defaultValue={this.state.certiData.note} ref={this.noteRef}/>
-                    </div>
-                    <Dropdown delete={this.deleteHandler} edit={this.editHandler} editing save={this.saveHandler}/>
-                </div>
-        }
-        return(
-            toShow
-        );
-    }
-   
-};
+    return toShow;
+  }
+}
 
 export default CertificationCard;

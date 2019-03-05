@@ -1,9 +1,14 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 
-import {MDBContainer, MDBRow, MDBCol} from 'mdbreact';
+import {
+  MDBContainer, 
+  MDBRow, 
+  MDBCol,
+  MDBSpinner
+} from 'mdbreact';
 import {ApplicantCard} from '../../general-component/applicant-card/applicant-card';
-import {getAsync} from "../../tool/api-helper";
+import {getAsync} from '../../tool/api-helper';
 import {ArticleCard} from '../article/article-card';
 
 export class Connection extends React.Component {
@@ -66,7 +71,11 @@ export class Connection extends React.Component {
           }
         </MDBRow>
       </MDBContainer>
-    ) : null;
+    ) :
+      // a spinner displayed when data is loading
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>;
   }
 }
 

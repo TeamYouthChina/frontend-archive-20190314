@@ -30,15 +30,21 @@ export class CoDetail extends React.Component {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <div>
-          <h4><strong>公司详情</strong></h4>
+          <p
+            style={{
+              fontFamily: 'PingFang SC',
+              lineHeight: 'normal',
+              fontSize: '18px',
+
+              color: '#454F69'
+            }}
+          >公司概况</p>
         </div>
         <div>
           <p>
             {this.state.backend.content.note}
           </p>
         </div>
-       
-        <MDBBtn flat block onClick={this.handleInputClick}>See More</MDBBtn>
       </div>
     ):null;
   }

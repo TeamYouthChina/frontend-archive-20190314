@@ -4,7 +4,8 @@ import {languageHelper} from '../../tool/language-helper';
 import {
   MDBContainer, 
   MDBCol, 
-  MDBRow
+  MDBRow,
+  MDBSpinner
 } from 'mdbreact';
 import {VideoCard} from "../../general-component/video-card";
 import {VideoCardSearch} from '../../general-component/video-card-search';
@@ -32,7 +33,7 @@ export class Video extends React.Component {
       });
     } else {
       let mockData = {
-        status: result.status
+        status: {code: 2000}
       }
       this.setState(() => {
         return {backend: mockData};
@@ -47,23 +48,27 @@ export class Video extends React.Component {
           fluid
           style={{padding: 0}}
         >
-          <MDBRow>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+          <MDBRow center>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
-            <MDBCol style={{marginLeft: '1rem', marginRight: '1rem'}}>
+            <MDBCol className="mx-1 mt-3 mb-2" size="12">
               <VideoCardSearch/>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </div>
-    ) : null;
+    ) :
+      // a spinner displayed when data is loading
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>;
   }
 }
 

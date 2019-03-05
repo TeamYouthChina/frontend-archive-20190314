@@ -1,10 +1,9 @@
 .EducationCard{
     display: flex;
     flex-direction: row;
-    height: 96px;
     width: 90%;
     box-sizing: border-box;
-    padding: 0%;
+    padding: 5px 0;
     align-items: center;
     border-bottom: 1px solid grey
 }
@@ -17,12 +16,26 @@
     font-size: 14px;
     color: #62686C;
     margin: 0%;
-    padding-left: 4px;
+    width: 100%;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid #e7e7e7
 }
 
 .EducationCard input:disabled {
-    border: 2px solid white;
-    padding-left: 4px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white
+}
+
+.twoP {
+    padding: 1px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid white
 }
 
 .EducationCard img {

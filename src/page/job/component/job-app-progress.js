@@ -49,41 +49,43 @@ export class JobApp extends React.Component {
               <MDBStep form>
                 <a>
                   <MDBBtn
-                    color="mdb-color" circle>
+                    className="indigo darken-1" circle>
                   </MDBBtn>
                 </a>
-                <p className="h6" style={{...this.props.basicCHNFont, color: '#7C97B8'}}>已投递</p>
+                <p className="h6" style={{...this.props.basicCHNFont, color: '#3949ab'}}>已投递</p>
               </MDBStep>
               <MDBStep form>
                 <a>
                   <MDBBtn
-                    color="#7C97B8" circle
-                    style={{border: '2px solid #7C97B8'}}
+                    className="grey lighten-5" circle
+                    style={{border: '2px solid #3949ab'}}
                   >
 
                   </MDBBtn>
                 </a>
-                <p className="h6" style={{color: '#7C97B8'}}>已查阅</p>
+                <p className="h6" style={{color: '#3949ab'}}>已查阅</p>
               </MDBStep>
               <MDBStep form>
                 <a>
                   <MDBBtn
-                    color="#7C97B8" circle
-                    style={{border: '2px solid #7C97B8'}}
+                    className="grey lighten-5" circle
+                    style={{border: '2px solid #3949ab'}}
                   >
+
                   </MDBBtn>
                 </a>
-                <p className="h6" style={{color: '#7C97B8'}}>面试</p>
+                <p className="h6" style={{color: '#3949ab'}}>面试</p>
               </MDBStep>
               <MDBStep form>
                 <a>
                   <MDBBtn
-                    color="#7C97B8" circle
-                    style={{border: '2px solid #7C97B8'}}
+                    className="grey lighten-5" circle
+                    style={{border: '2px solid #3949ab'}}
                   >
+
                   </MDBBtn>
                 </a>
-                <p className="h6" style={{color: '#7C97B8'}}>Offer</p>
+                <p className="h6" style={{color: '#3949ab'}}>Offer</p>
               </MDBStep>
             </MDBStepper>
             <br/>
