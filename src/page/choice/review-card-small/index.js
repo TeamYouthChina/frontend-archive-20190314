@@ -74,7 +74,7 @@ class ReviewCardSquareFull1 extends React.Component {
                 fontSize: '14px',
                 color:'#4F65E1',
                 ...basicFont}}>
-                标签1
+                腾讯
               </span>
             </li>
             <li style={{liBasicNoLine,marginTop:'15px'}}>

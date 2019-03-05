@@ -1,4 +1,5 @@
 import React from 'react';
+import BraftEditor from 'braft-editor'
 import {languageHelper} from '../../tool/language-helper';
 import {Link} from 'react-router-dom';
 import {getAsync} from '../../tool/api-helper'
@@ -111,35 +112,56 @@ export class QuestionCard extends React.Component {
   async componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
     let mockData
-    if(this.props.id) {
-      try{
-        const result = await getAsync(`/question/${this.props.id}`)
-        if(result.status && result.status.code === 2000){
-          let content = result.content
-          mockData =
-            {
-              id: '0100',
-              title: content.title || '哪家公司的伙食是世界上最好的?',
-              short: content.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-              long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-              user: content.creator.username || '齐昊',
-              img: content.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-              // description: '莫以为敌消彼长，然乾坤逆之天崩',
-              description: 'WeYouth负责人',
-              readingTime: 10,
-              editTime: content.modified_at || 1,
-              score: 5,
-              commentLists: [1, 2],
-              agree: '',
-              disagree: '',
-              status: {
-                code: 2000
-              }
-            };
-        }
-      } catch(e) {
-       alert(e) 
+    let user
+    // 传入id就自己fetch
+    if (this.props.questionId) {
+      
+      try {
+        const result = await getAsync(`/question/${this.props.questionId}`)
+        user = result.content
+        mockData = {
+          id: user.id,
+          title: user.title || '哪家公司的伙食是世界上最好的?',
+          short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+          long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+          user: user.creator.username || '齐昊',
+          img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+          // description: '莫以为敌消彼长，然乾坤逆之天崩',
+          description: 'WeYouth负责人',
+          readingTime: 10,
+          editTime: user.modified_at.slice(0,10) || 1,
+          score: 5,
+          commentLists: user.answers || [1, 2],
+          agree: '',
+          disagree: '',
+          status: {
+            code: 2000
+          }
+        };
+      } catch (e) {
+        alert(e)
       }
+    } else if (this.props.user) {
+      user = this.props.user
+      mockData = {
+        id: user.id,
+        title: user.title || '哪家公司的伙食是世界上最好的?',
+        short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: user.creator.username || '齐昊',
+        img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        // description: '莫以为敌消彼长，然乾坤逆之天崩',
+        description: 'WeYouth负责人',
+        readingTime: 10,
+        editTime: user.modified_at.slice(0,10) || 1,
+        score: 5,
+        commentLists: user.answers || [1, 2],
+        agree: '',
+        disagree: '',
+        status: {
+          code: 2000
+        }
+      };
     } else {
       mockData = {
         id: '0100',
@@ -151,7 +173,7 @@ export class QuestionCard extends React.Component {
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
         description: 'WeYouth负责人',
         readingTime: 10,
-        editTime: 1,
+        editTime: '2019-01-01',
         score: 5,
         commentLists: [1, 2],
         agree: '',
@@ -224,16 +246,16 @@ export class QuestionCard extends React.Component {
   }
 
   render() {
-    if(this.state.backend) {
+    if (this.state.backend) {
       return (
 
         <div>
           <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
                ref={(span) => this.scrollSpan = span}>
-            {this.props.type === 1 ? (
-              <Link to={`/article/${this.state.backend.id}`}><strong
-                style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
-            ) : null}
+            
+            <Link to={`/article/${this.state.backend.id}`}><strong
+              style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
+
             <div>
               <MDBRow style={{margin: '10px 0px'}}>
                 <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px'}}>
@@ -321,16 +343,22 @@ export class QuestionCard extends React.Component {
                 </MDBCol>
                 <MDBCol size="9">
                   <div style={{float: 'right'}}>
-                    <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+                    <MDBBtn flat style={{
+                      padding: '5px 10px',
+                      marginLeft: '15px',
+                      fontSize: '14px',
+                      color: '#8D9AAF', ...basicFont
+                    }}>
                       <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>点赞
                     </MDBBtn>
-                    <MDBBtn flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+                    <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                       <MDBIcon style={{marginRight: '5px'}} icon="heart"/>收藏
                     </MDBBtn>
-                    <MDBBtn onClick={this.showComments} flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+                    <MDBBtn onClick={this.showComments} flat
+                            style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                       <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.commontsText}
                     </MDBBtn>
-                    <MDBBtn flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+                    <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                       <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
                     </MDBBtn>
                     {/*<MDBBtn flat style={{padding: '5px 10px',}}>*/}
@@ -367,17 +395,17 @@ export class QuestionCard extends React.Component {
                     className="rounded-circle"
                   />
                 </MDBAvatar>
-                <div style={{marginTop:'5px',flexGrow: '1',}}>
+                <div style={{marginTop: '5px', flexGrow: '1',}}>
                   <input style={{
-                    width:'100%',
+                    width: '100%',
                     background: '#FFFFFF',
                     border: '1px solid #DBE5F7',
                     boxSizing: 'border-box',
                     borderRadius: '2px',
-                    padding:'8px 0px 8px 20px',
-                    fontSize:'14px',
-                    color:'#B3C1DB',
-                    height:'37px',
+                    padding: '8px 0px 8px 20px',
+                    fontSize: '14px',
+                    color: '#B3C1DB',
+                    height: '37px',
                     ...basicFont,
                   }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
 
@@ -390,7 +418,7 @@ export class QuestionCard extends React.Component {
                           background: '#C4C4C4',
                           padding: '8px 20px',
                           color: '#FFFFFF', ...basicFont,
-                          margin:'6px 6px 5px 6px',
+                          margin: '6px 6px 5px 6px',
                         }}>
                   发布
                 </MDBBtn>
@@ -401,10 +429,12 @@ export class QuestionCard extends React.Component {
 
               ))}
               <MDBRow center style={{marginTop: '10px'}}>
-                <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length+10}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length + 10}}
+                               pageCallbackFn={this.getCurrentPage}></PaginationUse>
               </MDBRow>
-              <MDBRow center style={{marginTop:'9px'}}>
-                <MDBBtn onClick={this.showComments} flat style={{margin:'0px',padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
+              <MDBRow center style={{marginTop: '9px'}}>
+                <MDBBtn onClick={this.showComments} flat
+                        style={{margin: '0px', padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
                   收起评论<MDBIcon style={{marginLeft: '5px'}} icon="arrow-up"/>
                 </MDBBtn>
               </MDBRow>
@@ -413,7 +443,7 @@ export class QuestionCard extends React.Component {
           ) : null}
         </div>
 
-      ); 
+      );
     }
   }
 }

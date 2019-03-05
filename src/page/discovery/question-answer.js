@@ -14,6 +14,8 @@ import {getAsync} from '../../tool/api-helper';
 // import {getAsync} from '../../tool/api-helper';
 import {Redirect} from "react-router-dom";
 
+const env = true
+
 export class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
@@ -22,49 +24,44 @@ export class QuestionAnswer extends React.Component {
   }
 
   async componentDidMount() {
-    // const result = await getAsync(`/discovery/question-answer`)
+    try {
+      const result = await getAsync(`/discovery/questions`,env)
+      if (result && result.status && result.status.code === 200) {
+        let mockData =
+          {
+            users:result.content.users,
+            status: {
+              code: result.status.code
+            }
+          };
+        this.setState(() => {
+          return {backend: mockData};
+        });
+      } else {
+        let mockData = {
+          status: result.status
+        }
+        this.setState(() => {
+          return {backend: mockData};
+        });
+      }
+    } catch (e) {
+      alert(e)
+    }
     // console.log(result)
-    const result = {
-      status:{
-        code:2000
-      }
-    }
-    if (result && result.status && result.status.code === 2000) {
-      let mockData =
-        {
-          questionId:[1,2,3,4],
-          status: {
-            code: result.status.code
-          }
-        };
-      this.setState(() => {
-        return {backend: mockData};
-      });
-    } else {
-      let mockData = {
-        status: result.status
-      }
-      this.setState(() => {
-        return {backend: mockData};
-      });
-    }
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
       <MDBContainer
         fluid
         style={{padding: 0}}
       >
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1} questionId={1}/>
-        </MDBRow>
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1} questionId={1}/>
-        </MDBRow>
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <QuestionCard type={1} questionId={1}/>
-        </MDBRow>
+        {this.state.backend.users.map((user)=>(
+          <MDBRow key={user.id} style={{margin: '1rem 0rem'}}>
+            <QuestionCard user={user} type="discovery"/>
+          </MDBRow>
+        ))}
       </MDBContainer>
     ) :
       // a spinner displayed when data is loading
