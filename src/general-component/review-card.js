@@ -91,7 +91,7 @@ export class ReviewCard extends React.Component {
         user: '齐昊',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
-        description: 'WeYouth负责人',
+        description: '职道负责人',
         readingTime: 10,
         editTime: 1,
         score: 5,
