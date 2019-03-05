@@ -8,6 +8,7 @@ import {
 import {getAsync} from "../../tool/api-helper";
 
 import {withRouter} from 'react-router-dom';
+import {IfCollect} from "../if-collect";
 import classes from './company-card.module.css'
 
 
@@ -21,15 +22,19 @@ export class CompanyCard1 extends React.Component {
     };
     this.text = CompanyCard1.i18n[languageHelper()];
   }
-
+  isCollect = ()=>{
+    this.setState({
+      collect: !this.state.collect
+    })
+  }
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/companies/${this.props.id}`)
+        backend: await getAsync(`/companies/${this.props.id}`,true)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/companies/1`)
+        backend: await getAsync(`/companies/1`, true)
       });
     }
   }
@@ -139,6 +144,8 @@ export class CompanyCard1 extends React.Component {
                 <MDBIcon far icon="heart" className="mr-2"/>
                 收藏
               </div>
+              
+              
             </div>
            
           </div>
