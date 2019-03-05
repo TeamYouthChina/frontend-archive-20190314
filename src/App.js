@@ -61,6 +61,9 @@ import {Mobile} from './page/mobile';
 import {Applicant} from "./page/applicant";
 import {Logout} from './page/logout';
 import {Choice} from './page/choice';
+import {OtherProfile} from './page/other-profile';
+import {MyResume} from './page/my-resume';
+import {SendOK} from './page/send-ok';
 
 
 export class App extends Component {
@@ -155,6 +158,14 @@ export class App extends Component {
               component={routeProps => <Mobile {...routeProps} />}
             />
             <Route
+              path="/my-resume"
+              component={routeProps => <MyResume {...routeProps} />}
+            />
+            <Route
+              path="/other-profile"
+              component={routeProps => <OtherProfile {...routeProps} />}
+            />
+            <Route
               path="/OnlineApplication"
               component={routeProps => <OnlineApplication {...routeProps} />}
             />
@@ -217,6 +228,10 @@ export class App extends Component {
             <Route
               path="/search"
               component={routeProps => <Search {...routeProps} />}
+            />
+            <Route
+              path="/send-ok"
+              component={routeProps => <SendOK {...routeProps} />}
             />
             <Route
               path="/searchresume"
