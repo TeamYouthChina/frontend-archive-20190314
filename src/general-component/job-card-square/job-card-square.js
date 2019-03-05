@@ -40,7 +40,7 @@ class JobCardSquare1 extends React.Component {
           <div className={classes.logo}>
             <MDBAvatar
               tag="img"
-              src="http://47.254.46.117:5000/tencent/icon.png"
+              src={this.props.url}
               className="img-fluid"
               alt="Sample avatar"
             /></div>
