@@ -44,7 +44,7 @@ export class ComCardSquare extends React.Component {
             <div
               className="d-flex flex-row justify-content-between align-items-start mb-2"
             >
-              <div style={{height:'6.25rem'}}>
+              <div style={{height:'4rem'}}>
 
                 <MDBAvatar
                   tag="img"

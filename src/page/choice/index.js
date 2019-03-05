@@ -17,6 +17,7 @@ import {Footer} from '../../general-component/footer';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
 
 import classes from './index.module.css';
+import {ComCardSquare} from '../../general-component/company-card-square/company-card-square';
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -179,31 +180,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <ComCardSquare/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ComCardSquare/>
               </div>
             </div>
             <div>
