@@ -234,7 +234,7 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ArticleCardSquareFull fulltext="1"/>
+                <ArticleCardSquareFull fulltext={1}/>
               </div>
               <div
                 className="col-4"

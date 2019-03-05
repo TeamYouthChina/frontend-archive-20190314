@@ -1,6 +1,8 @@
 import React from 'react';
+import BraftEditor from 'braft-editor'
 import {languageHelper} from '../../tool/language-helper';
 import {Link} from 'react-router-dom';
+import {getAsync} from '../../tool/api-helper'
 import {CommentsCard} from '../question/comment-test'
 import {PaginationUse} from '../question/pagination-test'
 import {
@@ -8,7 +10,7 @@ import {
   MDBRow,
   MDBCol,
   MDBIcon,
-  MDBAvatar, MDBBadge
+  MDBAvatar,
 } from 'mdbreact';
 
 const basicFont = {
@@ -107,8 +109,83 @@ export class QuestionCard extends React.Component {
     });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
+    let mockData
+    let user
+    // 传入id就自己fetch
+    if (this.props.questionId) {
+      
+      try {
+        const result = await getAsync(`/question/${this.props.questionId}`)
+        user = result.content
+        mockData = {
+          id: user.id,
+          title: user.title || '哪家公司的伙食是世界上最好的?',
+          short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+          long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+          user: user.creator.username || '齐昊',
+          img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+          // description: '莫以为敌消彼长，然乾坤逆之天崩',
+          description: 'WeYouth负责人',
+          readingTime: 10,
+          editTime: user.modified_at.slice(0,10) || 1,
+          score: 5,
+          commentLists: user.answers || [1, 2],
+          agree: '',
+          disagree: '',
+          status: {
+            code: 2000
+          }
+        };
+      } catch (e) {
+        alert(e)
+      }
+    } else if (this.props.user) {
+      user = this.props.user
+      mockData = {
+        id: user.id,
+        title: user.title || '哪家公司的伙食是世界上最好的?',
+        short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: user.creator.username || '齐昊',
+        img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        // description: '莫以为敌消彼长，然乾坤逆之天崩',
+        description: 'WeYouth负责人',
+        readingTime: 10,
+        editTime: user.modified_at.slice(0,10) || 1,
+        score: 5,
+        commentLists: user.answers || [1, 2],
+        agree: '',
+        disagree: '',
+        status: {
+          code: 2000
+        }
+      };
+    } else {
+      mockData = {
+        id: '0100',
+        title: '哪家公司的伙食是世界上最好的?',
+        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: '齐昊',
+        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        // description: '莫以为敌消彼长，然乾坤逆之天崩',
+        description: 'WeYouth负责人',
+        readingTime: 10,
+        editTime: '2019-01-01',
+        score: 5,
+        commentLists: [1, 2],
+        agree: '',
+        disagree: '',
+        status: {
+          code: 2000
+        }
+      }
+    }
+    this.setState(() => {
+      return {backend: mockData};
+    });
   }
 
   orderScroll() {
@@ -169,195 +246,205 @@ export class QuestionCard extends React.Component {
   }
 
   render() {
-    return (
+    if (this.state.backend) {
+      return (
 
-      <div>
-        <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
-             ref={(span) => this.scrollSpan = span}>
-          {this.props.type === 1 ? (
+        <div>
+          <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
+               ref={(span) => this.scrollSpan = span}>
+            
             <Link to={`/article/${this.state.backend.id}`}><strong
               style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
-          ) : null}
-          <div>
-            <MDBRow style={{margin: '10px 0px'}}>
-              <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px'}}>
-                <img
-                  style={{width: '32px', background: '#F4F4F4'}}
-                  src={this.state.backend.img}
-                  alt=""
-                  className="rounded-circle"
-                />
-              </MDBAvatar>
-              <ul style={{
-                listStyle: 'none',
-                padding: '0px',
-                margin: '0px'
-              }}>
-                <li style={{
+
+            <div>
+              <MDBRow style={{margin: '10px 0px'}}>
+                <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px'}}>
+                  <img
+                    style={{width: '32px', background: '#F4F4F4'}}
+                    src={this.state.backend.img}
+                    alt=""
+                    className="rounded-circle"
+                  />
+                </MDBAvatar>
+                <ul style={{
                   listStyle: 'none',
-                  color: '#31394D',
-                  fontSize: '16px',
-                  ...basicFont
+                  padding: '0px',
+                  margin: '0px'
                 }}>
-                  {this.state.backend.user}
-                </li>
-                <li style={{
-                  listStyle: 'none',
-                  color: '#8D9AAF',
-                  fontSize: '14px',
-                  ...basicFont
-                }}>
-                  {this.state.backend.description}
-                  <MDBBtn disabled flat style={{
-                    background: '#F0F3FA',
-                    borderRadius: '8px',
-                    padding: '0px',
-                    margin: '0px',
-                    marginLeft: '15px',
-                    marginTop: '-4px',
-                    textAlign: 'center',
+                  <li style={{
+                    listStyle: 'none',
+                    color: '#31394D',
+                    fontSize: '16px',
+                    ...basicFont
                   }}>
+                    {this.state.backend.user}
+                  </li>
+                  <li style={{
+                    listStyle: 'none',
+                    color: '#8D9AAF',
+                    fontSize: '14px',
+                    ...basicFont
+                  }}>
+                    {this.state.backend.description}
+                    <MDBBtn disabled flat style={{
+                      background: '#F0F3FA',
+                      borderRadius: '8px',
+                      padding: '0px',
+                      margin: '0px',
+                      marginLeft: '15px',
+                      marginTop: '-4px',
+                      textAlign: 'center',
+                    }}>
                     <span style={{
                       margin: '1px 14px',
                       fontSize: '12px',
                       color: '#4F65E1', ...basicFont
                     }}>{this.state.backend.score}分</span>
-                  </MDBBtn>
-                </li>
-              </ul>
-            </MDBRow>
-
-            {this.state.isCollapsed ? (
-              <div>
-                {/*<span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:*/}
-                <ul style={ulBasicNoLine}>
-                  <li style={{color: '#8D9AAF', fontSize: '14px', ...liBasicNoLine, margin: '10px 0px'}}>
-                    预计阅读时间: {this.state.backend.readingTime}分钟
-                  </li>
-                  <li style={{color: '#31394D', fontSize: '14px', ...liBasicNoLine, ...basicFont}}>
-                    {this.state.backend.short}
-                  </li>
-                  <li onClick={this.handleSpanClick} style={{
-                    color: '#4F65E1',
-                    fontSize: '14px', ...liBasicNoLine, ...basicFont,
-                    margin: '10px 0px 0px 0px'
-                  }}>
-                    展开更多<MDBIcon style={{marginLeft: '5px'}} icon="arrow-down"/>
+                    </MDBBtn>
                   </li>
                 </ul>
+              </MDBRow>
 
-              </div>
-            ) : (
+              {this.state.isCollapsed ? (
+                <div>
+                  {/*<span style={{color: '#3E4850', fontSize: '14px', ...basicFont}}>{this.state.backend.user}</span>:*/}
+                  <ul style={ulBasicNoLine}>
+                    <li style={{color: '#8D9AAF', fontSize: '14px', ...liBasicNoLine, margin: '10px 0px'}}>
+                      预计阅读时间: {this.state.backend.readingTime}分钟
+                    </li>
+                    <li style={{color: '#31394D', fontSize: '14px', ...liBasicNoLine, ...basicFont}}>
+                      {this.state.backend.short}
+                    </li>
+                    <li onClick={this.handleSpanClick} style={{
+                      color: '#4F65E1',
+                      fontSize: '14px', ...liBasicNoLine, ...basicFont,
+                      margin: '10px 0px 0px 0px'
+                    }}>
+                      展开更多<MDBIcon style={{marginLeft: '5px'}} icon="arrow-down"/>
+                    </li>
+                  </ul>
+
+                </div>
+              ) : (
 
 
-              <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
+                <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
 
-            )}
-          </div>
-          {this.state.showBottom || this.state.isCollapsed ? (
+              )}
+            </div>
+            {this.state.showBottom || this.state.isCollapsed ? (
 
 
-            <MDBRow style={this.state.stickyRow}>
-              <MDBCol size="12" md="3" middle>
+              <MDBRow style={this.state.stickyRow}>
+                <MDBCol size="12" md="3" middle>
               <span style={{color: '#8D9AAF', fontSize: '14px', ...basicFont}}>
                 {this.state.backend.editTime}分钟前
               </span>
-              </MDBCol>
-              <MDBCol size="9">
-                <div style={{float: 'right'}}>
-                  <MDBBtn flat style={{padding: '5px 10px', marginLeft: '15px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
-                    <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>点赞
-                  </MDBBtn>
-                  <MDBBtn flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
-                    <MDBIcon style={{marginRight: '5px'}} icon="heart"/>收藏
-                  </MDBBtn>
-                  <MDBBtn onClick={this.showComments} flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
-                    <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.commontsText}
-                  </MDBBtn>
-                  <MDBBtn flat style={{padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
-                    <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
-                  </MDBBtn>
-                  {/*<MDBBtn flat style={{padding: '5px 10px',}}>*/}
-                  {/*<MDBIcon style={{marginRight: '5px'}} icon="ban"/>*/}
-                  {/*举报*/}
-                  {/*</MDBBtn>*/}
-                  {this.state.isCollapsed ? null :
-                    <MDBBtn onClick={this.handleSpanClick} flat
-                            style={{padding: '5px 10px', color: '#4F65E1', fontSize: '14px', ...basicFont}}>
-                      收起
-                      {/*<MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>*/}
-                    </MDBBtn>}
+                </MDBCol>
+                <MDBCol size="9">
+                  <div style={{float: 'right'}}>
+                    <MDBBtn flat style={{
+                      padding: '5px 10px',
+                      marginLeft: '15px',
+                      fontSize: '14px',
+                      color: '#8D9AAF', ...basicFont
+                    }}>
+                      <MDBIcon style={{marginRight: '5px'}} far icon="thumbs-up"/>点赞
+                    </MDBBtn>
+                    <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
+                      <MDBIcon style={{marginRight: '5px'}} icon="heart"/>收藏
+                    </MDBBtn>
+                    <MDBBtn onClick={this.showComments} flat
+                            style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
+                      <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.commontsText}
+                    </MDBBtn>
+                    <MDBBtn flat style={{padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
+                      <MDBIcon style={{marginRight: '5px'}} icon="share"/>分享
+                    </MDBBtn>
+                    {/*<MDBBtn flat style={{padding: '5px 10px',}}>*/}
+                    {/*<MDBIcon style={{marginRight: '5px'}} icon="ban"/>*/}
+                    {/*举报*/}
+                    {/*</MDBBtn>*/}
+                    {this.state.isCollapsed ? null :
+                      <MDBBtn onClick={this.handleSpanClick} flat
+                              style={{padding: '5px 10px', color: '#4F65E1', fontSize: '14px', ...basicFont}}>
+                        收起
+                        {/*<MDBIcon style={{marginRight: '5px'}} icon="arrow-up"/>*/}
+                      </MDBBtn>}
+                  </div>
+
+                </MDBCol>
+
+              </MDBRow>
+
+            ) : null}
+          </div>
+          {this.state.showComments ? (
+            <div style={{marginTop: '15px', background: '#FFFFFF', padding: '19px 32px', borderRadius: '2px'}}>
+              <MDBRow style={{
+                margin: '0px 0px 11px 0px',
+                fontSize: '16px',
+                color: '#8D9AAF', ...basicFont
+              }}>{this.state.backend.commentLists.length}条评论</MDBRow>
+              <MDBRow style={{margin: '0px', display: 'flex'}}>
+                <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
+                  <img
+                    style={{width: '32px', background: '#F4F4F4'}}
+                    src={this.state.backend.img}
+                    alt=""
+                    className="rounded-circle"
+                  />
+                </MDBAvatar>
+                <div style={{marginTop: '5px', flexGrow: '1',}}>
+                  <input style={{
+                    width: '100%',
+                    background: '#FFFFFF',
+                    border: '1px solid #DBE5F7',
+                    boxSizing: 'border-box',
+                    borderRadius: '2px',
+                    padding: '8px 0px 8px 20px',
+                    fontSize: '14px',
+                    color: '#B3C1DB',
+                    height: '37px',
+                    ...basicFont,
+                  }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+
                 </div>
 
-              </MDBCol>
 
-            </MDBRow>
+                <MDBBtn onClick={(e) => this.addComments(e)} flat
+                        style={{
+                          flexGrow: '0',
+                          background: '#C4C4C4',
+                          padding: '8px 20px',
+                          color: '#FFFFFF', ...basicFont,
+                          margin: '6px 6px 5px 6px',
+                        }}>
+                  发布
+                </MDBBtn>
+
+              </MDBRow>
+              {this.state.backend.commentLists.map((item) => (
+                <CommentsCard key={item} message={item}></CommentsCard>
+
+              ))}
+              <MDBRow center style={{marginTop: '10px'}}>
+                <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length + 10}}
+                               pageCallbackFn={this.getCurrentPage}></PaginationUse>
+              </MDBRow>
+              <MDBRow center style={{marginTop: '9px'}}>
+                <MDBBtn onClick={this.showComments} flat
+                        style={{margin: '0px', padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>
+                  收起评论<MDBIcon style={{marginLeft: '5px'}} icon="arrow-up"/>
+                </MDBBtn>
+              </MDBRow>
+            </div>
 
           ) : null}
         </div>
-        {this.state.showComments ? (
-          <div style={{marginTop: '15px', background: '#FFFFFF', padding: '19px 32px', borderRadius: '2px'}}>
-            <MDBRow style={{
-              margin: '0px 0px 11px 0px',
-              fontSize: '16px',
-              color: '#8D9AAF', ...basicFont
-            }}>{this.state.backend.commentLists.length}条评论</MDBRow>
-            <MDBRow style={{margin: '0px', display: 'flex'}}>
-              <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
-                <img
-                  style={{width: '32px', background: '#F4F4F4'}}
-                  src={this.state.backend.img}
-                  alt=""
-                  className="rounded-circle"
-                />
-              </MDBAvatar>
-              <div style={{marginTop:'5px',flexGrow: '1',}}>
-                <input style={{
-                  width:'100%',
-                  background: '#FFFFFF',
-                  border: '1px solid #DBE5F7',
-                  boxSizing: 'border-box',
-                  borderRadius: '2px',
-                  padding:'8px 0px 8px 20px',
-                  fontSize:'14px',
-                  color:'#B3C1DB',
-                  height:'37px',
-                  ...basicFont,
-                }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
 
-              </div>
-              
-
-              <MDBBtn onClick={(e) => this.addComments(e)} flat
-                      style={{
-                        flexGrow: '0',
-                        background: '#C4C4C4',
-                        padding: '8px 20px',
-                        color: '#FFFFFF', ...basicFont,
-                        margin:'6px 6px 5px 6px',
-                      }}>
-                发布
-              </MDBBtn>
-
-            </MDBRow>
-            {this.state.backend.commentLists.map((item) => (
-              <CommentsCard key={item} message={item}></CommentsCard>
-
-            ))}
-            <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length+10}} pageCallbackFn={this.getCurrentPage}></PaginationUse>
-            </MDBRow>
-            <MDBRow center style={{marginTop:'9px'}}>
-              <MDBBtn onClick={this.showComments} flat style={{margin:'0px',padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
-                收起评论<MDBIcon style={{marginLeft: '5px'}} icon="arrow-up"/>
-              </MDBBtn>
-            </MDBRow>
-          </div>
-
-        ) : null}
-      </div>
-
-    );
+      );
+    }
   }
 }
 
