@@ -29,7 +29,7 @@ export class Campus extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/job-for-you/campus`, true) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/job-for-you/campus`, true)
     });
 
     this.handleReadMore();
