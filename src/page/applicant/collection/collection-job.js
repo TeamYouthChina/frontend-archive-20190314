@@ -6,6 +6,7 @@ import {
 
 import {JobCardBar} from "../../../general-component/job-card-bar/job-card-bar";
 import {languageHelper} from "../../../tool/language-helper";
+import {getAsync} from "../../../tool/api-helper";
 
 export class CollectionJob extends React.Component {
   constructor(props) {
@@ -17,42 +18,30 @@ export class CollectionJob extends React.Component {
     };
     this.text = CollectionJob.i18n[languageHelper()];
   }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        jobCollection: [
-          {id:1},
-          {id:2},
-          {id:3},
-          {id:4},
-        ],
-        searchResult: ['1', '2', '3', '4'],
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  
+  async componentDidMount() {
+    if (this.props.id) {
+      this.setState({
+        backend: await getAsync(`/jobs/${this.props.id}`)
+      });
+    } else {
+      this.setState({
+        backend: await getAsync(`/jobs/1`)
+      });
+    }
   }
-
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBRow>
           <MDBCol>
-            {this.state.backend.jobCollection.map((item)=>{
-              return (
-                
-                <div key={item}>
-                  <JobCardBar></JobCardBar>
-                </div>
-                
-              );
-            })}
+            <div>
+              <JobCardBar fulltext={this.state.backend}></JobCardBar>
+              <JobCardBar fulltext={this.state.backend}></JobCardBar> 
+              <JobCardBar fulltext={this.state.backend}></JobCardBar> 
+              <JobCardBar fulltext={this.state.backend}></JobCardBar>
+            </div>
+            
           </MDBCol>
 
         </MDBRow>
