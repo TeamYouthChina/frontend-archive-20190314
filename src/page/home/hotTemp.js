@@ -29,7 +29,7 @@ export class HotTemp extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/hot`, true) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/home/hot`, true)
     });
     
     this.handleReadMore();
