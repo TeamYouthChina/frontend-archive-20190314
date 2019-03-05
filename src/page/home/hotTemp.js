@@ -84,11 +84,12 @@ export class HotTemp extends React.Component {
                       marginBottom: '16px'
                     }}
                   >
-                <span style={{
-                  fontSize: '18px',
-                  color: '#454F69',
-                  ...this.props.basicCHNFont
-                }}
+                <span
+                  style={{
+                    fontSize: '18px',
+                    color: '#454F69',
+                    ...this.props.basicCHNFont
+                  }}
                 >
                   IT / 互联网
                 </span>
