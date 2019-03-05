@@ -42,7 +42,7 @@ export class VideoCardSearch extends React.Component {
       <MDBCard news style={{boxShadow: 'none'}}>
         <MDBRow between>
 
-          <MDBCol md="6" lg="4">
+          <MDBCol md="6" lg="4" middle>
             {/*<div className="embed-responsive embed-responsive-16by9" style={{width: '400px'}}>*/}
             {/*<Iframe*/}
             {/*className="embed-responsive-item" src="https://www.youtube.com/embed/tvTRZJ-4EyI"*/}

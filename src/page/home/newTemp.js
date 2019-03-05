@@ -29,7 +29,7 @@ export class NewTemp extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`, true) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/home/new`, true)
     });
 
     this.handleReadMore();
