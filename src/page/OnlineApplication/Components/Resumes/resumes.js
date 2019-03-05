@@ -48,6 +48,10 @@ class resumes extends Component {
     // api get resumes
   };
 
+  resumeClickHandler = (id) => {
+    this.props.history.push('/create-resume/1');
+  }
+
   render() {
     let arrayOfResumes = [];
     if (this.props.inApplicant) {
@@ -64,6 +68,7 @@ class resumes extends Component {
               lastEdit={one.lastEdit}
               selectHandler={this.props.selectHandler}
               selected={this.props.selected}
+              resumeClick={this.resumeClickHandler}
               inApplicant 
             />
         );

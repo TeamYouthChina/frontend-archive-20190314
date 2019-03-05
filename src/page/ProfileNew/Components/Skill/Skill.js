@@ -45,7 +45,8 @@ class skill extends Component {
   async componentDidMount() {
     // this api is now currently unavailable
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/skills"
+      "/applicants/" + this.props.requestID + "/skills",
+      true
     );
     this.setState({ requestedData: data });
     let temp =

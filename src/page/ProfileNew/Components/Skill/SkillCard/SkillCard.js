@@ -62,7 +62,7 @@ class skillCard extends Component {
       <div className={classes.SkillCard}>
         <img src={SkillIcon} alt="no img" />
         <div className={classes.SkillInfo}>
-          <div style={{ margin: "3px 0px" }} className={classes.oneP}>
+          <div className={classes.oneP}>
             <p>{this.state.skillData.name}</p>
           </div>
         </div>
@@ -76,7 +76,6 @@ class skillCard extends Component {
           <img src={SkillIcon} alt="no img" />
           <div className={classes.SkillInfo}>
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.skillData.name}
               ref={this.nameRef}

@@ -44,7 +44,8 @@ class Certification extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/certificates"
+      "/applicants/" + this.props.requestID + "/certificates",
+      true
     );
     this.setState({ requestedData: data });
     let temp =

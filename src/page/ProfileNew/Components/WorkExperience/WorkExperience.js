@@ -44,7 +44,8 @@ class WorkExperience extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/experiences"
+      "/applicants/" + this.props.requestID + "/experiences", 
+      true
     );
     this.setState({ requestedData: data });
     let temp =

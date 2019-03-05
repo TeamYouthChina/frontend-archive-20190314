@@ -85,20 +85,22 @@ class projectCard extends Component {
     let toShow = (
       <div className={classes.ProjectCard}>
         <input
-          style={{ margin: "3px 0px" }}
           disabled
           type="text"
           value={this.state.proData.name}
         />
-        <div style={{ margin: "3px 0px" }} className={classes.Time}>
+        <div  className={classes.twoP}>
           <p>
             {this.state.proData.duration.begin} -{" "}
             {this.state.proData.duration.end}
           </p>
         </div>
-        <input 
-                    style={{ margin: "15px 0px 3px 0px" }}
-                    disabled type="text" value={this.state.proData.note} />
+        <input
+          style={{ margin: "15px 0px 3px 0px" }}
+          disabled
+          type="text"
+          value={this.state.proData.note}
+        />
         <Dropdown delete={this.deleteHandler} edit={this.editHandler} />
       </div>
     );
@@ -108,7 +110,6 @@ class projectCard extends Component {
       toShow = (
         <div className={classes.ProjectCard}>
           <input
-          style={{ margin: "3px 0px" }}
             type="text"
             value={this.state.proData.name}
             ref={this.nameRef}
@@ -116,7 +117,6 @@ class projectCard extends Component {
             onChange={this.inputOnChange}
           />
           <input
-          style={{ margin: "3px 0px" }}
             type="text"
             value={this.state.proData.duration.begin}
             ref={this.beginRef}
@@ -124,7 +124,6 @@ class projectCard extends Component {
             onChange={this.inputOnChange}
           />
           <input
-          style={{ margin: "3px 0px" }}
             type="text"
             value={this.state.proData.duration.end}
             ref={this.endRef}
@@ -132,7 +131,6 @@ class projectCard extends Component {
             onChange={this.inputOnChange}
           />
           <input
-          style={{ margin: "3px 0px" }}
             type="text"
             value={this.state.proData.note}
             ref={this.noteRef}

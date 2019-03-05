@@ -1,15 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import classes from './topBar.module.css';
+import classes from "./topBar.module.css";
 
-const topBar = (props) => {
-    return (
-        <div className={classes.topBar}>
-            <div className={classes.vertical_center}>
-                <p className={classes.firstLine}>{props.trans.positions}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.trans.positionDetail}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{props.trans.chooseResume}</p>
-            </div>
-        </div>
-    );
-}
+const topBar = props => {
+  let output = props.text.reduce((acc, next) => {
+    const spaces = '\xa0\xa0\xa0\xa0\xa0>\xa0\xa0\xa0\xa0\xa0';
+    return acc + spaces + next;
+  });
+  return (
+    <div className={classes.topBar}>
+      <div className={classes.vertical_center}>
+        <p className={classes.firstLine}>{output}</p>
+      </div>
+    </div>
+  );
+};
 
 export default topBar;

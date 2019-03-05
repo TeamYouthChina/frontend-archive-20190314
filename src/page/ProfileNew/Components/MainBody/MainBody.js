@@ -26,7 +26,7 @@ class MainBody extends Component {
 
   async componentDidMount() {
     // using mock if no second argument
-    let data = await getAsync("/applicants/" + this.state.requestID);
+    let data = await getAsync("/applicants/" + this.state.requestID, true);
     console.log(data);
     this.setState({ requestedData: data });
   }

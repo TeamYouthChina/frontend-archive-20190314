@@ -26,7 +26,7 @@ const translation = [
     addEducation: "+ Add Education",
     noEducation: "No Education",
   },
-];  
+];
 
 const text = translation[languageHelper()];
 
@@ -44,8 +44,10 @@ class Education extends Component {
   // get educations data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/educations"
+      "/applicants/" + this.props.requestID + "/educations",
+      true
     );
+    console.log(data);
     this.setState({ requestedData: data });
     let temp =
       this.state.requestedData &&

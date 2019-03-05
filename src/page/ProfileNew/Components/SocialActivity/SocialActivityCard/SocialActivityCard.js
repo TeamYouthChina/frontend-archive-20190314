@@ -93,20 +93,18 @@ class SocialActivityCard extends Component {
         <img src={socialActivityIcon} alt="no img" />
         <div className={classes.ActivityInfo}>
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.socialData.name}
             onChange={this.inputOnChange}
           />
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.socialData.organization}
             onChange={this.inputOnChange}
           />
-          <div style={{ margin: "3px 0px" }} className={classes.twoP}>
+          <div  className={classes.twoP}>
             <p>
               {this.state.socialData.duration.begin} -{" "}
               {this.state.socialData.duration.end}
