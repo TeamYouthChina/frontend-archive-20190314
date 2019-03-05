@@ -14,40 +14,55 @@ import {getAsync} from '../../tool/api-helper';
 // import {getAsync} from '../../tool/api-helper';
 import {Redirect} from "react-router-dom";
 
-const env = true
+import {data} from './question-data'
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.text = QuestionAnswer.i18n[languageHelper()];
-    this.state = {};
+    this.state = {
+      backend:null
+    };
   }
 
   async componentDidMount() {
-    try {
-      const result = await getAsync(`/discovery/questions`,env)
-      if (result && result.status && result.status.code === 200) {
-        let mockData =
-          {
-            users:result.content.users,
-            status: {
-              code: result.status.code
-            }
-          };
-        this.setState(() => {
-          return {backend: mockData};
-        });
-      } else {
-        let mockData = {
-          status: result.status
+    if(data.env){
+      let mockData = {
+        users:data.content.users,
+        status: {
+          code: data.status.code
         }
-        this.setState(() => {
-          return {backend: mockData};
-        });
       }
-    } catch (e) {
-      alert(e)
+      this.setState({
+        backend:mockData
+      })
+    } else {
+      try {
+        const result = await getAsync(`/discovery/questions`,data.env)
+        if (result && result.status && result.status.code === 200) {
+          let mockData =
+            {
+              users:result.content.questions,
+              status: {
+                code: result.status.code
+              }
+            };
+          this.setState(() => {
+            return {backend: mockData};
+          });
+        } else {
+          let mockData = {
+            status: result.status
+          }
+          this.setState(() => {
+            return {backend: mockData};
+          });
+        }
+      } catch (e) {
+        alert(e)
+      }
     }
+    
     // console.log(result)
   }
 
@@ -59,7 +74,7 @@ export class QuestionAnswer extends React.Component {
       >
         {this.state.backend.users.map((user)=>(
           <MDBRow key={user.id} style={{margin: '1rem 0rem'}}>
-            <QuestionCard user={user} type="discovery"/>
+            <QuestionCard question={user} />
           </MDBRow>
         ))}
       </MDBContainer>

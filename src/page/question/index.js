@@ -51,7 +51,7 @@ export class QuestionAnswer extends React.Component {
                 user: result.content.username,
                 avatarUrl: result.content.avatarUrl,
               },
-              answerList: result.content.answers,
+              answerList: result.content.commonLists,
               focus: result.content.focus || 123,
               reading: result.content.reading || 123,
               status: {

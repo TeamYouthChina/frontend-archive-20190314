@@ -79,7 +79,7 @@ export class MobileArticle extends React.Component {
         authorDes: '用户体验设计专家',
         readingTime:'6',
         time:1,
-        commentLists: [1, 2],
+        commonLists: [1, 2],
         allReplys:[1,2],
         status: {
           code: 2000
@@ -109,7 +109,7 @@ export class MobileArticle extends React.Component {
   addComments(e,input){
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend:{
         allReplys,
@@ -175,7 +175,7 @@ export class MobileArticle extends React.Component {
                   {ifShown && (
                     <div>
                       <div>
-                        {this.state.backend.commentLists.map((item)=>(
+                        {this.state.backend.commonLists.map((item)=>(
                           <CommentsCard key={item} message={item}></CommentsCard>
 
                         ))}

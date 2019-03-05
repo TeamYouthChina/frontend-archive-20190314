@@ -34,6 +34,7 @@ export class QuestionAnswerOne extends React.Component {
   }
 
   async componentDidMount() {
+    console.log(this.props.location.state.h1)
     const result = await getAsync(`/questions/${this.props.match.params.questionId}`)
     // console.log(result)
     if (result && result.status && result.status.code === 2000) {
@@ -82,7 +83,7 @@ export class QuestionAnswerOne extends React.Component {
         ) : (
           <div style={{backgroundColor:'#F2F2F2'}}>
             <Header></Header>
-
+        
             <MDBRow style={{marginTop:'10px'}}>
               <MDBCol size="1"></MDBCol>
               <MDBCol size="10">

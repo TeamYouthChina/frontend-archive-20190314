@@ -51,7 +51,7 @@ export class VideoMobile extends React.Component {
           descrption: 'wen ti de miao shu'
         },
         time: 8,
-        commentLists: [1, 2, 3],
+        commonLists: [1, 2, 3],
         allReplys: [1, 2],
         focus: 123,
         reading: 123,
@@ -87,7 +87,7 @@ export class VideoMobile extends React.Component {
   addComments(e, input) {
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
         allReplys,
@@ -146,7 +146,7 @@ export class VideoMobile extends React.Component {
               <div>
                 <div>
                   <MDBCol size="11">
-                    {this.state.backend.commentLists.map((item) => (
+                    {this.state.backend.commonLists.map((item) => (
                       <CommentsCard key={item} message={item}></CommentsCard>
 
                     ))}

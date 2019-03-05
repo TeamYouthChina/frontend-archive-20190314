@@ -76,7 +76,7 @@ export class CommentsCard extends React.Component {
   addComments(e, input) {
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
         allReplys,

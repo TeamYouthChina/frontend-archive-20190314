@@ -13,6 +13,8 @@ import {
   MDBAvatar,
 } from 'mdbreact';
 
+import {data} from '../discovery/question-data'
+
 const basicFont = {
   fontFamily: 'PingFang SC',
   lineHeight: 'normal'
@@ -38,10 +40,11 @@ export class QuestionCard extends React.Component {
     super(props);
     this.state = {
       backend: null,
+      editorState: null,
       isCollapsed: true,
       showBottom: true,
       showComments: false,
-      commontsText: '89条评论',
+      commontsText: null,
       pageConfig: {
         totalPage: 14 //总页码
       },
@@ -57,6 +60,7 @@ export class QuestionCard extends React.Component {
     this.addComments = this.addComments.bind(this);
     // 监听滚动事件
     this.orderScroll = this.orderScroll.bind(this)
+    this.sliceText = this.sliceText.bind(this)
     // 多语言
     this.text = QuestionCard.i18n[languageHelper()];
   }
@@ -83,55 +87,47 @@ export class QuestionCard extends React.Component {
     }
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: '0100',
-        title: '哪家公司的伙食是世界上最好的?',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-        user: '齐昊',
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        // description: '莫以为敌消彼长，然乾坤逆之天崩',
-        description: 'WeYouth负责人',
-        readingTime: 10,
-        editTime: 1,
-        score: 5,
-        commentLists: [1, 2],
-        agree: '',
-        disagree: '',
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
+  sliceText(text) {
+    if (text.length > 300) {
+      return text.slice(1, 300) + '......'
+    } else {
+      return text
+    }
   }
 
   async componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
     let mockData
     let user
+    let commonLists
+    if(data.env){
+      commonLists = [1,2]
+    } else {
+      try {
+        commonLists = await getAsync(`answers/${this.props.user.answers[0].id}/comments`)
+      } catch (e) {
+        // alert(e)
+      }
+    }
     // 传入id就自己fetch
     if (this.props.questionId) {
-      
+
       try {
         const result = await getAsync(`/question/${this.props.questionId}`)
         user = result.content
         mockData = {
           id: user.id,
           title: user.title || '哪家公司的伙食是世界上最好的?',
-          short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-          long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+          short: this.sliceText(user.answers[0].body.braftEditorRaw.blocks[0].text) || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+          long: user.answers[0].body.braftEditorRaw || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
           user: user.creator.username || '齐昊',
           img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
           // description: '莫以为敌消彼长，然乾坤逆之天崩',
           description: 'WeYouth负责人',
           readingTime: 10,
-          editTime: user.modified_at.slice(0,10) || 1,
+          editTime: user.modified_at.slice(0, 10) || 1,
           score: 5,
-          commentLists: user.answers || [1, 2],
+          commonLists: commonLists === [] ? [1, 2] : commonLists,
           agree: '',
           disagree: '',
           status: {
@@ -139,23 +135,23 @@ export class QuestionCard extends React.Component {
           }
         };
       } catch (e) {
-        alert(e)
+        // alert(e)
       }
-    } else if (this.props.user) {
-      user = this.props.user
+    } else if (this.props.question) {
+      user = this.props.question
       mockData = {
         id: user.id,
         title: user.title || '哪家公司的伙食是世界上最好的?',
-        short: user.body.previewText || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        short: this.sliceText(user.answers[0].body.braftEditorRaw.blocks[0].text) || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: user.answers[0].body.braftEditorRaw || '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
         user: user.creator.username || '齐昊',
         img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
         description: 'WeYouth负责人',
         readingTime: 10,
-        editTime: user.modified_at.slice(0,10) || 1,
+        editTime: user.modified_at.slice(0, 10) || 1,
         score: 5,
-        commentLists: user.answers || [1, 2],
+        commonLists: commonLists || [1, 2],
         agree: '',
         disagree: '',
         status: {
@@ -175,7 +171,7 @@ export class QuestionCard extends React.Component {
         readingTime: 10,
         editTime: '2019-01-01',
         score: 5,
-        commentLists: [1, 2],
+        commonLists: [1, 2],
         agree: '',
         disagree: '',
         status: {
@@ -183,8 +179,10 @@ export class QuestionCard extends React.Component {
         }
       }
     }
-    this.setState(() => {
-      return {backend: mockData};
+    this.setState({
+      backend: mockData,
+      commontsText:`${commonLists.length}条评论`,
+      editorState: BraftEditor.createEditorState(mockData.long)
     });
   }
 
@@ -215,7 +213,7 @@ export class QuestionCard extends React.Component {
 
   showComments() {
 
-    let commontsText = this.state.commontsText === '89条评论' ? '收起评论' : '89条评论'
+    let commontsText = this.state.commontsText === `${this.state.backend.commonLists.length}条评论` ? '收起评论' : `${this.state.backend.commonLists.length}条评论`
     let showComments = !this.state.showComments
     this.setState({
       showComments,
@@ -226,10 +224,10 @@ export class QuestionCard extends React.Component {
   addComments(e) {
     let {commentLists = []} = this.state.backend
     commentLists.unshift(this.input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
-        commentLists,
+        commentLists: commentLists,
         ...this.state.backend
       }
     })
@@ -246,14 +244,18 @@ export class QuestionCard extends React.Component {
   }
 
   render() {
-    if (this.state.backend) {
+    if (this.state.backend && this.state.backend.status) {
+      const user = this.props.user
       return (
 
         <div>
           <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
                ref={(span) => this.scrollSpan = span}>
-            
-            <Link to={`/article/${this.state.backend.id}`}><strong
+
+            <Link to={{
+              pathname:`/question/${this.props.question.id}/answer/${this.props.question.answers[0].id}`,
+              state:{user},
+            }}><strong
               style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
 
             <div>
@@ -299,7 +301,7 @@ export class QuestionCard extends React.Component {
                       margin: '1px 14px',
                       fontSize: '12px',
                       color: '#4F65E1', ...basicFont
-                    }}>{this.state.backend.score}分</span>
+                    }}>{this.state.backend.score}</span>
                     </MDBBtn>
                   </li>
                 </ul>
@@ -328,7 +330,11 @@ export class QuestionCard extends React.Component {
               ) : (
 
 
-                <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
+                <span
+                  dangerouslySetInnerHTML={{__html: this.state.editorState.toHTML()}}
+                  style={{color: '#31394D', fontSize: '14px', ...basicFont}}>
+                  {/*{this.state.backend.long}*/}
+                  </span>
 
               )}
             </div>
@@ -338,7 +344,7 @@ export class QuestionCard extends React.Component {
               <MDBRow style={this.state.stickyRow}>
                 <MDBCol size="12" md="3" middle>
               <span style={{color: '#8D9AAF', fontSize: '14px', ...basicFont}}>
-                {this.state.backend.editTime}分钟前
+                {this.state.backend.editTime}
               </span>
                 </MDBCol>
                 <MDBCol size="9">
@@ -385,7 +391,7 @@ export class QuestionCard extends React.Component {
                 margin: '0px 0px 11px 0px',
                 fontSize: '16px',
                 color: '#8D9AAF', ...basicFont
-              }}>{this.state.backend.commentLists.length}条评论</MDBRow>
+              }}>{this.state.backend.commonLists.length}条评论</MDBRow>
               <MDBRow style={{margin: '0px', display: 'flex'}}>
                 <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
                   <img
@@ -424,12 +430,12 @@ export class QuestionCard extends React.Component {
                 </MDBBtn>
 
               </MDBRow>
-              {this.state.backend.commentLists.map((item) => (
+              {this.state.backend.commonLists.map((item) => (
                 <CommentsCard key={item} message={item}></CommentsCard>
 
               ))}
               <MDBRow center style={{marginTop: '10px'}}>
-                <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length + 10}}
+                <PaginationUse pageConfig={{totalPage: this.state.backend.commonLists.length}}
                                pageCallbackFn={this.getCurrentPage}></PaginationUse>
               </MDBRow>
               <MDBRow center style={{marginTop: '9px'}}>
@@ -444,6 +450,8 @@ export class QuestionCard extends React.Component {
         </div>
 
       );
+    } else {
+      return <div></div>
     }
   }
 }
