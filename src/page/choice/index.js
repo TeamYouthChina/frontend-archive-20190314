@@ -15,6 +15,9 @@ import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+import {JobBasedOnMajor} from './container/Major';
+import {JobBasedOnInterest} from './container/Interest';
+import {JobBasedOnHot} from './container/Hot';
 
 import classes from './index.module.css';
 import {ComCardSquare} from '../../general-component/company-card-square/company-card-square';
@@ -57,167 +60,170 @@ export class Choice extends React.Component {
 
           </div>
         </div>
-        <div
-          className="row justify-content-center"
-          style={{
-            backgroundColor: '#f7f7f7',
-            padding: '1rem 0rem'
-          }}
-        >
-          <div className="col-md-12 col-lg-10 col-xl-8">
-            <div style={{marginBottom: '1rem'}}>
-              <h2>根据专业为你选择的工作</h2>
-            </div>
-            <div className="row">
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-            </div>
-            <div>
-              <h6><a href="/search">查看更多 -></a></h6>
-            </div>
-          </div>
-        </div>
-        <div
-          className={`row justify-content-center ${classes.a1}`}
-          style={{
-            padding: '1rem 0rem'
-          }}
-        >
-          <div className="col-md-12 col-lg-10 col-xl-8">
-            <div style={{marginBottom: '1rem'}}>
-              <h2>根据你的兴趣为你选择的工作</h2>
-            </div>
-            <div className="row">
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <JobCardSquare/>
-              </div>
-            </div>
-            <div>
-              <h6><a href="/search">查看更多 -></a></h6>
-            </div>
-          </div>
-        </div>
-        <div
-          className="row justify-content-center"
-          style={{
-            backgroundColor: '#f7f7f7',
-            padding: '1rem 0rem'
-          }}
-        >
-          <div className="col-md-12 col-lg-10 col-xl-8">
-            <div style={{marginBottom: '1rem'}}>
-              <h2>这几家企业非常热门</h2>
-            </div>
-            <div className="row">
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ComCardSquare/>
-              </div>
-            </div>
-            <div>
-              <h6><a href="/search">查看更多 -></a></h6>
-            </div>
-          </div>
-        </div>
+        <JobBasedOnMajor/>
+        <JobBasedOnInterest background={classes.a1}/>
+        <JobBasedOnHot/>
+        {/*<div*/}
+        {/*className="row justify-content-center"*/}
+        {/*style={{*/}
+        {/*backgroundColor: '#f7f7f7',*/}
+        {/*padding: '1rem 0rem'*/}
+        {/*}}*/}
+        {/*>*/}
+        {/*<div className="col-md-12 col-lg-10 col-xl-8">*/}
+        {/*<div style={{marginBottom: '1rem'}}>*/}
+        {/*<h2>根据专业为你选择的工作</h2>*/}
+        {/*</div>*/}
+        {/*<div className="row">*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*<h6><a href="/search">查看更多 -></a></h6>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className={`row justify-content-center ${classes.a1}`}*/}
+        {/*style={{*/}
+        {/*padding: '1rem 0rem'*/}
+        {/*}}*/}
+        {/*>*/}
+        {/*<div className="col-md-12 col-lg-10 col-xl-8">*/}
+        {/*<div style={{marginBottom: '1rem'}}>*/}
+        {/*<h2>根据你的兴趣为你选择的工作</h2>*/}
+        {/*</div>*/}
+        {/*<div className="row">*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<JobCardSquare/>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*<h6><a href="/search">查看更多 -></a></h6>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="row justify-content-center"*/}
+        {/*style={{*/}
+        {/*backgroundColor: '#f7f7f7',*/}
+        {/*padding: '1rem 0rem'*/}
+        {/*}}*/}
+        {/*>*/}
+        {/*<div className="col-md-12 col-lg-10 col-xl-8">*/}
+        {/*<div style={{marginBottom: '1rem'}}>*/}
+        {/*<h2>这几家企业非常热门</h2>*/}
+        {/*</div>*/}
+        {/*<div className="row">*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*<div*/}
+        {/*className="col-4"*/}
+        {/*style={{marginBottom: '1rem'}}*/}
+        {/*>*/}
+        {/*<ComCardSquare/>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*<div>*/}
+        {/*<h6><a href="/search">查看更多 -></a></h6>*/}
+        {/*</div>*/}
+        {/*</div>*/}
+        {/*</div>*/}
         <div
           className="row justify-content-center"
           style={{
