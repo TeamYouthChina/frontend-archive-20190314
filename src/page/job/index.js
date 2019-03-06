@@ -27,9 +27,7 @@ import {data} from '../discovery/question-data';
 import {ReviewCardSquareFull} from '../choice/review-card-small';
 
 //define the basic font style and then pass them into children components.
-const basicCHNFont
-
-  = {
+const basicCHNFont = {
   fontFamily: 'PingFang SC',
   fontStyle: 'normal',
   fontWeight: 'normal',

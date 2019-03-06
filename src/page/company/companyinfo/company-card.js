@@ -6,7 +6,7 @@ import {
   MDBIcon
 } from 'mdbreact';
 import {getAsync} from "../../../tool/api-helper";
-
+import {IfCollect} from "../../../general-component/if-collect";
 
 import {withRouter} from 'react-router-dom';
 import classes from './company-card.module.css'
@@ -132,14 +132,9 @@ export class CompanyCard1 extends React.Component {
               <div
                 style={{
                   flexGrow: 1,
-                  fontFamily: 'PingFang SC',
-                  lineHeight: 'normal',
-                  fontSize: '0.875rem',
-                  color: '#8D9AAF',
                 }}
               >
-                <MDBIcon far icon="heart" className="mr-2"/>
-                收藏
+                <IfCollect/>
               </div>
             </div>
            
