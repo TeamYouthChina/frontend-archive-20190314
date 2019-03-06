@@ -50,7 +50,7 @@ export class VideoCardSearch extends React.Component {
             {/*</Iframe>*/}
             {/*</div>*/}
             <div className="text-center p-3">
-              <Iframe src="https://www.youtube.com/embed/tvTRZJ-4EyI"/>
+              <Iframe src="http://player.youku.com/embed/XMTQ0NDAyNzc5Mg=="/>
             </div>
           </MDBCol>
 
@@ -59,7 +59,7 @@ export class VideoCardSearch extends React.Component {
               <div className="social-meta ml-4 ml-md-0" style={{color: '#454F69'}}>
                 <MDBRow
                   style={{...this.props.basicCHNFont, fontWeight: '500', fontSize: '18px'}}>
-                  Kendrick Lamar - HUMBLE.
+                  东航企业形象宣传片（3分58秒）
                 </MDBRow>
                 <MDBRow className="mb-2" style={{...this.props.basicCHNFont, fontSize: '16px'}}>
                   齐昊 • 9527 次观看 • 一个月前
@@ -73,11 +73,8 @@ export class VideoCardSearch extends React.Component {
                     lineHeight: '1.5rem',
                     overflow: 'hidden'
                   }}>
-                    Kendrick Lamar DAMN. Available now <a href="http://smarturl.it/DAMN">http://smarturl.it/DAMN</a><br/>
-                    Prod: Anthony "Top Dawg" Tiffith, Dave Free Nathan K. Scherrer, Jason Baum, Jamie Rabineau<br/>
-                    Prod Co: TDE Films / FREENJOY INC<br/>
-                    Dir: Dave Meyers & the little homies<br/>
-                    Music video by Kendrick Lamar performing HUMBLE.. (C) 2017 Aftermath/Interscope (Top Dawg Entertainment)
+                    东航企业形象宣传片（3分58秒）
+                    <a href="http://www.ceair.com/">http://www.ceair.com/</a>
                   </p>
                 </MDBRow>
               </div>
