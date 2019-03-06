@@ -7,25 +7,23 @@ import {getAsync} from "../../tool/api-helper";
 export class CoDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-     
-    };
-    
+    this.state = {};
+
   }
-  
-  
+
+
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/companies/${this.props.id}`)
+        backend: await getAsync(`/companies/${this.props.id}`, true)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/companies/1`)
+        backend: await getAsync(`/companies/1`, true)
       });
     }
   }
-  
+
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
@@ -46,7 +44,7 @@ export class CoDetail extends React.Component {
           </p>
         </div>
       </div>
-    ):null;
+    ) : null;
   }
 }
 

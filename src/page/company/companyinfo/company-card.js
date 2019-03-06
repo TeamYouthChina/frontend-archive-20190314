@@ -26,11 +26,11 @@ export class CompanyCard1 extends React.Component {
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/companies/${this.props.id}`)
+        backend: await getAsync(`/companies/${this.props.id}`, true)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/companies/1`)
+        backend: await getAsync(`/companies/1`, true)
       });
     }
   }

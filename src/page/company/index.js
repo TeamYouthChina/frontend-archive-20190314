@@ -7,7 +7,8 @@ import {
   MDBCardBody,
   MDBBtn,
   Mask,
-  View
+  View,
+  MDBAvatar
 } from 'mdbreact';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
@@ -20,6 +21,9 @@ import {ApplicantCard} from "../../general-component/applicant-card/applicant-ca
 import {ReviewCard} from "../../general-component/review-card";
 import {QuestionCard} from "../question/question-card-test";
 import {ReplyCard} from "../question/reply-card";
+import {ReviewCardSquareFull} from '../choice/review-card-small';
+import {data} from '../discovery/question-data';
+import classes from '../../general-component/applicant-card/applicant-card.module.css';
 
 
 export class Company extends React.Component {
@@ -50,19 +54,19 @@ export class Company extends React.Component {
             </Mask>
           </View>
         </div>
-        <MDBRow center>
+        <MDBRow center style={{marginBottom: '20px'}}>
           <MDBCol
             md="10"
           >
-            <CompanyCard/>
-            <MDBCard 
+            <CompanyCard id={this.props.match.params.id}/>
+            <MDBCard
               className="px-3 pb-3 white my-4"
-              style={{boxShadow:'none', borderRadius:'0px'}}
+              style={{boxShadow: 'none', borderRadius: '0px'}}
             >
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol>
-                    <CoDetail></CoDetail>
+                    <CoDetail id={this.props.match.params.id}/>
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
@@ -76,13 +80,13 @@ export class Company extends React.Component {
             </p>
             <MDBRow center>
               <MDBCol>
-                <JobCardSquare/>
+                <JobCardSquare/> {/*缺后端*/}
               </MDBCol>
               <MDBCol>
-                <JobCardSquare/>
+                <JobCardSquare/> {/*缺后端*/}
               </MDBCol>
               <MDBCol>
-                <JobCardSquare/>
+                <JobCardSquare/> {/*缺后端*/}
               </MDBCol>
             </MDBRow>
             <MDBRow center className="mt-2">
@@ -95,15 +99,17 @@ export class Company extends React.Component {
                 </strong>
               </h4>
               <MDBRow className="px-3 pb-3 mb-4">
-                <p>
-                  <ReviewCard/>
-                </p>
-                <p>
-                  <ReviewCard/>
-                </p>
-                <p>
-                  <ReviewCard/>
-                </p>
+                <MDBRow>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                </MDBRow>
               </MDBRow>
             </p>
             <p id="questionanswer">
@@ -112,10 +118,7 @@ export class Company extends React.Component {
                   问答
                 </strong>
               </h4>
-              <QuestionCard/>
-              <QuestionCard/>
-              <QuestionCard/>
-              
+              <QuestionCard question={data.content.users[1]}/>
             </p>
             <p id="photo">
               <h4 className="font-weight-bold mb-3 px-3">
@@ -124,7 +127,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
             </p>
-            <MDBCard className="p-3 pb-3 mb-4" style={{boxShadow:'none'}}>
+            <MDBCard className="p-3 pb-3 mb-4" style={{boxShadow: 'none'}}>
 
               <MDBCardBody>
                 <Photo/>
@@ -139,25 +142,88 @@ export class Company extends React.Component {
             </p>
             <MDBRow between>
               <MDBCol>
-                <ApplicantCard/>
+                <MDBCard className={classes.card}>
+                  <div className={classes.avatar}>
+                    <MDBAvatar
+                      tag="img"
+                      src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
+                      className="rounded-circle z-depth-1 img-fluid"
+                      alt="Sample avatar"
+                      style={{width: '104px', height: '104px'}}
+                    />
+                  </div>
+                  <div className={classes.name}>齐昊</div>
+                  <div className={classes.position}>职道负责人</div>
+                  <div className={classes.diploma}>
+                    乔治华盛顿大学
+                  </div>
+                  <div className={classes.friend}>
+                    2位共同好友
+                  </div>
+                  <div className={classes.btn}>
+                    <MDBBtn flat className={classes.btn_flat}>
+                      <p className={classes.btn_font}>加为好友</p>
+                    </MDBBtn>
+                  </div>
+                </MDBCard>
               </MDBCol>
               <MDBCol>
-                <ApplicantCard/>
+                <MDBCard className={classes.card}>
+                  <div className={classes.avatar}>
+                    <MDBAvatar
+                      tag="img"
+                      src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
+                      className="rounded-circle z-depth-1 img-fluid"
+                      alt="Sample avatar"
+                      style={{width: '104px', height: '104px'}}
+                    />
+                  </div>
+                  <div className={classes.name}>齐昊</div>
+                  <div className={classes.position}>职道负责人</div>
+                  <div className={classes.diploma}>
+                    乔治华盛顿大学
+                  </div>
+                  <div className={classes.friend}>
+                    2位共同好友
+                  </div>
+                  <div className={classes.btn}>
+                    <MDBBtn flat className={classes.btn_flat}>
+                      <p className={classes.btn_font}>加为好友</p>
+                    </MDBBtn>
+                  </div>
+                </MDBCard>
               </MDBCol>
               <MDBCol>
-                <ApplicantCard/>
+                <MDBCard className={classes.card}>
+                  <div className={classes.avatar}>
+                    <MDBAvatar
+                      tag="img"
+                      src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
+                      className="rounded-circle z-depth-1 img-fluid"
+                      alt="Sample avatar"
+                      style={{width: '104px', height: '104px'}}
+                    />
+                  </div>
+                  <div className={classes.name}>齐昊</div>
+                  <div className={classes.position}>职道负责人</div>
+                  <div className={classes.diploma}>
+                    乔治华盛顿大学
+                  </div>
+                  <div className={classes.friend}>
+                    2位共同好友
+                  </div>
+                  <div className={classes.btn}>
+                    <MDBBtn flat className={classes.btn_flat}>
+                      <p className={classes.btn_font}>加为好友</p>
+                    </MDBBtn>
+                  </div>
+                </MDBCard>
               </MDBCol>
             </MDBRow>
           </MDBCol>
         </MDBRow>
-        <MDBRow top>
-          <MDBCol md="10" className="offset-md-1">
-
-          </MDBCol>
-        </MDBRow>
         <Footer/>
       </div>
-
     );
   }
 }
