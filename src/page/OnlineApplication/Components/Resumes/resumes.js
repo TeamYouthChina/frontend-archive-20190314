@@ -49,7 +49,10 @@ class resumes extends Component {
   };
 
   resumeClickHandler = (id) => {
-    this.props.history.push('/create-resume/1');
+    // this.props.history.push('/create-resume/1');
+    // console.log(`${id} clicked`)
+    // this.props.toggleModal(id)
+    
   }
 
   render() {
