@@ -1,23 +1,21 @@
 import React from 'react';
+import classes from './index.module.css';
 import {Redirect, Route, Switch} from 'react-router-dom';
+
 import {ArticleCardSquareFull} from './article-card-small';
 import {QuestionCardSquareFull} from './question-card-small';
 import {ReviewCardSquareFull} from './review-card-small';
+import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
+import {ComCardSquare1} from '../../general-component/company-card-square/company-card-square';
+import {Header} from '../../general-component/header/header';
+import {Footer} from '../../general-component/footer';
+import {languageHelper} from '../../tool/language-helper';
+import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 
 import {
   MDBRow,
   MDBCol
 } from 'mdbreact';
-
-import {languageHelper} from '../../tool/language-helper';
-import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-
-import {Header} from '../../general-component/header/header';
-import {Footer} from '../../general-component/footer';
-import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
-
-import classes from './index.module.css';
-import {ComCardSquare} from '../../general-component/company-card-square/company-card-square';
 
 export class Choice extends React.Component {
   constructor(props) {
@@ -73,37 +71,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="1"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="6"/>
               </div>
             </div>
             <div>
@@ -126,37 +124,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="7"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="8"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="9"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="10"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="11"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <JobCardSquare/>
+                <JobCardSquare id="12"/>
               </div>
             </div>
             <div>
@@ -180,37 +178,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="1"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare/>
+                <ComCardSquare1 id="6"/>
               </div>
             </div>
             <div>
@@ -234,7 +232,13 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ArticleCardSquareFull fulltext="1"/>
+                <ArticleCardSquareFull fulltext="3"/>
+              </div>
+              <div
+                className="col-4"
+                style={{marginBottom: '1rem'}}
+              >
+                <ArticleCardSquareFull fulltext="2"/>
               </div>
               <div
                 className="col-4"
@@ -246,7 +250,7 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ArticleCardSquareFull fulltext="1"/>
+                <ArticleCardSquareFull fulltext="2"/>
               </div>
               <div
                 className="col-4"
@@ -258,13 +262,7 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ArticleCardSquareFull fulltext="1"/>
-              </div>
-              <div
-                className="col-4"
-                style={{marginBottom: '1rem'}}
-              >
-                <ArticleCardSquareFull fulltext="1"/>
+                <ArticleCardSquareFull fulltext="3"/>
               </div>
             </div>
             <div>
