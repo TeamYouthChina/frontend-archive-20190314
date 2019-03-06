@@ -61,9 +61,9 @@ class Header1 extends React.Component {
           >
             <MDBCol className={classes.yc} md="1">
               <MDBNavbarBrand href="/">
-                <strong>
-                  WeYouth
-                </strong>
+                
+                  职 道
+                
               </MDBNavbarBrand>
             </MDBCol>
             <MDBCol md="2">
