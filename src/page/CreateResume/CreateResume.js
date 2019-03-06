@@ -12,8 +12,9 @@ class CreateResume extends Component {
   };
 
   componentWillMount() {
-    this.setState({ requestID: this.props.match.params.id });
-    console.log(this.state.requestID);
+    this.setState({ requestID: this.props.match.params.id }, () => {
+      console.log(this.state.requestID);
+    });
   }
 
   componentDidMount() {}

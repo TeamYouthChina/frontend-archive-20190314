@@ -44,42 +44,40 @@ class skill extends Component {
       "/applicants/" + this.props.requestID + "/skills",
       true
     );
-    this.setState({ requestedData: data });
-    this.date = new Date();
-    const time = this.date.getTime();
+    console.log(data)
     let temp1 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map((e,i) => {
             return (
               <SkillCard
-                key={time}
-                id={time}
+                key={i}
+                id={i}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
               />
             );
           })
-        : Array();
+        : [];
 
     let temp2 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map((e,i) => {
             return (
               <SkillCard
-                key={time}
-                id={time}
+                key={i}
+                id={i}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
               />
             );
           })
-        : Array();
+        : [];
 
     this.setState({
       ...this.state,
