@@ -144,10 +144,8 @@ export class CompanyCard1 extends React.Component {
                   flexGrow: 1,
                 }}
               >
-               <IfCollect/>
+               <IfCollect ifcollect={false}/>
               </div>
-              
-              
             </div>
            
           </div>
