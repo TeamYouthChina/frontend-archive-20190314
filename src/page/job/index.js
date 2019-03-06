@@ -22,16 +22,18 @@ import {JobCardSquare} from '../../general-component/job-card-square/job-card-sq
 import {ReviewCard} from '../../general-component/review-card';
 import {SeeMoreBtn} from './component/seemore-button';
 import {JobCardBar} from "./component/jobinfo/job-card-bar";
+import {getAsync} from '../../tool/api-helper';
 
 //define the basic font style and then pass them into children components.
 const basicCHNFont
 
-= {
+  = {
   fontFamily: 'PingFang SC',
   fontStyle: 'normal',
   fontWeight: 'normal',
   lineHeight: 'normal'
 };
+
 
 export class Job extends React.Component {
   constructor(props) {
@@ -45,11 +47,16 @@ export class Job extends React.Component {
 
   //todo，向SeeMoreBtn里面传入handleSeeMore函数（未实现）
 
-  
+  async componentDidMount() {
+    this.setState({
+      backend: await getAsync(`/jobs/${this.props.match.params.id}`)
+    });
+  }
+
   render() {
     const btnColor = '#E3E9EE';
 
-    return (
+    return this.state.backend ? (
       <div>
         <Header/>
 
@@ -66,26 +73,26 @@ export class Job extends React.Component {
         </div>
 
         <MDBRow style={{backgroundColor: '#F3F5F7'}} center top>
-         
+
           <MDBCol size="10" md="8">
-            
+
             {/*todo，最好使用grid，不要用p。*/}
             <p>
               <MDBCard style={{boxShadow: 'none'}} className="px-3">
                 <MDBCardBody>
                   <MDBRow>
-                    <JobCardBar/>
+                    <JobCardBar id={this.props.match.params.id}/>
                   </MDBRow>
-                  
+
                 </MDBCardBody>
               </MDBCard>
             </p>
             <p>
               <MDBCard style={{boxShadow: 'none'}} className="px-3">
                 <MDBCardBody>
-               
-                 
-                  <JobDescri basicCHNFont={basicCHNFont}/>
+
+
+                  <JobDescri id={this.props.match.params.id} basicCHNFont={basicCHNFont}/>
                 </MDBCardBody>
               </MDBCard>
             </p>
@@ -95,13 +102,13 @@ export class Job extends React.Component {
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-                      <CoDetail basicCHNFont={basicCHNFont}/>
+                      <CoDetail basicCHNFont={basicCHNFont}/> {/*写死了*/}
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
               </MDBCard>
             </p>
-            
+
             {/*todo，这里公司卡片需要长条状的，参考高保真设计。*/}
             <p id="job">
               <MDBCard style={{boxShadow: 'none'}} className="mt-4 px-3 py-3">
@@ -112,16 +119,16 @@ export class Job extends React.Component {
                 <MDBContainer className="mt-2">
                   <MDBRow between>
                     <MDBCol>
-                      <JobCardSquare style={{boxShadow: 'none'}}/>
+                      <JobCardSquare style={{boxShadow: 'none'}}/> {/*没后端*/}
                     </MDBCol>
                     <MDBCol>
-                      <JobCardSquare/>
+                      <JobCardSquare/> {/*没后端*/}
                     </MDBCol>
                     <MDBCol>
-                      <JobCardSquare/>
+                      <JobCardSquare/> {/*没后端*/}
                     </MDBCol>
                     <MDBCol>
-                      <JobCardSquare/>
+                      <JobCardSquare/> {/*没后端*/}
                     </MDBCol>
                   </MDBRow>
                   <MDBRow center className="mt-4">
@@ -132,7 +139,7 @@ export class Job extends React.Component {
                 </MDBContainer>
               </MDBCard>
             </p>
-
+            {/*
             <p id="comment">
               <MDBCard style={{boxShadow: 'none'}} className="mt-4 px-3 py-3">
                 <p style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}
@@ -157,13 +164,14 @@ export class Job extends React.Component {
                 </MDBRow>
               </MDBCard>
             </p>
+            */}
           </MDBCol>
 
         </MDBRow>
 
         <Footer/>
       </div>
-    );
+    ) : null;
 
 
   }

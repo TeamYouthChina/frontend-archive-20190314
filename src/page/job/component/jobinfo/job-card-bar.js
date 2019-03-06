@@ -32,11 +32,11 @@ export class JobCardBar extends React.Component {
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/jobs/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`, true)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/jobs/1`)
+        backend: await getAsync(`/jobs/1`, true)
       });
     }
   }
@@ -52,17 +52,17 @@ export class JobCardBar extends React.Component {
           height: '13rem',
           width: '57.3125rem',
           background: '#FFFFFF',
-          boxShadow:'none'
-         
+          boxShadow: 'none'
+
         }}
       >
         <div className="d-flex mx-2 mb-3 align-items-end justify-content-between">
-          <div 
+          <div
             className="flex-grow-3 mr-3 "
             style={{
-              
+
               width: '35.3125rem',
-             
+
 
             }}
           >
@@ -72,13 +72,16 @@ export class JobCardBar extends React.Component {
                 src="http://47.254.46.117:5000/tencent/icon.png"
                 className="rounded img-fluid"
                 alt="Sample avatar"
-                style={{height:'4.5rem'}}
+                style={{height: '4.5rem'}}
               />
             </div>
-            
+
             <div className={classes.title}>{this.state.backend.content.name}</div>
             <div className={classes.date}>一天前发布</div>
-            <div className={classes.text}>{this.state.backend.content.organization.name}| {this.state.backend.content.location} | 100rmb日薪 |一周五天 |实习四个月 |提供转正机会</div>
+            <div
+              className={classes.text}>{this.state.backend.content.organization.name}| {this.state.backend.content.location} |
+              100rmb日薪 |一周五天 |实习四个月 |提供转正机会
+            </div>
           </div>
           <div className="d-flex flex-grow-1 align-items-end">
             <div>
@@ -114,7 +117,7 @@ export class JobCardBar extends React.Component {
                   </MDBRow>
                 </MDBModalBody>
               </MDBModal>
-             
+
             </div>
             <div
               style={{
@@ -129,12 +132,11 @@ export class JobCardBar extends React.Component {
               <MDBIcon far icon="heart" className="mr-2"/>
               收藏
             </div>
-           
+
           </div>
-         
+
         </div>
-      
-          
+
 
       </MDBCard>
     ) : null;
