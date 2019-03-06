@@ -57,7 +57,7 @@ export class ComCardSquare1 extends React.Component {
                 />
 
               </div>
-              <div>
+              <div style={{zIndex: '10'}}>
                 <MDBDropdown>
                   <MDBDropdownToggle className="p-0"nav >
                     <MDBIcon
@@ -94,8 +94,7 @@ export class ComCardSquare1 extends React.Component {
             </div>
 
           </div>
-
-
+          
         </MDBCard>
 
       </div>
