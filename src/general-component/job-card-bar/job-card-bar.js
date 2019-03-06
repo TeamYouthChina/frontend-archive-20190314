@@ -15,7 +15,8 @@ import {
 
 import {languageHelper} from '../../tool/language-helper';
 import {getAsync} from '../../tool/api-helper';
-import classes from './job-card-bar.module.css'
+import classes from './job-card-bar.module.css';
+import {IfCollect} from "../if-collect";
 
 export class JobCardBar extends React.Component {
   constructor(props) {
@@ -51,11 +52,11 @@ export class JobCardBar extends React.Component {
     } else {
       if (this.props.id) {
         this.setState({
-          backend: await getAsync(`/jobs/${this.props.id}`)
+          backend: await getAsync(`/jobs/${this.props.id}`,true)
         });
       } else {
         this.setState({
-          backend: await getAsync(`/jobs/1`)
+          backend: await getAsync(`/jobs/1`,true)
         });
       }
     }
@@ -63,7 +64,8 @@ export class JobCardBar extends React.Component {
 
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
+    console.log(this.state.backend)
+    return (this.state.backend && this.state.backend.status && (this.state.backend.status.code === 200 || this.state.backend.status.code === 2000)) ? (
       <MDBCard
         style={{
           borderRadius: '0px',
@@ -76,8 +78,8 @@ export class JobCardBar extends React.Component {
 
         }}
       >
-        <div className="d-flex " style={{margin: '1.25rem 3.125rem'}}>
-          <div className="flex-grow-1">
+        <div className="d-flex" style={{margin: '1.25rem 3.125rem', width: '57.3125rem',}}>
+          <div>
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
@@ -85,12 +87,13 @@ export class JobCardBar extends React.Component {
               alt="Sample avatar"
               style={{width: '8.25rem'}}
             />
+            
           </div>
 
-          <div className="ml-5 flex-grow-6">
+          <div className="ml-5 mr-5" style={{width:'450px'}}>
             <div className={classes.title}>{this.state.backend.content.name}</div>
             <div className={classes.company}>{this.state.backend.content.organization.name}</div>
-            <div className="d-flex mt-2 justify-content-between">
+            <div className="d-flex mt-2 justify-content-between pr-5 mr-5">
               <div>
                 <div className={classes.text} style={{marginBottom: '0.5rem'}}>
                   <MDBIcon icon="map-marker"
@@ -109,10 +112,10 @@ export class JobCardBar extends React.Component {
                 <div className={classes.text}><MDBIcon icon="align-left"/>3-5个月</div>
               </div>
             </div>
-
           </div>
-          <div className="flex-grow-1 " style={{marginLeft: '9.375rem'}}>
-            <div>
+          <div>
+           
+            <div className="d-flex justify-content-center">
               <MDBBtn
                 color="indigo accent-3"
                 className={classes.btn}
@@ -125,17 +128,12 @@ export class JobCardBar extends React.Component {
             <div
               style={{
                 flexGrow: 1,
-                fontFamily: 'PingFang SC',
-                lineHeight: 'normal',
-                fontSize: '0.875rem',
-                color: '#8D9AAF',
                 marginTop: '45px'
 
               }}
-              className="ml-3"
+              
             >
-              <MDBIcon far icon="heart" className="mr-2"/>
-              收藏
+              <IfCollect/>
             </div>
             <MDBModal
               centered
@@ -162,7 +160,7 @@ export class JobCardBar extends React.Component {
               </MDBModalBody>
             </MDBModal>
           </div>
-
+         
         </div>
 
 

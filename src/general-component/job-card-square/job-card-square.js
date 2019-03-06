@@ -22,11 +22,11 @@ class JobCardSquare1 extends React.Component {
   async componentDidMount() {
     if (this.props.id) {
       this.setState({
-        backend: await getAsync(`/jobs/${this.props.id}`)
+        backend: await getAsync(`/jobs/${this.props.id}`,true)
       });
     } else {
       this.setState({
-        backend: await getAsync(`/jobs/1`)
+        backend: await getAsync(`/jobs/1`,true)
       });
     }
   }

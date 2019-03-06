@@ -9,8 +9,6 @@ import {getAsync} from "../../tool/api-helper";
 
 import {withRouter} from 'react-router-dom';
 import {IfCollect} from "../if-collect";
-import classes from './company-card.module.css'
-
 
 export class CompanyCard1 extends React.Component {
   constructor(props) {
@@ -41,6 +39,7 @@ export class CompanyCard1 extends React.Component {
 
 
   render() {
+    
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <MDBCard
@@ -51,25 +50,27 @@ export class CompanyCard1 extends React.Component {
             height: '10.75rem',
             background: '#FFFFFF',
           }}
-          onClick={() => {
-            this.props.history.push(`/company/${this.state.backend.content.id}`);
-          }}
-          
         >
           <div
             style={{
               alignItems:'center',
               marginLeft: '2.5rem',
-              marginTop: '1.25rem',
+              
               width:'8.25rem',
               height:'auto',
+              display: 'flex',
+              flexDirection: 'row',
+              
+            }}
+            onClick={() => {
+              this.props.history.push(`/company/${this.state.backend.content.id}`);
             }}
           >
 
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
-              className="img-fluid"
+              className="img-fluid rounded"
               style={{
                 alignItems:'center',
                 width:'8.25rem',
@@ -83,13 +84,16 @@ export class CompanyCard1 extends React.Component {
             style={{
               flexGrow: 4,
               marginLeft:'1.875rem',
-              marginTop:'3.125rem',
+              marginTop:'2.125rem',
             }}>
             <div
               style={{
                 flexDirection: 'row',
                 display: 'flex',
                 alignItems:'flex-end',
+              }}
+              onClick={() => {
+                this.props.history.push(`/company/${this.state.backend.content.id}`);
               }}
             >
               <div
@@ -117,7 +121,7 @@ export class CompanyCard1 extends React.Component {
                 flexDirection: 'row',
                 display: 'flex',
                 alignItems:'flex-end',
-                marginTop:'0.5rem'
+                marginTop:'2.5rem'
               }}
             >
               <div
@@ -127,7 +131,10 @@ export class CompanyCard1 extends React.Component {
                   lineHeight: 'normal',
                   fontSize: '1rem',
                   color: '#454F69',
-                 
+                  width:'350px'
+                }}
+                onClick={() => {
+                  this.props.history.push(`/company/${this.state.backend.content.id}`);
                 }}
               >
                 <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
@@ -135,14 +142,9 @@ export class CompanyCard1 extends React.Component {
               <div
                 style={{
                   flexGrow: 1,
-                  fontFamily: 'PingFang SC',
-                  lineHeight: 'normal',
-                  fontSize: '0.875rem',
-                  color: '#8D9AAF',
                 }}
               >
-                <MDBIcon far icon="heart" className="mr-2"/>
-                收藏
+               <IfCollect/>
               </div>
               
               
