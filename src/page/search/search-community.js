@@ -63,7 +63,7 @@ export class SearchCommunityResult extends React.Component {
               <MDBRow>
                 {this.state.backend.jobList.map((item, index) => (
                   <MDBCol size="12" className="mb-4" key={index}>
-                    <ArticleCard type={1}/>
+                    <ArticleCard articleId={index+1}/>
                   </MDBCol>
                 ))}
               </MDBRow>
