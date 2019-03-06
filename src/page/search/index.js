@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import './public/style.css'
-import classes from  './tabs.module.css'
+import style from './tabs.module.css'
 
 import {
   MDBBtn,
@@ -130,9 +130,9 @@ export class Search extends React.Component {
                       }}>{this.state.tabsContent} <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
                       </div>
                     </MDBDropdownToggle>
-                    <MDBDropdownMenu className={classes.menu}>
+                    <MDBDropdownMenu className={style.menu}>
                       <MDBDropdownItem
-                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}
+                        className={`p-0 ${style.dropdownItems}${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('职位')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
@@ -143,7 +143,7 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}
+                        className={`p-0 ${style.dropdownItems}${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('公司')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
@@ -154,7 +154,7 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}
+                        className={`p-0 ${style.dropdownItems}${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('社区')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
@@ -164,7 +164,7 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}
+                        className={`p-0 ${style.dropdownItems}${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('视频')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
@@ -174,7 +174,7 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}
+                        className={`p-0 ${style.dropdownItems}${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('人脉')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
