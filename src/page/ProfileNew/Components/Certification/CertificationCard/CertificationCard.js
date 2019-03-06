@@ -32,8 +32,8 @@ class CertificationCard extends Component {
             name: this.props.data.name,
             authority: this.props.data.authority,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             note: this.props.data.note,
           }

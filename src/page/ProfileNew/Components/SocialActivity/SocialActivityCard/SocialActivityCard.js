@@ -32,8 +32,8 @@ class SocialActivityCard extends Component {
             name: this.props.data.name,
             organization: this.props.data.organization,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             note: this.props.data.note,
           }

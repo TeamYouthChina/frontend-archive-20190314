@@ -30,8 +30,8 @@ class EducationCard extends Component {
         ? {
             university: this.props.data.university,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             degree: this.props.data.degree,
           }

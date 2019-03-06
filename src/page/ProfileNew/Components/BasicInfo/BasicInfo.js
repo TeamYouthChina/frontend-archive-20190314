@@ -12,6 +12,7 @@ const translation = [
     gender: "性别",
     email: "邮箱",
     phone: "电话",
+    // fake
     fakeName: "徐泽培",
     fakeDOB: "1995/06/17",
     fakeGender: "男",
@@ -25,6 +26,7 @@ const translation = [
     gender: "Gender",
     email: "Email",
     phone: "Phone Number",
+    // fake
     fakeName: "Zepei Xu",
     fakeDOB: "1995/06/17",
     fakeGender: "Male",
@@ -76,24 +78,31 @@ class BasicInfo extends Component {
   async componentDidMount() {
     let data = await getAsync("/me", true);
     console.log(data);
-    let temp =
-      data &&
-      data.content &&
-      data.status.code === 2000
-        ? {
-            name: data.content.real_name,
-            DOB: "",
-            gender: data.content.gender,
-            email: data.content.email,
-            phone: data.content.phonenumber,
-          }
-        : {
-            name: text.fakeName,
-            DOB: text.fakeDOB,
-            gender: text.fakeGender,
-            email: text.fakeEmail,
-            phone: text.fakePhone
-          };
+    // let temp =
+    //   data &&
+    //   data.content &&
+    //   data.status.code === 2000
+    //     ? {
+    //         name: data.content.real_name,
+    //         DOB: "",
+    //         gender: data.content.gender,
+    //         email: data.content.email,
+    //         phone: data.content.phonenumber,
+    //       }
+    //     : {
+    //         name: text.fakeName,
+    //         DOB: text.fakeDOB,
+    //         gender: text.fakeGender,
+    //         email: text.fakeEmail,
+    //         phone: text.fakePhone
+    //       };
+    const temp = {
+              name: text.fakeName,
+              DOB: text.fakeDOB,
+              gender: text.fakeGender,
+              email: text.fakeEmail,
+              phone: text.fakePhone
+            };
     this.setState({ personalInfo: temp });
   }
 

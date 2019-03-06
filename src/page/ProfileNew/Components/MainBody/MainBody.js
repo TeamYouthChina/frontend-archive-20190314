@@ -84,7 +84,7 @@ class MainBody extends Component {
         <WorkExperience requestID={this.state.requestID} />
         <Certifications requestID={this.state.requestID} />
         <SocialActivicies requestID={this.state.requestID} />
-        <Projects requestID={this.state.requestID} />
+        {/* <Projects requestID={this.state.requestID} /> */}
         <Skills requestID={this.state.requestID} />
       </div>
     );
