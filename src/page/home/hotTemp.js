@@ -21,18 +21,30 @@ export class HotTemp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backend: null
+      backend: null,
+      updatedList: [],
+      page: null
     };
   }
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/home/new`) //todo, 暂时全部按照主页API来
+      backend: await getAsync(`/home/hot`, true)
     });
+    
+    this.handleReadMore();
   }
 
+  handleReadMore = () => {
+    const newPage = this.state.page + 6;
+    this.setState({
+      page: newPage,
+      updatedList: this.state.backend.content.jobList.slice(0, newPage)
+    });
+  };
+  
   render() {
-    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000)) {
+    if (!(this.state.backend && this.state.backend.status && this.state.backend.status.code === 200)) {
       console.log('API error: this.state=', this.state);
     }
     return (
@@ -72,7 +84,7 @@ export class HotTemp extends React.Component {
             */
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'
@@ -84,11 +96,12 @@ export class HotTemp extends React.Component {
                       marginBottom: '16px'
                     }}
                   >
-                <span style={{
-                  fontSize: '18px',
-                  color: '#454F69',
-                  ...this.props.basicCHNFont
-                }}
+                <span
+                  style={{
+                    fontSize: '18px',
+                    color: '#454F69',
+                    ...this.props.basicCHNFont
+                  }}
                 >
                   IT / 互联网
                 </span>
@@ -169,7 +182,7 @@ export class HotTemp extends React.Component {
             // null
           }
           {
-            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ?
+            (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ?
               <div
                 style={{
                   padding: '24px 16px'

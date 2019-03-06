@@ -1,4 +1,5 @@
 import React from 'react';
+import BraftEditor from 'braft-editor'
 import {languageHelper} from '../tool/language-helper';
 import {Link} from 'react-router-dom';
 import {CommentsCard} from '../page/question/comment-test'
@@ -10,6 +11,8 @@ import {
   MDBIcon,
   MDBAvatar, MDBBadge
 } from 'mdbreact';
+import {getAsync} from "../tool/api-helper";
+import {data} from "../page/discovery/question-data";
 
 const basicFont = {
   fontFamily: 'PingFang SC',
@@ -36,10 +39,11 @@ export class ReviewCard extends React.Component {
     super(props);
     this.state = {
       backend: null,
+      editorState: null,
       isCollapsed: true,
       showBottom: true,
       showComments: false,
-      commontsText: '89条评论',
+      commontsText: null,
       pageConfig: {
         totalPage: 14 //总页码
       },
@@ -81,34 +85,32 @@ export class ReviewCard extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    window.addEventListener('scroll', this.orderScroll.bind(this));
+    let editorial = this.props.editorial
     let mockData =
       {
-        id: '0100',
-        title: '哪家公司的伙食是世界上最好的?',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        id: editorial.id,
+        long: editorial.body.braftEditorRaw,
         user: '齐昊',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
-        description: 'WeYouth负责人',
+        description: editorial.author || '职道负责人',
         readingTime: 10,
-        editTime: 1,
+        editTime: '2019-1-1',
         score: 5,
-        commentLists: [1, 2],
+        commonLists: editorial.comments.comments,
         agree: '',
         disagree: '',
         status: {
           code: 2000
         }
       };
-    this.setState(() => {
-      return {backend: mockData};
+    this.setState({
+      backend: mockData,
+      editorState: BraftEditor.createEditorState(mockData.long),
+      commontsText:`${mockData.commonLists.length}条评论`
     });
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.orderScroll.bind(this));
   }
 
   orderScroll() {
@@ -138,7 +140,7 @@ export class ReviewCard extends React.Component {
 
   showComments() {
 
-    let commontsText = this.state.commontsText === '89条评论' ? '收起评论' : '89条评论'
+    let commontsText = this.state.commontsText === `${this.state.backend.commonLists.length}条评论` ? '收起评论' : `${this.state.backend.commonLists.length}条评论`
     let showComments = !this.state.showComments
     this.setState({
       showComments,
@@ -149,10 +151,10 @@ export class ReviewCard extends React.Component {
   addComments(e) {
     let {commentLists = []} = this.state.backend
     commentLists.unshift(this.input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
-        commentLists,
+        commentLists: commentLists,
         ...this.state.backend
       }
     })
@@ -169,7 +171,7 @@ export class ReviewCard extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.backend && (
 
       <div>
         <div style={{background: '#FFFFFF', padding: '20px 30px', borderRadius: '2px'}}
@@ -223,13 +225,15 @@ export class ReviewCard extends React.Component {
                 </li>
               </ul>
             </MDBRow>
-            <span style={{color: '#31394D', fontSize: '14px', ...basicFont}}>{this.state.backend.long}</span>
+            <span dangerouslySetInnerHTML={{__html: this.state.editorState.toHTML()}} style={{color: '#31394D', fontSize: '14px', ...basicFont}}>
+              {/*{this.state.backend.long}*/}
+            </span>
           </div>
           {this.state.showBottom || this.state.isCollapsed ? (
             <MDBRow style={this.state.stickyRow}>
               <MDBCol size="12" md="3" middle>
-              <span style={{color: '#8D9AAF', fontSize: '14px', ...basicFont}}>
-                {this.state.backend.editTime}分钟前
+              <span  style={{color: '#8D9AAF', fontSize: '14px', ...basicFont}}>
+                {this.state.backend.editTime}
               </span>
               </MDBCol>
               <MDBCol size="9">
@@ -270,7 +274,7 @@ export class ReviewCard extends React.Component {
               margin: '0px 0px 11px 0px',
               fontSize: '16px',
               color: '#8D9AAF', ...basicFont
-            }}>{this.state.backend.commentLists.length}条评论</MDBRow>
+            }}>{this.state.backend.commonLists.length}条评论</MDBRow>
             <MDBRow style={{margin: '0px', display: 'flex'}}>
               <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
                 <img
@@ -304,14 +308,16 @@ export class ReviewCard extends React.Component {
               </MDBBtn>
 
             </MDBRow>
-            {this.state.backend.commentLists.map((item) => (
+            {this.state.backend.commonLists.map((item) => (
               <CommentsCard key={item} message={item}></CommentsCard>
 
             ))}
-            <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}}
-                             pageCallbackFn={this.getCurrentPage}></PaginationUse>
-            </MDBRow>
+            {this.state.backend.commonLists.length !== 0 ? (
+              <MDBRow center style={{marginTop: '10px'}}>
+                <PaginationUse pageConfig={{totalPage: Math.ceil(this.state.backend.commonLists.length / 3)}}
+                               pageCallbackFn={this.getCurrentPage}></PaginationUse>
+              </MDBRow>
+            ) : null}
             <MDBRow center style={{marginTop:'9px'}}>
               <MDBBtn onClick={this.showComments} flat style={{margin:'0px',padding: '5px 10px',fontSize:'14px',color:'#8D9AAF',...basicFont}}>
                 收起评论<MDBIcon style={{marginLeft: '5px'}} icon="arrow-up"/>

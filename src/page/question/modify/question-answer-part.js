@@ -33,7 +33,7 @@ export class QuestionAnswerPart extends React.Component {
       {
         id: 0,
         name: 'Summer 2019 Tech Internship',
-        answers: [
+        commonLists: [
           {
             user: {
               name: 'John Doe',
@@ -223,12 +223,12 @@ export class QuestionAnswerPart extends React.Component {
     //   content: this.state.addComment,
     //   reply: []
     // }
-    // let answers = this.state.backend.answers
-    // answers[replyIndex].comments.push(reply)
-    // console.log(answers)
+    // let commonLists = this.state.backend.commonLists
+    // commonLists[replyIndex].comments.push(reply)
+    // console.log(commonLists)
     // this.setState({
     //   backend:{
-    //     answers
+    //     commonLists
     //   }
     // });
   }
@@ -238,11 +238,11 @@ export class QuestionAnswerPart extends React.Component {
       <div>
         <MDBRow>
             <strong style={{paddingLeft:'15px'}}>
-              {this.state.backend.answers.length}个回答
+              {this.state.backend.commonLists.length}个回答
             </strong>
           
         </MDBRow>
-        {this.state.backend.answers.map((item, comIndex) => {
+        {this.state.backend.commonLists.map((item, comIndex) => {
           return (
             <MDBCard
               className="my-5 px-3 pt-4"
@@ -290,7 +290,7 @@ export class QuestionAnswerPart extends React.Component {
                               {item.comments.map((comment,replyIndex) => {
                                 let prefix = 0
                                 for(let p = 0; p < comIndex; p++){
-                                  prefix += this.state.backend.answers[p].comments.length
+                                  prefix += this.state.backend.commonLists[p].comments.length
                                 }
                                 return (
                                   <div key={replyIndex} className="media d-block d-md-flex mt-4">
@@ -321,7 +321,7 @@ export class QuestionAnswerPart extends React.Component {
                                         let prefix2 = 0
                                         for(let i = 0;i<comIndex;i++){
                                           for(let p = 0;p<replyIndex;p++){
-                                            prefix2 += this.state.backend.answers[i].comments[p].length
+                                            prefix2 += this.state.backend.commonLists[i].comments[p].length
                                           }
                                         }
                                         return (

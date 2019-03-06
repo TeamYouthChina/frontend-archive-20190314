@@ -44,7 +44,7 @@ export class JobForYou2 extends React.Component {
       jobType: [
         {id: 1, name: '校园招聘', url: 'campus'},
         {id: 2, name: '社会招聘', url: 'general'},
-        {id: 3, name: '实习', url: 'intern'}
+        {id: 3, name: '实习招聘', url: 'intern'}
       ],
       status: {
         code: 2000

@@ -53,9 +53,9 @@ export class AppTable extends React.Component {
   async componentDidMount() {
     let backend = null;
     if (this.props.id) {
-      backend = await getAsync(`/applicants/${this.props.id}/applications`);
+      backend = await getAsync(`/applicants/${this.props.id}/applications`,true);
     } else {
-      backend = await getAsync('/applicants/1/applications');
+      backend = await getAsync('/applicants/2/applications',true);
     }
     if (backend && backend.status && backend.status.code === 2000) {
       let data = this.state.data;
@@ -75,8 +75,9 @@ export class AppTable extends React.Component {
   }
 
   render() {
-
+    console.log(this.state)
     return (
+      
       <div>
         <MDBCard className="px-5 pb-3 mx-5">
           <br/>

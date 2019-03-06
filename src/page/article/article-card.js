@@ -91,11 +91,11 @@ export class ArticleCard extends React.Component {
         user: '齐昊',
         img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
-        description: 'WeYouth负责人',
+        description: '职道负责人',
         readingTime: 10,
         editTime: 1,
         score: 5,
-        commentLists: [1, 2],
+        commonLists: [1, 2],
         agree: '',
         disagree: '',
         status: {
@@ -149,10 +149,10 @@ export class ArticleCard extends React.Component {
   addComments(e) {
     let {commentLists = []} = this.state.backend
     commentLists.unshift(this.input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
-        commentLists,
+        commentLists: commentLists,
         ...this.state.backend
       }
     })
@@ -307,7 +307,7 @@ export class ArticleCard extends React.Component {
               margin: '0px 0px 11px 0px',
               fontSize: '16px',
               color: '#8D9AAF', ...basicFont
-            }}>{this.state.backend.commentLists.length}条评论</MDBRow>
+            }}>{this.state.backend.commonLists.length}条评论</MDBRow>
             <MDBRow style={{margin: '0px', display: 'flex'}}>
               <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
                 <img
@@ -346,12 +346,12 @@ export class ArticleCard extends React.Component {
               </MDBBtn>
 
             </MDBRow>
-            {this.state.backend.commentLists.map((item) => (
+            {this.state.backend.commonLists.map((item) => (
               <CommentsCard key={item} message={item}></CommentsCard>
 
             ))}
             <MDBRow center style={{marginTop: '10px'}}>
-              <PaginationUse pageConfig={{totalPage: this.state.backend.commentLists.length}}
+              <PaginationUse pageConfig={{totalPage: this.state.backend.commonLists.length}}
                              pageCallbackFn={this.getCurrentPage}></PaginationUse>
             </MDBRow>
             <MDBRow center style={{marginTop:'9px'}}>

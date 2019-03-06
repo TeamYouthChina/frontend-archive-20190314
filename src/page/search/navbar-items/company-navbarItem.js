@@ -119,6 +119,39 @@ export class CompanyNavbarItem extends React.Component {
             </MDBDropdownMenu>
           </MDBDropdown>
         </MDBNavItem>
+
+        <MDBNavItem className="mx-2">
+          <MDBDropdown>
+            <MDBDropdownToggle nav>
+              <div className="d-md-inline" style={{...this.props.basicCHNFont, color: '#31394D'}}>行业
+                <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
+              </div>
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">互联网/智能科技</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">金融/咨询</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">汽车/机械/制造</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">地产/建筑</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">消费品</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">生物/医疗</MDBDropdownItem>
+              <MDBDropdownItem
+                style={{...this.props.basicCHNFont, color: '#31394D'}}
+                href="#!">能源</MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
+        </MDBNavItem>
       </div>
     );
   }

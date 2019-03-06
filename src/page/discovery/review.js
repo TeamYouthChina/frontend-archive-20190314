@@ -20,55 +20,43 @@ export class Review extends React.Component {
   }
 
   async componentDidMount() {
-    // const result = await getAsync(`/discovery/review`)
-    // console.log(result)
-    // if (result && result.status && result.status.code === 2000) {
-    //   let mockData =
-    //     {
-    //       status: {
-    //         code: result.status.code
-    //       }
-    //     };
-    //   this.setState(() => {
-    //     return {backend: mockData};
-    //   });
-    // } else {
-    //   let mockData = {
-    //     status: result.status
-    //   }
-    //   this.setState(() => {
-    //     return {backend: mockData};
-    //   });
-    // }
-    let mockdata = {
-      status:{
-        code:2000
+    let mockData
+    try {
+      const result = await getAsync('/discovery/editorials',true)
+      if (result && result.status && result.status.code === 200) {
+        mockData =
+          {
+            editorials:result.content.editorials,
+            status: {
+              code: result.status.code
+            }
+          };
+        // console.log(result.content.questions)
+      } else {
+        mockData = {
+          status: result.status
+        }
       }
+    } catch (e) {
+      alert(e)
     }
+    
     this.setState({
-      backend:mockdata
+      backend:mockData
     })
   }
 
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
       <MDBContainer
         fluid
         style={{padding: 0}}
       >
-        <MDBRow style={{margin:'1rem 0rem'}}>
-            <ReviewCard/>
-        </MDBRow>
-        <MDBRow style={{margin:'1rem 0rem'}}>
-          <ReviewCard/>
-        </MDBRow>
-        <MDBRow style={{margin:'1rem 0rem'}}>
-          <ReviewCard/>
-        </MDBRow>
-        <MDBRow style={{margin:'1rem 0rem'}}>
-          <ReviewCard/>
-        </MDBRow>
-        
+        {this.state.backend.editorials.map((editorial)=>(
+          <MDBRow key={editorial.id} style={{margin:'1rem 0rem'}}>
+            <ReviewCard editorial={editorial}/>
+          </MDBRow>
+        ))}
       </MDBContainer>
     ) :
       // a spinner displayed when data is loading

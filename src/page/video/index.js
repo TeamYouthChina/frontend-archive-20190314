@@ -53,7 +53,7 @@ export class Video extends React.Component {
         },
         time:8,
         img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        commentLists: [1, 2, 3],
+        commonLists: [1, 2, 3],
         allReplys: [1, 2],
         focus: 123,
         reading: 123,
@@ -89,7 +89,7 @@ export class Video extends React.Component {
   addComments(e, input) {
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend: {
         allReplys,
@@ -192,7 +192,7 @@ export class Video extends React.Component {
                         </MDBBtn>
 
                       </MDBRow>
-                      {this.state.backend.commentLists.map((item) => (
+                      {this.state.backend.commonLists.map((item) => (
                         <CommentsCard key={item} message={item}></CommentsCard>
 
                       ))}

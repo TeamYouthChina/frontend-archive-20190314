@@ -8,6 +8,7 @@ import {
 } from 'mdbreact';
 import {ArticleCard} from '../article/article-card';
 import {getAsync} from '../../tool/api-helper';
+import {data} from "./question-data";
 
 export class Article extends React.Component {
   constructor(props) {
@@ -17,8 +18,9 @@ export class Article extends React.Component {
   }
 
   async componentDidMount() {
+    
     const result = await getAsync(`/disconvery/articles`)
-    console.log(result)
+    
     if (result && result.status && result.status.code === 2000) {
       let mockData =
         {

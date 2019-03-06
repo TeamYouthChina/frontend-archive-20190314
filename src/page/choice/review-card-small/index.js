@@ -1,7 +1,8 @@
 import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar} from 'mdbreact';
-import {getAsync} from '../../../tool/api-helper';
+// import {getAsync} from '../../../tool/api-helper';
+import {getAsync} from '../../question/api-test/api-test';
 import {withRouter} from 'react-router-dom';
 
 const basicFont = {
@@ -32,6 +33,18 @@ class ReviewCardSquareFull1 extends React.Component {
     this.text = ReviewCardSquareFull1.i18n[languageHelper()];
   }
 
+  async componentDidMount(){
+    const result = await getAsync(`/articles/${this.props.fulltext}`)
+    console.log(result)
+    let title = result.content.title === null ? '求职的8个问题' : result.content.title
+    this.setState({
+      backend:{
+        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        title
+      }
+    })
+  }
+
   render() {
     return (this.props.fulltext) ? (
 
@@ -40,7 +53,7 @@ class ReviewCardSquareFull1 extends React.Component {
 
           <ul style={{...ulBasicNoLine,padding:'30px'}}>
             <li style={{display:'flex',justifyContent: 'space-between',...liBasicNoLine}}>
-              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>关于大学生求职的八个建议</span>
+              <span style={{fontSize:'16px',color:'#454F69',...basicFont}}>{this.state.backend.title}</span>
               <MDBIcon style={{justifyContent: 'flex-end'}} icon="ellipsis-h"/>
             </li>
             {/*<li style={{liBasicNoLine,marginTop:'29px',basicFont,color:'#454F69',fontSize:'14px'}}>*/}
@@ -57,11 +70,11 @@ class ReviewCardSquareFull1 extends React.Component {
                 // justifyContent: 'center',
                 // display:'flex',
                 // alignItems:'center',
-                padding:'3px 20px',
+                padding:'3px 5px',
                 fontSize: '14px',
                 color:'#4F65E1',
                 ...basicFont}}>
-                标签1
+                腾讯
               </span>
             </li>
             <li style={{liBasicNoLine,marginTop:'15px'}}>

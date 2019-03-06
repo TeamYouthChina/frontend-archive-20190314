@@ -88,7 +88,7 @@ export class QuestionCard extends React.Component {
         // 缺少个人签名
         description: '莫以为敌消彼长，然乾坤逆之天崩',
         // 缺少评论
-        commentLists: [1, 2],
+        commonLists: [1, 2],
         // 缺少赞同和反对
         agree: '',
         disagree: '',
@@ -142,10 +142,10 @@ export class QuestionCard extends React.Component {
   addComments(e){
     let {commentLists = []} = this.state.backend
     commentLists.unshift(this.input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend:{
-        commentLists,
+        commentLists: commentLists,
         ...this.state.backend
       }
     })
@@ -234,7 +234,7 @@ export class QuestionCard extends React.Component {
               height: '1px'
             }}>
             </div>
-            {this.state.backend.commentLists.map((item)=>(
+            {this.state.backend.commonLists.map((item)=>(
               <CommentsCard key={item} message={item}></CommentsCard>
 
             ))}

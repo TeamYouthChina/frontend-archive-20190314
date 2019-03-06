@@ -1,7 +1,7 @@
 import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar} from 'mdbreact';
-import {getAsync} from '../../../tool/api-helper';
+import {getAsync} from '../../question/api-test/api-test';
 import {withRouter} from 'react-router-dom';
 
 const basicFont = {
@@ -32,17 +32,29 @@ class ArticleCardSquareFull1 extends React.Component {
     this.text = ArticleCardSquareFull1.i18n[languageHelper()];
   }
 
+  async componentDidMount(){
+    const result = await getAsync(`/articles/${this.props.fulltext}`)
+    console.log(result)
+    let title = result.content.title === null ? '求职的8个问题' : result.content.title
+    this.setState({
+      backend:{
+        img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        title
+      }
+    })
+  }
+  
   render() {
     return (this.props.fulltext) ? (
 
       <div>
         <MDBCard onClick={() => {
-          this.props.history.push(`/article/${this.props.fulltext.id}`);
+          this.props.history.push(`/article/${this.props.fulltext}`);
         }}>
 
           <ul style={{...ulBasicNoLine,padding:'30px'}}>
             <li style={{display:'flex',justifyContent: 'space-between',...liBasicNoLine}}>
-              <span style={{fontSize:'18px',color:'#454F69',...basicFont}}>给求职大学生的建议</span>
+              <span style={{fontSize:'16px',color:'#454F69',...basicFont}}>{this.state.backend.title}</span>
               <MDBIcon style={{justifyContent: 'flex-end'}} icon="ellipsis-h"/>
             </li>
             {/*<li style={{liBasicNoLine,marginTop:'29px',basicFont,color:'#454F69',fontSize:'14px'}}>*/}
@@ -59,11 +71,11 @@ class ArticleCardSquareFull1 extends React.Component {
                 // justifyContent: 'center',
                 // display:'flex',
                 // alignItems:'center',
-                padding:'3px 20px',
+                padding:'3px 5px',
                 fontSize: '14px',
                 color:'#4F65E1',
                 ...basicFont}}>
-                标签1
+                腾讯
               </span>
             </li>
             <li style={{liBasicNoLine,marginTop:'15px'}}>

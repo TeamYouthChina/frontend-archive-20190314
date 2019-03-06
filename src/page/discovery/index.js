@@ -27,6 +27,8 @@ import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {getAsync} from '../../tool/api-helper'
 
+
+
 export class Discovery extends React.Component {
 
   constructor(props) {

@@ -17,14 +17,15 @@ import {Footer} from '../../general-component/footer';
 import {QuestionDes} from './question-description';
 import {ArticleCard} from '../article/article-card'
 // import {QuestionBar} from './question-side-bar'
-import {QuestionCard} from './question-card-test'
+import {QuestionAnswerCard} from './answer/question-answer-card'
+import {data} from "../discovery/question-data";
 
 export class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       backend: null,
-      loading: true,
+      loading: false,
       firstTime: 1,
       selectType: 1
     };
@@ -32,130 +33,153 @@ export class QuestionAnswer extends React.Component {
   }
 
   async componentDidMount() {
-    if (env === 'production') {
-      try {
-        const result = await getAsync(`/questions/${this.props.match.params.questionId}`)
-        if (result.status.code === 2000) {
-          let mockData =
-            {
-              id: result.content.id,
-              tags: result.content.tags || ['大学生', '求职', '分享', '经验'],
-              content: {
-                title: result.content.title,
-                descrption: result.content.body || '123'
-                // descrption: result.content.richTextDTO
-              },
-              create_at: result.content.create_at,
-              modified_at: result.content.modified_at,
-              creator: {
-                user: result.content.username,
-                avatarUrl: result.content.avatarUrl,
-              },
-              answerList: result.content.answers,
-              focus: result.content.focus || 123,
-              reading: result.content.reading || 123,
-              status: {
-                code: result.status.code,
-                // code:2000
-              }
-            };
-          this.setState({
-            backend: mockData,
-            loading: false
-          })
-        } else {
-          // console.log(result.status.code)
-          // this.props.history.push('/404')
-          let mockData =
-            {
-              id: '1',
-              tags: ['互联网', '金融', '求职', '大学生'],
-              content: {
-                title: '标题',
-                descrption: '123'
-              },
-              creator: {
-                user: '齐昊',
-                avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-              },
-              create_at: '2019-1-1',
-              modified_at: '2019-1-2',
-              answerList: [{
-                id: 1,
-                body: '123',
-                creator: {
-                  user: '齐昊',
-                  avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-                },
-                modified_at: '2019-01-01 00:00:00.0',
-                create_at: '2019-01-01 00:00:00.0',
-              }, {
-                id: 2,
-                body: '123',
-                creator: {
-                  user: '齐昊',
-                  avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-                },
-                modified_at: '2019-01-01 00:00:00.0',
-                create_at: '2019-01-01 00:00:00.0',
-              }],
-              focus: 123,
-              reading: 123,
-              status: {
-                // code: result.status.code,
-                code: 2000
-              }
-            };
-          this.setState(() => {
-            return {
-              backend: mockData,
-            };
-          });
-        }
-      } catch (e) {
-        // todo,出错，先用loading代替，之后改成报错图片
-        console.log(e)
-        const result = {
-          status: e.status
-        }
-        this.setState({
-          backend: result,
-        })
-      }
-    } else {
-      let mockData =
+    // console.log(this.props.location.state.h1)
+    let result;
+    let mockData;
+    if (data.env) {
+      mockData =
         {
-          id: '1',
-          tags: ['互联网', '金融', '求职', '大学生'],
+          id: 1,
+          tags: ['腾讯', '大学生', '求职', '互联网'],
           content: {
-            title: '标题',
-            descrption: '123'
-          },
-          creator: {
-            user: '齐昊',
-            avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-          },
-          create_at: '2019-1-1',
-          modified_at: '2019-1-2',
-          answerList: [{
-            id: 1,
-            body: '123',
-            creator: {
-              user: '齐昊',
-              avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+            title: '腾讯好么？',
+            descrption: {
+              entityMap: {},
+              blocks: [
+                {
+                  key: 'dtj4a',
+                  text: '<asdasd>',
+                  type: 'unstyled',
+                  depth: 0,
+                  inlineStyleRanges: [],
+                  entityRanges: [],
+                  data: {}
+                }
+              ]
             },
-            modified_at: '2019-01-01 00:00:00.0',
-            create_at: '2019-01-01 00:00:00.0',
-          }, {
-            id: 2,
-            body: '123',
-            creator: {
-              user: '齐昊',
-              avatarUrl: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+          },
+          author: 'Admin',
+          editTime: '2019-01-01',
+          answerList: [
+            {
+              id: 1,
+              body: {
+                braftEditorRaw: {
+                  entityMap: {},
+                  blocks: [
+                    {
+                      key: 'dtj4a',
+                      text: '<在软件行业，操作系统平台就是那个八，其他的应用软件就是那个二。微软已经踩到了一次狗屎运，得到了软件行业80%的利润，现在，他所需要做的，就是保持住这个地位。但技术不是静止不动的，不断有新的技术生长出来，在成千上万种技术中，有一种会长成参天大树，利润无比丰厚，取代原来的技术平台，成为新的主流趋势。到了今天，微软在互联网时代江河日下，谷歌和facebook大肆收购，花上百亿美元去买下新兴的技术，为的是什么？就是在押宝呀。<br>技术在不断向前升级，哪一个方向才是未来的主流趋势呢？没有人知道。对于腾讯来说，也是一样的。小马哥每天都在为这件事情而焦虑。<br>截至目前，在国内，押中两次宝的就只有腾讯和阿里。阿里押中了淘宝和支付宝，腾讯押中了QQ和微信。<br>在移动互联网时代，腾讯可以稍稍松一口气了，但是在下一个主流技术趋势到来的时候，还有这个好运气么？>',
+                      type: 'unstyled',
+                      depth: 0,
+                      inlineStyleRanges: [],
+                      entityRanges: [],
+                      data: {}
+                    }
+                  ]
+                },
+                previewText: '<在此填入你的文字>',
+                resourceIdList: []
+              },
+              is_anonymous: false,
+              creator: {
+                id: 5,
+                username: 'DEF',
+                email: '123456@456.com',
+                phonenumber: '9876543210123',
+                register_date: '2019-01-01 00:00:00.0',
+                real_name: 'DDDEEEFFF',
+                gender: 'Female',
+                nation: 'USA',
+                avatar_url: null,
+                role: 3,
+                age: 28
+              },
+              modified_at: '2018-02-03 00:00:00.0',
+              create_at: '2018-02-03 00:00:00.0'
+            }
+          ],
+          question: {
+
+            'id': 1,
+            'creator': {
+              'id': 1,
+              'username': 'Admin',
+              'email': '123456@123.com',
+              'phonenumber': '1234657890123',
+              'register_date': '2019-01-01 00:00:00.0',
+              'real_name': 'AAABBBCCC',
+              'gender': 'Male',
+              'nation': 'CHN',
+              'avatar_url': null,
+              'role': 1,
+              'age': 25
             },
-            modified_at: '2019-01-01 00:00:00.0',
-            create_at: '2019-01-01 00:00:00.0',
-          }],
+            'title': '腾讯好么？',
+            'is_anonymous': true,
+            'create_at': '2019-01-01T00:00:00.000+0000',
+            'modified_at': '2019-01-01T00:00:00.000+0000',
+            'answers': [
+              {
+                'id': 1,
+                'body': {
+                  'braftEditorRaw': {
+                    'entityMap': {},
+                    'blocks': [
+                      {
+                        'key': 'dtj4a',
+                        'text': '<在软件行业，操作系统平台就是那个八，其他的应用软件就是那个二。微软已经踩到了一次狗屎运，得到了软件行业80%的利润，现在，他所需要做的，就是保持住这个地位。但技术不是静止不动的，不断有新的技术生长出来，在成千上万种技术中，有一种会长成参天大树，利润无比丰厚，取代原来的技术平台，成为新的主流趋势。到了今天，微软在互联网时代江河日下，谷歌和facebook大肆收购，花上百亿美元去买下新兴的技术，为的是什么？就是在押宝呀。<br>技术在不断向前升级，哪一个方向才是未来的主流趋势呢？没有人知道。对于腾讯来说，也是一样的。小马哥每天都在为这件事情而焦虑。<br>截至目前，在国内，押中两次宝的就只有腾讯和阿里。阿里押中了淘宝和支付宝，腾讯押中了QQ和微信。<br>在移动互联网时代，腾讯可以稍稍松一口气了，但是在下一个主流技术趋势到来的时候，还有这个好运气么？>',
+                        'type': 'unstyled',
+                        'depth': 0,
+                        'inlineStyleRanges': [],
+                        'entityRanges': [],
+                        'data': {}
+                      }
+                    ]
+                  },
+                  'previewText': '<在此填入你的文字>',
+                  'resourceIdList': []
+                },
+                'is_anonymous': false,
+                'creator': {
+                  'id': 5,
+                  'username': 'DEF',
+                  'email': '123456@456.com',
+                  'phonenumber': '9876543210123',
+                  'register_date': '2019-01-01 00:00:00.0',
+                  'real_name': 'DDDEEEFFF',
+                  'gender': 'Female',
+                  'nation': 'USA',
+                  'avatar_url': null,
+                  'role': 3,
+                  'age': 28
+                },
+                'modified_at': '2018-02-03 00:00:00.0',
+                'create_at': '2018-02-03 00:00:00.0'
+              }
+            ],
+            'rela_type': 1,
+            'rela_id': null,
+            'body': {
+              'braftEditorRaw': {
+                'entityMap': {},
+                'blocks': [
+                  {
+                    'key': 'dtj4a',
+                    'text': '<asdasd>',
+                    'type': 'unstyled',
+                    'depth': 0,
+                    'inlineStyleRanges': [],
+                    'entityRanges': [],
+                    'data': {}
+                  }
+                ]
+              },
+              previewText: '<在此填入你的文字>',
+              resourceIdList: []
+            }
+
+          },
           focus: 123,
           reading: 123,
           status: {
@@ -163,13 +187,42 @@ export class QuestionAnswer extends React.Component {
             code: 2000
           }
         };
-      this.setState(() => {
-        return {
-          backend: mockData,
-          loading: false
+    } else {
+      if (this.props.questionId) {
+        try {
+          result = await getAsync(`/questions/${this.props.questionId}`,!data.env);
+          result = result.content
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        result = this.props.location.state;
+        // console.log(result.body.braftEditorRaw,result.id)
+      }
+      mockData =
+        {
+          id: result.id,
+          tags: ['腾讯', '大学生', '求职', '互联网'],
+          content: {
+            title: result.title,
+            description: result.body.braftEditorRaw,
+          },
+          author: result.creator.username,
+          editTime: result.modified_at,
+          answerList: result.answers,
+          focus: 123,
+          reading: 123,
+          question: result,
+          status: {
+            code: 2000,
+            // code: 2000
+          }
         };
-      });
     }
+    this.setState({
+      backend: mockData
+    });
+
   }
 
 
@@ -195,14 +248,11 @@ export class QuestionAnswer extends React.Component {
           <MDBCol size="1"></MDBCol>
           <MDBCol size="10" middle>
             {this.state.backend.answerList.map((item) => (
-              <QuestionCard
-                type={1}
-                key={item.id}
-                questionId={item.id} title={this.state.backend.title}>
-              </QuestionCard>
+              <QuestionAnswerCard key={item.id} answer={item}></QuestionAnswerCard>
             ))}
           </MDBCol>
         </MDBRow>
+        <br/>
         <Footer></Footer>
       </div>
     )

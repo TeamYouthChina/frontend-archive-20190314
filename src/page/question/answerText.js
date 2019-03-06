@@ -90,7 +90,7 @@ export class AnswerText extends React.Component {
 
   async submitContent() {
     let showNow = this.state.showNow + 1
-    // const result = await postAsync('answers/1/comments',{
+    // const result = await postAsync('commonLists/1/comments',{
     //   RichText:{
     //     braftEditorRaw:{},
     //     previewText:{},
@@ -108,7 +108,7 @@ export class AnswerText extends React.Component {
   }
 
   async showData() {
-    // let result = await postAsync('answers/1/comments',{
+    // let result = await postAsync('commonLists/1/comments',{
     //   RichText:{
     //     braftEditorRaw:{},
     //     previewText:{},

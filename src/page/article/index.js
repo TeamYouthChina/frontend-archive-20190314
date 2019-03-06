@@ -9,14 +9,14 @@ import {
   MDBMask,
   MDBIcon,
   MDBView,
-  MDBBtn
+  MDBBtn,
+  MDBAvatar
 } from 'mdbreact';
 import './public/style.css';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CommentsCard} from "../question/comment-test";
 import {PaginationUse} from "../question/pagination-test";
-
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
   fontStyle: 'normal',
@@ -67,7 +67,7 @@ export class Article extends React.Component {
             et molestiae non recusandae itaque earum rerum.
           </p>
         </div>),
-        imgUrl: 'https://mdbootstrap.com/img/Photos/Slides/img%20(142).jpg',
+        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         title: '诺基亚是怎样的一家公司',
         // 计算几天前发布
         date: '26/08/2018',
@@ -76,7 +76,7 @@ export class Article extends React.Component {
         authorDes: '用户体验设计专家',
         readingTime:'6',
         time:1,
-        commentLists: [1, 2],
+        commonLists: [1, 2],
         allReplys:[1,2],
         status: {
           code: 2000
@@ -106,7 +106,7 @@ export class Article extends React.Component {
   addComments(e,input){
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
-    // console.log(commentLists,this.props.id)
+    // console.log(commonLists,this.props.id)
     this.setState({
       backend:{
         allReplys,
@@ -173,22 +173,48 @@ export class Article extends React.Component {
                   {ifShown && (
                     <div>
                       <div>
-                        {this.state.backend.commentLists.map((item)=>(
+                        <MDBRow style={{margin: '0px', display: 'flex'}}>
+                          <MDBAvatar style={{height: '100%', margin: '6px 11px 6px 0px', flexGrow: '0'}}>
+                            <img
+                              style={{width: '32px', background: '#F4F4F4'}}
+                              src={this.state.backend.img}
+                              alt=""
+                              className="rounded-circle"
+                            />
+                          </MDBAvatar>
+                          <div style={{marginTop:'5px',flexGrow: '1',}}>
+                            <input style={{
+                              width:'100%',
+                              background: '#FFFFFF',
+                              border: '1px solid #DBE5F7',
+                              boxSizing: 'border-box',
+                              borderRadius: '2px',
+                              padding:'8px 0px 8px 20px',
+                              fontSize:'14px',
+                              color:'#B3C1DB',
+                              height:'37px',
+                              ...basicFont,
+                            }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
+
+                          </div>
+
+
+                          <MDBBtn onClick={(e) => this.addComments(e)} flat
+                                  style={{
+                                    flexGrow: '0',
+                                    background: '#C4C4C4',
+                                    padding: '8px 20px',
+                                    color: '#FFFFFF', ...basicFont,
+                                    margin:'6px 6px 5px 6px',
+                                  }}>
+                            发布
+                          </MDBBtn>
+
+                        </MDBRow>
+                        {this.state.backend.commonLists.map((item)=>(
                           <CommentsCard key={item} message={item}></CommentsCard>
 
                         ))}
-
-                        <MDBRow>
-                          <MDBCol size="10" center>
-                            <input ref={(input)=>(this.input = input)} className="form-control" placeholder="你的回复"/>
-                          </MDBCol>
-                          <MDBCol style={{paddingLeft: '0px'}}>
-                            <MDBBtn onClick={(e)=>this.addComments(e,this.input)} flat style={{background: '#C4C4C4', padding: '5px 10px', color: '#FFFFFF', ...basicFont}}>
-                              发布
-                            </MDBBtn>
-                          </MDBCol>
-
-                        </MDBRow>
                         <MDBRow center style={{marginTop: '10px'}}>
                           <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
                         </MDBRow>

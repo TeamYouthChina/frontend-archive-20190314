@@ -6,27 +6,27 @@ import Lightbox from "react-image-lightbox";
 import "./photo.css";
 
 const images = [
-  "https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(150)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(152)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(42)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(151)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(40)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(148)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(147)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(149)-mini.jpg"
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014313.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014330.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014337.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014345.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014351.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014356.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014313.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014330.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014337.png",
 ];
 
 const smallImages = [
-  "https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(150)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(152)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(42)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(151)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(40)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(148)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(147)-mini.jpg",
-  "https://mdbootstrap.com/img/Others/documentation/img%20(149)-mini.jpg"
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014313.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014330.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014337.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014345.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014351.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014356.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014313.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014330.png",
+  "http://47.254.46.117:5000/tencent/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190227014337.png",
 ];
 export class Photo extends React.Component {
   constructor(props) {
