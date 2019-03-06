@@ -49,14 +49,14 @@ export class Job extends React.Component {
 
   async componentDidMount() {
     this.setState({
-      backend: await getAsync(`/jobs/${this.props.match.params.id}`)
+      backend: await getAsync(`/jobs/${this.props.match.params.id}`, true)
     });
   }
 
   render() {
     const btnColor = '#E3E9EE';
 
-    return this.state.backend ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
         <Header/>
 
@@ -102,7 +102,7 @@ export class Job extends React.Component {
                 <MDBCardBody>
                   <MDBRow>
                     <MDBCol>
-                      <CoDetail basicCHNFont={basicCHNFont}/> {/*写死了*/}
+                      <CoDetail basicCHNFont={basicCHNFont} id={this.state.backend.content.organization.id}/> {/*写死了*/}
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
