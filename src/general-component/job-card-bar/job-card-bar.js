@@ -81,7 +81,9 @@ export class JobCardBar1 extends React.Component {
         }}
       >
         <div className="d-flex" style={{margin: '1.25rem 3.125rem', width: '57.3125rem',}}>
-          <div>
+          <div   onClick={() => {
+            this.props.history.push(`/job/${this.state.backend.content.id}`);
+          }}>
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
@@ -92,7 +94,10 @@ export class JobCardBar1 extends React.Component {
             
           </div>
 
-          <div className="ml-5 mr-5" style={{width:'450px'}}>
+          <div className="ml-5 mr-5" style={{width:'450px'}}   
+               onClick={() => {
+            this.props.history.push(`/job/${this.state.backend.content.id}`);
+          }}>
             <div className={classes.title}>{this.state.backend.content.name}</div>
             <div className={classes.company}>{this.state.backend.content.organization.name}</div>
             <div className="d-flex mt-2 justify-content-between pr-5 mr-5">
