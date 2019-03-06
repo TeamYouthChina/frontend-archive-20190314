@@ -124,7 +124,7 @@ export class JobCardBar extends React.Component {
                 color: '#8D9AAF',
 
               }}
-              className="ml-3"
+              className="ml-3 align-self-center"
             >
               <MDBIcon far icon="heart" className="mr-2"/>
               收藏
