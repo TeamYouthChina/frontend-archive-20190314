@@ -1,6 +1,6 @@
 import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
-import {MDBIcon, MDBCard, MDBAvatar} from 'mdbreact';
+import {MDBIcon, MDBCard, MDBAvatar,MDBSpinner} from 'mdbreact';
 import {getAsync} from '../../question/api-test/api-test';
 import {withRouter} from 'react-router-dom';
 
@@ -110,7 +110,9 @@ class ArticleCardSquareFull1 extends React.Component {
 
       </div>
 
-    ) : null;
+    ) : <div className="my-5 text-center">
+          <MDBSpinner/>
+        </div>;
   }
 }
 
