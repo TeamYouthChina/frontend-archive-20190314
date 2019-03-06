@@ -56,25 +56,27 @@ export class Search extends React.Component {
 
     this.state = {
       // activeItemClassicTabs1: "1",
-      collapseID: ''
+      collapseID: '',
+      tabsContent: '职位',
     };
 
     // this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
   }
 
-  // toggleClassicTabs1 = tab => () => {
-  //   if (this.state.activeItemClassicTabs1 !== tab) {
-  //     this.setState({
-  //       activeItemClassicTabs1: tab
-  //     });
-  //   }
-  // }
+  handleTabsContent = tabsContent => {
+    console.log('handleTabsContent call')
+    this.setState({
+      ...this.state,
+      tabsContent
+    })
+  };
 
   toggleCollapse = collapseID => () => {
     this.setState(prevState => ({collapseID: (prevState.collapseID !== collapseID ? collapseID : '')}));
-  }
-  
+  };
+
   render() {
+    console.log('render()')
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     if (pathname) {
       return (<Redirect to={pathname}/>);
@@ -117,19 +119,20 @@ export class Search extends React.Component {
             <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse')}/>
             <MDBCollapse id="navbarCollapse" isOpen={this.state.collapseID} navbar>
               <MDBNavbarNav left>
-                
+
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
                       <div className="d-md-inline" style={{
                         ...basicCHNFont,
                         color: '#31394D'
-                      }}>社区 <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
+                      }}>{this.state.tabsContent} <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}>
+                        className={`p-0${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}
+                        onClick={() => this.handleTabsContent('职位')}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
@@ -139,16 +142,19 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}>
+                        className={`p-0${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}
+                        onClick={() => this.handleTabsContent('公司')}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
-                          to={`${this.props.match.url}/search-company-result`}>
+                          to={`${this.props.match.url}/search-company-result`}
+                        >
                           <MDBIcon style={{width: '20px'}} icon="building"/> 公司
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}>
+                        className={`p-0${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}
+                        onClick={() => this.handleTabsContent('社区')}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
@@ -157,7 +163,8 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}>
+                        className={`p-0${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}
+                        onClick={() => this.handleTabsContent('视频')}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
@@ -166,7 +173,8 @@ export class Search extends React.Component {
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}>
+                        className={`p-0${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}
+                        onClick={() => this.handleTabsContent('人脉')}>
                         <MDBNavLink
                           className="p-2"
                           style={{...basicCHNFont, color: '#31394D'}}
@@ -177,7 +185,7 @@ export class Search extends React.Component {
                     </MDBDropdownMenu>
                   </MDBDropdown>
                 </MDBNavItem>
-                
+
                 <Switch>
                   <Route
                     path={`${this.props.match.url}/search-job-result`}
@@ -185,7 +193,7 @@ export class Search extends React.Component {
                   />
                   <Route
                     path={`${this.props.match.url}/search-company-result`}
-                    component={routeProps => <CompanyNavbarItem basicCHNFont={basicCHNFont}/>}
+                    component={routeProps => <CompanyNavbarItem clickable={this.handleTabsContent} basicCHNFont={basicCHNFont}/>}
                   />
                   <Route
                     path={`${this.props.match.url}/search-community-result`}
@@ -201,7 +209,7 @@ export class Search extends React.Component {
                   />
                   <Redirect to={`${this.props.match.url}/search-job-result`}/>
                 </Switch>
-                
+
               </MDBNavbarNav>
             </MDBCollapse>
           </MDBContainer>
@@ -230,44 +238,6 @@ export class Search extends React.Component {
           />
           <Redirect to={`${this.props.match.url}/search-job-result`}/>
         </Switch>
-        
-        {/*<div className="classic-tabs">*/}
-          {/*<MDBTabContent className="px-0 py-0" activeItem={this.state.activeItemClassicTabs1}>*/}
-        
-            {/*<MDBTabPane tabId="1">*/}
-              {/*<SearchJobResult*/}
-                {/*toggleClassicTabs1={this.toggleClassicTabs1}*/}
-                {/*activeTab={this.state.activeItemClassicTabs1}*/}
-              {/*/>*/}
-            {/*</MDBTabPane>*/}
-        
-            {/*<MDBTabPane tabId="2">*/}
-              {/*<SearchCompanyResult*/}
-                {/*toggleClassicTabs1={this.toggleClassicTabs1}*/}
-                {/*activeTab={this.state.activeItemClassicTabs1}*/}
-              {/*/>*/}
-            {/*</MDBTabPane>*/}
-        
-            {/*<MDBTabPane tabId="3">*/}
-              {/*<SearchCommunityResult*/}
-                {/*toggleClassicTabs1={this.toggleClassicTabs1}*/}
-                {/*activeTab={this.state.activeItemClassicTabs1}*/}
-              {/*/>*/}
-            {/*</MDBTabPane>*/}
-        
-            {/*<MDBTabPane tabId="4">*/}
-              {/*<SearchVideoResult*/}
-                {/*toggleClassicTabs1={this.toggleClassicTabs1}*/}
-                {/*activeTab={this.state.activeItemClassicTabs1}*/}
-              {/*/>*/}
-            {/*</MDBTabPane>*/}
-        
-            {/*<MDBTabPane tabId="5">*/}
-              {/*<MDBBtn color="primary" href="/search">建设中，点我返回</MDBBtn>*/}
-            {/*</MDBTabPane>*/}
-        
-          {/*</MDBTabContent>*/}
-        {/*</div>*/}
 
         <Footer/>
       </div>
