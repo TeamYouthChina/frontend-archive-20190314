@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from "react-router-dom"
 
 import classes from "./resumes.module.css";
 import Resume from "./Resume/resume";
@@ -55,6 +56,12 @@ class resumes extends Component {
     
   }
 
+  toEditPage = (id) =>{
+    console.log(`direct ${id} to edit page`);
+    console.log(this.props.requestID);
+    this.props.history.push(`/create-resume/${this.props.requestID}`);
+  }
+
   render() {
     let arrayOfResumes = [];
     if (this.props.inApplicant) {
@@ -91,6 +98,7 @@ class resumes extends Component {
               lastEdit={one.lastEdit}
               selectHandler={this.props.selectHandler}
               selected={this.props.selected}
+              toEditPage={this.toEditPage}
             />
         );
       });
@@ -135,4 +143,4 @@ class resumes extends Component {
   }
 }
 
-export default resumes;
+export default withRouter(resumes);

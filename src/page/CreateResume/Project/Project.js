@@ -40,7 +40,8 @@ class Project extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/projects"
+      "/applicants/" + this.props.requestID + "/projects",
+      true
     );
     this.setState({ requestedData: data });
     this.date = new Date();
@@ -174,7 +175,9 @@ class Project extends Component {
       );
     } else {
       const plainText = this.state.editorState.toHTML();
-      const dangerousText = <div dangerouslySetInnerHTML={{ __html: plainText }} />;
+      const dangerousText = (
+        <div dangerouslySetInnerHTML={{ __html: plainText }} />
+      );
       toShow = (
         <div className={classes.Project}>
           <div className={classes.row}>

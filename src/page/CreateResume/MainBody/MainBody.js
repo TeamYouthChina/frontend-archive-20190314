@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MDBBtn } from "mdbreact";
+import {withRouter} from 'react-router-dom'
 
 import classes from "./MainBody.module.css";
 import BasicInfo from "../BasicInfo/BasicInfo";
@@ -20,61 +21,62 @@ class MainBody extends Component {
   sRef = React.createRef();
   pRef = React.createRef();
   skillsRef = React.createRef();
-  dataForBasicInfo = {
-    name: this.props.data.name ? this.props.data.name : "no name given",
-    DOB: this.props.data.DOB ? this.props.data.DOB : "no DOB given",
-    gender: this.props.data.gender ? this.props.data.gender : "no gender given",
-    email: this.props.data.contacts.email
-      ? this.props.data.contacts.email
-      : "no email given",
-    phone: this.props.data.contacts.phonenumbers
-      ? this.props.data.contacts.phonenumbers
-      : "no phone given",
-  };
+  // dataForBasicInfo = {
+  //   name: this.props.data.name ? this.props.data.name : "no name given",
+  //   DOB: this.props.data.DOB ? this.props.data.DOB : "no DOB given",
+  //   gender: this.props.data.gender ? this.props.data.gender : "no gender given",
+  //   email: this.props.data.contacts.email
+  //     ? this.props.data.contacts.email
+  //     : "no email given",
+  //   phone: this.props.data.contacts.phonenumbers
+  //     ? this.props.data.contacts.phonenumbers
+  //     : "no phone given",
+  // };
 
   state = {};
 
   submitResumeHandler = () => {
     let resume = "";
-    resume = resume.concat(
-      "<p>" +
-        this.dataForBasicInfo.name +
-        "<br/>" +
-        this.dataForBasicInfo.DOB +
-        "<br/>" +
-        this.dataForBasicInfo.gender +
-        "<br/>" +
-        this.dataForBasicInfo.email +
-        "<br/>" +
-        this.dataForBasicInfo.phone +
-        "</p>"
-    );
-    resume =
-      this.wRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.wRef.current.state.editorState.toHTML());
-    resume =
-      this.cRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.cRef.current.state.editorState.toHTML());
-    resume =
-      this.sRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.sRef.current.state.editorState.toHTML());
-    resume =
-      this.eRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.eRef.current.state.editorState.toHTML());
-    resume =
-      this.pRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.pRef.current.state.editorState.toHTML());
-    resume =
-      this.skillsRef.current.state.editorState.toHTML() == "<p></p>"
-        ? resume
-        : resume.concat(this.skillsRef.current.state.editorState.toHTML());
-    console.log(resume);
+    // resume = resume.concat(
+    //   "<p>" +
+    //     this.dataForBasicInfo.name +
+    //     "<br/>" +
+    //     this.dataForBasicInfo.DOB +
+    //     "<br/>" +
+    //     this.dataForBasicInfo.gender +
+    //     "<br/>" +
+    //     this.dataForBasicInfo.email +
+    //     "<br/>" +
+    //     this.dataForBasicInfo.phone +
+    //     "</p>"
+    // );
+    // resume =
+    //   this.wRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.wRef.current.state.editorState.toHTML());
+    // resume =
+    //   this.cRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.cRef.current.state.editorState.toHTML());
+    // resume =
+    //   this.sRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.sRef.current.state.editorState.toHTML());
+    // resume =
+    //   this.eRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.eRef.current.state.editorState.toHTML());
+    // resume =
+    //   this.pRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.pRef.current.state.editorState.toHTML());
+    // resume =
+    //   this.skillsRef.current.state.editorState.toHTML() == "<p></p>"
+    //     ? resume
+    //     : resume.concat(this.skillsRef.current.state.editorState.toHTML());
+    // console.log(resume);
     // post this resume to server
+    this.props.history.goBack();
   };
 
   render() {
@@ -85,20 +87,20 @@ class MainBody extends Component {
           <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
             Save on Profile
           </MDBBtn>
-          <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
+          {/* <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
             Create PDF
-          </MDBBtn>
+          </MDBBtn> */}
         </div>
-        <BasicInfo data={this.dataForBasicInfo} ref={this.bRef} />
+        <BasicInfo requestID={this.props.requestID} ref={this.bRef} />
         <Education requestID={this.props.requestID} ref={this.eRef} />
         <WorkExperience requestID={this.props.requestID} ref={this.wRef} />
         <Certifications requestID={this.props.requestID} ref={this.cRef} />
         <SocialActivicies requestID={this.props.requestID} ref={this.sRef} />
-        <Projects requestID={this.props.requestID} ref={this.pRef} />
+        {/* <Projects requestID={this.props.requestID} ref={this.pRef} /> */}
         <Skills requestID={this.props.requestID} ref={this.skillsRef} />
       </div>
     );
   }
 }
 
-export default MainBody;
+export default withRouter(MainBody);

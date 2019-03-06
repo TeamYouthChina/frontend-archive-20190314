@@ -30,7 +30,6 @@ class Education extends Component {
     super(props);
     this.state = {
       cards: Array(),
-      requestedData: null,
       cardsToModal: [],
       editorState: BraftEditor.createEditorState(),
       showEditor: false,
@@ -41,20 +40,18 @@ class Education extends Component {
   // get educations data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/educations"
+      "/applicants/" + this.props.requestID + "/educations",
+      true
     );
-    this.setState({ ...this.state, requestedData: data });
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp1 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <EducationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -64,21 +61,21 @@ class Education extends Component {
         : Array();
 
     let temp2 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <EducationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
               />
             );
           })
-        : Array();
+        : [];
 
     this.setState({
       ...this.state,
@@ -179,7 +176,9 @@ class Education extends Component {
       );
     } else {
       const plainText = this.state.editorState.toHTML();
-      const dangerousText = <div dangerouslySetInnerHTML={{ __html: plainText }} />;
+      const dangerousText = (
+        <div dangerouslySetInnerHTML={{ __html: plainText }} />
+      );
       // console.log(plainText);
       toShow = (
         <div className={classes.Education}>

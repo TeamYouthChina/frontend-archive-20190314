@@ -4,23 +4,19 @@ import { Header } from "../../general-component/header/header";
 import MainBody from "./MainBody/MainBody";
 import { getAsync } from "../../tool/api-helper";
 import classes from "./CreateResume.module.css";
-import Topbar from '../OnlineApplication/Components/TopBar/topBar'
+import Topbar from "../OnlineApplication/Components/TopBar/topBar";
 
 class CreateResume extends Component {
   state = {
     requestID: null,
-    requestedData: null,
   };
 
   componentWillMount() {
     this.setState({ requestID: this.props.match.params.id });
+    console.log(this.state.requestID);
   }
 
-  async componentDidMount() {
-    // ideally only get /applicants/id/basicinfo
-    let data = await getAsync("/applicants/" + this.state.requestID);
-    this.setState({ requestedData: data });
-  }
+  componentDidMount() {}
 
   render() {
     let toShow = (
@@ -30,22 +26,13 @@ class CreateResume extends Component {
       </div>
     );
 
-    if (
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-    ) {
-      toShow = (
-        <div className={classes.ProfileHome}>
-          <Header />
-          <Topbar text={['My Resumes','Edit Resume']} />
-          <MainBody
-            requestID={this.state.requestID}
-            data={this.state.requestedData.content}
-          />
-        </div>
-      );
-    }
+    toShow = (
+      <div className={classes.ProfileHome}>
+        <Header />
+        <Topbar text={["My Resumes", "Edit Resume"]} />
+        <MainBody requestID={this.state.requestID} />
+      </div>
+    );
 
     return toShow;
   }

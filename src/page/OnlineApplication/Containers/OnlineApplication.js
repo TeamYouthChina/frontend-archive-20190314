@@ -41,8 +41,13 @@ class OnlineApplication extends Component {
     this.state = {
       selected: -1, // record which resume is selected
       addingResume: false, // if adding a resume?
+      requestID: null
     };
   }
+
+  componentWillMount = () => {
+    this.setState({ requestID: this.props.match.params.id });
+  };
 
   componentDidMount = () => {
     // api get resumes
@@ -95,11 +100,15 @@ class OnlineApplication extends Component {
     let toShow = (
       <div className={classes.main}>
         <Header />
-        <TopBar text={[this.text.positions, this.text.positionDetail, this.text.chooseResume]} />
+        <TopBar
+          text={[
+            this.text.positions,
+            this.text.positionDetail,
+            this.text.chooseResume,
+          ]}
+        />
         <Prompts trans={this.text} />
-        <div
-          className={classes.ResumesDiv}
-        >
+        <div className={classes.ResumesDiv}>
           <Resumes
             trans={this.text}
             exportClicked={this.exportHandler}
@@ -110,6 +119,7 @@ class OnlineApplication extends Component {
             addingResume={this.state.addingResume}
             typeResumeHander={this.typeResumeHander}
             uploadResuemHandler={this.uploadResuemHandler}
+            requestID={this.state.requestID}
           />
         </div>
         <Submit active={active} clicked={this.submitHandler} />

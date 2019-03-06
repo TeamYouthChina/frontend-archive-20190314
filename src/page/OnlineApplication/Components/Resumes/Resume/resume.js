@@ -2,8 +2,6 @@ import React from "react";
 
 import classes from "./resume.module.css";
 
-
-
 const resume = props => {
   if (props.inApplicant) {
     return (
@@ -26,7 +24,10 @@ const resume = props => {
             </div>
           </div>
         </div>
-        <div onClick={()=>props.resumeClick(props.id)} className={classes.floatingBox}></div>
+        <div
+          onClick={() => props.resumeClick(props.id)}
+          className={classes.floatingBox}
+        />
       </div>
     );
   } else {
@@ -37,6 +38,11 @@ const resume = props => {
 
     return (
       <div className={resumeStyle}>
+        <div
+          onClick={() => props.toEditPage(props.id)}
+          className={classes.floatingBox}
+        />
+
         <div className={classes.border}>
           <div className={classes.picStyle}>
             <img src={props.icon} alt="no icon" />

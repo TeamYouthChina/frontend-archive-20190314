@@ -166,7 +166,7 @@ export class App extends Component {
               component={routeProps => <OtherProfile {...routeProps} />}
             />
             <Route
-              path="/OnlineApplication"
+              path="/OnlineApplication/:id"
               component={routeProps => <OnlineApplication {...routeProps} />}
             />
             <Route
