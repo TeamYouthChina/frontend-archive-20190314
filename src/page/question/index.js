@@ -189,15 +189,34 @@ export class QuestionAnswer extends React.Component {
         };
     } else {
       if (this.props.questionId) {
+        
         try {
           result = await getAsync(`/questions/${this.props.questionId}`,!data.env);
           result = result.content
         } catch (e) {
           console.log(e);
         }
-      } else {
-        result = this.props.location.state;
+      } else if(this.props.location.state) {
+        if(typeof this.props.location.state === "string"){
+          try{
+            result = await getAsync(`/questions/${this.props.location.state}`,true)
+            result = result.content
+            
+          } catch (e) {
+            
+          }
+        } else {
+          result = this.props.location.state;
+        }
+        
         // console.log(result.body.braftEditorRaw,result.id)
+      } else {
+        try {
+          result = await getAsync(`questions/${this.props.params.match.questionId}`,true)
+          result = result.content
+        } catch (e) {
+          
+        }
       }
       mockData =
         {

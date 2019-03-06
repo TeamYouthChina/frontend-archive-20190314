@@ -51,8 +51,17 @@ export class Article extends React.Component {
   async componentDidMount() {
     let mockData
     let commonLists
-
-    let article = this.props.location.state
+    let article
+    if(typeof this.props.location.state === 'string'){
+      try{
+        article = await getAsync(`/articles/${this.props.location.state}`,true)
+        article = article.content
+      }catch (e) {
+        
+      }
+    } else {
+      article = this.props.location.state
+    }
     // try{
     //   commonLists = await getAsync(`/answers/${article.id}/comments`,true)
     // } catch (e) {
