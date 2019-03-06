@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import './public/style.css'
+import classes from  './tabs.module.css'
 
 import {
   MDBBtn,
@@ -129,57 +130,57 @@ export class Search extends React.Component {
                       }}>{this.state.tabsContent} <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
                       </div>
                     </MDBDropdownToggle>
-                    <MDBDropdownMenu>
+                    <MDBDropdownMenu className={classes.menu}>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}
+                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-job-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('职位')}>
                         <MDBNavLink
-                          className="p-2"
+                          className="p-2 d-flex justify-content-center align-items-center"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-job-result`}
                         >
-                          <MDBIcon style={{width: '20px'}} icon="user-circle"/> 职位
+                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="user-circle"/> 职位
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}
+                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-company-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('公司')}>
                         <MDBNavLink
-                          className="p-2"
+                          className="p-2 d-flex justify-content-center align-items-center"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-company-result`}
                         >
-                          <MDBIcon style={{width: '20px'}} icon="building"/> 公司
+                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="building"/> 公司
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}
+                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-community-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('社区')}>
                         <MDBNavLink
-                          className="p-2"
+                          className="p-2 d-flex justify-content-center align-items-center"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-community-result`}>
-                          <MDBIcon style={{width: '20px'}} icon="bullhorn"/> 社区
+                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="bullhorn"/> 社区
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}
+                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-video-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('视频')}>
                         <MDBNavLink
-                          className="p-2"
+                          className="p-2 d-flex justify-content-center align-items-center"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-video-result`}>
-                          <MDBIcon style={{width: '20px'}} fab icon="play-circle"/> 视频
+                          <MDBIcon style={{width: '20px', marginRight: '5px'}} fab icon="play-circle"/> 视频
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
-                        className={`p-0${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}
+                        className={`p-0 ${classes.dropdownItems}${this.props.location.pathname.includes('/search-connect-result') ? ' active' : ''}`}
                         onClick={() => this.handleTabsContent('人脉')}>
                         <MDBNavLink
-                          className="p-2"
+                          className="p-2 d-flex justify-content-center align-items-center"
                           style={{...basicCHNFont, color: '#31394D'}}
                           to={`${this.props.match.url}/search-connect-result`}>
-                          <MDBIcon style={{width: '20px'}} icon="users"/> 人脉
+                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="users"/> 人脉
                         </MDBNavLink>
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
