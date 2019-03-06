@@ -185,6 +185,7 @@ export class QuestionCard extends React.Component {
         }
       }
     }
+    // console.log(commonLists)
     this.setState({
       backend: mockData,
       commontsText:`${commonLists.length}条评论`,

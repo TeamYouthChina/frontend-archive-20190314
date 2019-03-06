@@ -87,25 +87,35 @@ export class ReviewCard extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
-    let editorial = this.props.editorial
-    let mockData =
-      {
-        id: editorial.id,
-        long: editorial.body.braftEditorRaw,
-        user: '齐昊',
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        // description: '莫以为敌消彼长，然乾坤逆之天崩',
-        description: editorial.author || '职道负责人',
-        readingTime: 10,
-        editTime: '2019-1-1',
-        score: 5,
-        commonLists: editorial.comments.comments,
-        agree: '',
-        disagree: '',
-        status: {
-          code: 2000
-        }
-      };
+    let editorial
+    let mockData
+    if(this.props.editorial) {
+      editorial = this.props.editorial
+      mockData =
+        {
+          id: editorial.id,
+          long: editorial.body.braftEditorRaw,
+          user: '齐昊',
+          img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+          // description: '莫以为敌消彼长，然乾坤逆之天崩',
+          description: editorial.author || '职道负责人',
+          readingTime: 10,
+          editTime: '2019-1-1',
+          score: 5,
+          commonLists: editorial.comments.comments,
+          agree: '',
+          disagree: '',
+          status: {
+            code: 2000
+          }
+        };
+    } else {
+      mockData = {
+        id:1,
+        long:''
+      }
+    }
+    
     this.setState({
       backend: mockData,
       editorState: BraftEditor.createEditorState(mockData.long),
