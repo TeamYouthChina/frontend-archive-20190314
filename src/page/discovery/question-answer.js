@@ -38,7 +38,7 @@ export class QuestionAnswer extends React.Component {
       })
     } else {
       try {
-        const result = await getAsync(`/discovery/questions`,data.env)
+        const result = await getAsync(`/discovery/questions`,!data.env)
         if (result && result.status && result.status.code === 200) {
           let mockData =
             {
@@ -47,6 +47,7 @@ export class QuestionAnswer extends React.Component {
                 code: result.status.code
               }
             };
+          // console.log(result.content.questions)
           this.setState(() => {
             return {backend: mockData};
           });
