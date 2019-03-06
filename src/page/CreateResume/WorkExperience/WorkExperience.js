@@ -8,8 +8,23 @@ import {getAsync} from '../../../tool/api-helper';
 import ModalPage from '../Modal/Modal';
 import BraftEditor from 'braft-editor'
 import Dropdown from '../Dropdown/Dropdown';
-import { ContentUtils } from 'braft-utils'
+import { ContentUtils } from 'braft-utils';
+import { languageHelper } from "../../../tool/language-helper";
 
+const translation = [
+    {
+      workExperience: "工作经历",
+      addWorkExperience: "+ 添加工作经历",
+      noWorkExperience: "无工作经历",
+    },
+    {
+      workExperience: "Work Experience",
+      addWorkExperience: "+ Add Work Experience",
+      noWorkExperience: "No Work Experience",
+    },
+  ];
+  
+  const text = translation[languageHelper()];
 
 class WorkExperience extends Component {
 
@@ -123,7 +138,7 @@ class WorkExperience extends Component {
             toShow = 
                 <div className={classes.WorkExperience}>
                     <div className={classes.row}>
-                        <p className={classes.SectionName}>Work Experience</p>
+                        <p className={classes.SectionName}>{text.workExperience}</p>
                         <Dropdown save={this.saveHandler} delete={this.deleteHandler} editing />
                     </div>
                     <BraftEditor
@@ -133,7 +148,7 @@ class WorkExperience extends Component {
                         onChange={this.handleEditorChange}/>
                     <div>
                         <ModalPage
-                            buttonName="+ Add Work" 
+                            buttonName={text.addWorkExperience}
                             requestID={this.props.requestID}
                             cards={this.state.cardsToModal}
                             addHandler={this.addHandler}/>
@@ -142,19 +157,19 @@ class WorkExperience extends Component {
         }
         else {
             const plainText = this.state.editorState.toHTML();
-            const text = <div dangerouslySetInnerHTML={{__html: plainText}} />;
+            const dangerousText = <div dangerouslySetInnerHTML={{__html: plainText}} />;
 
             toShow = 
                 <div className={classes.WorkExperience}>
                     <div className={classes.row}>
-                        <p className={classes.SectionName}>Work Experience</p>
+                        <p className={classes.SectionName}>{text.workExperience}</p>
                         <Dropdown edit={this.editHandler} delete={this.deleteHandler}/>
                     </div>
                     <div style={{width: '90%'}}>
-                        {text} 
+                        {dangerousText} 
                     </div>
                     <ModalPage
-                        buttonName="+ Add Work" 
+                        buttonName={text.addWorkExperience}
                         requestID={this.props.requestID}
                         cards={this.state.cardsToModal}
                         addHandler={this.addHandler}/>

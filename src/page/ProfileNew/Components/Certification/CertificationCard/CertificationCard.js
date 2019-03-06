@@ -32,8 +32,8 @@ class CertificationCard extends Component {
             name: this.props.data.name,
             authority: this.props.data.authority,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             note: this.props.data.note,
           }
@@ -93,18 +93,16 @@ class CertificationCard extends Component {
         <img src={certificationIcon} alt="no img" />
         <div className={classes.certifiInfo}>
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.certiData.name}
           />
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.certiData.authority}
           />
-          <div style={{ margin: "3px 0px" }} className={classes.twoP}>
+          <div  className={classes.twoP}>
             <p>
               {this.state.certiData.duration.begin} -{" "}
               {this.state.certiData.duration.end}
@@ -127,7 +125,6 @@ class CertificationCard extends Component {
           <img src={certificationIcon} alt="no img" />
           <div className={classes.certifiInfo}>
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.certiData.name}
               ref={this.nameRef}
@@ -135,7 +132,6 @@ class CertificationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.certiData.authority}
               ref={this.authRef}
@@ -143,7 +139,6 @@ class CertificationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.certiData.duration.begin}
               ref={this.beginRef}
@@ -151,7 +146,6 @@ class CertificationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.certiData.duration.end}
               ref={this.endRef}
@@ -159,7 +153,6 @@ class CertificationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.certiData.note}
               ref={this.noteRef}

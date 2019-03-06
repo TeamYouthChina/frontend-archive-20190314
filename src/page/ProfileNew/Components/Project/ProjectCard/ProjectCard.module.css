@@ -16,7 +16,7 @@
   line-height: normal;
   font-size: 14px;
   color: #62686c;
-  margin: 0%;
+  margin: 3px 0;
   border-top: hidden;
   border-left: hidden;
   border-right: hidden;
@@ -30,16 +30,25 @@
   border-bottom: 1px solid white;
 }
 
-.Time {
+.twoP {
+  margin: 3px 0;
+  padding: 1px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: 1px solid white;
+}
+
+/* .Time {
   padding: 1px;
   border-top: hidden;
   border-left: hidden;
   border-right: hidden;
   border-bottom: 1px solid white;
   height: 20px;
-}
+} */
 
-.Time p {
+.ProjectCard p {
   font-family: IBM Plex Sans;
   font-style: normal;
   font-weight: normal;

@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import {
+  MDBSelect,
+  MDBSelectInput,
+  MDBSelectOptions,
+  MDBSelectOption,
+} from "mdbreact";
 
 import classes from "./SkillCard.module.css";
 import SkillIcon from "../../../../assets/javascript.png";
@@ -21,7 +27,7 @@ class skillCard extends Component {
       editing: this.props.data ? false : true,
       skillData: this.props.data
         ? {
-            name: this.props.data.name,
+            name: this.props.data,
           }
         : {
             name: "",
@@ -58,11 +64,12 @@ class skillCard extends Component {
   };
 
   render() {
+    console.log(this.props.data);
     let toShow = (
       <div className={classes.SkillCard}>
         <img src={SkillIcon} alt="no img" />
         <div className={classes.SkillInfo}>
-          <div style={{ margin: "3px 0px" }} className={classes.oneP}>
+          <div className={classes.oneP}>
             <p>{this.state.skillData.name}</p>
           </div>
         </div>
@@ -75,14 +82,22 @@ class skillCard extends Component {
         <div className={classes.SkillCard}>
           <img src={SkillIcon} alt="no img" />
           <div className={classes.SkillInfo}>
-            <input
-              style={{ margin: "3px 0px" }}
+            {/* <input
               type="text"
               value={this.state.skillData.name}
               ref={this.nameRef}
               placeholder={text.name}
               onChange={this.inputOnChange}
-            />
+            /> */}
+            <MDBSelect options={this.state.options}>
+              <MDBSelectInput selected="Choose your option" />
+              <MDBSelectOptions search>
+                <MDBSelectOption value="" disabled selected>
+                  Choose a Skill
+                </MDBSelectOption>
+                {this.props.options}
+              </MDBSelectOptions>
+            </MDBSelect>
           </div>
           <Dropdown
             delete={this.deleteHandler}

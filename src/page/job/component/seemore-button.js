@@ -26,7 +26,7 @@ export class SeeMoreBtn extends React.Component {
         }}
         color={btnColor}
         // props里面传入的handle see more函数(未实现）
-        onClick={this.props.clickable}>
+        onClick={this.props.onClick}>
         {this.props.btnText}
       </MDBBtn>
     );

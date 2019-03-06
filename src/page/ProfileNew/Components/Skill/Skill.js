@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { MDBBtn } from "mdbreact";
+import {
+  MDBSelect,
+  MDBSelectInput,
+  MDBSelectOptions,
+  MDBSelectOption,
+} from "mdbreact";
 
 import SkillCard from "./SkillCard/SkillCard";
 import classes from "./Skill.module.css";
@@ -34,9 +40,8 @@ class skill extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: Array(),
-      flipper: true,
-      requestedData: null,
+      cards: [],
+      allSkills: [],
     };
     this.date = null;
   }
@@ -45,28 +50,42 @@ class skill extends Component {
   async componentDidMount() {
     // this api is now currently unavailable
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/skills"
+      "/applicants/" + this.props.requestID + "/skills",
+      true
     );
-    this.setState({ requestedData: data });
+    let allSkillsData = await getAsync("/applicants/skills/", true);
+    const tempAllSkills =
+      allSkillsData &&
+      allSkillsData.content &&
+      allSkillsData.status.code === 2000
+        ? allSkillsData.content.map((e, i) => {
+            console.log(e);
+            return (
+              <MDBSelectOption key={e.id} value={e.id}>
+                {e.name}
+              </MDBSelectOption>
+            );
+          })
+        : [];
+    
     let temp =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
-            this.date = new Date();
-            const time = this.date.getTime();
+      data && data.content && data.status.code === 2000
+        ? data.content.map((e, i) => {
+            console.log(e);
             return (
               <SkillCard
-                key={time}
-                id={time}
+                key={i}
+                id={i}
                 data={e}
+                options = {tempAllSkills}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
               />
             );
           })
-        : Array();
-    this.setState({ cards: temp });
+        : [];
+
+    this.setState({ ...this.state, cards: temp, allSkills: tempAllSkills });
   }
 
   async componentDidUpdate() {}
@@ -85,7 +104,6 @@ class skill extends Component {
     this.setState(
       {
         cards: temp,
-        flipper: !this.state.flipper,
       },
       () => {
         // prepare the data to be sent back to server
@@ -124,7 +142,6 @@ class skill extends Component {
     this.setState(
       {
         cards: temp,
-        flipper: !this.state.flipper,
       },
       () => {
         // prepare data to be sent back to server
@@ -139,21 +156,18 @@ class skill extends Component {
   // update the data in server and local happens in saveHandler
   addHandler = () => {
     // timestamp
-    this.date = new Date();
-    const time = this.date.getTime();
     // make a hard copy
-    let temp = this.state.cards.splice(0);
-    temp.push(
+    let temp = this.state.cards.concat(
       <SkillCard
-        key={time}
-        id={time}
+        key={this.state.cards.length}
+        id={this.state.cards.length}
         deleteHandler={this.deleteHandler}
         saveHandler={this.saveHandler}
       />
     );
+
     this.setState({
       cards: temp,
-      flipper: !this.state.flipper,
     });
   };
 

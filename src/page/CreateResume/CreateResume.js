@@ -1,49 +1,54 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import {Header} from '../../general-component/header/header';
-import MainBody from './MainBody/MainBody'
-import {getAsync} from '../../tool/api-helper';
-import classes from './CreateResume.module.css';
-
+import { Header } from "../../general-component/header/header";
+import MainBody from "./MainBody/MainBody";
+import { getAsync } from "../../tool/api-helper";
+import classes from "./CreateResume.module.css";
+import Topbar from '../OnlineApplication/Components/TopBar/topBar'
 
 class CreateResume extends Component {
+  state = {
+    requestID: null,
+    requestedData: null,
+  };
 
-    state = {
-        requestID: null,
-        requestedData: null
+  componentWillMount() {
+    this.setState({ requestID: this.props.match.params.id });
+  }
+
+  async componentDidMount() {
+    // ideally only get /applicants/id/basicinfo
+    let data = await getAsync("/applicants/" + this.state.requestID);
+    this.setState({ requestedData: data });
+  }
+
+  render() {
+    let toShow = (
+      <div className={classes.ProfileHome}>
+        <Header />
+        <p>no such data</p>
+      </div>
+    );
+
+    if (
+      this.state.requestedData &&
+      this.state.requestedData.content &&
+      this.state.requestedData.status.code === 2000
+    ) {
+      toShow = (
+        <div className={classes.ProfileHome}>
+          <Header />
+          <Topbar text={['My Resumes','Edit Resume']} />
+          <MainBody
+            requestID={this.state.requestID}
+            data={this.state.requestedData.content}
+          />
+        </div>
+      );
     }
-    
-    componentWillMount(){
-        this.setState({requestID: this.props.match.params.id});
-    }
 
-    async componentDidMount(){
-        // ideally only get /applicants/id/basicinfo
-        let data = await getAsync('/applicants/'+this.state.requestID);
-        this.setState({requestedData: data});
-    }
-
-    render() {
-        let toShow = 
-            <div className={classes.ProfileHome}>
-                <Header/>
-                <p>no such data</p>
-            </div>;
-
-        
-        if(this.state.requestedData && this.state.requestedData.content && this.state.requestedData.status.code === 2000){
-
-            toShow = 
-                <div className={classes.ProfileHome}>
-                    <Header/>
-                    <MainBody requestID={this.state.requestID} data={this.state.requestedData.content}/>
-                </div>;
-        }
-        
-        return(
-            toShow
-        );
-    }
+    return toShow;
+  }
 }
 
-export default CreateResume
+export default CreateResume;

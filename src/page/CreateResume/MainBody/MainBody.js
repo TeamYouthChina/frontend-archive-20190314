@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { MDBBtn } from "mdbreact";
 
 import classes from "./MainBody.module.css";
-import ResumeButtons from "../ResumeButtons/ResumeButtons";
 import BasicInfo from "../BasicInfo/BasicInfo";
 import Education from "../Education/Education";
 import WorkExperience from "../WorkExperience/WorkExperience";
@@ -9,7 +9,8 @@ import Certifications from "../Certification/Certification";
 import SocialActivicies from "../SocialActivity/SocialActivity";
 import Projects from "../Project/Project";
 import Skills from "../Skill/Skill";
-import { MDBBtn } from "mdbreact";
+import Topbar from "../../OnlineApplication/Components/TopBar/topBar"
+
 
 class MainBody extends Component {
   bRef = React.createRef();
@@ -79,7 +80,8 @@ class MainBody extends Component {
   render() {
     return (
       <div className={classes.MainBody}>
-        <div>
+        <h1 className={classes.Title}>Edit Your Resume</h1>
+        <div className={classes.Buttons}>
           <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
             Save on Profile
           </MDBBtn>

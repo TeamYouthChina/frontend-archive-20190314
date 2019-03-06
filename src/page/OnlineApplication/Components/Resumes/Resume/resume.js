@@ -2,26 +2,31 @@ import React from "react";
 
 import classes from "./resume.module.css";
 
+
+
 const resume = props => {
   if (props.inApplicant) {
     return (
       <div className={classes.resumeInApplicant}>
-        <div className={classes.border}>
-          <div className={classes.picStyle}>
-            <img src={props.icon} alt="no icon" />
-          </div>
-          <div className={classes.textBoxStyle}>
-            <div className={classes.name}>
-              <p>{props.name}</p>
+        <div className={classes.underlyingBox}>
+          <div className={classes.border}>
+            <div className={classes.picStyle}>
+              <img src={props.icon} alt="no icon" />
             </div>
-            <div className={classes.language}>
-              <p>{props.language}</p>
-            </div>
-            <div className={classes.lastEdit}>
-              <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+            <div className={classes.textBoxStyle}>
+              <div className={classes.name}>
+                <p>{props.name}</p>
+              </div>
+              <div className={classes.language}>
+                <p>{props.language}</p>
+              </div>
+              <div className={classes.lastEdit}>
+                <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+              </div>
             </div>
           </div>
         </div>
+        <div onClick={()=>props.resumeClick(props.id)} className={classes.floatingBox}></div>
       </div>
     );
   } else {

@@ -44,7 +44,8 @@ class SocialActivity extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/extracurriculars"
+      "/applicants/" + this.props.requestID + "/extracurriculars", 
+      true
     );
     this.setState({ requestedData: data });
     let temp =

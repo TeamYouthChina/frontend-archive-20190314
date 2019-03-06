@@ -95,7 +95,7 @@ class OnlineApplication extends Component {
     let toShow = (
       <div className={classes.main}>
         <Header />
-        <TopBar trans={this.text} />
+        <TopBar text={[this.text.positions, this.text.positionDetail, this.text.chooseResume]} />
         <Prompts trans={this.text} />
         <div
           className={classes.ResumesDiv}

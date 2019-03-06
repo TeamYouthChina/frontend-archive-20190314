@@ -23,6 +23,8 @@ import {ReviewCard} from '../../general-component/review-card';
 import {SeeMoreBtn} from './component/seemore-button';
 import {JobCardBar} from "./component/jobinfo/job-card-bar";
 import {getAsync} from '../../tool/api-helper';
+import {data} from '../discovery/question-data';
+import {ReviewCardSquareFull} from '../choice/review-card-small';
 
 //define the basic font style and then pass them into children components.
 const basicCHNFont
@@ -139,13 +141,21 @@ export class Job extends React.Component {
                 </MDBContainer>
               </MDBCard>
             </p>
-            {/*
             <p id="comment">
               <MDBCard style={{boxShadow: 'none'}} className="mt-4 px-3 py-3">
                 <p style={{...basicCHNFont, color: '#454F69', fontWeight: '500', fontSize: '18px'}}
                    className="mt-2 mb-1 px-3">评论</p>
-                <ReviewCard/>
-                <ReviewCard/>
+                <MDBRow>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                  <MDBCol>
+                    <ReviewCardSquareFull fulltext="1"/>
+                  </MDBCol>
+                </MDBRow>
               </MDBCard>
             </p>
 
@@ -156,15 +166,17 @@ export class Job extends React.Component {
                    className="mt-2 mb-1 px-3">
                   问答
                 </p>
-                <QuestionCard/>
+                <QuestionCard question={data.content.users[1]}/>
                 <MDBRow center>
                   <div className="text-center">
-                    <SeeMoreBtn basicCHNFont={basicCHNFont} btnText={'查看更多'}/>
+                    <SeeMoreBtn basicCHNFont={basicCHNFont} btnText={'查看更多'} 
+                                onClick={()=>{this.props.history.push('/discovery/question-answer');}}
+                    />
                   </div>
                 </MDBRow>
               </MDBCard>
             </p>
-            */}
+
           </MDBCol>
 
         </MDBRow>

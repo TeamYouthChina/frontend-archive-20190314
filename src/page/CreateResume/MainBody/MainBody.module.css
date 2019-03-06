@@ -1,5 +1,23 @@
 .MainBody {
-    display: flex;
-    flex-direction: column;
-    width: 800px;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.Title {
+  margin-top: 40px;
+  padding-left: 5px;
+  font-family: IBM Plex Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 28px;
+
+  color: #c4c4c4;
+}
+
+.Buttons {
+  box-sizing: border-box;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }

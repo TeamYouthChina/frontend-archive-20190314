@@ -33,8 +33,8 @@ class WorkExperienceCard extends Component {
             position: this.props.data.position,
             employer: this.props.data.employer,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             note: this.props.data.note,
           }
@@ -96,7 +96,6 @@ class WorkExperienceCard extends Component {
         <img src={workIcon} alt="no img" />
         <div className={classes.WorkInfo}>
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.workData.position}
@@ -105,7 +104,6 @@ class WorkExperienceCard extends Component {
             onChange={this.inputOnChange}
           />
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.workData.employer}
@@ -113,7 +111,7 @@ class WorkExperienceCard extends Component {
             placeholder={text.employer}
             onChange={this.inputOnChange}
           />
-          <div style={{ margin: "3px 0px" }} className={classes.twoP}>
+          <div className={classes.twoP}>
             <p>
               {this.state.workData.duration.begin} -{" "}
               {this.state.workData.duration.end}

@@ -12,6 +12,12 @@ const translation = [
     gender: "性别",
     email: "邮箱",
     phone: "电话",
+    // fake
+    fakeName: "徐泽培",
+    fakeDOB: "1995/06/17",
+    fakeGender: "男",
+    fakeEmail: "example@example.com",
+    fakePhone: "12312341234",
   },
   {
     basicInfo: "Basic Info",
@@ -20,6 +26,12 @@ const translation = [
     gender: "Gender",
     email: "Email",
     phone: "Phone Number",
+    // fake
+    fakeName: "Zepei Xu",
+    fakeDOB: "1995/06/17",
+    fakeGender: "Male",
+    fakeEmail: "example@example.com",
+    fakePhone: "12312341234",
   },
 ];
 
@@ -32,11 +44,11 @@ class BasicInfo extends Component {
     this.state = {
       editing: false,
       personalInfo: {
-        name: this.props.data.name,
-        DOB: this.props.data.DOB,
-        gender: this.props.data.gender,
-        email: this.props.data.email,
-        phone: this.props.data.phone,
+        name: "",
+        DOB: "",
+        gender: "",
+        email: "",
+        phone: "",
       },
     };
     this.nameRef = React.createRef();
@@ -50,18 +62,49 @@ class BasicInfo extends Component {
     this.setState({ editing: true });
   };
 
-  saveHandler = () => {
-    this.setState({
-      editing: false,
-      personalInfo: {
-        name: this.nameRef.current.value,
-        DOB: this.DOBRef.current.value,
-        gender: this.genderRef.current.value,
-        email: this.emailRef.current.value,
-        phone: this.phoneRef.current.value,
-      },
-    });
-  };
+  // saveHandler = () => {
+  //   this.setState({
+  //     editing: false,
+  //     personalInfo: {
+  //       name: this.nameRef.current.value,
+  //       DOB: this.DOBRef.current.value,
+  //       gender: this.genderRef.current.value,
+  //       email: this.emailRef.current.value,
+  //       phone: this.phoneRef.current.value,
+  //     },
+  //   });
+  // };
+
+  async componentDidMount() {
+    let data = await getAsync("/me", true);
+    console.log(data);
+    // let temp =
+    //   data &&
+    //   data.content &&
+    //   data.status.code === 2000
+    //     ? {
+    //         name: data.content.real_name,
+    //         DOB: "",
+    //         gender: data.content.gender,
+    //         email: data.content.email,
+    //         phone: data.content.phonenumber,
+    //       }
+    //     : {
+    //         name: text.fakeName,
+    //         DOB: text.fakeDOB,
+    //         gender: text.fakeGender,
+    //         email: text.fakeEmail,
+    //         phone: text.fakePhone
+    //       };
+    const temp = {
+              name: text.fakeName,
+              DOB: text.fakeDOB,
+              gender: text.fakeGender,
+              email: text.fakeEmail,
+              phone: text.fakePhone
+            };
+    this.setState({ personalInfo: temp });
+  }
 
   render() {
     let toShow = (
@@ -74,7 +117,7 @@ class BasicInfo extends Component {
           <input
             disabled
             type="text"
-            defaultValue={this.props.data.name}
+            defaultValue={this.state.personalInfo.name}
             ref={this.nameRef}
           />
         </div>
@@ -83,7 +126,7 @@ class BasicInfo extends Component {
           <input
             disabled
             type="text"
-            defaultValue={this.props.data.DOB}
+            defaultValue={this.state.personalInfo.DOB}
             ref={this.DOBRef}
           />
         </div>
@@ -92,7 +135,7 @@ class BasicInfo extends Component {
           <input
             disabled
             type="text"
-            defaultValue={this.props.data.gender}
+            defaultValue={this.state.personalInfo.gender}
             ref={this.genderRef}
           />
         </div>
@@ -101,7 +144,7 @@ class BasicInfo extends Component {
           <input
             disabled
             type="text"
-            defaultValue={this.props.data.email}
+            defaultValue={this.state.personalInfo.email}
             ref={this.emailRef}
           />
         </div>
@@ -110,7 +153,7 @@ class BasicInfo extends Component {
           <input
             disabled
             type="text"
-            defaultValue={this.props.data.phone}
+            defaultValue={this.state.personalInfo.phone}
             ref={this.phoneRef}
           />
         </div>

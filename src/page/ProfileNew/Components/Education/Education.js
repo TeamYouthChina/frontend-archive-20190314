@@ -4,6 +4,8 @@ import { MDBBtn } from "mdbreact";
 import EducationCard from "./EducationCard/EducationCard";
 import classes from "./Education.module.css";
 import { getAsync } from "../../../../tool/api-helper";
+import { putAsync } from "../../../../tool/api-helper";
+import { postAsync } from "../../../../tool/api-helper";
 import { languageHelper } from "../../../../tool/language-helper";
 
 const MDBButtonStyle = {
@@ -26,7 +28,7 @@ const translation = [
     addEducation: "+ Add Education",
     noEducation: "No Education",
   },
-];  
+];
 
 const text = translation[languageHelper()];
 
@@ -34,30 +36,28 @@ class Education extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: Array(),
-      flipper: true,
+      cards: [],
       requestedData: null,
     };
-    this.date = null;
   }
 
   // get educations data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/educations"
+      "/applicants/" + this.props.requestID + "/educations",
+      true
     );
+    console.log(data);
     this.setState({ requestedData: data });
     let temp =
       this.state.requestedData &&
       this.state.requestedData.content &&
       this.state.requestedData.status.code === 2000
         ? this.state.requestedData.content.map(e => {
-            this.date = new Date();
-            const time = this.date.getTime();
             return (
               <EducationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -68,28 +68,42 @@ class Education extends Component {
     this.setState({ cards: temp });
   }
 
-  async componentDidUpdate() {}
+  async componentDidUpdate() {
+    // let dataToSend = this.state.cards.map(e => {
+    //   return e.props.data;
+    // });
+
+    // console.log(dataToSend)
+
+    // // let response = putAsync(
+    // //   "/applicants/" + this.props.requestID + "/educations",
+    // //   dataToSend,
+    // //   true
+    // // );
+  }
 
   // delte data on server, delete data in state.cards
-  deleteHandler = id => {
+  deleteHandler = async(id) => {
     // TODO: delete data on server according to id
-    let temp = this.state.cards.splice(0);
-    temp.forEach((e, i) => {
-      if (e.key == id) {
-        temp.splice(i, 1);
-        return;
-      }
+    let temp = this.state.cards.filter(e => {
+      return e.key != id;
     });
+
     this.setState(
       {
         cards: temp,
-        flipper: !this.state.flipper,
       },
       () => {
         // prepare the data to be sent back to server
         let dataToSend = this.state.cards.map(e => {
           return e.props.data;
         });
+        console.log(dataToSend)
+        // let response = putAsync(
+        //   "/applicants/" + this.props.requestID + "/educations",
+        //   dataToSend,
+        //   true
+        // );
       }
     );
   };
@@ -99,8 +113,6 @@ class Education extends Component {
     // TODO: update server with new saved cards
     // PUT {...this.state.requestedData, newEducation}
     // timestamp
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp = this.state.cards.splice(0);
     temp.forEach((e, i) => {
       if (e.key == id) {
@@ -108,8 +120,8 @@ class Education extends Component {
           i,
           1,
           <EducationCard
-            key={time}
-            id={time}
+            key={i}
+            id={i}
             data={newEducation}
             deleteHandler={this.deleteHandler}
             saveHandler={this.saveHandler}
@@ -121,7 +133,6 @@ class Education extends Component {
     this.setState(
       {
         cards: temp,
-        flipper: !this.state.flipper,
       },
       () => {
         // prepare data to be sent back to server
@@ -136,20 +147,17 @@ class Education extends Component {
   // update the data in server and local happens in saveHandler
   addHandler = () => {
     // timestamp
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp = this.state.cards.splice(0);
     temp.push(
       <EducationCard
-        key={time}
-        id={time}
+        key={temp.length}
+        id={temp.length}
         deleteHandler={this.deleteHandler}
         saveHandler={this.saveHandler}
       />
     );
     this.setState({
       cards: temp,
-      flipper: !this.state.flipper,
     });
   };
 

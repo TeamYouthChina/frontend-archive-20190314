@@ -30,8 +30,8 @@ class EducationCard extends Component {
         ? {
             university: this.props.data.university,
             duration: {
-              begin: this.props.data.duration.begin,
-              end: this.props.data.duration.end,
+              begin: this.props.data.duration.begin.substring(0,10),
+              end: this.props.data.duration.end.substring(0,10),
             },
             degree: this.props.data.degree,
           }
@@ -89,20 +89,18 @@ class EducationCard extends Component {
         <img src={schoolIcon} alt="no img" />
         <div className={classes.SchoolInfo}>
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.educationData.university}
             onChange={this.inputOnChange}
           />
-          <div style={{ margin: "3px 0px" }} className={classes.twoP}>
+          <div className={classes.twoP}>
             <p>
               {this.state.educationData.duration.begin} -{" "}
               {this.state.educationData.duration.end}
             </p>
           </div>
           <input
-            style={{ margin: "3px 0px" }}
             disabled
             type="text"
             value={this.state.educationData.degree}
@@ -123,7 +121,6 @@ class EducationCard extends Component {
           <img src={schoolIcon} alt="no img" />
           <div className={classes.SchoolInfo}>
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.educationData.university}
               ref={this.uniRef}
@@ -131,7 +128,6 @@ class EducationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.educationData.duration.begin}
               ref={this.beginRef}
@@ -139,7 +135,6 @@ class EducationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.educationData.duration.end}
               ref={this.endRef}
@@ -147,7 +142,6 @@ class EducationCard extends Component {
               onChange={this.inputOnChange}
             />
             <input
-              style={{ margin: "3px 0px" }}
               type="text"
               value={this.state.educationData.degree}
               ref={this.degreeRef}
