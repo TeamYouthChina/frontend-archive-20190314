@@ -135,7 +135,8 @@ export class QuestionAnswerCard extends React.Component {
       }
     } else {
       try {
-        commonLists = await getAsync(`answers/${this.props.answer.id}/comments`,!data.env)
+        commonLists = await getAsync(`/answers/${this.props.answer.id}/comments`,!data.env)
+        commonLists = commonLists.content.comments
       } catch (e) {
         console.log(e)
         // alert(e)
@@ -418,10 +419,12 @@ export class QuestionAnswerCard extends React.Component {
                 <CommentsCard key={item} message={item}></CommentsCard>
 
               ))}
-              <MDBRow center style={{marginTop: '10px'}}>
-                <PaginationUse pageConfig={{totalPage: this.state.backend.commonLists.length}}
-                               pageCallbackFn={this.getCurrentPage}></PaginationUse>
-              </MDBRow>
+              {this.state.backend.commonLists.length !== 0 ? (
+                <MDBRow center style={{marginTop: '10px'}}>
+                  <PaginationUse pageConfig={{totalPage: Math.ceil(this.state.backend.commonLists.length / 3)}}
+                                 pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                </MDBRow>
+              ) : null}
               <MDBRow center style={{marginTop: '9px'}}>
                 <MDBBtn onClick={this.showComments} flat
                         style={{margin: '0px', padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>

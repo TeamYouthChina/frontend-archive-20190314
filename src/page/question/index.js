@@ -196,7 +196,8 @@ export class QuestionAnswer extends React.Component {
           console.log(e);
         }
       } else {
-        result = this.props.question;
+        result = this.props.location.state;
+        // console.log(result.body.braftEditorRaw,result.id)
       }
       mockData =
         {
@@ -204,7 +205,7 @@ export class QuestionAnswer extends React.Component {
           tags: ['腾讯', '大学生', '求职', '互联网'],
           content: {
             title: result.title,
-            descrption: result.body.braftEditorRaw,
+            description: result.body.braftEditorRaw,
           },
           author: result.creator.username,
           editTime: result.modified_at,
@@ -233,9 +234,9 @@ export class QuestionAnswer extends React.Component {
           <MDBCol size="1"></MDBCol>
           <MDBCol size="10">
             <QuestionDes
-              questionId={this.props.location.state.id}
+              questionId={this.state.backend.id}
               tags={this.state.backend.tags}
-              content={this.props.location.state.content}
+              content={this.state.backend.content}
               focus={this.state.backend.focus}
               reading={this.state.backend.reading}
               loading={this.state.loading}>
@@ -251,6 +252,7 @@ export class QuestionAnswer extends React.Component {
             ))}
           </MDBCol>
         </MDBRow>
+        <br/>
         <Footer></Footer>
       </div>
     )

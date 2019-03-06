@@ -45,7 +45,7 @@ export class QuestionDes extends React.Component {
   }
 
   render() {
-    console.log(this.props.loading)
+    // console.log(this.props.loading)
     if (this.state.editorState) {
       return (
         <div style={{width: '100%'}}>

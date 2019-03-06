@@ -101,12 +101,15 @@ export class QuestionCard extends React.Component {
     window.addEventListener('scroll', this.orderScroll.bind(this));
     let mockData
     let user
-    let commonLists
+    let commonLists = []
     if(data.env){
       commonLists = [1,2]
     } else {
       try {
-        commonLists = await getAsync(`/answers/${this.props.question.answers[0].id}/comments`,!data.env)
+        if(this.props.question.answers.length !== 0){
+          commonLists = await getAsync(`/answers/${this.props.question.answers[0].id}/comments`,!data.env)
+          commonLists = commonLists.content.comments
+        }
       } catch (e) {
         // alert(e)
       }
@@ -145,8 +148,8 @@ export class QuestionCard extends React.Component {
       mockData = {
         id: user.id,
         title: user.title || '哪家公司的伙食是世界上最好的?',
-        short: (user.answers[0] !== null && user.answers.length !== 0)  ? this.sliceText(user.answers[0].body.braftEditorRaw.blocks[0].text) : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: (user.answers[0] !== null && user.answers.length !== 0) ? user.answers[0].body.braftEditorRaw : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        short: (user.answers.length !== 0 && user.answers[0].body !== null)  ? this.sliceText(user.answers[0].body.braftEditorRaw.blocks[0].text) : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: (user.answers.length !== 0 && user.answers[0].body !== null ) ? user.answers[0].body.braftEditorRaw : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
         user: user.creator.username,
         img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
@@ -256,8 +259,8 @@ export class QuestionCard extends React.Component {
                ref={(span) => this.scrollSpan = span}>
 
             <Link to={{
-              pathname:`/question/${this.props.question.id}/answer/${this.props.question.answers[0].id}`,
-              state:{question},
+              pathname:this.props.question.answers.length === 0 ? `/question/${this.props.question.id}/answer/0` : `/question/${this.props.question.id}/answer/${this.props.question.answers[0].id}`,
+              state:this.props.question,
             }}><strong
               style={{color: '#31394D', fontSize: '18px', ...basicFont}}>{this.state.backend.title}</strong></Link>
 
@@ -437,10 +440,12 @@ export class QuestionCard extends React.Component {
                 <CommentsCard key={item} message={item}></CommentsCard>
 
               ))}
-              <MDBRow center style={{marginTop: '10px'}}>
-                <PaginationUse pageConfig={{totalPage: this.state.backend.commonLists.length}}
-                               pageCallbackFn={this.getCurrentPage}></PaginationUse>
-              </MDBRow>
+              {this.state.backend.commonLists.length !== 0 ? (
+                <MDBRow center style={{marginTop: '10px'}}>
+                  <PaginationUse pageConfig={{totalPage: Math.ceil(this.state.backend.commonLists.length / 3)}}
+                                 pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                </MDBRow>
+              ) : null}
               <MDBRow center style={{marginTop: '9px'}}>
                 <MDBBtn onClick={this.showComments} flat
                         style={{margin: '0px', padding: '5px 10px', fontSize: '14px', color: '#8D9AAF', ...basicFont}}>

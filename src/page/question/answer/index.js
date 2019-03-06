@@ -198,8 +198,9 @@ export class QuestionAnswerOne extends React.Component {
           console.log(e);
         }
       } else {
-        result = this.props.question;
+        result = this.props.location.state;
       }
+      // console.log(result)
       mockData =
         {
           id: result.id,
@@ -262,7 +263,7 @@ export class QuestionAnswerOne extends React.Component {
                     <Link
                       to={{
                         pathname:`/question/${this.state.backend.id}`,
-                        state:this.state.question
+                        state:this.props.location.state
                       }}
                       style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>
                       查看全部回答
@@ -287,7 +288,7 @@ export class QuestionAnswerOne extends React.Component {
                     <Link
                       to={{
                         pathname:`/question/${this.state.backend.id}`,
-                        state:this.state.question
+                        state:this.props.location.state
                       }}
                       style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>
                       查看全部回答
@@ -297,6 +298,7 @@ export class QuestionAnswerOne extends React.Component {
               </MDBRow>
             </MDBCol>
           </MDBRow>
+          <br/>
           <Footer></Footer>
         </div>
       </div>
