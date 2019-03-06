@@ -1,11 +1,11 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import classes from './company-card-square.module.css';
-import {MDBIcon, MDBCard, MDBAvatar} from 'mdbreact';
+import {MDBIcon, MDBCard, MDBAvatar,MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle} from 'mdbreact';
 import {getAsync} from '../../tool/api-helper';
 import {withRouter} from 'react-router-dom';
 
-export class ComCardSquare extends React.Component {
+export class ComCardSquare1 extends React.Component {
   constructor(props) {
     super(props);
     /*
@@ -14,7 +14,7 @@ export class ComCardSquare extends React.Component {
       backend: null
     };
 
-    this.text = ComCardSquare.i18n[languageHelper()];
+    this.text = ComCardSquare1.i18n[languageHelper()];
   }
 
   async componentDidMount() {
@@ -34,7 +34,7 @@ export class ComCardSquare extends React.Component {
 
       <div>
         <MDBCard className={`${classes.card} `} onClick={() => {
-          this.props.history.push(`/company/${this.state.backend.content.id}`);
+          //this.props.history.push(`/company/${this.state.backend.content.id}`);
         }}>
           <div
             style={{
@@ -42,38 +42,57 @@ export class ComCardSquare extends React.Component {
             }}
           >
             <div
-              className="d-flex flex-row justify-content-between align-items-start mb-2"
+              className="d-flex flex-row justify-content-between align-items-start mb-1"
             >
-              <div style={{height:'4rem'}}>
+              <div style={{height:'4rem'}} onClick={() => {
+                this.props.history.push(`/company/${this.state.backend.content.id}`);
+              }}>
 
                 <MDBAvatar
                   tag="img"
-                  src="http://47.254.46.117:5000/tencent/icon.png"
+                  src="http://47.254.46.117:5000/logo/1200px-Ofo_Logo.svg.png"
                   className="img-fluid"
                   alt="Sample avatar"
-                  style={{width:'8.4375rem'}}
+                  style={{width:'4.4375rem'}}
                 />
 
               </div>
               <div>
-                <MDBIcon icon="ellipsis-h"  style={{color:'#8D9AAF'}}/>
+                <MDBDropdown>
+                  <MDBDropdownToggle className="p-0"nav >
+                    <MDBIcon
+                      icon="ellipsis-h"
+                      style={{color:'#8D9AAF'}}
+                    />
+                  </MDBDropdownToggle >
+                  <MDBDropdownMenu className="p-0" color="white" basic left>
+                    <MDBDropdownItem><MDBIcon far icon="heart mr-2" />收藏</MDBDropdownItem>
+                    <MDBDropdownItem><MDBIcon icon="ban mr-2" />不再推荐</MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
               </div>
             </div>
-            <div className="`${classes.title}` mb-1">
-              {this.state.backend.content.name} | 2000人 | 计算机/网络
+            <div onClick={() => {
+              this.props.history.push(`/company/${this.state.backend.content.id}`);
+            }}>
+              <div className="`${classes.title}` mb-1">
+                {this.state.backend.content.name} | 2000人 | 计算机/网络
+              </div>
+              <div className="`${classes.website}` mb-1">
+                <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
+              </div>
+              <div className={classes.location}>
+                <MDBIcon
+                  icon="map-marker"
+                  className="mr-1 "
+
+                  style={{color:'#8D9AAF'}}
+                />
+
+                {this.state.backend.content.location}
+              </div>
             </div>
-            <div className="`${classes.website}` mb-1">
-              <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
-            </div>
-            <div className={classes.location}>
-              <MDBIcon 
-                icon="map-marker" 
-                className="mr-1"
-                style={{color:'#8D9AAF'}}
-              />
-              {this.state.backend.content.location} 
-            </div>
-            
+
           </div>
 
 
@@ -85,7 +104,7 @@ export class ComCardSquare extends React.Component {
   }
 }
 
-ComCardSquare.i18n = [
+ComCardSquare1.i18n = [
   {
     applyBefore: '申请截止'
   },
@@ -94,4 +113,4 @@ ComCardSquare.i18n = [
   },
 ];
 
-
+export const ComCardSquare = withRouter(ComCardSquare1);

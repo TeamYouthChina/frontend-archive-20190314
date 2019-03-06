@@ -84,7 +84,7 @@ export class Job extends React.Component {
               <MDBCard style={{boxShadow: 'none'}} className="px-3">
                 <MDBCardBody>
                
-                  <JobApp basicCHNFont={basicCHNFont}/>
+                 
                   <JobDescri basicCHNFont={basicCHNFont}/>
                 </MDBCardBody>
               </MDBCard>

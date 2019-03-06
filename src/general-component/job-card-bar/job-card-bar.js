@@ -30,14 +30,22 @@ export class JobCardBar extends React.Component {
 
 
   async componentDidMount() {
-    if (this.props.id) {
+    if(this.props.fulltext){
       this.setState({
-        backend: await getAsync(`/jobs/${this.props.id}`)
-      });
-    } else {
-      this.setState({
-        backend: await getAsync(`/jobs/1`)
-      });
+        backend:this.props.fulltext
+        }
+      );
+    }
+    else{
+      if (this.props.id) {
+        this.setState({
+          backend: await getAsync(`/jobs/${this.props.id}`)
+        });
+      } else {
+        this.setState({
+          backend: await getAsync(`/jobs/1`)
+        });
+      }
     }
   }
 

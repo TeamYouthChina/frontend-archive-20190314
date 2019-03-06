@@ -127,62 +127,31 @@ export class HomeHeader extends React.Component {
                       探 索
                     </MDBNavLink>
                   </MDBNavItem>
-                  {/*
-                    <MDBNavItem
-                      onMouseEnter={
-                        () => {
-                          this.setState({
-                            hover: 2
-                          });
-                        }
-                      }
-                      onMouseLeave={
-                        () => {
-                          this.setState({
-                            hover: 0
-                          });
-                        }
-                      }
-
-                      style={this.state.hover === 2 ? {borderBottom: '4px solid #FFFFFF'} : null}
-                    >
-                      <MDBDropdown>
-                        <MDBDropdownToggle nav>
-                          <div className="d-none d-md-inline">{this.text.discovery}</div>
-                        </MDBDropdownToggle>
-                        <MDBDropdownMenu style={{marginTop: '20px'}}>
-                          <MDBDropdownItem href="/discovery/article">文 章</MDBDropdownItem>
-                          <MDBDropdownItem divider/>
-                          <MDBDropdownItem href="/discovery/review">长 评</MDBDropdownItem>
-                          <MDBDropdownItem divider/>
-                          <MDBDropdownItem href="/discovery/question-answer">问 答</MDBDropdownItem>
-                          <MDBDropdownItem divider/>
-                          <MDBDropdownItem href="/discovery/video">视 频</MDBDropdownItem>
-                          <MDBDropdownItem divider/>
-                          <MDBDropdownItem href="/discovery/connection">人 脉</MDBDropdownItem>
-                        </MDBDropdownMenu>
-                      </MDBDropdown>
-                    </MDBNavItem>
-                    */}
                 </MDBNavbarNav>
               </MDBCol>
               <MDBNavbarNav left style={{width: '300px'}}>
-                <MDBNavLink to="/search/s1">
-                  <div className="d-flex flex-row ">
-                    <div className="flex-fill align-self-center mx-3">
-                      <MDBIcon icon="search" size="2x" className="white-text"/>
-                    </div>
-                    <div className="flex-fill">
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="搜索"
-                        aria-label="Search"
-                      />
-                    </div>
+
+                <div
+                  className="d-flex flex-row align-items-center"
+                  onClick={
+                    () => {
+                      this.props.history.push('/search');
+                    }
+                  }
+                >
+                  <div className="flex-fill">
+                    <input
+                      className="form-control disabled"
+                      type="text"
+                      placeholder="搜索"
+                      aria-label="Search"
+                    />
+                  </div>
+                  <div className="flex-fill align-self-center mx-3">
+                    <MDBIcon icon="search" size="2x" className="white-text"/>
                   </div>
 
-                </MDBNavLink>
+                </div>
               </MDBNavbarNav>
               <div className="d-flex flex-row">
                 {
