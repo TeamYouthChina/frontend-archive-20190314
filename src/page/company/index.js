@@ -71,13 +71,13 @@ export class Company extends React.Component {
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>
-            <p id="job">
+            <div>
               <h4 className="font-weight-bold mb-1 px-3">
                 <strong>
                   发表的职位
                 </strong>
               </h4>
-            </p>
+            </div>
             <MDBRow center>
               <MDBCol>
                 <JobCardSquare/> {/*缺后端*/}
@@ -92,13 +92,14 @@ export class Company extends React.Component {
             <MDBRow center className="mt-2">
               <MDBBtn flat block>查看全部相似职位</MDBBtn>
             </MDBRow>
-            <p id="comment">
+            <div>
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   评论
                 </strong>
               </h4>
               <MDBRow className="px-3 pb-3 mb-4">
+<<<<<<< Updated upstream
                 <MDBRow>
                   <MDBCol>
                     <ReviewCardSquareFull fulltext="1"/>
@@ -110,14 +111,16 @@ export class Company extends React.Component {
                     <ReviewCardSquareFull fulltext="1"/>
                   </MDBCol>
                 </MDBRow>
+
               </MDBRow>
-            </p>
-            <p id="questionanswer">
+            </div>
+            <div>
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   问答
                 </strong>
               </h4>
+
               <QuestionCard question={data.content.users[1]}/>
             </p>
             <p id="photo">
@@ -126,20 +129,22 @@ export class Company extends React.Component {
                   公司照片
                 </strong>
               </h4>
+
             </p>
             <MDBCard className="p-3 pb-3 mb-4" style={{boxShadow: 'none'}}>
+
 
               <MDBCardBody>
                 <Photo/>
               </MDBCardBody>
             </MDBCard>
-            <p id="applicant">
+            <div>
               <h4 className="font-weight-bold mb-3 px-3 ">
                 <strong>
                   在此实习学生
                 </strong>
               </h4>
-            </p>
+            </div>
             <MDBRow between>
               <MDBCol>
                 <MDBCard className={classes.card}>
