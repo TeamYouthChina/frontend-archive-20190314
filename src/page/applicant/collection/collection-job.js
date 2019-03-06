@@ -19,35 +19,17 @@ export class CollectionJob extends React.Component {
     this.text = CollectionJob.i18n[languageHelper()];
   }
   
-  async componentDidMount() {
-    if (this.props.id) {
-      this.setState({
-        backend: await getAsync(`/jobs/${this.props.id}`)
-      });
-    } else {
-      this.setState({
-        backend: await getAsync(`/jobs/1`)
-      });
-    }
-  }
+  
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return  (
       <div>
-        <MDBRow>
-          <MDBCol>
-            <div>
-              <JobCardBar fulltext={this.state.backend}></JobCardBar>
-              <JobCardBar fulltext={this.state.backend}></JobCardBar> 
-              <JobCardBar fulltext={this.state.backend}></JobCardBar> 
-              <JobCardBar fulltext={this.state.backend}></JobCardBar>
-            </div>
-            
-          </MDBCol>
-
-        </MDBRow>
-        <MDBRow></MDBRow>
+        <JobCardBar id={1}/>
+        <JobCardBar id={2}/>
+        <JobCardBar id={3}/>
+        <JobCardBar id={4}/>
+        
       </div>
-    ) : null;
+    ) ;
   }
 }
 

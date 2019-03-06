@@ -15,42 +15,16 @@ export class CollectionCompany extends React.Component {
     };
     this.text = CollectionCompany.i18n[languageHelper()];
   }
-
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        name: 'Summer 2019 Tech Internship',
-        companyCollection: [
-          {id:1},
-          {id:2},
-          {id:3},
-          {id:4},
-        ],
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
-    });
-  }
-
+  
   render() {
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return  (
       <div style={{width:'100%'}}>
-        {this.state.backend.companyCollection.map((item)=>{
-          return(
-            <MDBRow>
-              <MDBCol key={item}>
-                <CompanyCard/>
-              </MDBCol>
-            </MDBRow>
-          );
-        })}
-        <MDBRow></MDBRow>
+        <CompanyCard id={1}/>
+        <CompanyCard id={2}/>
+        <CompanyCard id={3}/>
+        <CompanyCard id={4}/>
       </div>
-    ) : null;
+    ) ;
   }
 }
 
