@@ -114,7 +114,7 @@ export class Company extends React.Component {
 
               </MDBRow>
             </div>
-            <p>
+            <div>
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   问答
@@ -122,15 +122,15 @@ export class Company extends React.Component {
               </h4>
 
               <QuestionCard question={data.content.users[1]}/>
-            </p>
-            <p id="photo">
+            </div>
+            <div id="photo">
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   公司照片
                 </strong>
               </h4>
 
-            </p>
+            </div>
             <MDBCard className="p-3 pb-3 mb-4" style={{boxShadow: 'none'}}>
 
 
