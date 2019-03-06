@@ -99,7 +99,7 @@ export class Company extends React.Component {
                 </strong>
               </h4>
               <MDBRow className="px-3 pb-3 mb-4">
-<<<<<<< Updated upstream
+
                 <MDBRow>
                   <MDBCol>
                     <ReviewCardSquareFull fulltext="1"/>
@@ -114,7 +114,7 @@ export class Company extends React.Component {
 
               </MDBRow>
             </div>
-            <div>
+            <p>
               <h4 className="font-weight-bold mb-3 px-3">
                 <strong>
                   问答
