@@ -75,11 +75,11 @@ export class ComCardSquare1 extends React.Component {
             <div onClick={() => {
               this.props.history.push(`/company/${this.state.backend.content.id}`);
             }}>
-              <div className="`${classes.title}` mb-1">
+              <div className="`${classes.title}` mb-1" style={{height: '3rem', lineHeight: '1.5rem', overflow: 'hidden'}}>
                 {this.state.backend.content.name} | 2000人 | 计算机/网络
               </div>
               <div className="`${classes.website}` mb-1">
-                <a href={this.state.backend.content.website}>{this.state.backend.content.website}</a>
+                <a href={this.state.backend.content.website}>公司主页</a>
               </div>
               <div className={classes.location}>
                 <MDBIcon
