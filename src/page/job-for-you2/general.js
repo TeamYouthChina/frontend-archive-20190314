@@ -96,7 +96,8 @@ export class General extends React.Component {
         </div>
       ) :
       // a spinner displayed when data is loading
-      <div className="my-5 text-center">
+      <div className="my-5 d-flex align-items-center justify-content-center" 
+           style={{height: '420px'}}>
         <MDBSpinner/>
       </div>;
   }

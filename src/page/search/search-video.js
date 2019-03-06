@@ -61,23 +61,22 @@ export class SearchVideoResult extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
       <div>
-        {/*郭亦豪说删掉*/}
-        {/*<div className="mt-5">*/}
-          {/*<MDBRow className="ml-0 p-0">*/}
-            {/*<MDBCol className="d-flex align-items-center justify-content-end ml-2" size="2">*/}
-              {/*<p className="m-0" style={{...this.props.basicCHNFont, color: '#8D9AAF', fontSize: '14px'}}>*/}
-                {/*{this.state.backend.videoList.length}个结果*/}
-              {/*</p>*/}
-            {/*</MDBCol>*/}
-            {/*<MDBCol className="ml-md-auto mr-4" size="3">*/}
-              {/*<MDBBtn color="white" href="/video/create" className="py-3 px-5" style={{boxShadow: 'none'}}>*/}
-                {/*<p className="m-0" style={{...this.props.basicCHNFont, color: '#4F65E1', fontSize: '14px'}}>*/}
-                  {/*<MDBIcon icon="cloud-upload"/> 上传视频*/}
-                {/*</p>*/}
-              {/*</MDBBtn>*/}
-            {/*</MDBCol>*/}
-          {/*</MDBRow>*/}
-        {/*</div>*/}
+        <div className="mt-3 pr-2 pl-3">
+          <MDBRow>
+            <MDBCol className="d-flex align-items-center justify-content-end ml-3" size="12" md="2">
+              <p className="m-0" style={{...this.props.basicCHNFont, color: '#8D9AAF', fontSize: '14px'}}>
+                {this.state.backend.videoList.length}个结果
+              </p>
+            </MDBCol>
+            <MDBCol className="d-flex align-items-center justify-content-start ml-md-auto mr-4" size="12" md="3">
+              <MDBBtn color="white" href="/video/create" className="py-3 px-5" style={{boxShadow: 'none'}}>
+                <p className="m-0" style={{...this.props.basicCHNFont, color: '#4F65E1', fontSize: '14px'}}>
+                  <MDBIcon icon="cloud-upload"/> 上传视频
+                </p>
+              </MDBBtn>
+            </MDBCol>
+          </MDBRow>
+        </div>
         
         <MDBRow className="mb-3" center>
           {this.state.backend.videoList.map((item, index) => {
