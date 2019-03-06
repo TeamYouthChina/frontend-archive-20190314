@@ -251,26 +251,26 @@ export class QuestionAnswerOne extends React.Component {
           <MDBRow style={{backgroundColor:'#F2F2F2'}}>
             <MDBCol size="1"></MDBCol>
             <MDBCol size="10">
-              <MDBRow style={{
-                textAlign: 'center',
-                background: '#FFFFFF',
-                padding: '10px 0px',
-                boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)',
-                margin: '20px 0px'
-              }}>
-                <MDBCol>
-                  <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
-                    <Link
-                      to={{
-                        pathname:`/question/${this.state.backend.id}`,
-                        state:this.props.location.state
-                      }}
-                      style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>
-                      查看全部回答
-                    </Link>
-                  </MDBBtn>
-                </MDBCol>
-              </MDBRow>
+              {/*<MDBRow style={{*/}
+                {/*textAlign: 'center',*/}
+                {/*background: '#FFFFFF',*/}
+                {/*padding: '10px 0px',*/}
+                {/*boxShadow: '1px 1px 20px rgba(0, 0, 0, 0.08)',*/}
+                {/*margin: '20px 0px'*/}
+              {/*}}>*/}
+                {/*<MDBCol>*/}
+                  {/*<MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>*/}
+                    {/*<Link*/}
+                      {/*to={{*/}
+                        {/*pathname:`/question/${this.state.backend.id}`,*/}
+                        {/*state:this.props.location.state*/}
+                      {/*}}*/}
+                      {/*style={{color: '#3E4850', fontSize: '15px', ...basicFont}}>*/}
+                      {/*查看全部回答*/}
+                    {/*</Link>*/}
+                  {/*</MDBBtn>*/}
+                {/*</MDBCol>*/}
+              {/*</MDBRow>*/}
               {this.state.backend.answerList.length === 0 ? null : (
                 <div style={{marginBottom: '20px'}}>
                   <QuestionCard question={this.state.backend.question}></QuestionCard>

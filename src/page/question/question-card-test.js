@@ -100,11 +100,14 @@ export class QuestionCard extends React.Component {
   async componentDidMount() {
     window.addEventListener('scroll', this.orderScroll.bind(this));
     let mockData
+    let result
     let user
     let commonLists = []
     if(data.env){
       commonLists = [1,2]
-    } else {
+    }
+    // 传入id就自己fetch
+    if (this.props.questionId) {
       try {
         if(this.props.question.answers.length !== 0){
           commonLists = await getAsync(`/answers/${this.props.question.answers[0].id}/comments`,!data.env)
@@ -113,12 +116,8 @@ export class QuestionCard extends React.Component {
       } catch (e) {
         // alert(e)
       }
-    }
-    // 传入id就自己fetch
-    if (this.props.questionId) {
-
       try {
-        const result = await getAsync(`/questions/${this.props.questionId}`)
+        result = await getAsync(`/questions/${this.props.questionId}`)
         user = result.content
         mockData = {
           id: user.id,
@@ -143,6 +142,15 @@ export class QuestionCard extends React.Component {
         // alert(e)
       }
     } else if (this.props.question) {
+      
+      try {
+        if(this.props.question.answers.length !== 0){
+          commonLists = await getAsync(`/answers/${this.props.question.answers[0].id}/comments`,!data.env)
+          commonLists = commonLists.content.comments
+        }
+      } catch (e) {
+        // alert(e)
+      }
       // console.log(this.props.question.answers[0],this.props.question.id)
       user = this.props.question
       mockData = {
@@ -165,26 +173,42 @@ export class QuestionCard extends React.Component {
         }
       };
     } else {
+      
+      try {
+        result = await getAsync(`/questions/${this.props.params.match.questionId}`)
+      } catch (e) {
+        
+      }
+      user = result.content
+      try {
+        if(user.answers.length !== 0){
+          commonLists = await getAsync(`/answers/${user.answers[0].id}/comments`,!data.env)
+          commonLists = commonLists.content.comments
+        }
+      } catch (e) {
+        // alert(e)
+      }
       mockData = {
-        id: '0100',
-        title: '哪家公司的伙食是世界上最好的?',
-        short: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
-        long: '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
-        user: '齐昊',
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
+        id: user.id,
+        title: user.title || '哪家公司的伙食是世界上最好的?',
+        short: (user.answers.length !== 0 && user.answers[0].body !== null)  ? this.sliceText(user.answers[0].body.braftEditorRaw.blocks[0].text) : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式...',
+        long: (user.answers.length !== 0 && user.answers[0].body !== null ) ? user.answers[0].body.braftEditorRaw : '关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式关于这是一家什么公司，我想没有人比我更有发言权了，这要从远古时代开始讲起，记得那是一个平凡却又不平凡的下午，那天的夕阳很美，美的就像那个什么，对，就像那个什么。如果有其他问题，欢迎向我提问，反正你也没有我联系方式',
+        user: user.creator.username,
+        img: user.creator.avatar_url || 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
         // description: '莫以为敌消彼长，然乾坤逆之天崩',
         description: 'WeYouth负责人',
         readingTime: 10,
-        editTime: '2019-01-01',
+        editTime: user.modified_at.slice(0, 10) || 1,
         score: 5,
-        commonLists: [1, 2],
+        commonLists: commonLists,
         agree: '',
         disagree: '',
         status: {
           code: 2000
         }
-      }
+      };
     }
+    // console.log(commonLists)
     this.setState({
       backend: mockData,
       commontsText:`${commonLists.length}条评论`,

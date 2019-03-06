@@ -18,52 +18,50 @@ export class Article extends React.Component {
   }
 
   async componentDidMount() {
-    
-    const result = await getAsync(`/disconvery/articles`)
-    
-    if (result && result.status && result.status.code === 2000) {
-      let mockData =
-        {
-          id: result.id,
-          name: 'Summer 2019 Tech Internship',
-          content: {
-            title: result.content.title,
-            descrption: result.content.body
-          },
-          status: {
-            code: result.status.code
-          }
-        };
-      this.setState(() => {
-        return {backend: mockData};
-      });
-    } else {
-      let mockData = {
-        status: result.status
+    try {
+      let result = await getAsync(`/discovery/articles`,true)
+      let articles
+      // console.log(result)
+      if (result && result.status && result.status.code === 200) {
+        articles = result.content.articles
+        let mockData =
+          {
+            articles:articles,
+            status: {
+              code: result.status.code
+            }
+          };
+        this.setState(() => {
+          return {backend: mockData};
+        });
+      } else {
+        let mockData = {
+          status: result.status
+        }
+        this.setState(() => {
+          return {backend: mockData};
+        });
       }
-      this.setState(() => {
-        return {backend: mockData};
-      });
+    } catch (e) {
+      console.log(e)
     }
+    
   }
 
   render() {
-    let articles = [];
     // map data to articles
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
       <MDBContainer
         fluid
         style={{padding: 0}}
       >
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard type={1}/>
-        </MDBRow>
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard type={1}/>
-        </MDBRow>
-        <MDBRow style={{margin: '1rem 0rem'}}>
-          <ArticleCard type={1}/>
-        </MDBRow>
+        {this.state.backend.articles.map((article)=>(
+          <MDBRow key={article.id} style={{margin: '1rem 0rem'}}>
+            <ArticleCard article={article}/>
+          </MDBRow>
+        ))}
+        
+        
       </MDBContainer>
     ) :
       // a spinner displayed when data is loading
