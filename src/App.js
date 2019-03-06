@@ -75,7 +75,7 @@ export class App extends Component {
             <Route
               path="/"
               exact
-              component={() => <Redirect to="/choice"/>}
+              component={() => <Redirect to="/propagation"/>}
             />
             <Route
               path="/applicant/"

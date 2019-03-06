@@ -6,10 +6,11 @@ import {
 } from 'mdbreact';
 import {languageHelper} from "../../../../tool/language-helper";
 import {getAsync} from "../../../../tool/api-helper";
-
+import {IfCollect} from "../../../../general-component/if-collect";
 import classes from './job-card-bar.module.css'
+import {withRouter} from 'react-router-dom';
 
-export class JobCardBar extends React.Component {
+export class JobCardBar1 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,7 +19,7 @@ export class JobCardBar extends React.Component {
       tick: false,
       collect: false
     };
-    this.text = JobCardBar.i18n[languageHelper()];
+    this.text = JobCardBar1.i18n[languageHelper()];
   }
 
   toggle = nr => () => {
@@ -89,7 +90,9 @@ export class JobCardBar extends React.Component {
                 color="indigo accent-3"
                 className={classes.btn}
                 style={{borderRadius: '2px'}}
-                onClick={this.toggle(15)}
+                onClick={() => {
+                  this.props.history.push(`/onlineapplication/${this.props.match.params.id}`);
+                }}
               >
                 {this.text.applicate}
               </MDBBtn>
@@ -120,17 +123,9 @@ export class JobCardBar extends React.Component {
 
             </div>
             <div
-              style={{
-                fontFamily: 'PingFang SC',
-                lineHeight: 'normal',
-                fontSize: '0.875rem',
-                color: '#8D9AAF',
-
-              }}
-              className="ml-3"
+              className="ml-3 align-self-center"
             >
-              <MDBIcon far icon="heart" className="mr-2"/>
-              收藏
+              <IfCollect/>
             </div>
 
           </div>
@@ -143,7 +138,7 @@ export class JobCardBar extends React.Component {
   }
 }
 
-JobCardBar.i18n = [
+JobCardBar1.i18n = [
   {
     type: '工作类型',
     deadline: '申请截止',
@@ -162,3 +157,5 @@ JobCardBar.i18n = [
     applied: 'Applied',
   },
 ];
+
+export const JobCardBar = withRouter(JobCardBar1);

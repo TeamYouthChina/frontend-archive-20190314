@@ -143,9 +143,13 @@ export class QuestionAnswerCard extends React.Component {
       }
       // 传入id就自己fetch
       if (this.props.answer.id) {
-
-        const result = await getAsync(`/answers/${this.props.answer.id}`,!data.env)
-        answer = result.content
+        try{
+          const result = await getAsync(`/answers/${this.props.answer.id}`,!data.env)
+          answer = result.content
+        } catch (e) {
+          
+        }
+        
       } else {
         answer = this.props.answer
       }

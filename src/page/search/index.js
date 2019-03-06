@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import './public/style.css'
-import style from './tabs.module.css'
+import style from './index.module.css'
 
 import {
   MDBBtn,

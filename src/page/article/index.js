@@ -1,5 +1,6 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
+import BraftEditor from 'braft-editor'
 import {
   MDBContainer,
   MDBRow,
@@ -10,13 +11,16 @@ import {
   MDBIcon,
   MDBView,
   MDBBtn,
-  MDBAvatar
+  MDBAvatar,
+  MDBSpinner
 } from 'mdbreact';
 import './public/style.css';
+import {getAsync} from '../../tool/api-helper'
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {CommentsCard} from "../question/comment-test";
 import {PaginationUse} from "../question/pagination-test";
+
 const basicFont = {
   fontFamily: 'IBM Plex Sans',
   fontStyle: 'normal',
@@ -32,7 +36,8 @@ export class Article extends React.Component {
     this.state = {
       backend: null,
       ifShown: false,
-      showCom:'评论',
+      editorState: null,
+      showCom: '评论',
       pageConfig: {
         totalPage: 14 //总页码
       },
@@ -43,84 +48,87 @@ export class Article extends React.Component {
     this.getCurrentPage = this.getCurrentPage.bind(this);
   }
 
-  componentWillMount() {
-    let mockData =
-      {
-        id: 0,
-        contents: (<div>
-          <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-            praesentium voluptatum deleniti atque corrupti quos dolores et
-            quas molestias excepturi sint occaecati cupiditate non
-            provident, similique sunt in culpa nemo enim ipsam voluptatem
-            quia voluptas sit qui officia deserunt mollitia animi, id est
-            laborum et dolorum fuga quidem rerum facilis est distinctio.
-          </p>
-          <p>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque
-            nihil impedit quo minus id quod maxime placeat facere
-            possimus, omnis voluptas assumenda est, omnis dolor
-            repellendus. Quis autem vel eum iure reprehenderit qui in ea
-            voluptate velit esse quam nihil molestiae consequatur.
-            Temporibus autem quibusdam et aut officiis debitis aut rerum
-            necessitatibus saepe eveniet ut et voluptates repudiandae sint
-            et molestiae non recusandae itaque earum rerum.
-          </p>
-        </div>),
-        img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-        title: '诺基亚是怎样的一家公司',
-        // 计算几天前发布
-        date: '26/08/2018',
-        agree:'2k',
-        author: '王某某',
-        authorDes: '用户体验设计专家',
-        readingTime:'6',
-        time:1,
-        commonLists: [1, 2],
-        allReplys:[1,2],
-        status: {
-          code: 2000
-        }
-      };
-    this.setState(() => {
-      return {backend: mockData};
+  async componentDidMount() {
+    let mockData
+    let commonLists
+    let article
+    if(typeof this.props.location.state === 'string'){
+      try{
+        article = await getAsync(`/articles/${this.props.location.state}`,true)
+        article = article.content
+      }catch (e) {
+        
+      }
+    } else {
+      article = this.props.location.state
+    }
+    // try{
+    //   commonLists = await getAsync(`/answers/${article.id}/comments`,true)
+    // } catch (e) {
+    //  
+    // }
+    mockData = {
+      id: article.id,
+      contents: article.body && article.body.braftEditorRaw,
+      title: article.title,
+      // 计算几天前发布
+      date: article.modified_at.slice(0, 10),
+      agree: '2k',
+      author: article.author.username,
+      authorDes: '用户体验设计专家',
+      readingTime: '6',
+      time: 1,
+      commonLists: [1, 2],
+      status: {
+        code: 200
+      }
+    }
+    
+    this.setState({
+      backend: mockData,
+      editorState: BraftEditor.createEditorState(mockData.contents)
     });
   }
 
   handleInputClick() {
-    if(this.state.ifShown === 'none') {
+    if (this.state.ifShown === 'none') {
       this.setState({
         ifShown: ''
       });
     }
   }
-  showReplys(){
+
+  showReplys() {
     let ifShown = !this.state.ifShown
-    let showCom = this.state.showCom === '评论'? '收起评论' : '评论'
+    let showCom = this.state.showCom === '评论' ? '收起评论' : '评论'
     this.setState({
       ifShown,
       showCom
     })
   }
-  getCurrentPage(){}
-  addComments(e,input){
+
+  getCurrentPage() {
+  }
+
+  addComments(e, input) {
     let {allReplys = []} = this.state.backend
     allReplys.unshift(input.value)
     // console.log(commonLists,this.props.id)
     this.setState({
-      backend:{
+      backend: {
         allReplys,
         ...this.state.backend
       }
     })
     e.stopPropagation();
   }
+
   render() {
     const ifShown = this.state.ifShown
-    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
+    return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 200) ? (
       <div>
         <Header/>
-        <MDBCard style={{boxShadow:'none'}} className="my-5 px-5 pb-5">
+        <MDBCard style={{boxShadow: 'none'}} className="my-5 px-5 pb-5">
           <MDBCardBody>
             <MDBRow>
               <MDBCol md="1"></MDBCol>
@@ -128,47 +136,52 @@ export class Article extends React.Component {
                 <MDBCard reverse>
 
                   <MDBCardBody>
-                    <h2 style={{fontSize: '18px',color: '#3E4850',...basicFont}}>
+                    <h2 style={{fontSize: '18px', color: '#3E4850', ...basicFont}}>
                       {this.state.backend.title}
                     </h2>
                     <p>
-                      <a href="#!" style={{fontSize: '14px',color: '#3E4850',...basicFont}}>
+                      <a href="#!" style={{fontSize: '14px', color: '#3E4850', ...basicFont}}>
                         <strong>{this.state.backend.author}    </strong>
                       </a>
-                      <span style={{fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.authorDes}</span>
+                      <span
+                        style={{fontSize: '14px', color: '#62686C', ...basicFont}}>{this.state.backend.authorDes}</span>
                     </p>
-                    <p style={{fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.readingTime}分钟阅读时间</p>
-                    <MDBView hover waves>
-                      <img
-                        src={this.state.backend.imgUrl}
-                        alt=""
-                        className="img-fluid"
-                      />
-                      <MDBMask overlay="white-slight" className="waves-light"/>
-                    </MDBView>
+                    <p style={{
+                      fontSize: '14px',
+                      color: '#62686C', ...basicFont
+                    }}>{this.state.backend.readingTime}分钟阅读时间</p>
+
                   </MDBCardBody>
                 </MDBCard>
-                <MDBContainer className="mt-5" style={{fontSize: '14px',color: '#62686C',...basicFont}}>
-                  {this.state.backend.contents}
-                  <MDBRow style={{paddingLeft:'17px'}}>
-                    <span style={{padding:'5px 0px',fontSize: '14px',color: '#62686C',...basicFont}}>{this.state.backend.time}天前发布</span>
+                <MDBContainer style={{marginTop:'24px',fontSize: '14px', color: '#62686C', ...basicFont}}>
+                  <div dangerouslySetInnerHTML={{__html: this.state.editorState.toHTML()}}>
+                    {/*{this.state.backend.contents}*/}
+                  </div>
+                  
+                  <MDBRow style={{paddingLeft: '17px'}}>
+                    <span style={{
+                      padding: '5px 0px',
+                      fontSize: '14px',
+                      color: '#62686C', ...basicFont
+                    }}>{this.state.backend.time}天前发布</span>
                     <MDBCol>
-                      <div style={{float:'right'}}>
+                      <div style={{float: 'right'}}>
                         <MDBBtn onClick={() => {
                           this.showReplys()
                         }} flat style={{padding: '5px 0', marginLeft: '15px'}}>
                           <MDBIcon style={{marginRight: '5px'}} far icon="comment"/>{this.state.showCom}
                         </MDBBtn>
                         <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
-                          <MDBIcon style={{marginRight: '5px'}} far icon="heart"/><span>{this.state.backend.agree}赞同</span>
+                          <MDBIcon style={{marginRight: '5px'}} far
+                                   icon="heart"/><span>{this.state.backend.agree}赞同</span>
                         </MDBBtn>
                         <MDBBtn flat style={{padding: '5px 0', marginLeft: '15px'}}>
                           <MDBIcon style={{marginRight: '5px'}} far icon="star"/>收藏
                         </MDBBtn>
                       </div>
-                      
+
                     </MDBCol>
-                    
+
                   </MDBRow>
                   {ifShown && (
                     <div>
@@ -182,17 +195,17 @@ export class Article extends React.Component {
                               className="rounded-circle"
                             />
                           </MDBAvatar>
-                          <div style={{marginTop:'5px',flexGrow: '1',}}>
+                          <div style={{marginTop: '5px', flexGrow: '1',}}>
                             <input style={{
-                              width:'100%',
+                              width: '100%',
                               background: '#FFFFFF',
                               border: '1px solid #DBE5F7',
                               boxSizing: 'border-box',
                               borderRadius: '2px',
-                              padding:'8px 0px 8px 20px',
-                              fontSize:'14px',
-                              color:'#B3C1DB',
-                              height:'37px',
+                              padding: '8px 0px 8px 20px',
+                              fontSize: '14px',
+                              color: '#B3C1DB',
+                              height: '37px',
                               ...basicFont,
                             }} ref={(input) => (this.input = input)} placeholder="发表你的评论..."/>
 
@@ -205,18 +218,19 @@ export class Article extends React.Component {
                                     background: '#C4C4C4',
                                     padding: '8px 20px',
                                     color: '#FFFFFF', ...basicFont,
-                                    margin:'6px 6px 5px 6px',
+                                    margin: '6px 6px 5px 6px',
                                   }}>
                             发布
                           </MDBBtn>
 
                         </MDBRow>
-                        {this.state.backend.commonLists.map((item)=>(
+                        {this.state.backend.commonLists.map((item) => (
                           <CommentsCard key={item} message={item}></CommentsCard>
 
                         ))}
                         <MDBRow center style={{marginTop: '10px'}}>
-                          <PaginationUse pageConfig={this.state.pageConfig} pageCallbackFn={this.getCurrentPage}></PaginationUse>
+                          <PaginationUse pageConfig={this.state.pageConfig}
+                                         pageCallbackFn={this.getCurrentPage}></PaginationUse>
                         </MDBRow>
                       </div>
                     </div>
@@ -227,15 +241,19 @@ export class Article extends React.Component {
 
               </MDBCol>
               <MDBCol md="1"></MDBCol>
-              
+
             </MDBRow>
-            
+
           </MDBCardBody>
         </MDBCard>
         <Footer/>
       </div>
 
-    ) : null;
+    ) : (
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>
+    );
   }
 }
 

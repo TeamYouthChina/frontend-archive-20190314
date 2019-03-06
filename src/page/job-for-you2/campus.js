@@ -69,26 +69,26 @@ export class Campus extends React.Component {
               })}
             </MDBRow>
 
-            <div className="text-center pb-5">
-              <MDBBtn
-                rounded
-                size="sm"
-                color="rgba-grey-strong"
-                onClick={() => this.handleReadMore()}
-                style={{
-                  ...this.props.basicCHNFont,
-                  boxShadow: 'none',
-                  fontSize: '16px',
-                  marginTop: '8px',
-                  display: 'inline-block',
-                  fontWeight: '300',
-                  color: '#454F69',
-                  background: '#E3E9EE'
-                }}
-              >
-                显示全部
-              </MDBBtn>
-            </div>
+            {/*<div className="text-center pb-5">*/}
+              {/*<MDBBtn*/}
+                {/*rounded*/}
+                {/*size="sm"*/}
+                {/*color="rgba-grey-strong"*/}
+                {/*onClick={() => this.handleReadMore()}*/}
+                {/*style={{*/}
+                  {/*...this.props.basicCHNFont,*/}
+                  {/*boxShadow: 'none',*/}
+                  {/*fontSize: '16px',*/}
+                  {/*marginTop: '8px',*/}
+                  {/*display: 'inline-block',*/}
+                  {/*fontWeight: '300',*/}
+                  {/*color: '#454F69',*/}
+                  {/*background: '#E3E9EE'*/}
+                {/*}}*/}
+              {/*>*/}
+                {/*显示全部*/}
+              {/*</MDBBtn>*/}
+            {/*</div>*/}
           </MDBContainer>
         </div>
       ) :
