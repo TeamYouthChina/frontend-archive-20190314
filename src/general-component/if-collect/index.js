@@ -9,18 +9,29 @@ export class IfCollect extends React.Component {
     this.state={
       collect:true
     };
-   
+    if(this.props.ifcollect){
+      this.setState({
+        collect:this.props.ifcollect
+      });
+    }
+    else{
+      this.setState({
+        collect:true
+      });
+    }
   }
+  
    isCollect = ()=>{
     this.setState({
       collect: !this.state.collect
     })
    }
-  render() {
-
-    return  (
-      <div>
-        <div
+ 
+render() {
+  console.log(this.state.collect)
+  return  (
+    <div>
+      <div
           style={{
             fontFamily: 'PingFang SC',
             lineHeight: 'normal',
