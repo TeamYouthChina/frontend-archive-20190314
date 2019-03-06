@@ -169,7 +169,9 @@ export class Job extends React.Component {
                 <QuestionCard question={data.content.users[1]}/>
                 <MDBRow center>
                   <div className="text-center">
-                    <SeeMoreBtn basicCHNFont={basicCHNFont} btnText={'查看更多'}/>
+                    <SeeMoreBtn basicCHNFont={basicCHNFont} btnText={'查看更多'} 
+                                onClick={()=>{this.props.history.push('/discovery/question-answer');}}
+                    />
                   </div>
                 </MDBRow>
               </MDBCard>
