@@ -99,11 +99,11 @@ class Education extends Component {
           return e.props.data;
         });
         console.log(dataToSend)
-        let response = putAsync(
-          "/applicants/" + this.props.requestID + "/educations",
-          dataToSend,
-          true
-        );
+        // let response = putAsync(
+        //   "/applicants/" + this.props.requestID + "/educations",
+        //   dataToSend,
+        //   true
+        // );
       }
     );
   };
