@@ -36,7 +36,6 @@ class WorkExperience extends Component {
     this.state = {
       cards: Array(),
       flipper: true,
-      requestedData: null,
     };
     this.date = null;
   }
@@ -47,18 +46,15 @@ class WorkExperience extends Component {
       "/applicants/" + this.props.requestID + "/experiences", 
       true
     );
-    this.setState({ requestedData: data });
     let temp =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
-            this.date = new Date();
-            const time = this.date.getTime();
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <WorkExperienceCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}

@@ -11,7 +11,7 @@ class skillCard extends Component {
       editing: this.props.data ? false : true,
       skillData: this.props.data
         ? {
-            name: this.props.data.name,
+            name: this.props.data,
           }
         : {
             name: "",

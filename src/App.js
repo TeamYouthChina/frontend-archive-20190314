@@ -70,12 +70,12 @@ export class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div style={{height: "100%"}}>
           <Switch>
             <Route
               path="/"
               exact
-              component={() => <Redirect to="/choice"/>}
+              component={() => <Redirect to="/propagation"/>}
             />
             <Route
               path="/applicant/"
@@ -166,7 +166,7 @@ export class App extends Component {
               component={routeProps => <OtherProfile {...routeProps} />}
             />
             <Route
-              path="/OnlineApplication"
+              path="/OnlineApplication/:id"
               component={routeProps => <OnlineApplication {...routeProps} />}
             />
             <Route

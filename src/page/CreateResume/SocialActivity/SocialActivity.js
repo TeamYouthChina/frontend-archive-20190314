@@ -30,7 +30,6 @@ class SocialActivity extends Component {
     super(props);
     this.state = {
       cards: Array(),
-      requestedData: null,
       cardsToModal: [],
       editorState: BraftEditor.createEditorState(),
       showEditor: false,
@@ -41,20 +40,18 @@ class SocialActivity extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/extracurriculars"
+      "/applicants/" + this.props.requestID + "/extracurriculars",
+      true
     );
-    this.setState({ requestedData: data });
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp1 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <SocialActivityCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -64,14 +61,14 @@ class SocialActivity extends Component {
         : Array();
 
     let temp2 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <SocialActivityCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}

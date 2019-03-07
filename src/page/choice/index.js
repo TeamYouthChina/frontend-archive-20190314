@@ -6,7 +6,7 @@ import {ArticleCardSquareFull} from './article-card-small';
 import {QuestionCardSquareFull} from './question-card-small';
 import {ReviewCardSquareFull} from './review-card-small';
 import {JobCardSquare} from '../../general-component/job-card-square/job-card-square';
-import {ComCardSquare1} from '../../general-component/company-card-square/company-card-square';
+import {ComCardSquare} from '../../general-component/company-card-square/company-card-square';
 import {Header} from '../../general-component/header/header';
 import {Footer} from '../../general-component/footer';
 import {languageHelper} from '../../tool/language-helper';
@@ -178,37 +178,37 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="1"/>
+                <ComCardSquare id="1"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="2"/>
+                <ComCardSquare id="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="3"/>
+                <ComCardSquare id="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="4"/>
+                <ComCardSquare id="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="5"/>
+                <ComCardSquare id="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ComCardSquare1 id="6"/>
+                <ComCardSquare id="6"/>
               </div>
             </div>
             <div>
@@ -292,31 +292,31 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <QuestionCardSquareFull fulltext="1"/>
+                <QuestionCardSquareFull fulltext="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <QuestionCardSquareFull fulltext="1"/>
+                <QuestionCardSquareFull fulltext="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <QuestionCardSquareFull fulltext="1"/>
+                <QuestionCardSquareFull fulltext="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <QuestionCardSquareFull fulltext="1"/>
+                <QuestionCardSquareFull fulltext="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <QuestionCardSquareFull fulltext="1"/>
+                <QuestionCardSquareFull fulltext="6"/>
               </div>
             </div>
             <div>
@@ -346,31 +346,31 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="6"/>
               </div>
             </div>
             <div>

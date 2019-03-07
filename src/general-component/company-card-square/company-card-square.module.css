@@ -2,8 +2,10 @@
   height: 200px;
   background: #FFFFFF;
   border-radius: 2px;
- 
-  
+}
+
+.card:hover {
+  box-shadow: 0px 0px 14px 4px rgba(69, 79, 105, 0.25);
 }
 
 .logo{

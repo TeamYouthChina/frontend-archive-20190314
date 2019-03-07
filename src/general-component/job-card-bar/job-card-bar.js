@@ -17,8 +17,10 @@ import {languageHelper} from '../../tool/language-helper';
 import {getAsync} from '../../tool/api-helper';
 import classes from './job-card-bar.module.css';
 import {IfCollect} from "../if-collect";
+import {withRouter} from "react-router-dom";
 
-export class JobCardBar extends React.Component {
+
+export class JobCardBar1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +29,7 @@ export class JobCardBar extends React.Component {
       tick: false,
       collect: false
     };
-    this.text = JobCardBar.i18n[languageHelper()];
+    this.text = JobCardBar1.i18n[languageHelper()];
   }
 
   toggle = nr => () => {
@@ -79,7 +81,9 @@ export class JobCardBar extends React.Component {
         }}
       >
         <div className="d-flex" style={{margin: '1.25rem 3.125rem', width: '57.3125rem',}}>
-          <div>
+          <div   onClick={() => {
+            this.props.history.push(`/job/${this.state.backend.content.id}`);
+          }}>
             <MDBAvatar
               tag="img"
               src="http://47.254.46.117:5000/tencent/icon.png"
@@ -90,7 +94,10 @@ export class JobCardBar extends React.Component {
             
           </div>
 
-          <div className="ml-5 mr-5" style={{width:'450px'}}>
+          <div className="ml-5 mr-5" style={{width:'450px'}}   
+               onClick={() => {
+            this.props.history.push(`/job/${this.state.backend.content.id}`);
+          }}>
             <div className={classes.title}>{this.state.backend.content.name}</div>
             <div className={classes.company}>{this.state.backend.content.organization.name}</div>
             <div className="d-flex mt-2 justify-content-between pr-5 mr-5">
@@ -120,7 +127,9 @@ export class JobCardBar extends React.Component {
                 color="indigo accent-3"
                 className={classes.btn}
                 style={{borderRadius: '2px'}}
-                onClick={this.toggle(15)}
+                onClick={() => {
+                  this.props.history.push(`/onlineapplication/${this.props.match.params.id}`);
+                }}
               >
                 {this.text.applicate}
               </MDBBtn>
@@ -169,7 +178,7 @@ export class JobCardBar extends React.Component {
   }
 }
 
-JobCardBar.i18n = [
+JobCardBar1.i18n = [
   {
     type: '工作类型',
     deadline: '申请截止',
@@ -188,3 +197,4 @@ JobCardBar.i18n = [
     applied: 'Applied',
   },
 ];
+export const JobCardBar = withRouter(JobCardBar1);

@@ -112,7 +112,7 @@ class CertificationCard extends Component {
             style={{ margin: "15px 0px 3px 0px" }}
             disabled
             type="text"
-            value={this.state.certiData.note}
+            value={this.state.certiData.note ? this.state.certiData.note : ''}
           />
         </div>
         <Dropdown delete={this.deleteHandler} edit={this.editHandler} />

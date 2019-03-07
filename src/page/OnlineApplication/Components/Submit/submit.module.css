@@ -1,6 +1,5 @@
 .control {
     position: relative;
-    height: 40px;
     width: 100%;
     margin-top: 57px;
     margin-bottom: 57px;
@@ -10,10 +9,9 @@
 .submitButton {
     width: 172px;
     height: 40px;
-    background: #727272;
     padding: 0;
     box-sizing: border-box;
-    border: 0px;
+    border: none;
 
     font-family: IBM Plex Sans;
     font-style: normal;
@@ -22,23 +20,4 @@
     font-size: 16px;
     text-align: center;
 
-    color: #FFFFFF;
-}
-
-.submitButton:disabled{
-    width: 172px;
-    height: 40px;
-    background: #E4E4E4;
-    padding: 0;
-    box-sizing: border-box;
-    border: 0px;
-
-    font-family: IBM Plex Sans;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    font-size: 16px;
-    text-align: center;
-
-    color: #FFFFFF;
 }

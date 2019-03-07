@@ -11,26 +11,25 @@ import { ContentUtils } from "braft-utils";
 import { languageHelper } from "../../../tool/language-helper";
 
 const translation = [
-    {
-      certification: "证书",
-      addCertification: "+ 添加证书",
-      noCertification: "无证书",
-    },
-    {
-      certification: "Certification",
-      addCertification: "+ Add Certification",
-      noCertification: "No Certification",
-    },
-  ];
-  
-  const text = translation[languageHelper()];
+  {
+    certification: "证书",
+    addCertification: "+ 添加证书",
+    noCertification: "无证书",
+  },
+  {
+    certification: "Certification",
+    addCertification: "+ Add Certification",
+    noCertification: "No Certification",
+  },
+];
+
+const text = translation[languageHelper()];
 
 class Certification extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cards: Array(),
-      requestedData: null,
       cardsToModal: [],
       editorState: BraftEditor.createEditorState(),
       showEditor: false,
@@ -41,20 +40,18 @@ class Certification extends Component {
   // get work data set requestedData and cards in state
   async componentDidMount() {
     let data = await getAsync(
-      "/applicants/" + this.props.requestID + "/certificates"
+      "/applicants/" + this.props.requestID + "/certificates",
+      true
     );
-    this.setState({ ...this.state, requestedData: data });
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp1 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <CertificationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -64,14 +61,14 @@ class Certification extends Component {
         : Array();
 
     let temp2 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <CertificationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -177,7 +174,9 @@ class Certification extends Component {
       );
     } else {
       const plainText = this.state.editorState.toHTML();
-      const dangerousText = <div dangerouslySetInnerHTML={{ __html: plainText }} />;
+      const dangerousText = (
+        <div dangerouslySetInnerHTML={{ __html: plainText }} />
+      );
       toShow = (
         <div className={classes.Certification}>
           <div className={classes.row}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {Loading} from '../component/loading';
 
 export const WithLoading = (Component) => (isLoading, ...rest) => {

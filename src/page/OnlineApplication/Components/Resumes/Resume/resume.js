@@ -2,8 +2,6 @@ import React from "react";
 
 import classes from "./resume.module.css";
 
-
-
 const resume = props => {
   if (props.inApplicant) {
     return (
@@ -21,12 +19,15 @@ const resume = props => {
                 <p>{props.language}</p>
               </div>
               <div className={classes.lastEdit}>
-                <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+                <p>{props.text.lastEdit}:&nbsp;&nbsp;{props.lastEdit}</p>
               </div>
             </div>
           </div>
         </div>
-        <div onClick={()=>props.resumeClick(props.id)} className={classes.floatingBox}></div>
+        <div
+          onClick={() => props.resumeClick(props.id)}
+          className={classes.floatingBox}
+        />
       </div>
     );
   } else {
@@ -37,6 +38,11 @@ const resume = props => {
 
     return (
       <div className={resumeStyle}>
+        <div
+          onClick={() => props.toEditPage(props.id)}
+          className={classes.floatingBox}
+        />
+
         <div className={classes.border}>
           <div className={classes.picStyle}>
             <img src={props.icon} alt="no icon" />
@@ -49,17 +55,17 @@ const resume = props => {
               <p>{props.language}</p>
             </div>
             <div className={classes.lastEdit}>
-              <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+              <p>{props.text.lastEdit}:&nbsp;&nbsp;{props.lastEdit}</p>
             </div>
           </div>
           <div className={classes.actionsStyle}>
             <button id={props.id} onClick={props.selectHandler}>
-              Select
+              {props.text.select}
             </button>
-            <div className={classes.atBottom}>
+            {/* <div className={classes.atBottom}>
               <button onClick={props.exportClicked}>Export</button>
               <button onClick={props.deleteClicked}>Delete</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

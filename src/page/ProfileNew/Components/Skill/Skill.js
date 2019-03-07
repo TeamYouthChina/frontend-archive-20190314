@@ -59,7 +59,6 @@ class skill extends Component {
       allSkillsData.content &&
       allSkillsData.status.code === 2000
         ? allSkillsData.content.map((e, i) => {
-            console.log(e);
             return (
               <MDBSelectOption key={e.id} value={e.id}>
                 {e.name}
@@ -71,7 +70,6 @@ class skill extends Component {
     let temp =
       data && data.content && data.status.code === 2000
         ? data.content.map((e, i) => {
-            console.log(e);
             return (
               <SkillCard
                 key={i}
