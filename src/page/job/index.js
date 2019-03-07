@@ -44,7 +44,11 @@ export class Job extends React.Component {
     };
     this.text = Job.i18n[languageHelper()];
   }
-
+  
+  componentWillMount() {
+    window.scrollTo(0, 0);//回到页面顶部
+  }
+  
   //todo，向SeeMoreBtn里面传入handleSeeMore函数（未实现）
 
   async componentDidMount() {
