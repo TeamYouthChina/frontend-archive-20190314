@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
+import style from './index.module.css';
 
 import {
   MDBCol,
@@ -183,21 +184,21 @@ export class Discovery extends React.Component {
                         <MDBListGroupItem
                           hover
                           href="/article/create"
-                          className="d-flex justify-content-center align-items-center"
+                          className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
                           style={{color: '#454F69', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0}}>
                           <MDBIcon fa icon="edit" className="mr-2"/> 写文章
                         </MDBListGroupItem>
                         <MDBListGroupItem
                           hover
                           href="/question/create"
-                          className="d-flex justify-content-center align-items-center"
+                          className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
                           style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
                           <MDBIcon far icon="question-circle" className="mr-2"/> 提问题
                         </MDBListGroupItem>
                         <MDBListGroupItem
                           hover
                           href="/review/create"
-                          className="d-flex justify-content-center align-items-center"
+                          className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
                           style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
                           <MDBIcon fal icon="comments" className="mr-2"/> 写短评
                         </MDBListGroupItem>
