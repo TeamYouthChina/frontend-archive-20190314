@@ -65,8 +65,9 @@ class Certification extends Component {
     let temp2 =
       data &&
       data.content &&
+      data.content.certificates &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.certificates.map(e => {
             return (
               <CertificationCard
                 key={e.id}

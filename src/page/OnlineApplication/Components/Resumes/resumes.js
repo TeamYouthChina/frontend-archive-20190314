@@ -7,7 +7,7 @@ import { languageHelper } from "../../../../tool/language-helper";
 
 // dummy resume icon
 // problem: cannot access resourses outside of src folder
-import resumeIcon from "../../../assets/icons8-overview-50.png";
+import resumeIcon from "../../../assets/resume.png";
 
 const translation = [
   {
