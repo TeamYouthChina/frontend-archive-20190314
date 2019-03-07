@@ -364,13 +364,13 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="5"/>
+                <ReviewCardSquareFull fulltext="1"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="6"/>
+                <ReviewCardSquareFull fulltext="2"/>
               </div>
             </div>
             <div>

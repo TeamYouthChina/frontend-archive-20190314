@@ -77,12 +77,12 @@ export class Search extends React.Component {
   };
 
   render() {
-    console.log('render()')
+    // console.log('render()')
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
     if (pathname) {
       return (<Redirect to={pathname}/>);
     }
-    console.log(this.props.location.pathname);
+    // console.log(this.props.location.pathname);
 
     return (
       <div
