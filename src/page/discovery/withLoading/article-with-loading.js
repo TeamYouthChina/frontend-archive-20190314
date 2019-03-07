@@ -1,11 +1,11 @@
 import React from 'react';
 import {ArticleMapper} from '../mapper/article-mapper';
 import {WithLoading} from '../higher-order-component/with-loading';
-import {getAsync} from "../../../tool/api-helper";
+import {getAsync} from '../../../tool/api-helper';
 
-const ArticleWithLoading = WithLoading(ArticleMapper);
+const ArticlesWithLoading = WithLoading(ArticleMapper);
 
-export class Article extends React.Component {
+export class ArticleWithLoading extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,9 +16,9 @@ export class Article extends React.Component {
 
   async componentDidMount() {
     this.setState({isLoading: true});
-    let result = await getAsync(`/discovery/articles`, true)
-    let articles
-    console.log('fetching')
+    let result = await getAsync(`/discovery/articles`, true);
+    let articles;
+    console.log('fetching');
     if (result && result.status && result.status.code === 200) {
       articles = result.content.articles;
       this.state.isLoading = false;
@@ -37,7 +37,7 @@ export class Article extends React.Component {
 
   render() {
     return (
-      <ArticleWithLoading
+      <ArticlesWithLoading
         isLoading={this.state.isLoading}
       />
     );
