@@ -41,7 +41,7 @@ class OnlineApplication extends Component {
     this.state = {
       selected: -1, // record which resume is selected
       addingResume: false, // if adding a resume?
-      requestID: null
+      requestID: null,
     };
   }
 
@@ -79,7 +79,6 @@ class OnlineApplication extends Component {
   submitHandler = () => {
     // TODO
     this.props.history.goBack();
-    
   };
 
   selectHandler = event => {
@@ -100,31 +99,34 @@ class OnlineApplication extends Component {
     console.log(active);
     let toShow = (
       <div className={classes.main}>
-        <Header />
-        <TopBar
-          text={[
-            this.text.positions,
-            this.text.positionDetail,
-            this.text.chooseResume,
-          ]}
-        />
-        <Prompts trans={this.text} />
-        <div className={classes.ResumesDiv}>
-          <Resumes
-            trans={this.text}
-            exportClicked={this.exportHandler}
-            deleteClicked={this.deleteHandler}
-            addResumeClicked={this.addResumeHandler}
-            selectHandler={this.selectHandler}
-            selected={this.state.selected}
-            addingResume={this.state.addingResume}
-            typeResumeHander={this.typeResumeHander}
-            uploadResuemHandler={this.uploadResuemHandler}
-            requestID={this.state.requestID}
+        <Header className={classes.Header}/>
+        <div className={classes.ToGrow}>
+          <TopBar
+            text={[
+              this.text.positions,
+              this.text.positionDetail,
+              this.text.chooseResume,
+            ]}
           />
+          <Prompts trans={this.text} />
+          <div className={classes.ResumesDiv}>
+            <Resumes
+              trans={this.text}
+              exportClicked={this.exportHandler}
+              deleteClicked={this.deleteHandler}
+              addResumeClicked={this.addResumeHandler}
+              selectHandler={this.selectHandler}
+              selected={this.state.selected}
+              addingResume={this.state.addingResume}
+              typeResumeHander={this.typeResumeHander}
+              uploadResuemHandler={this.uploadResuemHandler}
+              requestID={this.state.requestID}
+            />
+          </div>
+          
+          <Submit active={active} clicked={this.submitHandler} />
         </div>
-        <Submit active={active} clicked={this.submitHandler} />
-        <Footer />
+        <Footer className={classes.Footer}/>
       </div>
     );
 

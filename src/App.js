@@ -70,7 +70,7 @@ export class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div style={{height: "100%"}}>
           <Switch>
             <Route
               path="/"
