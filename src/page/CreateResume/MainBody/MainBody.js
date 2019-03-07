@@ -80,12 +80,13 @@ class MainBody extends Component {
   };
 
   render() {
+    console.log(this.props.text.editResume, this.props.text.saveOnProfile)
     return (
       <div className={classes.MainBody}>
-        <h1 className={classes.Title}>Edit Your Resume</h1>
+        <h1 className={classes.Title}>{this.props.text.editResume}</h1>
         <div className={classes.Buttons}>
           <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
-            Save on Profile
+            {this.props.text.saveOnProfile}
           </MDBBtn>
           {/* <MDBBtn color="indigo" onClick={this.submitResumeHandler}>
             Create PDF

@@ -19,7 +19,7 @@ const resume = props => {
                 <p>{props.language}</p>
               </div>
               <div className={classes.lastEdit}>
-                <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+                <p>{props.text.lastEdit}:&nbsp;&nbsp;{props.lastEdit}</p>
               </div>
             </div>
           </div>
@@ -55,17 +55,17 @@ const resume = props => {
               <p>{props.language}</p>
             </div>
             <div className={classes.lastEdit}>
-              <p>last edit:&nbsp;&nbsp;{props.lastEdit}</p>
+              <p>{props.text.lastEdit}:&nbsp;&nbsp;{props.lastEdit}</p>
             </div>
           </div>
           <div className={classes.actionsStyle}>
             <button id={props.id} onClick={props.selectHandler}>
-              Select
+              {props.text.select}
             </button>
-            <div className={classes.atBottom}>
+            {/* <div className={classes.atBottom}>
               <button onClick={props.exportClicked}>Export</button>
               <button onClick={props.deleteClicked}>Delete</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

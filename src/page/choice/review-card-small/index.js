@@ -1,4 +1,5 @@
 import React from 'react';
+import BraftEditor from 'braft-editor'
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar,MDBSpinner} from 'mdbreact';
 // import {getAsync} from '../../../tool/api-helper';
@@ -27,43 +28,53 @@ class ReviewCardSquareFull1 extends React.Component {
     this.state = {
       backend:{
         img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
-      }
+      },
+      editorState: null,
     }
     this.text = ReviewCardSquareFull1.i18n[languageHelper()];
   }
 
   async componentDidMount(){
     if(this.props.fulltext) {
-      const result = await getAsync(`/articles/${this.props.fulltext}`)
-      // console.log(result)
-      let title = result.content.title === null ? '求职的8个问题' : result.content.title
+      let result
+      try{
+        result = await getAsync(`/editorials/${this.props.fulltext}`,true)
+      }catch (e) {
+        
+      }
+      
+      // console.log(result.content,result.id)
+      let title = result.content === null ? '求职的8个问题' : result.content.body
       this.setState({
         backend:{
           img:'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',
           title
-        }
+        },
+        editorState: BraftEditor.createEditorState(title.braftEditorRaw)
       })
     }
     
   }
 
   render() {
-    return (this.state.backend) ? (
+    return (this.state.editorState) ? (
 
       <div >
         <MDBCard>
 
           <ul style={{...ulBasicNoLine,padding:'30px'}}>
             <li style={{display:'flex',justifyContent: 'space-between',...liBasicNoLine}}>
-              <span ref={(span)=>(this.span = span)} style={{
+              <span dangerouslySetInnerHTML={{__html: this.state.editorState.toHTML()}} 
+                    ref={(span)=>(this.span = span)} 
+                    style={{
                 fontSize:'16px',color:'#454F69',...basicFont,
                 overflow:'hidden', height:'22px',
               }}>
-                {this.state.backend.title}
+                {/*{this.state.backend.title}*/}
                 </span>
-              {this.span && this.span.offsetWidth < 100 ? null : (
-                <span style={{position:'absolute',left:'100px'}}>...</span>
-              )}
+              {/*{this.span && this.span.offsetWidth < 100 ? null : (*/}
+                {/*<span style={{position:'absolute',left:'100px'}}>...</span>*/}
+              {/*)}*/}
 
               <MDBIcon style={{justifyContent: 'flex-end'}} icon="ellipsis-h"/>
             </li>

@@ -77,7 +77,6 @@ class BasicInfo extends Component {
 
   async componentDidMount() {
     let data = await getAsync("/me", true);
-    console.log(data);
     // let temp =
     //   data &&
     //   data.content &&

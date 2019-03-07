@@ -64,7 +64,6 @@ class skillCard extends Component {
   };
 
   render() {
-    console.log(this.props.data);
     let toShow = (
       <div className={classes.SkillCard}>
         <img src={SkillIcon} alt="no img" />
