@@ -17,7 +17,7 @@ import {
   MDBListGroupItem
 } from 'mdbreact';
 
-import {Article} from './article';
+// import {Article} from './article';
 import {Connection} from './connection';
 import {Footer} from '../../general-component/footer';
 import {Header} from '../../general-component/header/header';
@@ -28,7 +28,7 @@ import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
 import {getAsync} from '../../tool/api-helper'
 
-
+import {ArticleWithLoading} from './withLoading/article-with-loading';
 
 export class Discovery extends React.Component {
 
@@ -153,7 +153,7 @@ export class Discovery extends React.Component {
                     <Switch>
                       <Route
                         path={`${this.props.match.url}/article`}
-                        component={routeProps => <Article {...routeProps} />}
+                        component={routeProps => <ArticleWithLoading {...routeProps} />}
                       />
                       <Route
                         path={`${this.props.match.url}/review`}

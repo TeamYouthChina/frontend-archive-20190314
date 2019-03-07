@@ -21,7 +21,8 @@ export class ArticleWithLoading extends React.Component {
     console.log('fetching');
     if (result && result.status && result.status.code === 200) {
       articles = result.content.articles;
-      this.state.isLoading = false;
+      this.setState({isLoading: false});
+      console.log('fetched')
       let mockData =
         {
           articles: articles,
@@ -39,6 +40,7 @@ export class ArticleWithLoading extends React.Component {
     return (
       <ArticlesWithLoading
         isLoading={this.state.isLoading}
+        data = {this.state.backend}
       />
     );
   }

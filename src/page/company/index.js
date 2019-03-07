@@ -38,7 +38,10 @@ export class Company extends React.Component {
     this.text = Company.i18n[languageHelper()];
 
   }
-
+  
+  componentWillMount() {
+    window.scrollTo(0, 0);//回到页面顶部
+  }
 
   render() {
     return (
