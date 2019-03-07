@@ -9,6 +9,7 @@ import {getAsync} from "../../../../tool/api-helper";
 import {IfCollect} from "../../../../general-component/if-collect";
 import classes from './job-card-bar.module.css'
 import {withRouter} from 'react-router-dom';
+import Cookies from "js-cookie";
 
 export class JobCardBar1 extends React.Component {
   constructor(props) {
@@ -91,7 +92,7 @@ export class JobCardBar1 extends React.Component {
                 className={classes.btn}
                 style={{borderRadius: '2px'}}
                 onClick={() => {
-                  this.props.history.push(`/onlineapplication/${this.props.match.params.id}`);
+                  this.props.history.push(`/onlineapplication/${Cookies.get("id")}`);
                 }}
               >
                 {this.text.applicate}
