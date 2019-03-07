@@ -36,7 +36,7 @@ class QuestionCardSquareFull1 extends React.Component {
 
   async componentDidMount() {
     if (this.props.fulltext) {
-      const result = await getAsync(`/questions/${this.props.fulltext}`)
+      const result = await getAsync(`/questions/${this.props.fulltext}`,true)
       // console.log(result)
       let title = result.content.title === null ? '求职的8个问题' : result.content.title
       this.setState({

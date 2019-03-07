@@ -14,7 +14,8 @@ import {
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
-  MDBNavbarToggler
+  MDBNavbarToggler,
+  MDBSpinner
 } from 'mdbreact';
 
 import {ArticleCard} from '../article/article-card';
@@ -43,7 +44,6 @@ export class SearchCommunityResult extends React.Component {
           {id: 1},
           {id: 2},
           {id: 3},
-          {id: 4}
         ],
         status: {
           code: 2000
@@ -112,6 +112,10 @@ export class SearchCommunityResult extends React.Component {
         </MDBContainer>
 
       </div>
-    ) : null;
+    ) : (
+      <div className="my-5 text-center">
+        <MDBSpinner/>
+      </div>
+    );
   }
 }
