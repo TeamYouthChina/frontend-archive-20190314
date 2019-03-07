@@ -15,7 +15,7 @@ import {
 import {getAsync} from '../../tool/api-helper';
 import {withRouter} from 'react-router-dom';
 
-export class ComCardSquare1 extends React.Component {
+class ComCardSquare1 extends React.Component {
   constructor(props) {
     super(props);
     /*
