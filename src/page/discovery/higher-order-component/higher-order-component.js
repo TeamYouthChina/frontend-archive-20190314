@@ -1,15 +1,20 @@
 import React from 'react';
 import {Loading} from '../component/loading';
 
-export const WithLoading = (Component) => (isLoading, ...rest) => {
+export const WithLoading = (Component) => (props) => {
   class HOC extends React.Component {
+    componentDidMount() {
+      this.props.
+    }
+
     render() {
       return (
-        isLoading ? <Loading/> : <Component
-          {...this.props}
+        state.isLoading ? <Loading/> : <Component
+          {...props}
         />
       );
     }
   }
+
   return HOC;
 };

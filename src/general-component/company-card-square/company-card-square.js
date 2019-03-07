@@ -110,7 +110,7 @@ export class ComCardSquare1 extends React.Component {
         {/*using absolute to make the following dropdown button in front of the whole card.*/}
         <div style={{position: 'absolute', left: '85%', bottom: '82%'}}>
           <MDBDropdown>
-            <MDBDropdownToggle className="p-0">
+            <MDBDropdownToggle className="p-0" nav>
               <MDBIcon
                 icon="ellipsis-h"
                 style={{color:'#8D9AAF'}}

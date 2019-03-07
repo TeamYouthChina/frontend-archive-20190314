@@ -14,7 +14,9 @@ export class Article extends React.Component {
   constructor(props) {
     super(props);
     this.text = Article.i18n[languageHelper()];
-    this.state = {};
+    this.state = {
+      isLoading: this.props.isLoading
+    };
   }
 
   async componentDidMount() {
@@ -23,7 +25,8 @@ export class Article extends React.Component {
       let articles
       // console.log(result)
       if (result && result.status && result.status.code === 200) {
-        articles = result.content.articles
+        articles = result.content.articles;
+        this.state.isLoading = false;
         let mockData =
           {
             articles:articles,
