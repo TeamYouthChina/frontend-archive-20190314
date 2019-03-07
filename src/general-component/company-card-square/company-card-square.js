@@ -1,7 +1,17 @@
 import React from 'react';
 import {languageHelper} from '../../tool/language-helper';
 import classes from './company-card-square.module.css';
-import {MDBIcon, MDBCard, MDBAvatar,MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle} from 'mdbreact';
+import {
+  MDBIcon, 
+  MDBCard, 
+  MDBAvatar,
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBRow,
+  MDBCol
+} from 'mdbreact';
 import {getAsync} from '../../tool/api-helper';
 import {withRouter} from 'react-router-dom';
 
@@ -32,9 +42,9 @@ export class ComCardSquare1 extends React.Component {
   render() {
     return (this.state.backend && this.state.backend.status && this.state.backend.status.code === 2000) ? (
 
-      <div>
+      <div style={{position: 'relative'}}>
         <MDBCard className={`${classes.card} `} onClick={() => {
-          //this.props.history.push(`/company/${this.state.backend.content.id}`);
+          this.props.history.push(`/company/${this.state.backend.content.id}`);
         }}>
           <div
             style={{
@@ -44,7 +54,7 @@ export class ComCardSquare1 extends React.Component {
             <div
               className="d-flex flex-row justify-content-between align-items-start mb-1"
             >
-              <div style={{height:'4rem'}} onClick={() => {
+              <div style={{height:'3.5rem'}} onClick={() => {
                 this.props.history.push(`/company/${this.state.backend.content.id}`);
               }}>
 
@@ -57,20 +67,20 @@ export class ComCardSquare1 extends React.Component {
                 />
 
               </div>
-              <div style={{zIndex: '10'}}>
-                <MDBDropdown>
-                  <MDBDropdownToggle className="p-0"nav >
-                    <MDBIcon
-                      icon="ellipsis-h"
-                      style={{color:'#8D9AAF'}}
-                    />
-                  </MDBDropdownToggle >
-                  <MDBDropdownMenu className="p-0" color="white" basic left>
-                    <MDBDropdownItem><MDBIcon far icon="heart mr-2" />收藏</MDBDropdownItem>
-                    <MDBDropdownItem><MDBIcon icon="ban mr-2" />不再推荐</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
-              </div>
+              {/*<div>*/}
+                {/*<MDBDropdown>*/}
+                  {/*<MDBDropdownToggle className="p-0">*/}
+                    {/*<MDBIcon*/}
+                      {/*icon="ellipsis-h"*/}
+                      {/*style={{color:'#8D9AAF'}}*/}
+                    {/*/>*/}
+                  {/*</MDBDropdownToggle >*/}
+                  {/*<MDBDropdownMenu className="p-0" color="white" basic left>*/}
+                    {/*<MDBDropdownItem><MDBIcon far icon="heart mr-2" />收藏</MDBDropdownItem>*/}
+                    {/*<MDBDropdownItem><MDBIcon icon="ban mr-2" />不再推荐</MDBDropdownItem>*/}
+                  {/*</MDBDropdownMenu>*/}
+                {/*</MDBDropdown>*/}
+              {/*</div>*/}
             </div>
             <div onClick={() => {
               this.props.history.push(`/company/${this.state.backend.content.id}`);
@@ -96,6 +106,22 @@ export class ComCardSquare1 extends React.Component {
           </div>
           
         </MDBCard>
+        
+        {/*using absolute to make the following dropdown button in front of the whole card.*/}
+        <div style={{position: 'absolute', left: '85%', bottom: '82%'}}>
+          <MDBDropdown>
+            <MDBDropdownToggle className="p-0">
+              <MDBIcon
+                icon="ellipsis-h"
+                style={{color:'#8D9AAF'}}
+              />
+            </MDBDropdownToggle >
+            <MDBDropdownMenu className="p-0" color="white" basic left>
+              <MDBDropdownItem><MDBIcon far icon="heart mr-2" />收藏</MDBDropdownItem>
+              <MDBDropdownItem><MDBIcon icon="ban mr-2" />不再推荐</MDBDropdownItem>
+            </MDBDropdownMenu>
+          </MDBDropdown>
+        </div>
 
       </div>
 

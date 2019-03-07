@@ -346,31 +346,31 @@ export class Choice extends React.Component {
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="2"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="3"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="4"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="5"/>
               </div>
               <div
                 className="col-4"
                 style={{marginBottom: '1rem'}}
               >
-                <ReviewCardSquareFull fulltext="1"/>
+                <ReviewCardSquareFull fulltext="6"/>
               </div>
             </div>
             <div>
