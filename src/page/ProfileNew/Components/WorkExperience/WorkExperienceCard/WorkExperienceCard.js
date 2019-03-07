@@ -121,7 +121,7 @@ class WorkExperienceCard extends Component {
             style={{ margin: "15px 0px 3px 0px" }}
             disabled
             type="text"
-            value={this.state.workData.note}
+            value={this.state.workData.note ? this.state.workData.note : ''}
             ref={this.noteRef}
             placeholder={text.note}
             onChange={this.inputOnChange}

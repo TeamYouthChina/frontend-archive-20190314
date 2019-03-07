@@ -32,8 +32,8 @@ class SocialActivityCard extends Component {
             name: this.props.data.name,
             organization: this.props.data.organization,
             duration: {
-              begin: this.props.data.duration.begin.substring(0,10),
-              end: this.props.data.duration.end.substring(0,10),
+              begin: this.props.data.duration.begin.substring(0, 10),
+              end: this.props.data.duration.end.substring(0, 10),
             },
             note: this.props.data.note,
           }
@@ -104,7 +104,7 @@ class SocialActivityCard extends Component {
             value={this.state.socialData.organization}
             onChange={this.inputOnChange}
           />
-          <div  className={classes.twoP}>
+          <div className={classes.twoP}>
             <p>
               {this.state.socialData.duration.begin} -{" "}
               {this.state.socialData.duration.end}
@@ -114,7 +114,7 @@ class SocialActivityCard extends Component {
             style={{ margin: "15px 0px 3px 0px" }}
             disabled
             type="text"
-            value={this.state.socialData.note}
+            value={this.state.socialData.note ? this.state.socialData.note : ""}
             onChange={this.inputOnChange}
           />
         </div>

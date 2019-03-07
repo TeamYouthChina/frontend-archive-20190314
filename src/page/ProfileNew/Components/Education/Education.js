@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MDBBtn } from "mdbreact";
+import { MDBAnimation } from "mdbreact";
 
 import EducationCard from "./EducationCard/EducationCard";
 import classes from "./Education.module.css";
@@ -37,7 +38,6 @@ class Education extends Component {
     super(props);
     this.state = {
       cards: [],
-      requestedData: null,
     };
   }
 
@@ -47,13 +47,11 @@ class Education extends Component {
       "/applicants/" + this.props.requestID + "/educations",
       true
     );
-    console.log(data);
-    this.setState({ requestedData: data });
     let temp =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.status.code === 2000
+        ? data.content.map(e => {
             return (
               <EducationCard
                 key={e.id}
