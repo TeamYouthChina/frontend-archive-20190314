@@ -78,7 +78,8 @@ class OnlineApplication extends Component {
 
   submitHandler = () => {
     // TODO
-    console.log("submit!");
+    this.props.history.goBack();
+    
   };
 
   selectHandler = event => {
