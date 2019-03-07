@@ -2,8 +2,8 @@ import React from 'react';
 import BraftEditor from 'braft-editor'
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar,MDBSpinner} from 'mdbreact';
-// import {getAsync} from '../../../tool/api-helper';
-import {getAsync} from '../../question/api-test/api-test';
+import {getAsync} from '../../../tool/api-helper';
+// import {getAsync} from '../../question/api-test/api-test';
 import {withRouter} from 'react-router-dom';
 const basicFont = {
   fontFamily: 'PingFang SC',
