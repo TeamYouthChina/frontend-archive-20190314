@@ -77,7 +77,7 @@ export class HomeHeader extends React.Component {
             color="mdb-color"
           >
             <MDBCol className={classes.yc} md="1">
-              <MDBNavbarBrand href="/">
+              <MDBNavbarBrand href="/choice">
                 <strong>WeYouth</strong>
               </MDBNavbarBrand>
             </MDBCol>

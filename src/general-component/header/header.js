@@ -60,7 +60,7 @@ class Header1 extends React.Component {
             style={{background: '#31394D'}}
           >
             <MDBCol className={classes.yc} md="1">
-              <MDBNavbarBrand href="/">
+              <MDBNavbarBrand href="/choice">
                 
                   职 道
                 
