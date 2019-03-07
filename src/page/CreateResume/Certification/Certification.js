@@ -43,11 +43,13 @@ class Certification extends Component {
       "/applicants/" + this.props.requestID + "/certificates",
       true
     );
+    console.log(data)
     let temp1 =
       data &&
       data.content &&
+      data.content.certificates &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.certificates.map(e => {
             return (
               <CertificationCard
                 key={e.id}

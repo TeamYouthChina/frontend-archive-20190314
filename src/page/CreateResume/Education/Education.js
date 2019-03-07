@@ -43,11 +43,13 @@ class Education extends Component {
       "/applicants/" + this.props.requestID + "/educations",
       true
     );
+    console.log(data)
     let temp1 =
       data &&
       data.content &&
+      data.content.educations &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.educations.map(e => {
             return (
               <EducationCard
                 key={e.id}
@@ -63,8 +65,9 @@ class Education extends Component {
     let temp2 =
       data &&
       data.content &&
+      data.content.educations &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.educations.map(e => {
             return (
               <EducationCard
                 key={e.id}

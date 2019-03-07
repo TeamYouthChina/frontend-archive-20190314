@@ -43,11 +43,13 @@ class SocialActivity extends Component {
       "/applicants/" + this.props.requestID + "/extracurriculars",
       true
     );
+    console.log(data);
     let temp1 =
       data &&
       data.content &&
+      data.content.extracurriculars &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.extracurriculars.map(e => {
             return (
               <SocialActivityCard
                 key={e.id}
@@ -63,8 +65,9 @@ class SocialActivity extends Component {
     let temp2 =
       data &&
       data.content &&
+      data.content.extracurriculars &&
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.extracurriculars.map(e => {
             return (
               <SocialActivityCard
                 key={e.id}

@@ -28,8 +28,7 @@ class skill extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: Array(),
-      requestedData: null,
+      cards: [],
       cardsToModal: [],
       editorState: BraftEditor.createEditorState(),
       showEditor: false,

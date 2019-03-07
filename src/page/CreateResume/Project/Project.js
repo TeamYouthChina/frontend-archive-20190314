@@ -29,7 +29,6 @@ class Project extends Component {
     super(props);
     this.state = {
       cards: Array(),
-      requestedData: null,
       cardsToModal: [],
       editorState: BraftEditor.createEditorState(),
       showEditor: false,
@@ -43,18 +42,16 @@ class Project extends Component {
       "/applicants/" + this.props.requestID + "/projects",
       true
     );
-    this.setState({ requestedData: data });
-    this.date = new Date();
-    const time = this.date.getTime();
     let temp1 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.content.projects &&
+      data.status.code === 2000
+        ? data.content.projects.map(e => {
             return (
               <ProjectCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
@@ -64,14 +61,15 @@ class Project extends Component {
         : Array();
 
     let temp2 =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
+      data &&
+      data.content &&
+      data.content.projects &&
+      data.status.code === 2000
+        ? data.content.projects.map(e => {
             return (
               <ProjectCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}

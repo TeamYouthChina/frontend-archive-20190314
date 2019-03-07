@@ -73,6 +73,7 @@ class BasicInfo extends Component {
 
   async componentDidMount() {
     let data = await getAsync("/me", true);
+    console.log(`below is the personal info got from server, but i am using the fake for now`)
     console.log(data);
     // let temp =
     //   data &&

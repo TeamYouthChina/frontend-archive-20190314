@@ -80,7 +80,6 @@ class MainBody extends Component {
   };
 
   render() {
-    console.log(this.props.text.editResume, this.props.text.saveOnProfile)
     return (
       <div className={classes.MainBody}>
         <h1 className={classes.Title}>{this.props.text.editResume}</h1>

@@ -53,6 +53,7 @@ class skill extends Component {
       "/applicants/" + this.props.requestID + "/skills",
       true
     );
+    console.log(data)
     let allSkillsData = await getAsync("/applicants/skills/", true);
     const tempAllSkills =
       allSkillsData &&

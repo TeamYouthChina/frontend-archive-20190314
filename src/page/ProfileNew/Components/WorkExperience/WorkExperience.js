@@ -46,11 +46,13 @@ class WorkExperience extends Component {
       "/applicants/" + this.props.requestID + "/experiences", 
       true
     );
+    console.log(data)
     let temp =
       data &&
-      data.content &&
+      data.content && 
+      data.content.experiences && 
       data.status.code === 2000
-        ? data.content.map(e => {
+        ? data.content.experiences.map(e => {
             return (
               <WorkExperienceCard
                 key={e.id}

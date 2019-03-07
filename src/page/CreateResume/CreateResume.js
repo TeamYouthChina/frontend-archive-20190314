@@ -29,7 +29,11 @@ class CreateResume extends Component {
 
   componentWillMount() {
     this.setState({ requestID: this.props.match.params.id }, () => {
-      console.log(this.state.requestID);
+      console.log(
+        `the id i got from the url is ${
+          this.state.requestID
+        }, there would be an error if the id in the url is 1 because 1 is the admin and has no data on the server, I should get anything other than 1`
+      );
     });
   }
 

@@ -36,7 +36,6 @@ class Certification extends Component {
     this.state = {
       cards: Array(),
       flipper: true,
-      requestedData: null,
     };
     this.date = null;
   }
@@ -47,18 +46,17 @@ class Certification extends Component {
       "/applicants/" + this.props.requestID + "/certificates",
       true
     );
-    this.setState({ requestedData: data });
+    console.log(data)
     let temp =
-      this.state.requestedData &&
-      this.state.requestedData.content &&
-      this.state.requestedData.status.code === 2000
-        ? this.state.requestedData.content.map(e => {
-            this.date = new Date();
-            const time = this.date.getTime();
+      data &&
+      data.content &&
+      data.content.certificates &&
+      data.status.code === 2000
+        ? data.content.certificates.map(e => {
             return (
               <CertificationCard
-                key={time}
-                id={time}
+                key={e.id}
+                id={e.id}
                 data={e}
                 deleteHandler={this.deleteHandler}
                 saveHandler={this.saveHandler}
