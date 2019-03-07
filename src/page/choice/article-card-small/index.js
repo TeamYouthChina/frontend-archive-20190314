@@ -1,7 +1,7 @@
 import React from 'react';
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar, MDBSpinner} from 'mdbreact';
-import {getAsync} from '../../question/api-test/api-test';
+import {getAsync} from '../../../tool/api-helper';
 import {Link, withRouter} from 'react-router-dom';
 
 const basicFont = {
@@ -34,9 +34,14 @@ class ArticleCardSquareFull1 extends React.Component {
 
   async componentDidMount() {
     if (this.props.fulltext) {
-      const result = await getAsync(`/articles/${this.props.fulltext}`,true)
+      let result
+      try {
+        result = await getAsync(`/articles/${this.props.fulltext}`,true)
+      } catch (e) {
+        
+      }
       // console.log(result)
-      let title = result.content.title === null ? '求职的8个问题' : result.content.title
+      let title = result.content === null ? '求职的8个问题' : result.content.title
       this.setState({
         backend: {
           img: 'https://s3.amazonaws.com/youthchina/WechatIMG29.jpeg',

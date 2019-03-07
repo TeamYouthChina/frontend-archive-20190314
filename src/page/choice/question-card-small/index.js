@@ -2,8 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {languageHelper} from '../../../tool/language-helper';
 import {MDBIcon, MDBCard, MDBAvatar, MDBSpinner} from 'mdbreact';
-// import {getAsync} from '../../../tool/api-helper';
-import {getAsync} from '../../question/api-test/api-test';
+import {getAsync} from '../../../tool/api-helper';
+// import {getAsync} from '../../question/api-test/api-test';
 import {withRouter} from 'react-router-dom';
 
 const basicFont = {
