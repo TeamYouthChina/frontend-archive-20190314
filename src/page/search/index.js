@@ -50,6 +50,16 @@ const basicCHNFont = {
   lineHeight: 'normal'
 };
 
+const navyFont = {
+  ...basicCHNFont,
+  color: '#31394D'
+};
+
+const navlinkIcon = {
+  width: '20px',
+  marginRight: '5px'
+};
+
 export class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -124,10 +134,8 @@ export class Search extends React.Component {
                 <MDBNavItem className="mx-2">
                   <MDBDropdown>
                     <MDBDropdownToggle nav>
-                      <div className="d-md-inline" style={{
-                        ...basicCHNFont,
-                        color: '#31394D'
-                      }}>{this.state.tabsContent} <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
+                      <div className="d-md-inline" style={navyFont}>
+                        {this.state.tabsContent} <MDBIcon icon="caret-down" style={{color: '#8D9AAF'}}/>
                       </div>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu className={style.menu}>
@@ -136,10 +144,10 @@ export class Search extends React.Component {
                         onClick={() => this.handleTabsContent('职位')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
-                          style={{...basicCHNFont, color: '#31394D'}}
+                          style={navyFont}
                           to={`${this.props.match.url}/search-job-result`}
                         >
-                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="user-circle"/> 职位
+                          <MDBIcon style={navlinkIcon} icon="user-circle"/> 职位
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
@@ -147,10 +155,10 @@ export class Search extends React.Component {
                         onClick={() => this.handleTabsContent('公司')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
-                          style={{...basicCHNFont, color: '#31394D'}}
+                          style={navyFont}
                           to={`${this.props.match.url}/search-company-result`}
                         >
-                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="building"/> 公司
+                          <MDBIcon style={navlinkIcon} icon="building"/> 公司
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
@@ -158,9 +166,9 @@ export class Search extends React.Component {
                         onClick={() => this.handleTabsContent('社区')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
-                          style={{...basicCHNFont, color: '#31394D'}}
+                          style={navyFont}
                           to={`${this.props.match.url}/search-community-result`}>
-                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="bullhorn"/> 社区
+                          <MDBIcon style={navlinkIcon} icon="bullhorn"/> 社区
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
@@ -168,9 +176,9 @@ export class Search extends React.Component {
                         onClick={() => this.handleTabsContent('视频')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
-                          style={{...basicCHNFont, color: '#31394D'}}
+                          style={navyFont}
                           to={`${this.props.match.url}/search-video-result`}>
-                          <MDBIcon style={{width: '20px', marginRight: '5px'}} fab icon="play-circle"/> 视频
+                          <MDBIcon style={navlinkIcon} fab icon="play-circle"/> 视频
                         </MDBNavLink>
                       </MDBDropdownItem>
                       <MDBDropdownItem
@@ -178,9 +186,9 @@ export class Search extends React.Component {
                         onClick={() => this.handleTabsContent('人脉')}>
                         <MDBNavLink
                           className="p-2 d-flex justify-content-center align-items-center"
-                          style={{...basicCHNFont, color: '#31394D'}}
+                          style={navyFont}
                           to={`${this.props.match.url}/search-connect-result`}>
-                          <MDBIcon style={{width: '20px', marginRight: '5px'}} icon="users"/> 人脉
+                          <MDBIcon style={navlinkIcon} icon="users"/> 人脉
                         </MDBNavLink>
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
@@ -194,7 +202,8 @@ export class Search extends React.Component {
                   />
                   <Route
                     path={`${this.props.match.url}/search-company-result`}
-                    component={routeProps => <CompanyNavbarItem clickable={this.handleTabsContent} basicCHNFont={basicCHNFont}/>}
+                    component={routeProps => <CompanyNavbarItem clickable={this.handleTabsContent}
+                                                                basicCHNFont={basicCHNFont}/>}
                   />
                   <Route
                     path={`${this.props.match.url}/search-community-result`}
