@@ -1,5 +1,6 @@
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch, Link} from 'react-router-dom';
+import Cookies from "js-cookie";
 import style from './index.module.css';
 
 import {
@@ -24,11 +25,13 @@ import {Header} from '../../general-component/header/header';
 import {QuestionAnswer} from './question-answer';
 import {Review} from './review';
 import {Video} from './video';
+import {ArticleWithLoading} from './withLoading/article-with-loading';
+import {ArticleCreate} from "../article/create";
+import {QuestionCreate} from "../question/create";
+import {ReviewCreate} from "../review/create";
 import {languageHelper} from '../../tool/language-helper';
 import {removeUrlSlashSuffix} from '../../tool/remove-url-slash-suffix';
-import {getAsync} from '../../tool/api-helper'
-
-import {ArticleWithLoading} from './withLoading/article-with-loading';
+import {getAsync} from '../../tool/api-helper';
 
 export class Discovery extends React.Component {
 
@@ -40,6 +43,10 @@ export class Discovery extends React.Component {
     };
     this.text = Discovery.i18n[languageHelper()];
   }
+
+  isUserLogin = () => {
+    return Cookies.get('token');
+  };
 
   render() {
     const pathname = removeUrlSlashSuffix(this.props.location.pathname);
@@ -183,26 +190,53 @@ export class Discovery extends React.Component {
                       }}>
                         <MDBListGroupItem
                           hover
-                          href="/article/create"
                           className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
-                          style={{color: '#454F69', borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0}}>
-                          <MDBIcon fa icon="edit" className="mr-2"/> 写文章
+                          style={{borderTopWidth: 0, borderLeftWidth: 0, borderRightWidth: 0}}>
+                          <Link style={{color: '#4F65E1'}} to="/article/create">
+                            <MDBIcon fa icon="edit" className="mr-2"/>写文章
+                          </Link>
                         </MDBListGroupItem>
                         <MDBListGroupItem
                           hover
-                          href="/question/create"
                           className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
-                          style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
-                          <MDBIcon far icon="question-circle" className="mr-2"/> 提问题
+                          style={{borderLeftWidth: 0, borderRightWidth: 0}}>
+                          <Link style={{color: '#4F65E1'}} to="/question/create">
+                            <MDBIcon far icon="question-circle" className="mr-2"/>提问题
+                          </Link>
                         </MDBListGroupItem>
                         <MDBListGroupItem
                           hover
-                          href="/review/create"
                           className={`d-flex justify-content-center align-items-center ${style.listGroupItems}`}
-                          style={{color: '#454F69', borderLeftWidth: 0, borderRightWidth: 0}}>
-                          <MDBIcon fal icon="comments" className="mr-2"/> 写短评
+                          style={{borderLeftWidth: 0, borderRightWidth: 0}}>
+                          <Link style={{color: '#4F65E1'}} to="/review/create">
+                            <MDBIcon fal icon="comments" className="mr-2"/>写短评
+                          </Link>
                         </MDBListGroupItem>
                       </MDBListGroup>
+
+                      <Switch>
+                        {
+                          this.isUserLogin() &&
+                          <Route
+                            path={`${this.props.match.url}/article/create`}
+                            component={routeProps => <ArticleCreate {...routeProps} />}
+                          />
+                        }
+                        {
+                          this.isUserLogin() &&
+                          <Route
+                            path={`${this.props.match.url}/question/create`}
+                            component={routeProps => <QuestionCreate {...routeProps} />}
+                          />
+                        }
+                        {
+                          this.isUserLogin() &&
+                          <Route
+                            path={`${this.props.match.url}/review/create`}
+                            component={routeProps => <ReviewCreate {...routeProps} />}
+                          />
+                        }
+                      </Switch>
                     </div>
 
                   </MDBCol>
