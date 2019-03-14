@@ -218,21 +218,21 @@ export class Discovery extends React.Component {
                         {
                           this.isUserLogin() &&
                           <Route
-                            path={`${this.props.match.url}/article/create`}
+                            path="/article/create"
                             component={routeProps => <ArticleCreate {...routeProps} />}
                           />
                         }
                         {
                           this.isUserLogin() &&
                           <Route
-                            path={`${this.props.match.url}/question/create`}
+                            path="/question/create"
                             component={routeProps => <QuestionCreate {...routeProps} />}
                           />
                         }
                         {
                           this.isUserLogin() &&
                           <Route
-                            path={`${this.props.match.url}/review/create`}
+                            path="/review/create"
                             component={routeProps => <ReviewCreate {...routeProps} />}
                           />
                         }
